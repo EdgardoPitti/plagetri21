@@ -4,9 +4,25 @@
 
 @section ('content')
 
-<h1>Crear Pacientes</h1>
+{{--*/
+    if($paciente->exists){
+      $datos_formulario =  array('route' => array('datos.pacientes.update', $paciente->id), 'method' => 'PATCH');
+      $tipo = 'Editar';
+    }
+    else{
 
-{{ Form::open(array('route' => 'datos.pacientes.store', 'method' => 'POST'), array('role' => 'form')) }}
+      $datos_formulario = array('route' => 'datos.pacientes.store', 'method' => 'POST');
+      $tipo = 'Crear';
+    }
+  /*--}}
+
+<h1>{{ $tipo }} Pacientes</h1>
+
+  <p> 
+    <a href="{{ route('datos.pacientes.index') }}" class="btn btn-info">Lista de Pacientes</a>
+  </p>
+
+{{ Form::model($paciente, $datos_formulario , array('role' => 'form')) }}
 
   <div class="row">
     <div class="form-group col-md-4">
@@ -47,7 +63,7 @@
     </div>
 
   </div>
-  {{ Form::button('Crear Paciente', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
+  {{ Form::button($tipo.' Paciente', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
   
 {{ Form::close() }}
 
