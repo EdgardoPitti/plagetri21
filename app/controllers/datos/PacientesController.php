@@ -1,6 +1,6 @@
 <?php
 
-class Datos_PacientesController extends \BaseController {
+class Datos_PacientesController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,6 @@ class Datos_PacientesController extends \BaseController {
 	 */
 	public function index()
 	{
-	
        return View::make('datos/pacientes/form');
 	}
 
@@ -32,17 +31,20 @@ class Datos_PacientesController extends \BaseController {
 	 */
 	public function store()
 	{
-		// Creamos un nuevo objeto para nuestro nuevo paciente
-        $paciente = new Pacientes;
-        // Obtenemos la data enviada por el usuario
+        $paciente = new Paciente;
         $data = Input::all();
-       
-        // Si la data es valida se la asignamos al paciente
-        $paciente->fill($data);
-        // Guardamos el paciente
+        $paciente->cedula = $data['cedula'];
+        $paciente->primer_nombre = $data['primer_nombre'];
+        $paciente->segundo_nombre = $data['segundo_nombre'];
+        $paciente->apellido_paterno = $data['apellido_paterno'];
+        $paciente->apellido_materno = $data['apellido_materno'];
+        $paciente->sexo = '0';
+        $paciente->fecha_nacimiento = $data['fecha_nacimiento'];
+        $paciente->lugar_nacimiento = $data['lugar_nacimiento'];
+        $paciente->edad_paciente = $data['edad_paciente'];
+        $paciente->peso = $data['peso'];
         $paciente->save();
-        // Y Devolvemos una redirección a la acción show para mostrar el usuario
-        return 'Paciente Agregado';//Redirect::route('datos.pacientes.index');	
+        return Redirect::route('datos.pacientes.index');	
 	}
 
 

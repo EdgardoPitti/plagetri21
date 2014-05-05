@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'pagetri21',
+			'database'  => 'plagetri21',
 			'username'  => 'root',
 			'password'  => 'sql',
 			'charset'   => 'utf8',
