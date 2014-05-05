@@ -9,7 +9,8 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function index()
 	{
-       return View::make('datos/pacientes/form');
+		$pacientes = Paciente::all();
+       return View::make('datos/pacientes/list')->with('pacientes', $pacientes);
 	}
 
 
@@ -20,7 +21,8 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function create()
 	{
-		//
+		$paciente = new Paciente;
+		return View::make('datos/pacientes/form')->with('paciente', $paciente);
 	}
 
 
@@ -56,7 +58,8 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$paciente = Paciente::find($id);
+		return View::make('datos/pacientes/show')->with('paciente', $paciente);
 	}
 
 
@@ -68,7 +71,12 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$paciente = Paciente::find($id);
+		if (is_null ($paciente))
+		{
+		 App::abort(404);
+		}
+		return View::make('datos/pacientes/form')->with('paciente', $paciente);
 	}
 
 
@@ -80,7 +88,18 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$paciente = Paciente::find($id);
+		$data = Input::all();
+        $paciente->cedula = $data['cedula'];
+        $paciente->primer_nombre = $data['primer_nombre'];
+        $paciente->segundo_nombre = $data['segundo_nombre'];
+        $paciente->apellido_paterno = $data['apellido_paterno'];
+        $paciente->apellido_materno = $data['apellido_materno'];
+        $paciente->lugar_nacimiento = $data['lugar_nacimiento'];
+        $paciente->edad_paciente = $data['edad_paciente'];
+        $paciente->peso = $data['peso'];
+        $paciente->save();
+        return Redirect::route('datos.pacientes.index');	
 	}
 
 
@@ -92,7 +111,9 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$paciente = Paciente::find($id);
+		
+		return $paciente->primer_nombre;//Redirect::route('datos.pacientes.index');	
 	}
 
 
