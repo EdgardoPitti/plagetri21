@@ -1384,3 +1384,163 @@ Stack trace:
 Stack trace:
 #0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
 #1 {main} [] []
+[2014-05-05 17:58:51] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Paciente' not found' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:36
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 18:00:48] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Paciente' not found' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:36
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 18:00:52] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Paciente' not found' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:36
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 18:01:33] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class Paciente contains 6 abstract methods and must therefore be declared abstract or implement the remaining methods (Illuminate\Auth\UserInterface::getAuthIdentifier, Illuminate\Auth\UserInterface::getAuthPassword, Illuminate\Auth\UserInterface::getRememberToken, ...)' in C:\wamp\www\plagetri21\app\models\Paciente.php:14
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 18:01:36] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class Paciente contains 6 abstract methods and must therefore be declared abstract or implement the remaining methods (Illuminate\Auth\UserInterface::getAuthIdentifier, Illuminate\Auth\UserInterface::getAuthPassword, Illuminate\Auth\UserInterface::getRememberToken, ...)' in C:\wamp\www\plagetri21\app\models\Paciente.php:14
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 18:06:53] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class Paciente contains 6 abstract methods and must therefore be declared abstract or implement the remaining methods (Illuminate\Auth\UserInterface::getAuthIdentifier, Illuminate\Auth\UserInterface::getAuthPassword, Illuminate\Auth\UserInterface::getRememberToken, ...)' in C:\wamp\www\plagetri21\app\models\Paciente.php:14
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 18:08:11] production.ERROR: exception 'Illuminate\Database\Eloquent\MassAssignmentException' with message '_token' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5941
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(41): Illuminate\Database\Eloquent\Model->fill(Array)
+#1 [internal function]: Datos_PacientesController->store()
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('store', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'store')
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'store')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 18:28:15] production.ERROR: exception 'Illuminate\Database\Eloquent\MassAssignmentException' with message '_token' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5941
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(37): Illuminate\Database\Eloquent\Model->fill(Array)
+#1 [internal function]: Datos_PacientesController->store()
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('store', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'store')
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'store')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 18:28:48] production.ERROR: exception 'Illuminate\Database\Eloquent\MassAssignmentException' with message '_token' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5941
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(37): Illuminate\Database\Eloquent\Model->fill(Array)
+#1 [internal function]: Datos_PacientesController->store()
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('store', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'store')
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'store')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 18:54:53] production.ERROR: exception 'Illuminate\Database\Eloquent\MassAssignmentException' with message '_token' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5941
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(37): Illuminate\Database\Eloquent\Model->fill(Array)
+#1 [internal function]: Datos_PacientesController->store()
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('store', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'store')
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'store')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 18:55:33] production.ERROR: exception 'Illuminate\Database\Eloquent\MassAssignmentException' with message '_token' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5941
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(37): Illuminate\Database\Eloquent\Model->fill(Array)
+#1 [internal function]: Datos_PacientesController->store()
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('store', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'store')
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'store')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 18:56:14] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class Paciente contains 6 abstract methods and must therefore be declared abstract or implement the remaining methods (Illuminate\Auth\UserInterface::getAuthIdentifier, Illuminate\Auth\UserInterface::getAuthPassword, Illuminate\Auth\UserInterface::getRememberToken, ...)' in C:\wamp\www\plagetri21\app\models\Paciente.php:14
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 18:57:00] production.ERROR: exception 'Illuminate\Database\Eloquent\MassAssignmentException' with message '_token' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5941
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(37): Illuminate\Database\Eloquent\Model->fill(Array)
+#1 [internal function]: Datos_PacientesController->store()
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('store', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'store')
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'store')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
