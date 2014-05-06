@@ -1544,3 +1544,1299 @@ Stack trace:
 #17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
 #19 {main} [] []
+[2014-05-05 19:45:40] production.ERROR: exception 'ErrorException' with message 'Undefined variable: x' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:23
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45(23): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 23, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: x (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:23
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 19:46:53] production.ERROR: exception 'ErrorException' with message 'Undefined variable: x' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:23
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45(23): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 23, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: x (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:23
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 19:47:25] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function delete() on a non-object' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:97
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 19:47:43] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function delete() on a non-object' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:97
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 19:47:56] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function delete() on a non-object' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:97
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 19:52:37] production.ERROR: exception 'ErrorException' with message 'Undefined variable: x' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:23
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45(23): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 23, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: x (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:23
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 19:53:01] production.ERROR: exception 'ErrorException' with message 'Undefined variable: x' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:23
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45(23): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 23, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: x (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:23
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 19:56:22] production.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:98
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(98): Illuminate\Exception\Handler->handleError(8, 'Trying to get p...', 'C:\wamp\www\pla...', 98, Array)
+#1 [internal function]: Datos_PacientesController->destroy('undefined')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('destroy', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'destroy')
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'destroy')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}('undefined')
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 19:58:09] production.ERROR: exception 'InvalidArgumentException' with message 'Route [datos.pacientes.Destroy] not defined.' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5511
+Stack trace:
+#0 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Support\helpers.php(792): Illuminate\Routing\UrlGenerator->route('datos.pacientes...', 5)
+#1 C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45(31): route('datos.pacientes...', 5)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#3 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#19 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#20 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#21 {main}
+
+Next exception 'ErrorException' with message 'Route [datos.pacientes.Destroy] not defined. (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list.blade.php)' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5511
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(InvalidArgumentException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 19:58:29] production.ERROR: exception 'InvalidArgumentException' with message 'Route [datos.pacientes.Destroy] not defined.' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5511
+Stack trace:
+#0 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Support\helpers.php(792): Illuminate\Routing\UrlGenerator->route('datos.pacientes...', 5)
+#1 C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45(31): route('datos.pacientes...', 5)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#3 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#19 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#20 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#21 {main}
+
+Next exception 'ErrorException' with message 'Route [datos.pacientes.Destroy] not defined. (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list.blade.php)' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5511
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(InvalidArgumentException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 20:07:07] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '}'' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:74
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:11:06] production.ERROR: exception 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5289
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(4663): Illuminate\Routing\RouteCollection->match(Object(Illuminate\Http\Request))
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(4651): Illuminate\Routing\Router->findRoute(Object(Illuminate\Http\Request))
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#12 {main} [] []
+[2014-05-05 20:11:55] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ','' in C:\wamp\www\plagetri21\app\storage\views\62a9b552589899f6b0fdfe6e3a606c55:8
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:12:10] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ','' in C:\wamp\www\plagetri21\app\storage\views\62a9b552589899f6b0fdfe6e3a606c55:8
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:12:25] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ','' in C:\wamp\www\plagetri21\app\storage\views\62a9b552589899f6b0fdfe6e3a606c55:8
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:13:42] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ','' in C:\wamp\www\plagetri21\app\storage\views\62a9b552589899f6b0fdfe6e3a606c55:8
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:15:02] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\62a9b552589899f6b0fdfe6e3a606c55:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\62a9b552589899f6b0fdfe6e3a606c55(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\62a9b552589899f6b0fdfe6e3a606c55:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 20:37:12] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'view' not found' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:62
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:48:14] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'datos' (T_STRING)' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:30
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:48:50] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'datos' (T_STRING)' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:30
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:49:05] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'datos' (T_STRING)' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:30
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:50:46] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected end of file' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:48
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 20:50:48] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected end of file' in C:\wamp\www\plagetri21\app\storage\views\e06fd401241a0df912065a24093cdd45:48
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 21:27:30] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:29:27] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:32:33] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:33:29] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:35:27] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '{'' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 21:35:44] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:35:59] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:8
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(8): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 8, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:8
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:43:57] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:46:13] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:48:14] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:48:21] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(7): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 7, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:7
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:49:15] production.ERROR: exception 'ErrorException' with message 'Undefined variable: paciente' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:24
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(24): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 24, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined variable: paciente (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:24
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:51:04] production.ERROR: exception 'ErrorException' with message 'Undefined index: pacientes' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:81
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(81): Illuminate\Exception\Handler->handleError(8, 'Undefined index...', 'C:\wamp\www\pla...', 81, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Undefined index: pacientes (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:81
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:54:51] production.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in C:\wamp\www\plagetri21\app\storage\views\e5f98f4bcc34068ba2dd1271d0367882:6
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\e5f98f4bcc34068ba2dd1271d0367882(6): Illuminate\Exception\Handler->handleError(8, 'Trying to get p...', 'C:\wamp\www\pla...', 6, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Trying to get property of non-object (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\show.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\e5f98f4bcc34068ba2dd1271d0367882:6
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:54:57] production.ERROR: exception 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5289
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(4663): Illuminate\Routing\RouteCollection->match(Object(Illuminate\Http\Request))
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(4651): Illuminate\Routing\Router->findRoute(Object(Illuminate\Http\Request))
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#12 {main} [] []
+[2014-05-05 21:57:17] production.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in C:\wamp\www\plagetri21\app\storage\views\e5f98f4bcc34068ba2dd1271d0367882:6
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\storage\views\e5f98f4bcc34068ba2dd1271d0367882(6): Illuminate\Exception\Handler->handleError(8, 'Trying to get p...', 'C:\wamp\www\pla...', 6, Array)
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#20 {main}
+
+Next exception 'ErrorException' with message 'Trying to get property of non-object (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\show.blade.php)' in C:\wamp\www\plagetri21\app\storage\views\e5f98f4bcc34068ba2dd1271d0367882:6
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(ErrorException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 21:57:48] production.ERROR: exception 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5289
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(4663): Illuminate\Routing\RouteCollection->match(Object(Illuminate\Http\Request))
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(4651): Illuminate\Routing\Router->findRoute(Object(Illuminate\Http\Request))
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#12 {main} [] []
+[2014-05-05 21:57:52] production.ERROR: exception 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5289
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(4663): Illuminate\Routing\RouteCollection->match(Object(Illuminate\Http\Request))
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(4651): Illuminate\Routing\Router->findRoute(Object(Illuminate\Http\Request))
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#12 {main} [] []
+[2014-05-05 22:01:26] production.ERROR: exception 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5289
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(4663): Illuminate\Routing\RouteCollection->match(Object(Illuminate\Http\Request))
+#1 C:\wamp\www\plagetri21\bootstrap\compiled.php(4651): Illuminate\Routing\Router->findRoute(Object(Illuminate\Http\Request))
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#12 {main} [] []
+[2014-05-05 22:01:32] production.ERROR: exception 'InvalidArgumentException' with message 'Route [datos/pacientes/destroy] not defined.' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5511
+Stack trace:
+#0 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Support\helpers.php(792): Illuminate\Routing\UrlGenerator->route('datos/pacientes...', 5)
+#1 C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68(87): route('datos/pacientes...', 5)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9496): include('C:\wamp\www\pla...')
+#3 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#19 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#20 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#21 {main}
+
+Next exception 'ErrorException' with message 'Route [datos/pacientes/destroy] not defined. (View: C:\wamp\www\plagetri21\app\views\datos\pacientes\list-edit-form.blade.php)' in C:\wamp\www\plagetri21\bootstrap\compiled.php:5511
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(9498): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(InvalidArgumentException))
+#1 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\wamp\www\pla...', Array)
+#2 C:\wamp\www\plagetri21\bootstrap\compiled.php(9374): Illuminate\View\Engines\CompilerEngine->get('C:\wamp\www\pla...', Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(9361): Illuminate\View\View->getContents()
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(9352): Illuminate\View\View->renderContents()
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(10045): Illuminate\View\View->render()
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(9582): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4831): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4657): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 22:06:38] production.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:101
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(101): Illuminate\Exception\Handler->handleError(2, 'Creating defaul...', 'C:\wamp\www\pla...', 101, Array)
+#1 [internal function]: Datos_PacientesController->update('5')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('update', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'update')
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'update')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}('5')
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 22:06:48] production.ERROR: exception 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' in C:\wamp\www\plagetri21\bootstrap\compiled.php:751
+Stack trace:
+#0 C:\wamp\www\plagetri21\bootstrap\compiled.php(3155): Illuminate\Foundation\Application->abort(404)
+#1 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(84): Illuminate\Support\Facades\Facade::__callStatic('abort', Array)
+#2 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(84): Illuminate\Support\Facades\App::abort(404)
+#3 [internal function]: Datos_PacientesController->edit('5')
+#4 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('edit', Array)
+#6 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'edit')
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'edit')
+#8 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}('5')
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#18 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#19 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#20 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#21 {main} [] []
+[2014-05-05 22:10:11] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'datos' (T_STRING)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:10
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:10:25] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<'' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:10
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:11:58] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<'' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:10
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:12:53] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'datos' (T_STRING)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:10
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:13:17] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'datos' (T_STRING)' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:10
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:13:39] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<'' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:10
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:14:12] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<'' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:10
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:14:30] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<'' in C:\wamp\www\plagetri21\app\storage\views\5f1f0ef43fd1d1593b58fa380a30ae68:10
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:18:40] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function delete() on a non-object' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:123
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:18:41] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function delete() on a non-object' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:123
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:18:47] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function delete() on a non-object' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:123
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:18:56] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function delete() on a non-object' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:123
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:19:22] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function delete() on a non-object' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:123
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-05-05 22:27:31] production.ERROR: exception 'ErrorException' with message 'Undefined variable: dato' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:87
+Stack trace:
+#0 C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php(87): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'C:\wamp\www\pla...', 87, Array)
+#1 [internal function]: Datos_PacientesController->edit('12')
+#2 C:\wamp\www\plagetri21\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\wamp\www\plagetri21\bootstrap\compiled.php(5374): Illuminate\Routing\Controller->callAction('edit', Array)
+#4 C:\wamp\www\plagetri21\bootstrap\compiled.php(5362): Illuminate\Routing\ControllerDispatcher->call(Object(Datos_PacientesController), Object(Illuminate\Routing\Route), 'edit')
+#5 C:\wamp\www\plagetri21\bootstrap\compiled.php(4630): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'Datos_Pacientes...', 'edit')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}('12')
+#7 C:\wamp\www\plagetri21\bootstrap\compiled.php(4940): call_user_func_array(Object(Closure), Array)
+#8 C:\wamp\www\plagetri21\bootstrap\compiled.php(4655): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\plagetri21\bootstrap\compiled.php(4643): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\plagetri21\bootstrap\compiled.php(698): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\wamp\www\plagetri21\bootstrap\compiled.php(679): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\plagetri21\bootstrap\compiled.php(1136): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\wamp\www\plagetri21\bootstrap\compiled.php(7218): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\wamp\www\plagetri21\bootstrap\compiled.php(7815): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\wamp\www\plagetri21\bootstrap\compiled.php(7762): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\wamp\www\plagetri21\bootstrap\compiled.php(10768): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 C:\wamp\www\plagetri21\bootstrap\compiled.php(640): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\plagetri21\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-05-05 22:29:56] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'paciente' (T_STRING)' in C:\wamp\www\plagetri21\app\controllers\datos\PacientesController.php:87
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

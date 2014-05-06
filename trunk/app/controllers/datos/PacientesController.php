@@ -9,8 +9,13 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function index()
 	{
+		$paciente = new Paciente;
+
 		$pacientes = Paciente::all();
-       return View::make('datos/pacientes/list')->with('pacientes', $pacientes);
+
+		$datos['paciente'] = $paciente;
+		$datos['pacientes'] = $pacientes;
+       return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
 
@@ -71,12 +76,15 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function edit($id)
 	{
+		$pacientes = Paciente::all();
+		$datos['pacientes'] = $pacientes;
 		$paciente = Paciente::find($id);
 		if (is_null ($paciente))
 		{
 		 App::abort(404);
 		}
-		return View::make('datos/pacientes/form')->with('paciente', $paciente);
+		$datos['paciente'] = $paciente;
+		return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
 
@@ -112,8 +120,14 @@ class Datos_PacientesController extends BaseController {
 	public function destroy($id)
 	{
 		$paciente = Paciente::find($id);
-		
-		return $paciente->primer_nombre;//Redirect::route('datos.pacientes.index');	
+		$paciente->delete();
+		$paciente = new Paciente;
+
+		$pacientes = Paciente::all();
+
+		$datos['paciente'] = $paciente;
+		$datos['pacientes'] = $pacientes;
+       return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
 
