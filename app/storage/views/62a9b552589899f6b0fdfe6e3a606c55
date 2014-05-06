@@ -3,9 +3,25 @@
 
 <?php $__env->startSection ('content'); ?>
 
-<h1>Crear Pacientes</h1>
+<?php /**/
+    if($paciente->exists){
+      $datos_formulario =  array('route' => array('datos.pacientes.update', $paciente->id), 'method' => 'PATCH');
+      $tipo = 'Editar';
+    }
+    else{
 
-<?php echo Form::open(array('route' => 'datos.pacientes.store', 'method' => 'POST'), array('role' => 'form')); ?>
+      $datos_formulario = array('route' => 'datos.pacientes.store', 'method' => 'POST');
+      $tipo = 'Crear';
+    }
+  /**/ ?>
+
+<h1><?php echo $tipo; ?> Pacientes</h1>
+
+  <p> 
+    <a href="<?php echo route('datos.pacientes.index'); ?>" class="btn btn-info">Lista de Pacientes</a>
+  </p>
+
+<?php echo Form::model($paciente, $datos_formulario , array('role' => 'form')); ?>
 
   <div class="row">
     <div class="form-group col-md-4">
@@ -46,7 +62,7 @@
     </div>
 
   </div>
-  <?php echo Form::button('Crear Paciente', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>    
+  <?php echo Form::button($tipo.' Paciente', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>    
   
 <?php echo Form::close(); ?>
 
