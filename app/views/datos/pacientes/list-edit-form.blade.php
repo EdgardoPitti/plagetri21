@@ -51,8 +51,8 @@
       {{ Form::text('lugar_nacimiento', null, array('placeholder' => 'Lugar de Nacimiento', 'class' => 'form-control')) }}        
     </div>
     <div class="form-group col-md-4">
-      {{ Form::label('edad_paciente', 'Edad del Paciente') }}
-      {{ Form::text('edad_paciente', null, array('placeholder' => 'Edad del Paciente', 'class' => 'form-control')) }}
+      {{ Form::label('lugar_nacimiento', 'Lugar de Nacimiento') }}
+      {{ Form::text('lugar_nacimiento', null, array('placeholder' => 'Lugar de Nacimiento', 'class' => 'form-control')) }}        
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('peso', 'Peso') }}
@@ -84,7 +84,6 @@
           <td>{{ $paciente->edad_paciente }}</td>
           <td>{{ $paciente->peso }}</td>
           <td>
-            <a href="{{ route('datos.pacientes.show', $paciente->id) }}" class="btn btn-info">Ver</a>
             <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary">Editar</a>
             <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete">Eliminar</a>
           </td>
