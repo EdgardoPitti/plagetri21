@@ -4,22 +4,9 @@
 
 @section ('content')
 
-{{--*/
-    if($datos['paciente']->exists){
-      $datos_formulario =  array('route' => array('datos.pacientes.update', $datos['paciente']->id), 'method' => 'PATCH');
-      $tipo = 'Editar';
-    
-    }else{
+<h1>{{ $datos['label'] }} Pacientes</h1>
 
-      $datos_formulario = array('route' => 'datos.pacientes.store', 'method' => 'POST');
-      $tipo = 'Crear';
-
-    }
-  /*--}}
-
-<h1>{{ $tipo }} Pacientes</h1>
-
-{{ Form::model($datos['paciente'], $datos_formulario , array('role' => 'form')) }}
+{{ Form::model($datos['paciente'], $datos['form'] , array('role' => 'form')) }}
 
   <div class="row">
     <div class="form-group col-md-4">
@@ -46,21 +33,61 @@
       {{ Form::label('fecha_nacimiento', 'Fecha de Nacimiento') }}
       {{ Form::date('fecha_nacimiento', null, array('class' => 'form-control')) }}
     </div>
+    {{--Orden de Datos en los select: Name,arreglo con valores, value, arreglo con la clase de diseño--}}
     <div class="form-group col-md-4">
-      {{ Form::label('lugar_nacimiento', 'Lugar de Nacimiento') }}
+      {{ Form::label('id_provincia', 'Provincia de Nacimiento:') }}
+      {{ Form::select('id_provincia',  $datos['provincias'], $datos['id_provincia'], array('class' => 'form-control')); }}    
+    </div>
+    <div class="form-group col-md-4">
+      {{ Form::label('id_distrito', 'Distrito de Nacimiento:') }}
+      {{ Form::select('id_distrito',  $datos['distritos'], null, array('class' => 'form-control')); }}    
+    </div>
+    <div class="form-group col-md-4">
+      {{ Form::label('id_corregimiento', 'Corregimiento de Nacimiento:') }}
+      {{ Form::select('id_corregimiento',  $datos['corregimientos'], null, array('class' => 'form-control')); }}    
+    </div>
+    <div class="form-group col-md-4">
+      {{ Form::label('lugar_nacimiento', 'Lugar de Nacimiento:') }}
       {{ Form::text('lugar_nacimiento', null, array('placeholder' => 'Lugar de Nacimiento', 'class' => 'form-control')) }}        
     </div>
     <div class="form-group col-md-4">
-      {{ Form::label('lugar_nacimiento', 'Lugar de Nacimiento') }}
-      {{ Form::text('lugar_nacimiento', null, array('placeholder' => 'Lugar de Nacimiento', 'class' => 'form-control')) }}        
+      {{ Form::label('telefono', 'Telefono:') }}
+      {{ Form::text('telefono', null, array('placeholder' => 'Telefono', 'class' => 'form-control')) }}        
     </div>
     <div class="form-group col-md-4">
-      {{ Form::label('peso', 'Peso') }}
-      {{ Form::text('peso', null, array('placeholder' => 'Peso', 'class' => 'form-control')) }}        
+      {{ Form::label('celular', 'Celular:') }}
+      {{ Form::text('celular', null, array('placeholder' => 'Celular', 'class' => 'form-control')) }}        
     </div>
-
+    <div class="form-group col-md-4">
+      {{ Form::label('email', 'E-Mail:') }}
+      {{ Form::text('email', null, array('placeholder' => 'E-Mail', 'class' => 'form-control')) }}        
+    </div>
+    <div class="form-group col-md-4">
+      {{ Form::label('id_nacionalidad', 'Nacionalidad:') }}
+      {{ Form::select('id_nacionalidad',  $datos['nacionalidades'], 62, array('class' => 'form-control')); }}    
+    </div>    
+    <div class="form-group col-md-4">
+      {{ Form::label('id_tipo_sanguineo', 'Tipo de Sangre:') }}
+      {{ Form::select('id_tipo_sanguineo',  $datos['tipos_sangre'], null, array('class' => 'form-control')); }}    
+    </div>   
+    <div class="form-group col-md-4">
+      {{ Form::label('id_raza', 'Raza:') }}
+      {{ Form::select('id_raza',  $datos['razas'], null, array('class' => 'form-control')); }}    
+    </div>
+    <div class="form-group col-md-4">
+      {{ Form::label('id_etnia', 'Etnia:') }}
+      {{ Form::select('id_etnia',  $datos['etnias'], null, array('class' => 'form-control')); }}    
+    </div>  
+    <div class="form-group col-md-4">
+      {{ Form::label('diabetes', 'Diabetes:') }}
+      {{ Form::label('si', 'Si') }}
+      {{ Form::radio('diabetes', 1);}}   
+      {{ Form::label('no', 'No') }}
+      {{ Form::radio('diabetes', 0, true); }}    
+    </div> 
   </div>
-  {{ Form::button($tipo.' Paciente', array('type' => 'submit', 'class' => 'btn btn-primary')) }}<a href="{{ route('datos.pacientes.index') }}" class="btn btn-info">Limpiar Campos</a>
+
+  {{ Form::button($datos['label'].' Paciente', array('type' => 'submit', 'class' => 'btn btn-primary')) }}<a href="{{ route('datos.pacientes.index') }}" class="btn btn-info">Limpiar Campos</a>
   
 {{ Form::close() }}
 
@@ -71,9 +98,10 @@
         <th>#</th>
         <th>Nombre Completo</th>
         <th>Lugar de Nacimiento</th>
-        <th>Edad</th>
-        <th>Peso</th>
-        <th></th>
+        <th>Fecha Nacimiento</th>
+        <th>Celular</th>
+        <th>Telefono</th>
+        <th>E-Mail</th>
     </tr>
     {{--*/ $x = 1; /*--}}
     @foreach ($datos['pacientes'] as $paciente)
@@ -81,8 +109,10 @@
           <td>{{ $x++ }}.</td>
           <td>{{ $paciente->primer_nombre }} {{ $paciente->segundo_nombre }} {{ $paciente->apellido_paterno }} {{ $paciente->apellido_materno }}</td>
           <td>{{ $paciente->lugar_nacimiento }}</td>
-          <td>{{ $paciente->edad_paciente }}</td>
-          <td>{{ $paciente->peso }}</td>
+          <td>{{ $paciente->fecha_nacimiento }}</td>
+          <td>{{ $paciente->celular }}</td>
+          <td>{{ $paciente->telefono }}</td>
+          <td>{{ $paciente->email }}</td>
           <td>
             <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary">Editar</a>
             <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete">Eliminar</a>
