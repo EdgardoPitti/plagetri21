@@ -13,6 +13,24 @@ class Datos_PacientesController extends BaseController {
 
 		$pacientes = Paciente::all();
 
+		$datos['form'] = array('route' => 'datos.pacientes.store', 'method' => 'POST');
+      	$datos['label'] = 'Crear';
+
+      	$datos['provincias'] = Provincia::lists('provincia','id_provincia');
+      	
+      	$datos['distritos'] = Distrito::lists('distrito','id_distrito');
+		
+      	$datos['corregimientos'] = Corregimiento::lists('corregimiento','id_corregimiento');    
+
+      	$datos['nacionalidades'] = Nacionalidad::lists('nacionalidad', 'id_nacionalidad');
+
+      	$datos['etnias'] =  Etnia::lists('etnia', 'id_etnia');
+
+      	$datos['tipos_sangre'] = Tiposangre::lists('tipo_sangre', 'id_tipo_sanguineo');
+	
+		$datos['razas'] = Raza::lists('raza', 'id_razas');
+
+
 		$datos['paciente'] = $paciente;
 		$datos['pacientes'] = $pacientes;
        return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
@@ -48,9 +66,19 @@ class Datos_PacientesController extends BaseController {
         $paciente->sexo = '0';
         $paciente->fecha_nacimiento = $data['fecha_nacimiento'];
         $paciente->lugar_nacimiento = $data['lugar_nacimiento'];
-        $paciente->edad_paciente = $data['edad_paciente'];
-        $paciente->peso = $data['peso'];
+        $paciente->id_provincia_nacimiento = $data['id_provincia'];
+        $paciente->id_distrito_nacimiento = $data['id_distrito'];
+        $paciente->id_corregimiento_nacimiento = $data['id_corregimiento'];
+        $paciente->telefono = $data['telefono'];
+        $paciente->celular = $data['celular'];
+        $paciente->email = $data['email'];
+        $paciente->id_nacionalidad = $data['id_nacionalidad'];
+        $paciente->id_tipo_sangre = $data['id_tipo_sanguineo'];
+        $paciente->id_raza = $data['id_raza'];
+        $paciente->id_etnia = $data['id_etnia'];
+        $paciente->diabetes = $data['diabetes'];
         $paciente->save();
+
         return Redirect::route('datos.pacientes.index');	
 	}
 
@@ -83,6 +111,23 @@ class Datos_PacientesController extends BaseController {
 		{
 		 App::abort(404);
 		}
+      	$datos['provincias'] = Provincia::lists('provincia','id_provincia');
+      	
+      	$datos['distritos'] = Distrito::lists('distrito','id_distrito');
+
+      	$datos['id_provincia'] = $paciente->id_provincia_nacimiento;
+		
+      	$datos['corregimientos'] = Corregimiento::lists('corregimiento','id_corregimiento');    
+
+      	$datos['nacionalidades'] = Nacionalidad::lists('nacionalidad', 'id_nacionalidad');
+
+      	$datos['etnias'] =  Etnia::lists('etnia', 'id_etnia');
+
+      	$datos['tipos_sangre'] = Tiposangre::lists('tipo_sangre', 'id_tipo_sanguineo');
+	
+		$datos['razas'] = Raza::lists('raza', 'id_razas');	
+		$datos['form'] =  array('route' => array('datos.pacientes.update', $id), 'method' => 'PATCH');
+      	$datos['label']= 'Editar';
 		$datos['paciente'] = $paciente;
 		return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}

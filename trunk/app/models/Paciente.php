@@ -9,3 +9,5 @@ class Paciente extends Eloquent {
 	 */
 	protected $table = 'pacientes';
 }
+
+?>
