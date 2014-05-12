@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.0.51b-community-nt-log
+-- Server version	5.6.12-log
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,17 +27,17 @@ USE plagetri21;
 
 DROP TABLE IF EXISTS `corregimientos`;
 CREATE TABLE `corregimientos` (
-  `ID_PROVINCIA` int(11) NOT NULL,
-  `ID_DISTRITO` int(11) NOT NULL,
-  `ID_CORREGIMIENTO` int(11) NOT NULL,
-  `CORREGIMIENTO` varchar(130) NOT NULL default 'POR DEFINIR',
-  `LATITUD` varchar(45) NOT NULL,
-  `LONGITUD` varchar(45) NOT NULL,
-  PRIMARY KEY  (`ID_PROVINCIA`,`ID_DISTRITO`,`ID_CORREGIMIENTO`),
-  KEY `ID_PROVINCIA` (`ID_PROVINCIA`),
-  KEY `ID_DISTRITO` (`ID_DISTRITO`),
-  CONSTRAINT `corregimientos_ibfk_1` FOREIGN KEY (`ID_PROVINCIA`) REFERENCES `provincias` (`ID_PROVINCIA`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `corregimientos_ibfk_2` FOREIGN KEY (`ID_DISTRITO`) REFERENCES `distritos` (`ID_DISTRITO`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `id_provincia` int(11) NOT NULL DEFAULT '0',
+  `id_distrito` int(11) NOT NULL DEFAULT '0',
+  `id_corregimiento` int(11) NOT NULL DEFAULT '0',
+  `corregimiento` varchar(130) NOT NULL DEFAULT 'POR DEFINIR',
+  `latitud` varchar(45) NOT NULL DEFAULT '',
+  `longitud` varchar(45) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id_provincia`,`id_distrito`,`id_corregimiento`),
+  KEY `ID_PROVINCIA` (`id_provincia`) USING BTREE,
+  KEY `ID_DISTRITO` (`id_distrito`) USING BTREE,
+  CONSTRAINT `corregimientos_ibfk_1` FOREIGN KEY (`id_provincia`) REFERENCES `provincias` (`ID_PROVINCIA`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `corregimientos_ibfk_2` FOREIGN KEY (`id_distrito`) REFERENCES `distritos` (`ID_DISTRITO`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `corregimientos` (
 --
 
 /*!40000 ALTER TABLE `corregimientos` DISABLE KEYS */;
-INSERT INTO `corregimientos` (`ID_PROVINCIA`,`ID_DISTRITO`,`ID_CORREGIMIENTO`,`CORREGIMIENTO`,`LATITUD`,`LONGITUD`) VALUES 
+INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
  (1,1,1,'BOCAS DEL TORO','9.33333','-82.25000'),
  (1,1,2,'BASTIMENTOS','9.35000','-82-20000'),
  (1,1,3,'CAUCHERO','9.15000','-82.26667'),
@@ -697,12 +697,12 @@ INSERT INTO `corregimientos` (`ID_PROVINCIA`,`ID_DISTRITO`,`ID_CORREGIMIENTO`,`C
 
 DROP TABLE IF EXISTS `distritos`;
 CREATE TABLE `distritos` (
-  `ID_PROVINCIA` int(11) NOT NULL,
-  `ID_DISTRITO` int(11) NOT NULL,
-  `DISTRITO` varchar(130) NOT NULL default 'POR DEFINIR',
-  PRIMARY KEY  (`ID_DISTRITO`,`ID_PROVINCIA`),
-  KEY `ID_PROVINCIA` (`ID_PROVINCIA`),
-  CONSTRAINT `distritos_ibfk_1` FOREIGN KEY (`ID_PROVINCIA`) REFERENCES `provincias` (`ID_PROVINCIA`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `id_provincia` int(11) NOT NULL DEFAULT '0',
+  `id_distrito` int(11) NOT NULL DEFAULT '0',
+  `distrito` varchar(130) NOT NULL DEFAULT 'POR DEFINIR',
+  PRIMARY KEY (`id_distrito`,`id_provincia`),
+  KEY `ID_PROVINCIA` (`id_provincia`) USING BTREE,
+  CONSTRAINT `distritos_ibfk_1` FOREIGN KEY (`id_provincia`) REFERENCES `provincias` (`ID_PROVINCIA`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -710,7 +710,7 @@ CREATE TABLE `distritos` (
 --
 
 /*!40000 ALTER TABLE `distritos` DISABLE KEYS */;
-INSERT INTO `distritos` (`ID_PROVINCIA`,`ID_DISTRITO`,`DISTRITO`) VALUES 
+INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`) VALUES 
  (1,1,'BOCAS DEL TORO'),
  (1,2,'CHANGUINOLA'),
  (1,3,'CHIRIQUÍ GRANDE'),
@@ -796,9 +796,9 @@ INSERT INTO `distritos` (`ID_PROVINCIA`,`ID_DISTRITO`,`DISTRITO`) VALUES
 
 DROP TABLE IF EXISTS `especialidades_medicas`;
 CREATE TABLE `especialidades_medicas` (
-  `ID_ESPECIALIDAD_MEDICA` int(11) NOT NULL auto_increment,
-  `DESCRIPCION` varchar(200) NOT NULL default 'POR DEFINIR',
-  PRIMARY KEY  (`ID_ESPECIALIDAD_MEDICA`)
+  `id_especialidad_medica` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(200) NOT NULL DEFAULT 'POR DEFINIR',
+  PRIMARY KEY (`id_especialidad_medica`)
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 --
@@ -806,7 +806,7 @@ CREATE TABLE `especialidades_medicas` (
 --
 
 /*!40000 ALTER TABLE `especialidades_medicas` DISABLE KEYS */;
-INSERT INTO `especialidades_medicas` (`ID_ESPECIALIDAD_MEDICA`,`DESCRIPCION`) VALUES 
+INSERT INTO `especialidades_medicas` (`id_especialidad_medica`,`descripcion`) VALUES 
  (1,'ALERGÍA E INMUNOLOGÍA'),
  (2,'ANATOMIA PATOLOGICA'),
  (3,'ANESTESIOLOGÍA'),
@@ -877,9 +877,9 @@ INSERT INTO `especialidades_medicas` (`ID_ESPECIALIDAD_MEDICA`,`DESCRIPCION`) VA
 
 DROP TABLE IF EXISTS `estados_civiles`;
 CREATE TABLE `estados_civiles` (
-  `ID_ESTADO_CIVIL` int(11) NOT NULL,
-  `ESTADO_CIVIL` varchar(15) NOT NULL default 'POR DEFINIR',
-  PRIMARY KEY  (`ID_ESTADO_CIVIL`)
+  `id_estado_civil` int(11) NOT NULL DEFAULT '0',
+  `estado_civil` varchar(15) NOT NULL DEFAULT 'POR DEFINIR',
+  PRIMARY KEY (`id_estado_civil`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -887,7 +887,7 @@ CREATE TABLE `estados_civiles` (
 --
 
 /*!40000 ALTER TABLE `estados_civiles` DISABLE KEYS */;
-INSERT INTO `estados_civiles` (`ID_ESTADO_CIVIL`,`ESTADO_CIVIL`) VALUES 
+INSERT INTO `estados_civiles` (`id_estado_civil`,`estado_civil`) VALUES 
  (1,'CASADO'),
  (2,'SOLTERO'),
  (3,'DIVORCIADO'),
@@ -897,22 +897,22 @@ INSERT INTO `estados_civiles` (`ID_ESTADO_CIVIL`,`ESTADO_CIVIL`) VALUES
 
 
 --
--- Definition of table `etnia`
+-- Definition of table `etnias`
 --
 
-DROP TABLE IF EXISTS `etnia`;
-CREATE TABLE `etnia` (
-  `ID_ETNIA` int(11) NOT NULL auto_increment,
-  `ETNIA` varchar(30) NOT NULL default 'POR DEFINIR',
-  PRIMARY KEY  (`ID_ETNIA`)
+DROP TABLE IF EXISTS `etnias`;
+CREATE TABLE `etnias` (
+  `id_etnia` int(11) NOT NULL AUTO_INCREMENT,
+  `etnia` varchar(30) NOT NULL DEFAULT 'POR DEFINIR',
+  PRIMARY KEY (`id_etnia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `etnia`
+-- Dumping data for table `etnias`
 --
 
-/*!40000 ALTER TABLE `etnia` DISABLE KEYS */;
-INSERT INTO `etnia` (`ID_ETNIA`,`ETNIA`) VALUES 
+/*!40000 ALTER TABLE `etnias` DISABLE KEYS */;
+INSERT INTO `etnias` (`id_etnia`,`etnia`) VALUES 
  (1,'NO INDIGENA'),
  (2,'KUNA'),
  (3,'EMBERÁ'),
@@ -922,7 +922,7 @@ INSERT INTO `etnia` (`ID_ETNIA`,`ETNIA`) VALUES
  (7,'NASSO O TERIBE'),
  (8,'BOKOTA'),
  (9,'BRI BRI');
-/*!40000 ALTER TABLE `etnia` ENABLE KEYS */;
+/*!40000 ALTER TABLE `etnias` ENABLE KEYS */;
 
 
 --
@@ -931,16 +931,16 @@ INSERT INTO `etnia` (`ID_ETNIA`,`ETNIA`) VALUES
 
 DROP TABLE IF EXISTS `medicos`;
 CREATE TABLE `medicos` (
-  `ID` int(10) unsigned NOT NULL auto_increment,
-  `CEDULA` varchar(45) NOT NULL,
-  `PRIMER_NOMBRE` varchar(45) NOT NULL,
-  `SEGUNDO_NOMBRE` varchar(45) NOT NULL,
-  `APELLIDO_PATERNO` varchar(45) NOT NULL,
-  `APELLIDO_MATERNO` varchar(45) NOT NULL,
-  `SEXO` tinyint(1) unsigned NOT NULL default '1',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(45) NOT NULL DEFAULT '',
+  `primer_nombre` varchar(45) NOT NULL DEFAULT '',
+  `segundo_nombre` varchar(45) NOT NULL DEFAULT '',
+  `apellido_paterno` varchar(45) NOT NULL DEFAULT '',
+  `apellido_materno` varchar(45) NOT NULL DEFAULT '',
+  `sexo` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `created_at` varchar(45) NOT NULL,
   `updated_at` varchar(45) NOT NULL,
-  PRIMARY KEY  (`ID`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -957,9 +957,9 @@ CREATE TABLE `medicos` (
 
 DROP TABLE IF EXISTS `nacionalidades`;
 CREATE TABLE `nacionalidades` (
-  `ID_NACIONALIDAD` int(11) NOT NULL auto_increment,
-  `NACIONALIDAD` varchar(130) NOT NULL default 'POR DEFINIR',
-  PRIMARY KEY  (`ID_NACIONALIDAD`)
+  `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT,
+  `nacionalidad` varchar(130) NOT NULL DEFAULT 'POR DEFINIR',
+  PRIMARY KEY (`id_nacionalidad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 
 --
@@ -967,7 +967,7 @@ CREATE TABLE `nacionalidades` (
 --
 
 /*!40000 ALTER TABLE `nacionalidades` DISABLE KEYS */;
-INSERT INTO `nacionalidades` (`ID_NACIONALIDAD`,`NACIONALIDAD`) VALUES 
+INSERT INTO `nacionalidades` (`id_nacionalidad`,`nacionalidad`) VALUES 
  (1,'ALBANESA'),
  (2,'ALEMANA'),
  (3,'ARGELINA'),
@@ -1059,36 +1059,38 @@ INSERT INTO `nacionalidades` (`ID_NACIONALIDAD`,`NACIONALIDAD`) VALUES
 
 DROP TABLE IF EXISTS `pacientes`;
 CREATE TABLE `pacientes` (
-  `ID` int(10) unsigned NOT NULL auto_increment,
-  `CEDULA` varchar(45) NOT NULL,
-  `PRIMER_NOMBRE` varchar(45) NOT NULL,
-  `SEGUNDO_NOMBRE` varchar(45) NOT NULL,
-  `APELLIDO_PATERNO` varchar(45) NOT NULL,
-  `APELLIDO_MATERNO` varchar(45) NOT NULL,
-  `SEXO` tinyint(1) unsigned NOT NULL default '0',
-  `FECHA_NACIMIENTO` varchar(45) NOT NULL,
-  `LUGAR_NACIMIENTO` varchar(45) NOT NULL,
-  `EDAD_PACIENTE` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(45) NOT NULL DEFAULT '',
+  `primer_nombre` varchar(45) NOT NULL DEFAULT '',
+  `segundo_nombre` varchar(45) NOT NULL DEFAULT '',
+  `apellido_paterno` varchar(45) NOT NULL DEFAULT '',
+  `apellido_materno` varchar(45) NOT NULL DEFAULT '',
+  `sexo` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `fecha_nacimiento` varchar(45) NOT NULL DEFAULT '',
+  `lugar_nacimiento` varchar(45) NOT NULL DEFAULT '',
   `created_at` varchar(45) NOT NULL,
   `updated_at` varchar(45) NOT NULL,
-  `CELULAR` varchar(45) NOT NULL,
-  `TELEFONO` varchar(45) NOT NULL,
-  `EMAIL` varchar(45) NOT NULL,
-  `ID_PROVINCIA_NACIMIENTO` int(10) unsigned NOT NULL,
-  `ID_DISTRITO_NACIMIENTO` int(10) unsigned NOT NULL,
-  `ID_CORREGIMIENTO_NACIMIENTO` int(10) unsigned NOT NULL,
-  `ID_NACIONALIDAD` int(10) unsigned NOT NULL,
-  `ID_ETNIA` int(10) unsigned NOT NULL,
-  `ID_TIPO_SANGRE` int(10) unsigned NOT NULL,
-  `DIABETES` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  USING BTREE (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `celular` varchar(45) NOT NULL DEFAULT '',
+  `telefono` varchar(45) NOT NULL DEFAULT '',
+  `email` varchar(45) NOT NULL DEFAULT '',
+  `id_provincia_nacimiento` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_distrito_nacimiento` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_corregimiento_nacimiento` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_nacionalidad` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_etnia` int(10) unsigned NOT NULL DEFAULT '1',
+  `id_tipo_sangre` int(10) unsigned NOT NULL DEFAULT '0',
+  `diabetes` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `id_raza` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pacientes`
 --
 
 /*!40000 ALTER TABLE `pacientes` DISABLE KEYS */;
+INSERT INTO `pacientes` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`sexo`,`fecha_nacimiento`,`lugar_nacimiento`,`created_at`,`updated_at`,`celular`,`telefono`,`email`,`id_provincia_nacimiento`,`id_distrito_nacimiento`,`id_corregimiento_nacimiento`,`id_nacionalidad`,`id_etnia`,`id_tipo_sangre`,`diabetes`,`id_raza`) VALUES 
+ (1,'4-769-466','Sarah','Stephanie','Pimentel','Quiel',0,'1993-11-06','Pedregal','2014-05-12 22:33:03','2014-05-12 22:33:03','60083613','7743095','saritah_0611@hotmail.com',2,1,1,62,1,1,0,1);
 /*!40000 ALTER TABLE `pacientes` ENABLE KEYS */;
 
 
@@ -1098,9 +1100,9 @@ CREATE TABLE `pacientes` (
 
 DROP TABLE IF EXISTS `provincias`;
 CREATE TABLE `provincias` (
-  `ID_PROVINCIA` int(11) NOT NULL default '0',
-  `PROVINCIA` varchar(20) NOT NULL default 'POR DEFINIR',
-  PRIMARY KEY  (`ID_PROVINCIA`)
+  `id_provincia` int(11) NOT NULL DEFAULT '0',
+  `provincia` varchar(20) NOT NULL DEFAULT 'POR DEFINIR',
+  PRIMARY KEY (`id_provincia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1108,7 +1110,7 @@ CREATE TABLE `provincias` (
 --
 
 /*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
-INSERT INTO `provincias` (`ID_PROVINCIA`,`PROVINCIA`) VALUES 
+INSERT INTO `provincias` (`id_provincia`,`provincia`) VALUES 
  (1,'BOCAS DEL TORO'),
  (2,'CHIRIQUÍ'),
  (3,'COCLÉ'),
@@ -1125,14 +1127,42 @@ INSERT INTO `provincias` (`ID_PROVINCIA`,`PROVINCIA`) VALUES
 
 
 --
+-- Definition of table `razas`
+--
+
+DROP TABLE IF EXISTS `razas`;
+CREATE TABLE `razas` (
+  `id_razas` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `raza` varchar(45) NOT NULL,
+  `created_at` varchar(45) NOT NULL,
+  `updated_at` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_razas`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `razas`
+--
+
+/*!40000 ALTER TABLE `razas` DISABLE KEYS */;
+INSERT INTO `razas` (`id_razas`,`raza`,`created_at`,`updated_at`) VALUES 
+ (1,'CAUCASICO','',''),
+ (2,'ASIATICO','',''),
+ (3,'MESTIZO','',''),
+ (4,'MULATO','',''),
+ (5,'AFROAMERICANO','',''),
+ (6,'NATIVO','','');
+/*!40000 ALTER TABLE `razas` ENABLE KEYS */;
+
+
+--
 -- Definition of table `tipos_sanguineos`
 --
 
 DROP TABLE IF EXISTS `tipos_sanguineos`;
 CREATE TABLE `tipos_sanguineos` (
-  `ID_TIPO_SANGUINEO` int(11) NOT NULL auto_increment,
-  `TIPO_SANGRE` varchar(4) NOT NULL default 'N/A',
-  PRIMARY KEY  (`ID_TIPO_SANGUINEO`)
+  `id_tipo_sanguineo` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo_sangre` varchar(4) NOT NULL DEFAULT 'N/A',
+  PRIMARY KEY (`id_tipo_sanguineo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
@@ -1140,7 +1170,7 @@ CREATE TABLE `tipos_sanguineos` (
 --
 
 /*!40000 ALTER TABLE `tipos_sanguineos` DISABLE KEYS */;
-INSERT INTO `tipos_sanguineos` (`ID_TIPO_SANGUINEO`,`TIPO_SANGRE`) VALUES 
+INSERT INTO `tipos_sanguineos` (`id_tipo_sanguineo`,`tipo_sangre`) VALUES 
  (1,'O+'),
  (2,'O-'),
  (3,'A+'),
