@@ -10,29 +10,11 @@ class Datos_PacientesController extends BaseController {
 	public function index()
 	{
 		$paciente = new Paciente;
-
-		$pacientes = Paciente::all();
-
 		$datos['form'] = array('route' => 'datos.pacientes.store', 'method' => 'POST');
       	$datos['label'] = 'Crear';
-
-      	$datos['provincias'] = Provincia::lists('provincia','id_provincia');
-      	
-      	$datos['distritos'] = Distrito::where('id_provincia', '')->lists('distrito','id_distrito');
-		
-      	$datos['corregimientos'] = Corregimiento::where('id_distrito', '')->lists('corregimiento','id_corregimiento');    
-
-      	$datos['nacionalidades'] = Nacionalidad::lists('nacionalidad', 'id_nacionalidad');
-
-      	$datos['etnias'] =  Etnia::lists('etnia', 'id_etnia');
-
-      	$datos['tipos_sangre'] = Tiposangre::lists('tipo_sangre', 'id_tipo_sanguineo');
-	
-		$datos['razas'] = Raza::lists('raza', 'id_razas');
-
-
 		$datos['paciente'] = $paciente;
-		$datos['pacientes'] = $pacientes;
+
+		//where('id_distrito', '')->orderBy('corregimiento', 'asc')->
        return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
@@ -103,27 +85,11 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$pacientes = Paciente::all();
-		$datos['pacientes'] = $pacientes;
 		$paciente = Paciente::find($id);
 		if (is_null ($paciente))
 		{
 		 App::abort(404);
 		}
-      	
-      	$datos['provincias'] = Provincia::lists('provincia','id_provincia');
-      	
-      	$datos['distritos'] = Distrito::lists('distrito','id_distrito');
-		
-      	$datos['corregimientos'] = Corregimiento::lists('corregimiento','id_corregimiento');  
-
-      	$datos['nacionalidades'] = Nacionalidad::lists('nacionalidad', 'id_nacionalidad');
-
-      	$datos['etnias'] =  Etnia::lists('etnia', 'id_etnia');
-
-      	$datos['tipos_sangre'] = Tiposangre::lists('tipo_sangre', 'id_tipo_sanguineo');
-	
-		$datos['razas'] = Raza::lists('raza', 'id_razas');	
 		$datos['form'] =  array('route' => array('datos.pacientes.update', $id), 'method' => 'PATCH');
       	$datos['label']= 'Editar';
 		$datos['paciente'] = $paciente;
