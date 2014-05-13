@@ -31,20 +31,20 @@
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('fecha_nacimiento', 'Fecha de Nacimiento') }}
-      {{ Form::date('fecha_nacimiento', null, array('class' => 'form-control')) }}
+      {{ Form::date('fecha_nacimiento', $datos['paciente']->fecha_nacimiento, array('class' => 'form-control')) }}
     </div>
     {{--Orden de Datos en los select: Name,arreglo con valores, value, arreglo con la clase de diseño--}}
     <div class="form-group col-md-4">
       {{ Form::label('id_provincia', 'Provincia de Nacimiento:') }}
-      {{ Form::select('id_provincia',  $datos['provincias'], $datos['id_provincia'], array('class' => 'form-control')); }}    
+      {{ Form::select('id_provincia',  $datos['provincias'], $datos['paciente']->id_provincia_nacimiento, array('class' => 'form-control')); }}    
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_distrito', 'Distrito de Nacimiento:') }}
-      {{ Form::select('id_distrito',  $datos['distritos'], null, array('class' => 'form-control')); }}    
+      {{ Form::select('id_distrito',  $datos['distritos'], $datos['paciente']->id_distrito_nacimiento, array('class' => 'form-control')); }}    
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_corregimiento', 'Corregimiento de Nacimiento:') }}
-      {{ Form::select('id_corregimiento',  $datos['corregimientos'], null, array('class' => 'form-control')); }}    
+      {{ Form::select('id_corregimiento',  $datos['corregimientos'], $datos['paciente']->id_corregimiento_nacimiento, array('class' => 'form-control')); }}    
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('lugar_nacimiento', 'Lugar de Nacimiento:') }}
@@ -64,26 +64,26 @@
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_nacionalidad', 'Nacionalidad:') }}
-      {{ Form::select('id_nacionalidad',  $datos['nacionalidades'], 62, array('class' => 'form-control')); }}    
+      {{ Form::select('id_nacionalidad',  $datos['nacionalidades'], $datos['paciente']->id_nacionalidad, array('class' => 'form-control')); }}    
     </div>    
     <div class="form-group col-md-4">
       {{ Form::label('id_tipo_sanguineo', 'Tipo de Sangre:') }}
-      {{ Form::select('id_tipo_sanguineo',  $datos['tipos_sangre'], null, array('class' => 'form-control')); }}    
+      {{ Form::select('id_tipo_sanguineo',  $datos['tipos_sangre'], $datos['paciente']->id_tipo_sangre, array('class' => 'form-control')); }}    
     </div>   
     <div class="form-group col-md-4">
       {{ Form::label('id_raza', 'Raza:') }}
-      {{ Form::select('id_raza',  $datos['razas'], null, array('class' => 'form-control')); }}    
+      {{ Form::select('id_raza',  $datos['razas'], $datos['paciente']->id_raza, array('class' => 'form-control')); }}    
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_etnia', 'Etnia:') }}
-      {{ Form::select('id_etnia',  $datos['etnias'], null, array('class' => 'form-control')); }}    
+      {{ Form::select('id_etnia',  $datos['etnias'], $datos['paciente']->id_etnia, array('class' => 'form-control')); }}    
     </div>  
     <div class="form-group col-md-4">
       {{ Form::label('diabetes', 'Diabetes:') }}
       {{ Form::label('si', 'Si') }}
-      {{ Form::radio('diabetes', 1);}}   
+      {{ Form::radio('diabetes', 1, $datos['paciente']->diabetes); }}   
       {{ Form::label('no', 'No') }}
-      {{ Form::radio('diabetes', 0, true); }}    
+      {{ Form::radio('diabetes', 0, $datos['paciente']->diabetes); }}    
     </div> 
   </div>
 
