@@ -17,6 +17,7 @@ class Datos_PacientesController extends BaseController {
       	$datos['label'] = 'Crear';
 
       	$datos['provincias'] = Provincia::lists('provincia','id_provincia');
+      	$datos['id_provincia'] = $paciente->id_provincia_nacimiento;
       	
       	$datos['distritos'] = Distrito::lists('distrito','id_distrito');
 		
