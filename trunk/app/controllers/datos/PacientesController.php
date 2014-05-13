@@ -14,7 +14,6 @@ class Datos_PacientesController extends BaseController {
       	$datos['label'] = 'Crear';
 		$datos['paciente'] = $paciente;
 
-		//where('id_distrito', '')->orderBy('corregimiento', 'asc')->
        return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
