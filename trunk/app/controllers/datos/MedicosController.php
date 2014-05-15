@@ -11,8 +11,9 @@ class Datos_MedicosController extends BaseController {
 	{
 		$medico = new Medico;
 		$datos['formulario'] = array('route' => 'datos.medicos.store', 'method' => 'POST');
-		$datos['label'] = 'A&ntilde;adir';
+		$datos['label'] = 'Crear';
 		$datos['medico'] = $medico; 
+		$datos['especialidad'] = '25';
 		return View::make('datos/medicos/form')->with('datos', $datos);
 	}
 
@@ -35,7 +36,20 @@ class Datos_MedicosController extends BaseController {
 	 */
 	public function store()
 	{
-        
+        $medico = new Medico;
+        $data = Input::all();
+        $medico->cedula = $data['cedula'];
+        $medico->primer_nombre = $data['primer_nombre'];
+        $medico->segundo_nombre = $data['segundo_nombre'];
+        $medico->apellido_paterno = $data['apellido_paterno'];
+        $medico->apellido_materno = $data['apellido_materno'];
+        $medico->sexo = $data['sexo'];
+        $medico->id_especialidades_medicas = $data['id_especialidades_medicas'];
+        $medico->celular = $data['celular'];
+        $medico->telefono = $data['telefono'];
+        $medico->email = $data['email'];
+        $medico->save();
+        return Redirect::route('datos.medicos.index');
 	}
 
 
@@ -59,7 +73,15 @@ class Datos_MedicosController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		
+		$medico = Medico::find($id);
+		if(is_null ($medico)){
+			App::abort(404);
+		}
+		$datos['formulario'] = array('route' => array('datos.medicos.update',$id), 'method' => 'PATCH');
+		$datos['label'] = 'Editar';
+		$datos['medico'] = $medico; 
+		$datos['especialidad'] = $medico->id_especialidades_medicas;
+		return View::make('datos/medicos/form')->with('datos', $datos);
 	}
 
 
@@ -71,7 +93,23 @@ class Datos_MedicosController extends BaseController {
 	 */
 	public function update($id)
 	{
-		
+		$medico = Medico::find($id);
+		if(is_null($medico)){
+			$medico = new Medico();
+		}
+		$data = Input::all();
+        $medico->cedula = $data['cedula'];
+        $medico->primer_nombre = $data['primer_nombre'];
+        $medico->segundo_nombre = $data['segundo_nombre'];
+        $medico->apellido_paterno = $data['apellido_paterno'];
+        $medico->apellido_materno = $data['apellido_materno'];
+        $medico->sexo = $data['sexo'];
+        $medico->id_especialidades_medicas = $data['id_especialidades_medicas'];
+        $medico->celular = $data['celular'];
+        $medico->telefono = $data['telefono'];
+        $medico->email = $data['email'];
+        $medico->save();
+        return Redirect::route('datos.medicos.index');
 	}
 
 
@@ -83,7 +121,12 @@ class Datos_MedicosController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		
+		$medico = Medico::find($id);
+		$medico->delete();
+		$medico = new Medico;
+
+		$datos['medico'] = $medico;
+		return View::make('datos/medicos/form')->with('datos', $datos);
 	}
 
 
