@@ -40,7 +40,7 @@
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_distrito', 'Distrito de Nacimiento:') }}
-      {{ Form::select('id_distrito',  array('0' => 'SELECCIONE DISTRITO') + Distrito::where('id_provincia', '$idprovincia')->lists('distrito', 'id_distrito'), $datos['paciente']->id_distrito_nacimiento, array('class' => 'form-control', 'onchange' => 'changedistrito')); }}
+      {{ Form::select('id_distrito',  array('0' => 'SELECCIONE DISTRITO') + Distrito::where('id_provincia', '$idprovincia')->lists('distrito', 'id_distrito'), $datos['paciente']->id_distrito_nacimiento, array('class' => 'form-control')); }}
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_corregimiento', 'Corregimiento de Nacimiento:') }}
