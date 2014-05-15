@@ -3,6 +3,7 @@
 @section ('title') Pacientes @stop
 
 @section ('content')
+{{ "<script> document.write(id) </script>" }}
 
 <h1>{{ $datos['label'] }} Pacientes</h1>
 
@@ -40,7 +41,7 @@
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_distrito', 'Distrito de Nacimiento:') }}
-      {{ Form::select('id_distrito',  array('0' => 'SELECCIONE DISTRITO') + Distrito::where('id_provincia', '$idprovincia')->lists('distrito', 'id_distrito'), $datos['paciente']->id_distrito_nacimiento, array('class' => 'form-control')); }}
+      {{ Form::select('id_distrito',  array('0' => 'SELECCIONE DISTRITO') + Distrito::where('id_provincia','$idprovincia')->lists('distrito', 'id_distrito'), $datos['paciente']->id_distrito_nacimiento, array('class' => 'form-control')); }}
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_corregimiento', 'Corregimiento de Nacimiento:') }}
@@ -146,20 +147,4 @@
   {{ Form::open(array('route' => array('datos.pacientes.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
   {{ Form::close() }}
 
-@stop
-
-@section('script')
-    <script type="text/javascript">
-       
-        jQuery(document).ready(
-            function changeprovincia(){
-                var idprovincia = $('#id_provincia').val();
-                alert("Hola " + idprovincia);
-            });
-            function changedistrito(){
-                var iddistrito = $('#id_distrito').val();
-            });
-        });    
-        
-    </script>
 @stop
