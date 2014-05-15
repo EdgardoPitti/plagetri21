@@ -3,7 +3,6 @@
 @section ('title') Pacientes @stop
 
 @section ('content')
-{{ "<script> document.write(id) </script>" }}
 
 <h1>{{ $datos['label'] }} Pacientes</h1>
 
@@ -66,7 +65,7 @@
     <div class="form-group col-md-4">
       {{ Form::label('id_nacionalidad', 'Nacionalidad:') }}
       {{ Form::select('id_nacionalidad',  array('0' => 'SELECCIONE LA NACIONALIDAD') + Nacionalidad::lists('nacionalidad', 'id_nacionalidad'), $datos['paciente']->id_nacionalidad, array('class' => 'form-control')); }}    
-    </div>    P
+    </div>   
     <div class="form-group col-md-4">
       {{ Form::label('id_tipo_sanguineo', 'Tipo de Sangre:') }}
       {{ Form::select('id_tipo_sanguineo',  array('0' => 'SELECCIONE EL TIPO DE SANGRE') + Tiposangre::lists('tipo_sangre', 'id_tipo_sanguineo'), $datos['paciente']->id_tipo_sangre, array('class' => 'form-control')); }}    
