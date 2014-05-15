@@ -107,7 +107,7 @@
             <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" />
           </div>
           <div class="table-responsive">
-            <table class="table table-striped" id="dev-table">
+            <table class="table table-bordered table-hover" id="dev-table">
               <thead>
               <tr>
                   <th>#</th>
