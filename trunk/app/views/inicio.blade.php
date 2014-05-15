@@ -4,6 +4,9 @@
 	Men&uacute; Principal
 @stop
 @section('content')
-        <a href="{{ route('datos.pacientes.index') }}" class="btn btn-primary">Pacientes</a>
-		<a href="{{ route('datos.medicos.index') }}" class="btn btn-primary">M&eacute;dicos</a>       
+	<center>
+		<h1>Menú Principal</h1><hr>
+        <a href="{{ route('datos.pacientes.index') }}" class="btn btn-primary btn-lg btn-block">Pacientes</a><br><br>
+		<a href="{{ route('datos.medicos.index') }}" class="btn btn-primary btn-lg btn-block">M&eacute;dicos</a>       
+	</center>
 @stop
