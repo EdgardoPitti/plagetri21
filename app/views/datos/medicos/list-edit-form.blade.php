@@ -1,4 +1,4 @@
-@extends ('datos/layout')
+@extends ('layout')
 
 @section ('title') {{ $datos['label'] }} M&eacute;dicos @stop
 
