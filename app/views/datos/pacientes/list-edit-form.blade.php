@@ -87,22 +87,24 @@
     </div> 
   </div>
 
-  {{ Form::button($datos['label'].' Paciente', array('type' => 'submit', 'class' => 'btn btn-primary')) }}<a href="{{ route('datos.pacientes.index') }}" class="btn btn-info">Limpiar Campos</a>
+  {{ Form::button($datos['label'].' Paciente', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+  <a href="{{ route('datos.pacientes.index') }}" class="btn btn-info">Limpiar Campos</a>
   
 {{ Form::close() }}
+
      <div class="row">
       <div class="col-md-12 col-sm-12 col-lg-12">
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Lista de Pacientes</h3>
             <div class="pull-right">
-              <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+              <span class="clickable filter" data-toggle="tooltip" title="Activar/Desactivar Filtro" data-container="body">
                 <i class="glyphicon glyphicon-filter"></i>
               </span>
             </div>
           </div>
           <div class="panel-body">
-            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="B&uacute;squeda" />
+            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" />
           </div>
           <div class="table-responsive">
             <table class="table table-striped" id="dev-table">
@@ -123,15 +125,15 @@
               @foreach (Paciente::all() as $paciente)
                 <tr>
                     <td>{{ $x++ }}.</td>
-                    <td>{{ $paciente->primer_nombre }} {{ $paciente->segundo_nombre }} {{ $paciente->apellido_paterno }} {{ $paciente->apellido_materno }}</td>
+                    <td>{{ $paciente->primer_nombre.' '.$paciente->segundo_nombre.' '.$paciente->apellido_paterno.' '.$paciente->apellido_materno }}</td>
                     <td>{{ $paciente->lugar_nacimiento }}</td>
                     <td>{{ $paciente->fecha_nacimiento }}</td>
                     <td>{{ $paciente->celular }}</td>
                     <td>{{ $paciente->telefono }}</td>
                     <td>{{ $paciente->email }}</td>
                     <td>
-                      <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary">Editar</a>
-                      <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete">Eliminar</a>
+                      <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                      <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
                     </td>
                 </tr>
               @endforeach

@@ -14,7 +14,7 @@ class Datos_PacientesController extends BaseController {
       	$datos['label'] = 'Crear';
 		$datos['paciente'] = $paciente;
 
-       return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
+        return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
 
@@ -38,7 +38,7 @@ class Datos_PacientesController extends BaseController {
 	public function store()
 	{
         $paciente = new Paciente;
-        $data = Input::all();
+        $data = Input::all();        
         $paciente->cedula = $data['cedula'];
         $paciente->primer_nombre = $data['primer_nombre'];
         $paciente->segundo_nombre = $data['segundo_nombre'];
@@ -146,10 +146,7 @@ class Datos_PacientesController extends BaseController {
 		$paciente->delete();
 		$paciente = new Paciente;
 
-		$pacientes = Paciente::all();
-
 		$datos['paciente'] = $paciente;
-		$datos['pacientes'] = $pacientes;
        return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
