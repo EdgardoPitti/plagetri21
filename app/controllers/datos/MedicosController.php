@@ -9,7 +9,11 @@ class Datos_MedicosController extends BaseController {
 	 */
 	public function index()
 	{
-		return View::make('datos/medicos/form');
+		$medico = new Medico;
+		$datos['formulario'] = array('route' => 'datos.medicos.store', 'method' => 'POST');
+		$datos['label'] = 'A&ntilde;adir';
+		$datos['medico'] = $medico; 
+		return View::make('datos/medicos/form')->with('datos', $datos);
 	}
 
 
