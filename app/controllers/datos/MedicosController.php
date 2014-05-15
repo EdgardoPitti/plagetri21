@@ -14,7 +14,7 @@ class Datos_MedicosController extends BaseController {
 		$datos['label'] = 'Crear';
 		$datos['medico'] = $medico; 
 		$datos['especialidad'] = '25';
-		return View::make('datos/medicos/form')->with('datos', $datos);
+		return View::make('datos/medicos/list-edit-form')->with('datos', $datos);
 	}
 
 
@@ -81,7 +81,7 @@ class Datos_MedicosController extends BaseController {
 		$datos['label'] = 'Editar';
 		$datos['medico'] = $medico; 
 		$datos['especialidad'] = $medico->id_especialidades_medicas;
-		return View::make('datos/medicos/form')->with('datos', $datos);
+		return View::make('datos/medicos/list-edit-form')->with('datos', $datos);
 	}
 
 
@@ -126,7 +126,7 @@ class Datos_MedicosController extends BaseController {
 		$medico = new Medico;
 
 		$datos['medico'] = $medico;
-		return View::make('datos/medicos/form')->with('datos', $datos);
+		return View::make('datos/medicos/list-edit-form')->with('datos', $datos);
 	}
 
 
