@@ -13,11 +13,9 @@
 
 Route::get('/', function()
 {
-	return View::make('datos/pacientes/select');
+	return View::make('inicio');
 });
 
 
 Route::resource('datos/pacientes', 'Datos_PacientesController');
 Route::resource('datos/medicos', 'Datos_MedicosController');
-Route::get('api/dropdown','ApiController@getIndex');
-Route::get('api/dropdowndist','ApiController@getDistrict');
