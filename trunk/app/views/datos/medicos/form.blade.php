@@ -34,7 +34,7 @@
 	    </div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('id_especialidad_medicas', 'Especialidades M&eacute;dicas') }}
-			{{ Form::select('id_especialidad_medicas', ) }}
+			
 		</div>
 	  </div>
 	  {{ Form::button('A&ntilde;adir M&eacute;dico', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
