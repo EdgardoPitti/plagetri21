@@ -28,5 +28,6 @@
     {{-- Include all compiled plugins (below), or include individual files as needed --}}
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/filtro.js') }}
+    {{ HTML::script('assets/js/script.js') }}
   </body>
 </html>
