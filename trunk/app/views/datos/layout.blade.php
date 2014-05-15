@@ -19,6 +19,7 @@
       {{-- Begin page content --}}
       <div class="container">
         @yield('content')
+        @yield('script')
       </div>
     </div>
 
