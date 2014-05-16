@@ -4,11 +4,11 @@
 
 @section ('content')
 
-<h1>{{ $datos['label'] }} Pacientes</h1><hr>
-<div class="pull-right">
+<center><h1>{{ $datos['label'] }} Pacientes</h1></center><hr>
+<div class="pull-left">
     <a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Inicio</a>
 </div>
-
+<br>
 {{ Form::model($datos['paciente'], $datos['form'] , array('role' => 'form')) }}
 
   <div class="row">
