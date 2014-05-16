@@ -19,3 +19,4 @@ Route::get('/', function()
 
 Route::resource('datos/pacientes', 'Datos_PacientesController');
 Route::resource('datos/medicos', 'Datos_MedicosController');
+Route::get('dropdown','DropdownController@getIndex');
