@@ -8,6 +8,7 @@ class Provincia extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'provincias';
+
 }
 
 ?>

@@ -8,6 +8,7 @@ class Corregimiento extends Eloquent {
 	 * @var string
 	*/
 	protected $table = 'corregimientos';
+
 }
 
 ?>
