@@ -1,22 +1,16 @@
 <?php
 class DropdownController extends BaseController
 {
-    public function __construct()
+    public function getDistrito()
     {
-        parent::__construct();
-  
+        $provincia = Input::get('provincia');
+        $distrito = Distrito::where('id_provincia',$provincia);
+        return ($distrito->get(['id_distrito','distrito']));
     }
-    public function getIndex()
-    {
-        $input = Input::get('option');
-        $distrito = Distrito::all();
-        return $distrito->get(['id_distrito','distrito']);
-    }
-    public function getDistrict()
+    public function getCorregimiento()
     {    
-        $distinput = Input::get('stateoption');
-        $state = State::find($distinput);
-        $district = $state->district();
-        return $district->get(['id','district']);
+        $distrito = Input::get('distrito');
+        $corregimiento = Corregimiento::where('id_distrito',$distrito);
+        return ($corregimiento->get(['id_corregimiento','corregimiento']));
     }
 }
