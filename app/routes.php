@@ -19,5 +19,5 @@ Route::get('/', function()
 
 Route::resource('datos/pacientes', 'Datos_PacientesController');
 Route::resource('datos/medicos', 'Datos_MedicosController');
-Route::get('dinamico/distrito','DropdownController@getDistrito');
-Route::get('dinamico/corregimiento','DropdownController@getCorregimiento');
+Route::get('distrito','DropdownController@getDistrito');
+Route::get('corregimiento','DropdownController@getCorregimiento');
