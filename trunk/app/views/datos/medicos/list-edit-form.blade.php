@@ -3,10 +3,13 @@
 @section ('title') {{ $datos['label'] }} M&eacute;dicos @stop
 
 @section ('content')
-	<h1>{{ $datos['label'] }} M&eacute;dico</h1><hr>
-	<div class="pull-right">
-	    <a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Inicio</a>
-	</div>
+	<h1>
+		<div class="pull-left">
+	    	<a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Inicio</a>
+		</div>
+		<center>{{ $datos['label'] }} M&eacute;dico</center>
+	</h1><hr>
+	
 	{{ Form::model($datos['medico'], $datos['formulario'] , array('role' => 'form')) }}
 
 	  <div class="row">
