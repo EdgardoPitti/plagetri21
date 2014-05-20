@@ -7,6 +7,7 @@ class Distrito extends Eloquent {
 	 *
 	 * @var string
 	 */
+
 	protected $table = 'distritos';
 }
 
