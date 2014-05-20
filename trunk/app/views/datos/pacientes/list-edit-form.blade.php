@@ -9,6 +9,7 @@
     <a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Inicio</a>
 </div>
 <br>
+
 {{ Form::model($datos['paciente'], $datos['form'] , array('role' => 'form')) }}
 
   <div class="row">
@@ -43,11 +44,11 @@
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_distrito', 'Distrito de Nacimiento:') }}
-      {{ Form::select('id_distrito',  array('0' => 'SELECCIONE DISTRITO') + Distrito::where('id_provincia','$idprovincia')->lists('distrito', 'id_distrito'), $datos['paciente']->id_distrito_nacimiento, array('class' => 'form-control')); }}
+      {{ Form::select('id_distrito',  array('0' => 'SELECCIONE DISTRITO') + Distrito::lists('distrito', 'id_distrito'), $datos['paciente']->id_distrito_nacimiento, array('class' => 'form-control')); }}
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('id_corregimiento', 'Corregimiento de Nacimiento:') }}
-      {{ Form::select('id_corregimiento',  array('0' => 'SELECCIONE CORREGIMIENTO'), $datos['paciente']->id_corregimiento_nacimiento, array('class' => 'form-control')); }}    
+      {{ Form::select('id_corregimiento',  array('0' => 'SELECCIONE CORREGIMIENTO') + Corregimiento::lists('corregimiento', 'id_corregimiento'), $datos['paciente']->id_corregimiento_nacimiento, array('class' => 'form-control')); }}    
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('lugar_nacimiento', 'Lugar de Nacimiento:') }}
