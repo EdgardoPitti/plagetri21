@@ -12,13 +12,15 @@
         {{ HTML::script('assets/js/respond.min.js') }}
 
     <![endif]-->
+
   </head>
-  <body>
+  <body>    
     {{-- Wrap all page content here --}}
     <div id="wrap">
       {{-- Begin page content --}}
       <div class="container">
-        @yield('content')        
+        @yield('content')  
+        @yield('scripts')  
       </div>
     </div>
 
