@@ -5,6 +5,8 @@ jQuery(document).ready(function($){
         	function(data){
 				var campo = $('#id_distrito');
 				campo.empty();
+				var campo1 = $('#id_corregimiento');
+				campo1.empty();
 				$.each(data, function(index,element) {
 					campo.append("<option value='"+ element.id_distrito +"'>" + element.distrito + "</option>");
         		});
