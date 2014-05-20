@@ -9,12 +9,10 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function index()
 	{
-		$paciente = new Paciente;
 		$datos['form'] = array('route' => 'datos.pacientes.store', 'method' => 'POST');
       	$datos['label'] = 'Crear';
-		$datos['paciente'] = $paciente;
-
-        return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
+		$datos['paciente'] = new Paciente;
+	    return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
 
@@ -37,8 +35,8 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function store()
 	{
+		$data = Input::all();        
         $paciente = new Paciente;
-        $data = Input::all();        
         $paciente->cedula = $data['cedula'];
         $paciente->primer_nombre = $data['primer_nombre'];
         $paciente->segundo_nombre = $data['segundo_nombre'];
@@ -55,6 +53,10 @@ class Datos_PacientesController extends BaseController {
         $paciente->email = $data['email'];
         $paciente->id_nacionalidad = $data['id_nacionalidad'];
         $paciente->id_tipo_sangre = $data['id_tipo_sanguineo'];
+        $paciente->id_provincia_residencia = $data['id_provincia_residencia'];
+        $paciente->id_distrito_residencia = $data['id_distrito_residencia'];
+        $paciente->id_corregimiento_residencia = $data['id_corregimiento_residencia'];
+        $paciente->lugar_residencia = $data['lugar_residencia'];
         $paciente->id_raza = $data['id_raza'];
         $paciente->id_etnia = $data['id_etnia'];
         $paciente->diabetes = $data['diabetes'];
@@ -121,6 +123,10 @@ class Datos_PacientesController extends BaseController {
         $paciente->id_provincia_nacimiento = $data['id_provincia'];
         $paciente->id_distrito_nacimiento = $data['id_distrito'];
         $paciente->id_corregimiento_nacimiento = $data['id_corregimiento'];
+        $paciente->id_provincia_residencia = $data['id_provincia_residencia'];
+        $paciente->id_distrito_residencia = $data['id_distrito_residencia'];
+        $paciente->id_corregimiento_residencia = $data['id_corregimiento_residencia'];
+        $paciente->lugar_residencia = $data['lugar_residencia'];     
         $paciente->telefono = $data['telefono'];
         $paciente->celular = $data['celular'];
         $paciente->email = $data['email'];

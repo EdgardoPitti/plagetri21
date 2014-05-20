@@ -796,9 +796,9 @@ INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`) VALUES
 
 DROP TABLE IF EXISTS `especialidades_medicas`;
 CREATE TABLE `especialidades_medicas` (
-  `id_especialidad_medica` int(11) NOT NULL AUTO_INCREMENT,
+  `id_especialidades_medicas` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(200) NOT NULL DEFAULT 'POR DEFINIR',
-  PRIMARY KEY (`id_especialidad_medica`)
+  PRIMARY KEY (`id_especialidades_medicas`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 --
@@ -806,7 +806,7 @@ CREATE TABLE `especialidades_medicas` (
 --
 
 /*!40000 ALTER TABLE `especialidades_medicas` DISABLE KEYS */;
-INSERT INTO `especialidades_medicas` (`id_especialidad_medica`,`descripcion`) VALUES 
+INSERT INTO `especialidades_medicas` (`id_especialidades_medicas`,`descripcion`) VALUES 
  (1,'ALERGÍA E INMUNOLOGÍA'),
  (2,'ANATOMIA PATOLOGICA'),
  (3,'ANESTESIOLOGÍA'),
@@ -940,14 +940,20 @@ CREATE TABLE `medicos` (
   `sexo` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `created_at` varchar(45) NOT NULL,
   `updated_at` varchar(45) NOT NULL,
+  `id_especialidades_medicas` int(10) unsigned NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `celular` varchar(45) NOT NULL,
+  `email` varchar(60) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `medicos`
 --
 
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
+INSERT INTO `medicos` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`sexo`,`created_at`,`updated_at`,`id_especialidades_medicas`,`telefono`,`celular`,`email`) VALUES 
+ (3,'4-759-372','Edgardo','','Pitti','',1,'2014-05-15 20:47:24','2014-05-15 21:39:32',25,'75464234','645678789','ed_joel28@hortmail.com');
 /*!40000 ALTER TABLE `medicos` ENABLE KEYS */;
 
 
@@ -1081,6 +1087,10 @@ CREATE TABLE `pacientes` (
   `id_tipo_sangre` int(10) unsigned NOT NULL DEFAULT '0',
   `diabetes` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `id_raza` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_provincia_residencia` int(10) unsigned NOT NULL,
+  `id_distrito_residencia` int(10) unsigned NOT NULL,
+  `id_corregimiento_residencia` int(10) unsigned NOT NULL,
+  `lugar_residencia` text NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -1089,8 +1099,8 @@ CREATE TABLE `pacientes` (
 --
 
 /*!40000 ALTER TABLE `pacientes` DISABLE KEYS */;
-INSERT INTO `pacientes` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`sexo`,`fecha_nacimiento`,`lugar_nacimiento`,`created_at`,`updated_at`,`celular`,`telefono`,`email`,`id_provincia_nacimiento`,`id_distrito_nacimiento`,`id_corregimiento_nacimiento`,`id_nacionalidad`,`id_etnia`,`id_tipo_sangre`,`diabetes`,`id_raza`) VALUES 
- (1,'4-769-466','Sarah','Stephanie','Pimentel','Quiel',0,'1993-11-06','Pedregal','2014-05-12 22:33:03','2014-05-12 22:33:03','60083613','7743095','saritah_0611@hotmail.com',2,1,1,62,1,1,0,1);
+INSERT INTO `pacientes` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`sexo`,`fecha_nacimiento`,`lugar_nacimiento`,`created_at`,`updated_at`,`celular`,`telefono`,`email`,`id_provincia_nacimiento`,`id_distrito_nacimiento`,`id_corregimiento_nacimiento`,`id_nacionalidad`,`id_etnia`,`id_tipo_sangre`,`diabetes`,`id_raza`,`id_provincia_residencia`,`id_distrito_residencia`,`id_corregimiento_residencia`,`lugar_residencia`) VALUES 
+ (1,'4-769-466','Sarah','Stephanie','Pimentel','Quiel',0,'1993-11-06','Pedregal','2014-05-12 22:33:03','2014-05-20 19:05:46','60083613','7743095','saritah_0611@hotmail.com',2,9,72,62,1,1,0,1,2,9,72,'16 de Diciembre');
 /*!40000 ALTER TABLE `pacientes` ENABLE KEYS */;
 
 
