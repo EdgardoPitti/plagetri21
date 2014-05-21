@@ -1,6 +1,6 @@
 <?php
 
-class CitasController extends \BaseController {
+class Datos_CitasController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,9 @@ class CitasController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$paciente = neW Paciente;
+		$datos = $paciente->datos_pacientes('1');
+		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos);
 	}
 
 
@@ -22,7 +24,6 @@ class CitasController extends \BaseController {
 	{
 		//
 	}
-
 
 	/**
 	 * Store a newly created resource in storage.
@@ -41,9 +42,11 @@ class CitasController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
 	public function show($id)
 	{
-		//
+
+
 	}
 
 
