@@ -8,9 +8,10 @@ class Paciente extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'pacientes';
+
+	//Funcion para calcular la edad de una persona recibiendo como parametro la fecha de nacimiento
 	function edad($fecha)
 	{
-		date_default_timezone_set('America/Panama');
 		$fecha_actual = getdate();
         $edad = 0;
         $fecha = explode("-", $fecha);
@@ -28,20 +29,23 @@ class Paciente extends Eloquent {
         }
         return $edad;
     }
+    //Funcion que busca los datos de los pacientes
     function datos_pacientes($id)
     {
 		if($id == 0){
 			$datos = Paciente::all();
 		}else{
-			$datos = Paciente::find($id);
+			$datos[0] = Paciente::find($id);
 		}
 		$x = 0;
 		foreach ($datos as $paciente){
+
 			if($paciente->diabetes == 1){
 				$datos[$x]->diabetes = 'Si';	
 			}else{
 				$datos[$x]->diabetes = 'No';
 			}
+
 			$datos[$x]->etnia = Etnia::where('id_etnia', $paciente->id_etnia)->first()->etnia;
 			$datos[$x]->raza = Raza::where('id_razas', $paciente->id_raza)->first()->raza;
 			$datos[$x]->edad = $this->edad($paciente->fecha_nacimiento);

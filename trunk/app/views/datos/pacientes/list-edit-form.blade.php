@@ -35,7 +35,7 @@
     </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('fecha_nacimiento', 'Fecha de Nacimiento') }}
-      {{ Form::date('fecha_nacimiento', $datos['paciente']->fecha_nacimiento, array('class' => 'form-control')) }}
+      {{ Form::date('fecha_nacimiento', $datos['paciente']->fecha_nacimiento, array('class' => 'form-control', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
     </div>
     {{--Orden de Datos en los select: Name,arreglo con valores, value, arreglo con la clase de diseño--}}
     {{--Datos de Nacimiento--}}
@@ -156,6 +156,7 @@
                     <td>{{ $paciente->telefono }}</td>
                     <td>{{ $paciente->email }}</td>
                     <td>
+                      <a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Crear Cita</a>
                       <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Editar</a>
                       <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
                     </td>
