@@ -10,7 +10,7 @@ class Datos_CitasController extends \BaseController {
 	public function index()
 	{
 		$paciente = neW Paciente;
-		$datos = $paciente->datos_pacientes('1');
+		$datos = $paciente->datos_pacientes(0);
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos);
 	}
 
@@ -32,7 +32,7 @@ class Datos_CitasController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		
 	}
 
 
@@ -45,7 +45,13 @@ class Datos_CitasController extends \BaseController {
 
 	public function show($id)
 	{
-
+		$paciente = neW Paciente;
+		$datos = $paciente->datos_pacientes(0);
+		$dato_paciente = $paciente->datos_pacientes($id);
+		$form['datos'] = array('route' => 'datos.citas.store', 'method' => 'POST');
+		$form['label'] = 'Crear';
+		$form['citas'] = new Citas;
+		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 
 	}
 
