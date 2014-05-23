@@ -16,7 +16,7 @@
 						})
 						if($target.find('tbody tr:visible').size() === 0) {
 							var col_count = $target.find('tr').first().find('td').size();
-							var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'" style="color:red;">No se encuentran Pacientes</td></tr>')
+							var no_results = $('<div class="filterTable_no_results" style="color:red; width:100%;">No se encuentran Datos.</div>')
 							$target.find('tbody').append(no_results);
 						}
 					}

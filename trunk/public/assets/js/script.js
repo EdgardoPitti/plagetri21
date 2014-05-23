@@ -65,11 +65,9 @@ jQuery(document).ready(function($){
             });
         });
 
-        $("#id_tipo_institucion").change(function(){
-            var datos2 = $(this).val();
-            var datos = $("#id_provincia_institucion").find(':selected').val();
+        $("#id_tipo_institucion").click(function(){
             $.get("http://localhost/plagetri21/public/institucion", 
-            { datos,datos2 },
+            { tipo: $(this).val(), provincia: $("#id_provincia_institucion").find(':selected').val() },
             function(data){
                 var campo = $('#id_institucion');
                 campo.empty();
@@ -80,11 +78,9 @@ jQuery(document).ready(function($){
             });
         });
 
-        $("#id_provincia_institucion").change(function(){
-            var datos = $(this).val();
-            var datos2 = $("#id_tipo_institucion").find(':selected').val();
+        $("#id_provincia_institucion").click(function(){
             $.get("http://localhost/plagetri21/public/institucionprovincia", 
-            { datos, datos2 }, 
+            { provincia: $(this).val(), tipo: $("#id_tipo_institucion").find(':selected').val() }, 
             function(data){
                 var campo = $('#id_institucion');
                 campo.empty();

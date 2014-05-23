@@ -218,6 +218,7 @@
 				</div>
 				<center>
 					{{ Form::button($form['label'].' Cita', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+					<a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary"> Limpiar Campos</a>
 				</center>
 			{{ Form::close() }}		
 			@if (!empty(Cita::where('id_paciente', $datos[0]->id)->first()->id))

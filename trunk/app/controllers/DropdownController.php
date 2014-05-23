@@ -15,14 +15,22 @@ class DropdownController extends BaseController
     }
     public function getInstitucion()
     {
-        $tipo_institucion = Input::get('datos2');
-        $institucion = Institucion::where('id_tipo_institucion', $tipo_institucion);
+        $tipo = Input::get('tipo');
+        $provincia = Input::get('provincia');
+        $institucion = Institucion::where('id_tipo_institucion', $tipo);
+        if(!empty($provincia)){
+            $institucion = Institucion::where('id_provincia', $provincia)->where('id_tipo_institucion', $tipo);                   
+        }
         return ($institucion->get(['id','denominacion']));
     }
     public function getInstitucionprovincia()
     {
-        $provincia = Input::get('datos1');
+        $tipo = Input::get('tipo');
+        $provincia = Input::get('provincia');
         $institucion = Institucion::where('id_provincia', $provincia);
+        if(!empty($tipo)){
+            $institucion = Institucion::where('id_provincia', $provincia)->where('id_tipo_institucion', $tipo);                   
+        }
         return ($institucion->get(['id','denominacion']));
     }
 }
