@@ -57,6 +57,7 @@ class Datos_CitasController extends \BaseController {
 		$citas->observaciones = $data['observaciones'];
 		$citas->estatura = $data['estatura'];
 		$citas->id_institucion = $data['id_institucion'];
+		$citas->hijos_embarazo = $data['hijos_embarazo'];
 		$citas->save();
 		
 		return Redirect::route('datos.citas.show', $data['id_paciente']);	
@@ -142,6 +143,7 @@ class Datos_CitasController extends \BaseController {
 		$citas->observaciones = $data['observaciones'];
 		$citas->estatura = $data['estatura'];
 		$citas->id_institucion = $data['id_institucion'];
+		$citas->hijos_embarazo = $data['hijos_embarazo'];
 		$citas->save();
 		return Redirect::route('datos.citas.show', $data['id_paciente']);	
 	}

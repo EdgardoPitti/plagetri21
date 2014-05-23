@@ -79,6 +79,7 @@
 					<th>Etnia</th>
 					<th>Raza</th>
 					<th>Tipo de Sangre</th>
+					<th>Casos Ant. con Trisomia</th>
 				</tr>
 				<tr>
 					<td>{{ $datos[0]->cedula }}</td>
@@ -90,6 +91,7 @@
 					<td>{{ $datos[0]->etnia }}</td>
 					<td>{{ $datos[0]->raza }}</td>
 					<td>{{ $datos[0]->tipo_sangre }}</td>
+					<td>{{ $datos[0]->embarazos_anteriores }}</td>
 				</tr>
 			</table>
 			<hr>
@@ -120,84 +122,88 @@
 				<div class="row">
 					{{ Form::text('id_paciente', $datos[0]->id, array('style' => 'display:none')) }}
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
-      					{{ Form::label('fecha', 'Fecha de la Consulta:') }}
-      					{{ Form::date('fecha', $form['citas']->fecha, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31')) }}
+      					{{ Form::label('fecha', 'Fecha de Flebotomia:') }}
+      					{{ Form::date('fecha', $form['citas']->fecha, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('id_medico', 'Médico:') }}
-      					{{ Form::select('id_medico', array('0' => 'SELECCION EL  MÉDICO') + Medico::lists('primer_nombre','id'), $form['citas']->id_medico, array('class' => 'form-control')) }}
+      					{{ Form::select('id_medico', array('0' => 'SELECCION EL  MÉDICO') + Medico::select('id', DB::raw('concat(primer_nombre," ",segundo_nombre," ",apellido_paterno," ",apellido_materno) AS nombre_completo'))->lists('nombre_completo','id'), $form['citas']->id_medico, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('peso', 'Peso(kg):') }}
-				    	{{ Form::text('peso', $form['citas']->peso, array('placeholder' => 'Peso', 'class' => 'form-control')) }}        
+				    	{{ Form::text('peso', $form['citas']->peso, array('placeholder' => 'Peso', 'class' => 'form-control', 'required' => 'required')) }}        
 				    </div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('estatura', 'Estatura(m):') }}
-				    	{{ Form::text('estatura', $form['citas']->estatura, array('placeholder' => 'Edad Gestacional', 'class' => 'form-control')) }}        
+				    	{{ Form::text('estatura', $form['citas']->estatura, array('placeholder' => 'Edad Gestacional', 'class' => 'form-control', 'required' => 'required')) }}        
 				    </div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('edad_gestacional', 'Edad Gestacional por Ultrasonido:') }}
-				    	{{ Form::text('edad_gestacional', $form['citas']->edad_gestacional, array('placeholder' => 'Edad Gestacional', 'class' => 'form-control')) }}        
+				    	{{ Form::text('edad_gestacional', $form['citas']->edad_gestacional, array('placeholder' => 'Edad Gestacional', 'class' => 'form-control', 'required' => 'required')) }}        
+				    </div>
+				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+				    	{{ Form::label('hijos_embarazo', 'Cantidad de Hijos en Embarazo:') }}
+      					{{ Form::select('hijos_embarazo', array('0' => 'SELECCION LA CANTIDAD DE HIJO', '1' => 'UNO', '2' => 'DOS', '3' => 'TRES', '4' => 'CUATRO', '5' => 'CINCO', '6' => 'SEIS'), $form['citas']->hijos_embarazo, array('class' => 'form-control', 'required' => 'required')) }}
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fecha_ultrasonido', 'Fecha del Ultrasonido:') }}
-      					{{ Form::date('fecha_ultrasonido', $form['citas']->fecha_ultrasonido, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31')) }}
+      					{{ Form::date('fecha_ultrasonido', $form['citas']->fecha_ultrasonido, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
     				</div>				    
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fur', 'Fecha de Ultima Menstruación:') }}
-      					{{ Form::date('fur', $form['citas']->fur, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31')) }}
+      					{{ Form::date('fur', $form['citas']->fur, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fpp', 'Fecha Probable de Parto:') }}
-      					{{ Form::date('fpp', $form['citas']->fpp, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31')) }}
+      					{{ Form::date('fpp', $form['citas']->fpp, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('afp', 'AFP:') }}
-				    	{{ Form::text('afp', $form['citas']->afp, array('placeholder' => 'AFP', 'class' => 'form-control')) }}        
+				    	{{ Form::text('afp', $form['citas']->afp, array('placeholder' => 'AFP', 'class' => 'form-control', 'required' => 'required')) }}        
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('metodo_afp', 'Metodología para AFP:') }}
-      					{{ Form::select('metodo_afp', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_afp, array('class' => 'form-control')) }}
+      					{{ Form::select('metodo_afp', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_afp, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('ue3', 'UE3:') }}
-				    	{{ Form::text('ue3', $form['citas']->ue3, array('placeholder' => 'UE3', 'class' => 'form-control')) }}        
+				    	{{ Form::text('ue3', $form['citas']->ue3, array('placeholder' => 'UE3', 'class' => 'form-control', 'required' => 'required')) }}        
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('metodo_ue3', 'Métodología para UE3:') }}
-      					{{ Form::select('metodo_ue3', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_ue3, array('class' => 'form-control')) }}
+      					{{ Form::select('metodo_ue3', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_ue3, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('inha', 'Inhibin A:') }}
-				    	{{ Form::text('inha', $form['citas']->inha, array('placeholder' => 'Inhibin A', 'class' => 'form-control')) }}        
+				    	{{ Form::text('inha', $form['citas']->inha, array('placeholder' => 'Inhibin A', 'class' => 'form-control', 'required' => 'required')) }}        
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('metodo_inha', 'Métodología para Inhibin A:') }}
-      					{{ Form::select('metodo_inha', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_eu3, array('class' => 'form-control')) }}
+      					{{ Form::select('metodo_inha', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_eu3, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('hcg', 'HCG:') }}
-				    	{{ Form::text('hcg', $form['citas']->hcg, array('placeholder' => 'HCG', 'class' => 'form-control')) }}        
+				    	{{ Form::text('hcg', $form['citas']->hcg, array('placeholder' => 'HCG', 'class' => 'form-control', 'required' => 'required')) }}        
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('metodo_hcg', 'Métodología para HCG:') }}
-      					{{ Form::select('metodo_hcg', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_hcg, array('class' => 'form-control')) }}
+      					{{ Form::select('metodo_hcg', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_hcg, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('pappa', 'PAPPA:') }}
-				    	{{ Form::text('pappa', $form['citas']->pappa, array('placeholder' => 'PAPPA', 'class' => 'form-control')) }}        
+				    	{{ Form::text('pappa', $form['citas']->pappa, array('placeholder' => 'PAPPA', 'class' => 'form-control', 'required' => 'required')) }}        
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('metodo_pappa', 'Métodología para PAPPA:') }}
-      					{{ Form::select('metodo_pappa', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_pappa, array('class' => 'form-control')) }}
+      					{{ Form::select('metodo_pappa', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_pappa, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('tn', 'TN:') }}
-				    	{{ Form::text('tn', $form['citas']->tn, array('placeholder' => 'TN', 'class' => 'form-control')) }}        
+				    	{{ Form::text('tn', $form['citas']->tn, array('placeholder' => 'TN', 'class' => 'form-control', 'required' => 'required')) }}        
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('metodo_tn', 'Métodología para TN:') }}
-      					{{ Form::select('metodo_tn', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_tn, array('class' => 'form-control')) }}
+      					{{ Form::select('metodo_tn', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_tn, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
     			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('observaciones', 'Observaciones:') }}
@@ -213,7 +219,7 @@
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('id_institucion', 'Institución:') }}
-      					{{ Form::select('id_institucion', array('0' => 'SELECCIONE LA INSTITUCIÓN') + Institucion::where('id_provincia', $form['citas']->id_provincia)->lists('denominacion', 'id'), $form['citas']->id_institucion, array('class' => 'form-control')) }}
+      					{{ Form::select('id_institucion', array('0' => 'SELECCIONE LA INSTITUCIÓN') + Institucion::where('id_provincia', $form['citas']->id_provincia)->lists('denominacion', 'id'), $form['citas']->id_institucion, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				</div>
 				<center>
@@ -240,7 +246,7 @@
 									  	<thead>
 									  		<tr>
 									  			<th>#</th>
-									  			<th>Fecha</th>
+									  			<th>Fecha de Flebotomía</th>
 									  			<th>Institucion</th>
 									  			<th>Peso</th>
 									  			<th>AFP</th>

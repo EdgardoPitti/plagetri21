@@ -114,6 +114,13 @@
       {{ Form::label('no', 'No') }}
       {{ Form::radio('fuma', 0, $datos['paciente']->fuma); }}    
     </div> 
+    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+      {{ Form::label('embarazo_trisomia', 'Casos anteriores con Trisomia:') }}<br>
+      {{ Form::label('si', 'Si') }}
+      {{ Form::radio('embarazo_trisomia', 1, $datos['paciente']->embarazo_trisomia); }}   
+      {{ Form::label('no', 'No') }}
+      {{ Form::radio('embarazo_trisomia', 0, $datos['paciente']->embarazo_trisomia); }}    
+    </div> 
   </div>
   <div class="form-group col-sm-12 col-md-12 col-lg-12">
     <center>
