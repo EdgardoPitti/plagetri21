@@ -60,6 +60,7 @@ class Datos_PacientesController extends BaseController {
         $paciente->id_raza = $data['id_raza'];
         $paciente->id_etnia = $data['id_etnia'];
         $paciente->diabetes = $data['diabetes'];
+        $paciente->embarazo_trisomia = $data['embarazo_trisomia'];
         $paciente->fuma = $data['fuma'];
         $paciente->save();
 
@@ -137,6 +138,7 @@ class Datos_PacientesController extends BaseController {
         $paciente->id_etnia = $data['id_etnia'];
         $paciente->diabetes = $data['diabetes'];
         $paciente->fuma = $data['fuma'];
+        $paciente->embarazo_trisomia = $data['embarazo_trisomia'];
         $paciente->save();
         return Redirect::route('datos.pacientes.index');	
 	}

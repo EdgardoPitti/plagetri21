@@ -50,6 +50,11 @@ class Paciente extends Eloquent {
 			}else{
 				$datos[$x]->fuma = 'No';
 			}
+			if($paciente->embarazo_trisomia == 1){
+				$datos[$x]->embarazos_anteriores = 'Si';
+			}else{
+				$datos[$x]->embarazos_anteriores = 'No';
+			}
 
 			$datos[$x]->etnia = Etnia::where('id_etnia', $paciente->id_etnia)->first()->etnia;
 			$datos[$x]->raza = Raza::where('id_razas', $paciente->id_raza)->first()->raza;
