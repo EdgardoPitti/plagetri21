@@ -22,3 +22,5 @@ Route::resource('datos/medicos', 'Datos_MedicosController');
 Route::resource('datos/citas', 'Datos_CitasController');
 Route::get('distrito','DropdownController@getDistrito');
 Route::get('corregimiento','DropdownController@getCorregimiento');
+Route::get('institucion', 'DropdownController@getInstitucion');
+Route::get('institucionprovincia', 'DropdownController@getInstitucionprovincia');

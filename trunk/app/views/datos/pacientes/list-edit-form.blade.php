@@ -107,6 +107,13 @@
       {{ Form::label('no', 'No') }}
       {{ Form::radio('diabetes', 0, $datos['paciente']->diabetes); }}    
     </div> 
+    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+      {{ Form::label('fuma', 'Fuma:') }}<br>
+      {{ Form::label('si', 'Si') }}
+      {{ Form::radio('fuma', 1, $datos['paciente']->fuma); }}   
+      {{ Form::label('no', 'No') }}
+      {{ Form::radio('fuma', 0, $datos['paciente']->fuma); }}    
+    </div> 
   </div>
   <div class="form-group col-sm-12 col-md-12 col-lg-12">
     <center>
@@ -122,48 +129,48 @@
           <div class="panel-heading">
             <h3 class="panel-title">Lista de Pacientes</h3>
             <div class="pull-right">
-              <span class="clickable filter" data-toggle="tooltip" title="Activar/Desactivar Filtro" data-container="body">
+              <span class="clickable filter" data-toggle="tooltip" title="Buscar Paciente" data-container="body">
                 <i class="glyphicon glyphicon-filter"></i>
               </span>
             </div>
           </div>
           <div class="panel-body">
-            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" />
-          </div>
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="dev-table">
-              <thead>
-              <tr>
-                  <th>#</th>
-                  <th>Nombre Completo</th>
-                  <th>Lugar de Nacimiento</th>
-                  <th>Fecha Nacimiento</th>
-                  <th>Celular</th>
-                  <th>Telefono</th>
-                  <th>E-Mail</th>
-                  <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {{--*/ $x = 1; /*--}}
-              @foreach (Paciente::all() as $paciente)
+            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" /><br>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover" id="dev-table">
+                <thead>
                 <tr>
-                    <td>{{ $x++ }}.</td>
-                    <td>{{ $paciente->primer_nombre.' '.$paciente->segundo_nombre.' '.$paciente->apellido_paterno.' '.$paciente->apellido_materno }}</td>
-                    <td>{{ $paciente->lugar_nacimiento }}</td>
-                    <td>{{ $paciente->fecha_nacimiento }}</td>
-                    <td>{{ $paciente->celular }}</td>
-                    <td>{{ $paciente->telefono }}</td>
-                    <td>{{ $paciente->email }}</td>
-                    <td>
-                      <a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Crear Cita</a>
-                      <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-                      <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-                    </td>
+                    <th>#</th>
+                    <th>Nombre Completo</th>
+                    <th>Lugar de Nacimiento</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Celular</th>
+                    <th>Telefono</th>
+                    <th>E-Mail</th>
+                    <th></th>
                 </tr>
-              @endforeach
-              </tbody> 
-            </table>
+              </thead>
+              <tbody>
+                {{--*/ $x = 1; /*--}}
+                @foreach (Paciente::all() as $paciente)
+                  <tr>
+                      <td>{{ $x++ }}.</td>
+                      <td>{{ $paciente->primer_nombre.' '.$paciente->segundo_nombre.' '.$paciente->apellido_paterno.' '.$paciente->apellido_materno }}</td>
+                      <td>{{ $paciente->lugar_nacimiento }}</td>
+                      <td>{{ $paciente->fecha_nacimiento }}</td>
+                      <td>{{ $paciente->celular }}</td>
+                      <td>{{ $paciente->telefono }}</td>
+                      <td>{{ $paciente->email }}</td>
+                      <td>
+                        <a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Cita</a>
+                        <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                        <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+                      </td>
+                  </tr>
+                @endforeach
+                </tbody> 
+              </table>
+            </div>
           </div>
         </div>
       </div>
