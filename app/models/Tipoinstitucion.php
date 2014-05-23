@@ -1,13 +1,13 @@
 <?php
 
-class Citas extends Eloquent {
+class Tipoinstitucion extends Eloquent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	*/
-	protected $table = 'citas_medicas';
+	protected $table = 'tipo_instituciones';
 
 }
 

@@ -64,5 +64,35 @@ jQuery(document).ready(function($){
                 });
             });
         });
+
+        $("#id_tipo_institucion").change(function(){
+            var datos2 = $(this).val();
+            var datos = $("#id_provincia_institucion").find(':selected').val();
+            $.get("http://localhost/plagetri21/public/institucion", 
+            { datos,datos2 },
+            function(data){
+                var campo = $('#id_institucion');
+                campo.empty();
+                    campo.append("<option value='0'>SELECCIONE LA INSTITUCIÓN</option>");
+                $.each(data, function(index,element) {
+                    campo.append("<option value='"+ element.id +"'>" + element.denominacion + "</option>");
+                });
+            });
+        });
+
+        $("#id_provincia_institucion").change(function(){
+            var datos = $(this).val();
+            var datos2 = $("#id_tipo_institucion").find(':selected').val();
+            $.get("http://localhost/plagetri21/public/institucionprovincia", 
+            { datos, datos2 }, 
+            function(data){
+                var campo = $('#id_institucion');
+                campo.empty();
+                    campo.append("<option value='0'>SELECCIONE LA INSTITUCIÓN</option>");
+                $.each(data, function(index,element) {
+                    campo.append("<option value='"+ element.id +"'>" + element.denominacion + "</option>");
+                });
+            });
+        });
 });    
         
