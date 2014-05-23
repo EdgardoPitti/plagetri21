@@ -179,7 +179,7 @@
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('metodo_inha', 'Métodología para Inhibin A:') }}
-      					{{ Form::select('metodo_inha', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_eu3, array('class' => 'form-control', 'required' => 'required')) }}
+      					{{ Form::select('metodo_inha', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_inha, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('hcg', 'HCG:') }}
