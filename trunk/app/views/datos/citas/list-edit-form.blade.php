@@ -1,7 +1,7 @@
 @extends ('layout')
 
 @section('title')
-	Citas Médicas
+	Citas de Tamizaje
 @stop
 
 @section('content')
@@ -9,7 +9,7 @@
 		  <div class="pull-left">
 		    <a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Inicio</a>
 		  </div>
-		  <center>Citas Médicas</center>
+		  <center>Citas de Tamizaje</center>
 		</h1>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12">
