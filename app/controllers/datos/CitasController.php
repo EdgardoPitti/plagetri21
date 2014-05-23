@@ -99,7 +99,7 @@ class Datos_CitasController extends \BaseController {
 		$cita->id_tipo = $institucion->id_tipo_institucion;
 		$datos = $paciente->datos_pacientes(0);
 		$dato_paciente = $paciente->datos_pacientes($cita->id_paciente);
-		$form['datos'] = array('route' => 'datos.citas.update', 'method' => 'PATCH');
+		$form['datos'] = array('route' => array('datos.citas.update', $id), 'method' => 'PATCH');
 		$form['label'] = 'Editar';
 		$form['citas'] =  $cita;
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
@@ -114,7 +114,36 @@ class Datos_CitasController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$data = Input::all();
+		$citas = Cita::find($id);
+		if (is_null ($citas))
+		{
+		 	$citas = new Cita;
+		}
+		$citas->id_medico = $data['id_medico'];
+		$citas->peso = $data['peso'];
+		$citas->fecha_ultrasonido = $data['fecha_ultrasonido'];
+		$citas->fur = $data['fur'];
+		$citas->fpp = $data['fpp'];
+		$citas->afp = $data['afp'];
+		$citas->id_metodo_afp = $data['metodo_afp'];
+		$citas->ue3 = $data['ue3'];
+		$citas->id_metodo_ue3 = $data['metodo_ue3'];
+		$citas->inha = $data['inha'];
+		$citas->id_metodo_inha = $data['metodo_inha'];
+		$citas->hcg = $data['hcg'];
+		$citas->id_metodo_hcg = $data['metodo_hcg'];
+		$citas->pappa = $data['pappa'];
+		$citas->id_metodo_pappa = $data['metodo_pappa'];
+		$citas->tn = $data['tn'];
+		$citas->id_metodo_tn = $data['metodo_tn'];
+		$citas->fecha = $data['fecha'];
+		$citas->edad_gestacional = $data['edad_gestacional'];
+		$citas->observaciones = $data['observaciones'];
+		$citas->estatura = $data['estatura'];
+		$citas->id_institucion = $data['id_institucion'];
+		$citas->save();
+		return Redirect::route('datos.citas.show', $data['id_paciente']);	
 	}
 
 
