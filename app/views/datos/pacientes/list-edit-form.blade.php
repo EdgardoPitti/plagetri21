@@ -4,8 +4,10 @@
 
 @section ('content')
 <h1>
-  <div class="pull-left">
-    <a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Inicio</a>
+ <div style="position:relative;">
+    <div style="position:absolute;left:0px;">
+      <a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span><span class="return"> Inicio</span></a>
+    </div>
   </div>
   <center>{{ $datos['label'] }} Pacientes</center>
 </h1><hr>
@@ -143,10 +145,10 @@
           </div>
           <div class="panel-body">
             <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" /><br>
-            <div class="table-responsive">
+            <div class="overthrow"  style="overflow:auto;width:100%;">
               <table class="table table-bordered table-hover" id="dev-table">
                 <thead>
-                <tr>
+                <tr class="info">
                     <th>#</th>
                     <th>Nombre Completo</th>
                     <th>Lugar de Nacimiento</th>
@@ -168,10 +170,10 @@
                       <td>{{ $paciente->celular }}</td>
                       <td>{{ $paciente->telefono }}</td>
                       <td>{{ $paciente->email }}</td>
-                      <td>
-                        <a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Cita</a>
-                        <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-                        <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+                      <td align="center">
+                          <a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Cita"><span class="glyphicon glyphicon-list-alt"></span></a>                         
+                          <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary btn-sm" style="margin:3px 0px;" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>                         
+                          <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>                                            
                       </td>
                   </tr>
                 @endforeach
@@ -186,5 +188,9 @@
  
   {{ Form::open(array('route' => array('datos.pacientes.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
   {{ Form::close() }}
-
+  
+  {{ HTML::script('assets/js/overthrow/overthrow-detect.js') }}
+  {{ HTML::script('assets/js/overthrow/overthrow-init.js') }}
+  {{ HTML::script('assets/js/overthrow/overthrow-polyfill.js') }}
+  {{ HTML::script('assets/js/overthrow/overthrow-toss.js') }}
 @stop

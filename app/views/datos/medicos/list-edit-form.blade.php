@@ -4,8 +4,10 @@
 
 @section ('content')
 	<h1>
-		<div class="pull-left">
-	    	<a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Inicio</a>
+		<div style="position:relative;">
+			<div style="position:absolute;left:0px;">
+		    	<a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span><span class="return"> Inicio</span></a>
+			</div>
 		</div>
 		<center>{{ $datos['label'] }} M&eacute;dico</center>
 	</h1><hr>
@@ -55,8 +57,12 @@
 			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadesMedicas::lists('descripcion', 'id_especialidades_medicas'), $datos['especialidad'], array('class' => 'form-control')) }}
 		</div>
 	  </div>
-	  {{ Form::button($datos['label'].' M&eacute;dico', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
-	  <a href="{{ route('datos.medicos.index') }}" class="btn btn-info">Limpiar Campos</a>
+	  <div class="form-group col-sm-12 col-md-12 col-lg-12">
+    	<center>
+		  {{ Form::button($datos['label'].' M&eacute;dico', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
+		  <a href="{{ route('datos.medicos.index') }}" class="btn btn-info">Limpiar Campos</a>
+		</center>
+	  </div>
 	{{ Form::close() }}
 	<br>
 	<div class="row">
@@ -65,54 +71,58 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">Lista de M&eacute;dicos</h3>
 					<div class="pull-right">
-						<span class="clickable filter" data-toggle="tooltip" title="Activar/Desactivar Filtro" data-container="body">
+						<span class="clickable filter" data-toggle="tooltip" title="Buscar M&eacute;dicos" data-container="body">
 							<i class="glyphicon glyphicon-filter"></i>
 						</span>
 					</div>
 				</div>
 				<div class="panel-body">
-					<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar M&eacute;dicos" />
-				</div>
-				<div class="table-responsive">
-					<table class="table table-hover table-bordered" id="dev-table">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>C&eacute;dula</th>
-								<th>Nombre</th>
-								<th>Tel&eacute;fono</th>
-								<th>Celular</th>
-								<th>E-mail</th>
-								<th>Especialidad M&eacute;dica</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							{{--*/ $n = 1; /*--}}
-							@foreach (Medico::all() as $medico) 
-							{{--*/								
-								$especialidad = EspecialidadesMedicas::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first(); 
-							/*--}}
-							<tr>
-								<td>{{ $n++ }}</td>
-								<td>{{ $medico->cedula }}</td>
-								<td>{{ $medico->primer_nombre.' '.$medico->segundo_nombre.' '.$medico->apellido_paterno.' '.$medico->apellido_materno }} </td>
-								<td>{{ $medico->telefono }}</td>
-								<td>{{ $medico->celular }} </td>
-								<td>{{ $medico->email }} </td>
-								<td>{{ $especialidad->descripcion }}</td>
-								<td>
-									<a href="{{ route('datos.medicos.edit', $medico->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-				            		<a href="#" data-id="{{ $medico->id }}"  class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-								</td>					
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
+					<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar M&eacute;dicos" /><br>
+					<div class="overthrow" style="overflow:auto;width:100%;">
+						<table class="table table-hover table-bordered" id="dev-table">
+							<thead>
+								<tr class="info">
+									<th>#</th>
+									<th>C&eacute;dula</th>
+									<th>Nombre</th>
+									<th>Tel&eacute;fono</th>
+									<th>Celular</th>
+									<th>E-mail</th>
+									<th>Especialidad M&eacute;dica</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								{{--*/ $n = 1; /*--}}
+								@foreach (Medico::all() as $medico) 
+								{{--*/								
+									$especialidad = EspecialidadesMedicas::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first(); 
+								/*--}}
+								<tr>
+									<td>{{ $n++ }}</td>
+									<td>{{ $medico->cedula }}</td>
+									<td>{{ $medico->primer_nombre.' '.$medico->segundo_nombre.' '.$medico->apellido_paterno.' '.$medico->apellido_materno }} </td>
+									<td>{{ $medico->telefono }}</td>
+									<td>{{ $medico->celular }} </td>
+									<td>{{ $medico->email }} </td>
+									<td>{{ $especialidad->descripcion }}</td>
+									<td align="center">
+										<a href="{{ route('datos.medicos.edit', $medico->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar M&eacute;dico"><span class="glyphicon glyphicon-pencil"></span></a>
+					            		<a href="#" data-id="{{ $medico->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip"  title="Eliminar" style="margin:3px 0px;"><span class="glyphicon glyphicon-remove"></span></a>
+									</td>					
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+				</div>				
 			</div>
 		</div>
 	</div>
 	{{ Form::open(array('route' => array('datos.medicos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
   	{{ Form::close() }}
+  	{{ HTML::script('assets/js/overthrow/overthrow-detect.js') }}
+    {{ HTML::script('assets/js/overthrow/overthrow-init.js') }}
+    {{ HTML::script('assets/js/overthrow/overthrow-polyfill.js') }}
+    {{ HTML::script('assets/js/overthrow/overthrow-toss.js') }}
 @stop
