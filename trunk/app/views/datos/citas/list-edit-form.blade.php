@@ -6,9 +6,11 @@
 
 @section('content')
 		<h1>
-		  <div class="pull-left">
-		    <a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Inicio</a>
-		  </div>
+		 <div style="position:relative;">
+			<div style="position:absolute;left:0px;">
+		    	<a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span><span class="return"> Inicio</span></a>
+			</div>
+		 </div>
 		  <center>Citas de Tamizaje</center>
 		</h1>
 		<div class="row">
@@ -24,10 +26,10 @@
 		      		</div>
 			    	<div class="panel-body">
 				        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" /><br>
-					    <div class="table-responsive">
+					    <div class="overthrow" style="overflow:auto;width:100%;">
 					        <table class="table table-bordered table-hover" id="dev-table">
 							  	<thead>
-							  		<tr>
+							  		<tr class="info">
 							  			<th>#</th>
 							  			<th>Cédula</th>
 							  			<th>Nombre Completo</th>
@@ -51,9 +53,9 @@
 							  			<td>{{ $paciente->raza }}</td>
 							  			<td>{{ $paciente->diabetes }}</td>
 							  			<td>{{ $paciente->fuma }}</td>
-							  			<td>
-							  				<a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Crear Cita</a>
-							  				<a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+							  			<td align="center">
+							  				<a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Crear Cita"><span class="glyphicon glyphicon-list-alt"></span></a>
+							  				<a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Paciente"><span class="glyphicon glyphicon-pencil"></span></a>
 							  			</td>
 							  		</tr>
 							  		@endforeach
@@ -64,58 +66,61 @@
 		        </div>
 		    </div>
 		</div>
-		<hr>
 		
 		@if(!empty($datos))
 			<h3>Datos Generales del Paciente</h3>
-			<table class="table table-striped">
-				<tr>
-					<th>Cédula</th>
-					<th>Nombre Completo</th>
-					<th>Edad</th>
-					<th>Fuma</th>
-					<th>Diabetes</th>
-					<th>Nacionalidad</th>
-					<th>Etnia</th>
-					<th>Raza</th>
-					<th>Tipo de Sangre</th>
-					<th>Casos Ant. con Trisomia</th>
-				</tr>
-				<tr>
-					<td>{{ $datos[0]->cedula }}</td>
-					<td>{{ $datos[0]->primer_nombre.' '.$datos[0]->segundo_nombre.' '.$datos[0]->apellido_paterno.' '.$datos[0]->apellido_materno }}</td>
-					<td>{{ $datos[0]->edad }}</td>
-					<td>{{ $datos[0]->fuma }}</td>
-					<td>{{ $datos[0]->diabetes }}</td>
-					<td>{{ $datos[0]->nacionalidad }}</td>
-					<td>{{ $datos[0]->etnia }}</td>
-					<td>{{ $datos[0]->raza }}</td>
-					<td>{{ $datos[0]->tipo_sangre }}</td>
-					<td>{{ $datos[0]->embarazos_anteriores }}</td>
-				</tr>
-			</table>
+			<div class="overthrow" style="overflow:auto;width:100%;">
+				<table class="table table-striped">
+					<tr  class="info">
+						<th>Cédula</th>
+						<th>Nombre Completo</th>
+						<th>Edad</th>
+						<th>Fuma</th>
+						<th>Diabetes</th>
+						<th>Nacionalidad</th>
+						<th>Etnia</th>
+						<th>Raza</th>
+						<th>Tipo de Sangre</th>
+						<th>Casos Ant. con Trisomia</th>
+					</tr>
+					<tr align="center">
+						<td>{{ $datos[0]->cedula }}</td>
+						<td>{{ $datos[0]->primer_nombre.' '.$datos[0]->segundo_nombre.' '.$datos[0]->apellido_paterno.' '.$datos[0]->apellido_materno }}</td>
+						<td>{{ $datos[0]->edad }}</td>
+						<td>{{ $datos[0]->fuma }}</td>
+						<td>{{ $datos[0]->diabetes }}</td>
+						<td>{{ $datos[0]->nacionalidad }}</td>
+						<td>{{ $datos[0]->etnia }}</td>
+						<td>{{ $datos[0]->raza }}</td>
+						<td>{{ $datos[0]->tipo_sangre }}</td>
+						<td>{{ $datos[0]->embarazos_anteriores }}</td>
+					</tr>
+				</table>
+			</div>
 			<hr>
 			<h3>Datos de Contacto del Paciente</h3>
-			<table class="table table-striped">
-				<tr>
-					<th>Provincia</th>
-					<th>Distrito</th>
-					<th>Corregimiento</th>
-					<th>Lugar</th>
-					<th>Teléfono</th>
-					<th>E-mail</th>
-					<th>Celular</th>
-				</tr>
-				<tr>
-					<td>{{ $datos[0]->provincia_residencia }}</td>
-					<td>{{ $datos[0]->distrito_residencia }}</td>
-					<td>{{ $datos[0]->corregimiento_residencia }}</td>
-					<td>{{ $datos[0]->lugar_residencia }}</td>
-					<td>{{ $datos[0]->telefono }}</td>
-					<td>{{ $datos[0]->email }}</td>
-					<td>{{ $datos[0]->celular }}</td> 
-				</tr>
-			</table>
+			<div class="overthrow" style="overflow:auto;width:100%;">
+				<table class="table table-striped">
+					<tr class="info">
+						<th>Provincia</th>
+						<th>Distrito</th>
+						<th>Corregimiento</th>
+						<th>Lugar</th>
+						<th>Teléfono</th>
+						<th>E-mail</th>
+						<th>Celular</th>
+					</tr>
+					<tr>
+						<td>{{ $datos[0]->provincia_residencia }}</td>
+						<td>{{ $datos[0]->distrito_residencia }}</td>
+						<td>{{ $datos[0]->corregimiento_residencia }}</td>
+						<td>{{ $datos[0]->lugar_residencia }}</td>
+						<td>{{ $datos[0]->telefono }}</td>
+						<td>{{ $datos[0]->email }}</td>
+						<td>{{ $datos[0]->celular }}</td> 
+					</tr>
+				</table>
+			</div>
 			<hr>
 			<h3>Datos de la Cita</h3>
 			{{ Form::model($form['citas'], $form['datos'] , array('role' => 'form')) }}
@@ -224,7 +229,7 @@
 				</div>
 				<center>
 					{{ Form::button($form['label'].' Cita', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-					<a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary"> Limpiar Campos</a>
+					<a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-info"> Limpiar Campos</a>
 				</center>
 			{{ Form::close() }}		
 			@if (!empty(Cita::where('id_paciente', $datos[0]->id)->first()->id))
@@ -241,10 +246,10 @@
 				      		</div>
 					    	<div class="panel-body">
 						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_citas" placeholder="Filtrar Citas" /><br>
-							    <div class="table-responsive">
+							    <div class="overthrow" style="overflow:auto;width:100%;">
 							        <table class="table table-bordered table-hover" id="tabla_citas">
 									  	<thead>
-									  		<tr>
+									  		<tr class="info">
 									  			<th>#</th>
 									  			<th>Fecha de Flebotomía</th>
 									  			<th>Institucion</th>
@@ -272,8 +277,8 @@
 									  			<td>{{ $citas->hcg }}</td>
 									  			<td>{{ $citas->pappa }}</td>
 									  			<td>{{ $citas->tn }}</td>
-									  			<td>
-									  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+									  			<td align="center">
+									  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span></a>
 									  			</td>
 									  		</tr>
 									  		@endforeach
@@ -287,4 +292,8 @@
 			@endif
 		@endif
 		<br>
+	{{ HTML::script('assets/js/overthrow/overthrow-detect.js') }}
+    {{ HTML::script('assets/js/overthrow/overthrow-init.js') }}
+    {{ HTML::script('assets/js/overthrow/overthrow-polyfill.js') }}
+    {{ HTML::script('assets/js/overthrow/overthrow-toss.js') }}
 @stop
