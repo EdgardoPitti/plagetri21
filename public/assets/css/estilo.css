@@ -1,0 +1,31 @@
+/*Mapa*/
+ #map-canvas {
+	height: 400px;
+	width:600px;
+	border:1px solid #000;
+}
+/*CSS DE LOS PANELES*/
+.row{
+    margin-top:40px;
+    padding: 0 10px;
+}
+.clickable{
+    cursor: pointer;   
+}
+
+.panel-heading div {
+	margin-top: -18px;
+	font-size: 15px;
+}
+.panel-heading div span{
+	margin-left:5px;
+}
+.panel-body{
+	display: none;
+}
+.retun{display: block;}
+@media (max-width:768px){
+	.return{
+		display: none;
+	}
+}
