@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head lang="es-ES">
     <title><?php echo $__env->yieldContent('title', 'Datos de Pacientes'); ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php /* Bootstrap */ ?>
     <?php echo HTML::style('assets/css/bootstrap.css', array('media' => 'screen')); ?>
 
