@@ -16,10 +16,11 @@ Route::get('/', function()
 	return View::make('inicio');
 });
 
-
 Route::resource('datos/pacientes', 'Datos_PacientesController');
 Route::resource('datos/medicos', 'Datos_MedicosController');
 Route::resource('datos/citas', 'Datos_CitasController');
+Route::resource('datos/pacientesmapas', 'MapasController');
+Route::get('provincia','DropdownController@getProvincia');
 Route::get('distrito','DropdownController@getDistrito');
 Route::get('corregimiento','DropdownController@getCorregimiento');
 Route::get('institucion', 'DropdownController@getInstitucion');
