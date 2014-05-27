@@ -1,18 +1,5 @@
 jQuery(document).ready(function($){ 
     var coordenada; //utilizada para las coordenadas de las provincias,distritos y corregimientos
-
-    
-        $.get("http://localhost/plagetri21/public/provincia",             
-        function(data){
-            var campo = $('#id_prov');           
-            campo.empty();
-            campo.append("<option value='0'>SELECCIONE PROVINCIA</option>");                
-            $.each(data, function(index,element) {                
-                campo.append("<option value='"+ element.id_provincia +","+ element.latitud +","+ element.longitud +"'>" + element.provincia + "</option>");               
-            });
-        });
-    
-
     $("#id_prov").change(function(){
         $.get("http://localhost/plagetri21/public/distrito", 
         { provincia: $(this).val() }, 
@@ -31,15 +18,7 @@ jQuery(document).ready(function($){
         coordenada = $(this).find(':selected').val().split(',');          
         //Inicializamos la función de google maps una vez el DOM este cargado                  
         coordenadas(coordenada, 8);            
-    });  
-    var prov = [];
-    $.get("http://localhost/plagetri21/public/provincia",
-    function(resultado){
-        $.each(resultado,function(index, dato){
-            prov (index)= [[dato.id_provincia+","+dato.latitud+","+dato.longitud+","+dato.provincia]];   
-            alert(prov);
-        });
-    });
+    });      
     
     $("#id_dist").change(function(){
         $.get("http://localhost/plagetri21/public/corregimiento", 
@@ -63,6 +42,8 @@ jQuery(document).ready(function($){
         coordenadas(coordenada, 14);
     });
 
+    var marcador = [];
+
     var map = null;
     var infowindow = null;
     function initialize() {                  
@@ -73,42 +54,32 @@ jQuery(document).ready(function($){
         };
         map = new google.maps.Map(document.getElementById("map-canvas"),myOptions);
 
-        addMarkers();        
-    }
-     
-    function addMarkers()
-    {
-        var marker, i;
-        var infowindow = new google.maps.InfoWindow();
-        for (i = 0; i < prov.length; i++)
-        {
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(prov[i][1], prov[i][2]),
-                map: map,
-                title: prov[i][0]
+        $.get("http:localhost/plagetri21/public/provincia",
+        function(data){
+            $.each(data, function(i, obj){
+                marcador = obj.latitud+","+obj.longitud+","+obj.provincia;
+                alert(marcador);
             });
+        });
+       /* $.get("http://localhost/plagetri21/public/provincia", marcador);
 
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                var contentString = '<div id="infoWindow">'
-                    +'<div id="bodyContent">'
-                    +'<p>'
-                    + "This location is:<br>"
-                    + marker.title
-                    +'</p>'
-                    +'</div>'
-                    + '</div>';
-                return function() {
-                    infowindow.setContent(contentString);
-                    infowindow.open(map, marker);
-                    google.maps.event.addListener(infowindow, 'click', (function(i){
-                        alert("You clicked on the infowindow for" + prov[i][0]);
-                    }));
-                }
-                })(marker, i));
-            }
-        }
+        var marcador = function(data){
+            var campo = [];           
+            $.each(data, function(i, obj) {                
+               var marcador = new google.maps.Marker({
+                    position : new google.maps.LatLng(obj.coords.lat,obj.coords.lng),
+                    map : map
+                });
+               marcadores.push(marcador);
+             //alert(campo);
+            });
+        });*/
+        //addMarkers(campo);        
+    }
     google.maps.event.addDomListener(window, 'load', initialize);
+    
 
+    //Funcion para posicionar las provincias, distritos y corregimientos cuando se seleccionan
     var coordinate = null;
     var latlng = null;
     var marker = null;
