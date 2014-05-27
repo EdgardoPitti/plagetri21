@@ -13,9 +13,9 @@
       </div>
       <center>Reporte por Mapa</center>
     </h1><hr>
-     <div class="form-group col-sm-4 col-md-4 col-lg-4">
+    <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('id_prov', 'Provincia:') }}      
-      {{ Form::select('id_prov',  array('0' => 'SELECCIONE PROVINCIA'), null, array('class' => 'form-control id_prov', 'onClick' => 'provincia();')); }}    
+      {{ Form::select('id_prov',  array('0' => 'SELECCIONE PROVINCIA') + Provincia::select('provincia', DB::raw('concat(id_provincia,",",latitud,",",longitud) AS datosprov'))->lists('provincia', 'datosprov'), null, array('class' => 'form-control')); }}    
     </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('id_dist', 'Distrito:') }}
