@@ -1,5 +1,5 @@
 jQuery(document).ready(function($){	
-            // Set the close button
+        //Variables  y Funciones para la vista previa y carga de Fotos
         var closebtn = $('<button/>', {
             type:"button",
             text: 'x',
@@ -24,6 +24,32 @@ jQuery(document).ready(function($){
             $('.image-preview-input input:file').val("");
             $(".image-preview-input-title").text(""); 
         });  	
+        function closePreview(){
+            $('.image-preview').close();       
+        }
+
+        $(function() {
+            $(".image-preview-input input:file").change(function (){
+                // Create the preview image 
+                var img = $('<img/>', {
+                    id: 'dynamic',
+                    width:250,
+                    height:230
+                });      
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(".image-preview-input-title").text("");
+                    $(".image-preview-clear").show();
+                    $(".image-preview-filename").val(file.name);            
+                    // Set preview image into the popover data-content
+                    img.attr('src', e.target.result);
+                    $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+                }        
+                reader.readAsDataURL(file);
+            });  
+        });
+
         //Funcion que carga al cambiar el id_provincia
         $("#id_provincia").change(function(){
             //Funcion GET como primer parametro recibe el url que queremos ejecutar.
@@ -114,39 +140,5 @@ jQuery(document).ready(function($){
                     campo.append("<option value='"+ element.id +"'>" + element.denominacion + "</option>");
                 });
             });
-        });
-        function closePreview(){
-            $('.image-preview').popover('hide'); 
-            // Need to improve the onhover event from here
-            //$('.image-preview').hover(
-            //    function () {
-            //       $('.image-preview').popover('show');
-            //    }, 
-            //     function () {
-            //       $('.image-preview').popover('hide');
-            //    }
-            //);      
-        }
-
-        $(function() {
-            $(".image-preview-input input:file").change(function (){
-                // Create the preview image 
-                var img = $('<img/>', {
-                    id: 'dynamic',
-                    width:250,
-                    height:230
-                });      
-                var file = this.files[0];
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $(".image-preview-input-title").text("");
-                    $(".image-preview-clear").show();
-                    $(".image-preview-filename").val(file.name);            
-                    // Set preview image into the popover data-content
-                    img.attr('src', e.target.result);
-                    $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
-                }        
-                reader.readAsDataURL(file);
-            });  
         });
 });    
