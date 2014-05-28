@@ -14,12 +14,33 @@
 
 {{ Form::model($datos['paciente'][0], $datos['form'] + array('files' => 'true') , array('role' => 'form')) }}
 
+    <div class="row">    
+       
+    </div>
+
   <div class="row">
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       <center>
         {{ Form::label('foto', 'Foto de Perfil') }}<br>
-        <img style="heigth:150px; width:150px;" src='./../{{ $datos['paciente'][0]->foto }}'><br><br>
-        {{ Form::file('foto') }}
+        {{ Form::image('imgs/'.$datos['paciente'][0]->foto.'', 'foto', array('style' => 'heigth:150px; width:150px;')) }} <br><br>
+       
+            <!-- image-preview-filename input [CUT FROM HERE]-->
+            <div class="input-group image-preview">
+                <input type="text" class="form-control image-preview-filename" placeholder="Buscar Foto" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title"></span>
+                        <input type="file" accept="image/*" name="foto"> <!-- rename it -->
+                    </div>
+                </span>
+            </div><!-- /input-group image-preview [TO HERE]--> 
+       
       </center>
     </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4">

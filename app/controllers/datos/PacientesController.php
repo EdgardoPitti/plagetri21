@@ -12,7 +12,7 @@ class Datos_PacientesController extends BaseController {
 		$datos['form'] = array('route' => 'datos.pacientes.store', 'method' => 'POST');
       	$datos['label'] = 'Crear';
 		$datos['paciente'][0] = new Paciente;
-		$datos['paciente'][0]->foto = 'imgs/default.png';
+		$datos['paciente'][0]->foto = 'default.png';
 
 	    return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}

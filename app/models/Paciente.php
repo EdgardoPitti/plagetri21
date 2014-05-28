@@ -60,7 +60,7 @@ class Paciente extends Eloquent {
 			}else{
 				$foto = $datos[$x]->foto;
 			}
-			$datos[$x]->foto = '../../imgs/'.$foto.'';
+			$datos[$x]->foto = $foto;
 			$datos[$x]->etnia = Etnia::where('id_etnia', $paciente->id_etnia)->first()->etnia;
 			$datos[$x]->raza = Raza::where('id_razas', $paciente->id_raza)->first()->raza;
 			$datos[$x]->edad = $this->edad($paciente->fecha_nacimiento);
