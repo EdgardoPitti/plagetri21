@@ -11,7 +11,9 @@ class Datos_PacientesController extends BaseController {
 	{
 		$datos['form'] = array('route' => 'datos.pacientes.store', 'method' => 'POST');
       	$datos['label'] = 'Crear';
-		$datos['paciente'] = new Paciente;
+		$datos['paciente'][0] = new Paciente;
+		$datos['paciente'][0]->foto = 'imgs/default.png';
+
 	    return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
@@ -35,7 +37,8 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function store()
 	{
-		$data = Input::all();        
+		$data = Input::all();  
+		$foto = Input::file("foto");
         $paciente = new Paciente;
         $paciente->cedula = $data['cedula'];
         $paciente->primer_nombre = $data['primer_nombre'];
@@ -62,8 +65,9 @@ class Datos_PacientesController extends BaseController {
         $paciente->diabetes = $data['diabetes'];
         $paciente->embarazo_trisomia = $data['embarazo_trisomia'];
         $paciente->fuma = $data['fuma'];
+        $paciente->foto = $foto->getClientOriginalName();
         $paciente->save();
-
+        $file->move("imgs",$foto->getClientOriginalName());
         return Redirect::route('datos.pacientes.index');	
 	}
 
@@ -88,14 +92,10 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$paciente = Paciente::find($id);
-		if (is_null ($paciente))
-		{
-		 App::abort(404);
-		}
+		$paciente = new Paciente;
 		$datos['form'] =  array('route' => array('datos.pacientes.update', $id), 'method' => 'PATCH');
       	$datos['label']= 'Editar';
-		$datos['paciente'] = $paciente;
+		$datos['paciente'] = $paciente->datos_pacientes($id);
 		return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}
 
@@ -108,12 +108,27 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function update($id)
 	{
+		$foto = Input::file('foto');
 		$paciente = Paciente::find($id);
-		if (is_null ($paciente))
+		$data = Input::all();
+		//Pregunto si no es nulo la variable foto y asi saber si seleccione una nueva foto
+		if(!is_null($foto)){
+			//Si no es nulo fue que seleccione una foto
+			//Extraigo la extension de la foto
+			$extension = $foto->getClientOriginalExtension();
+			//Armo el nombre de la foto con el id y la extension de la nueva foto
+			$nombre_foto = $id.'.'.$extension;
+			//Ingreso el nuevo nombre de la foto en la base de datos con todo y extension
+			$paciente->foto = $nombre_foto;
+			//Busco en la carpeta de foto si existe alguna foto con ese mismo nombre y extension y la elimino
+			File::delete('./imgs/'.$nombre_foto);
+			//Muevo la nueva foto a la carpeta imgs
+			$foto->move("imgs", $nombre_foto);	
+		}
+		if(is_null($paciente))
 		{
 		 	$paciente = new Paciente;
 		}
-		$data = Input::all();
         $paciente->cedula = $data['cedula'];
         $paciente->primer_nombre = $data['primer_nombre'];
         $paciente->segundo_nombre = $data['segundo_nombre'];
