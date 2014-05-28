@@ -55,7 +55,12 @@ class Paciente extends Eloquent {
 			}else{
 				$datos[$x]->embarazos_anteriores = 'No';
 			}
-
+			if(empty($datos[$x]->foto)){
+				$foto = 'default.png';
+			}else{
+				$foto = $datos[$x]->foto;
+			}
+			$datos[$x]->foto = '../../imgs/'.$foto.'';
 			$datos[$x]->etnia = Etnia::where('id_etnia', $paciente->id_etnia)->first()->etnia;
 			$datos[$x]->raza = Raza::where('id_razas', $paciente->id_raza)->first()->raza;
 			$datos[$x]->edad = $this->edad($paciente->fecha_nacimiento);
