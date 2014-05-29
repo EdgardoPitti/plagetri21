@@ -123,6 +123,7 @@ class Datos_PacientesController extends BaseController {
 			//Busco en la carpeta de foto si existe alguna foto con ese mismo nombre y extension y la elimino
 			File::delete('./imgs/'.$nombre_foto);
 			//Muevo la nueva foto a la carpeta imgs
+			$foto->resize(800, 600);
 			$foto->move("imgs", $nombre_foto);	
 		}
 		if(is_null($paciente))
