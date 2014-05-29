@@ -30,7 +30,7 @@ jQuery(document).ready(function($){
                 var img = $('<img/>', {
                     id: 'dynamic',
                     width:250,
-                    height:230
+                    height:350
                 });      
                 var file = this.files[0];
                 var reader = new FileReader();
