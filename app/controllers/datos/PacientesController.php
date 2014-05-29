@@ -65,9 +65,15 @@ class Datos_PacientesController extends BaseController {
         $paciente->diabetes = $data['diabetes'];
         $paciente->embarazo_trisomia = $data['embarazo_trisomia'];
         $paciente->fuma = $data['fuma'];
-        $paciente->foto = $foto->getClientOriginalName();
         $paciente->save();
-        $file->move("imgs",$foto->getClientOriginalName());
+        //Almacenamiento de Foto
+        $id = Paciente::all()->last()->id;
+        $extension = $foto->getClientOriginalExtension();
+        $nombre_foto = $id.'.'.$extension;
+        $paciente = Paciente::find($id);
+        $paciente->foto = $nombre_foto;
+        $paciente->save();
+        $foto->move("imgs",$nombre_foto);
         return Redirect::route('datos.pacientes.index');	
 	}
 
@@ -123,7 +129,6 @@ class Datos_PacientesController extends BaseController {
 			//Busco en la carpeta de foto si existe alguna foto con ese mismo nombre y extension y la elimino
 			File::delete('./imgs/'.$nombre_foto);
 			//Muevo la nueva foto a la carpeta imgs
-			$foto->resize(800, 600);
 			$foto->move("imgs", $nombre_foto);	
 		}
 		if(is_null($paciente))
