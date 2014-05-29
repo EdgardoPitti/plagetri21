@@ -41,17 +41,45 @@ class Datos_CitasController extends \BaseController {
 		$citas->fur = $data['fur'];
 		$citas->fpp = $data['fpp'];
 		$citas->afp = $data['afp'];
-		$citas->id_metodo_afp = $data['metodo_afp'];
 		$citas->ue3 = $data['ue3'];
-		$citas->id_metodo_ue3 = $data['metodo_ue3'];
 		$citas->inha = $data['inha'];
-		$citas->id_metodo_inha = $data['metodo_inha'];
 		$citas->hcg = $data['hcg'];
-		$citas->id_metodo_hcg = $data['metodo_hcg'];
 		$citas->pappa = $data['pappa'];
-		$citas->id_metodo_pappa = $data['metodo_pappa'];
 		$citas->tn = $data['tn'];
-		$citas->id_metodo_tn = $data['metodo_tn'];
+		//Decisiones para almacenar las metodologias de cada marcador
+		if($data['met_general'] <> 0){
+			if($data['metodo_afp'] == 0){
+				$citas->id_metodo_afp = $data['met_general'];
+			}else{
+				$citas->id_metodo_afp = $data['metodo_afp'];
+			}
+			if($data['metodo_ue3'] == 0){
+				$citas->id_metodo_ue3 = $data['met_general'];
+			}else{
+				$citas->id_metodo_ue3 = $data['metodo_ue3'];		
+			}
+			if($data['metodo_inha'] == 0){
+				$citas->id_metodo_inha = $data['met_general'];
+			}else{
+				$citas->id_metodo_inha = $data['metodo_inha'];
+			}
+			if($data['metodo_hcg'] == 0){
+				$citas->id_metodo_hcg = $data['met_general'];
+			}else{
+				$citas->id_metodo_hcg = $data['metodo_hcg'];
+			}
+			if($data['metodo_pappa'] == 0){
+				$citas->id_metodo_pappa = $data['met_general'];
+			}else{
+				$citas->id_metodo_pappa = $data['metodo_pappa'];
+			}
+			if($data['metodo_tn'] == 0){
+				$citas->id_metodo_tn = $data['met_general'];
+			}else{
+				$citas->id_metodo_tn = $data['metodo_tn'];
+			}
+		}
+
 		$citas->fecha = $data['fecha'];
 		$citas->edad_gestacional = $data['edad_gestacional'];
 		$citas->observaciones = $data['observaciones'];

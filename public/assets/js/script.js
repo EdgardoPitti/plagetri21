@@ -24,10 +24,6 @@ jQuery(document).ready(function($){
             $('.image-preview-input input:file').val("");
             $(".image-preview-input-title").text(""); 
         });  	
-        function closePreview(){
-            $('.image-preview').close();       
-        }
-
         $(function() {
             $(".image-preview-input input:file").change(function (){
                 // Create the preview image 
@@ -142,3 +138,15 @@ jQuery(document).ready(function($){
             });
         });
 });    
+function closePreview(){
+    $('.image-preview').popover('hide'); 
+    // Need to improve the onhover event from here
+    //$('.image-preview').hover(
+    //    function () {
+    //       $('.image-preview').popover('show');
+    //    }, 
+    //     function () {
+    //       $('.image-preview').popover('hide');
+    //    }
+    //);      
+}
