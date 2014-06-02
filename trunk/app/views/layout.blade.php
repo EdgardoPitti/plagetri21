@@ -14,7 +14,7 @@
         {{ HTML::script('assets/js/respond.min.js') }}
 
     <![endif]-->    
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>    
+    {{--<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>    --}}
   </head>
   <body>    
     {{-- Wrap all page content here --}}
