@@ -39,4 +39,8 @@ class DropdownController extends BaseController
         }
         return ($institucion->get(['id','denominacion']));
     }
+    public function getMetodologia()
+    {
+        
+    }
 }
