@@ -73,6 +73,11 @@ class Paciente extends Eloquent {
 			$datos[$x]->nacionalidad = Nacionalidad::where('id_nacionalidad', $paciente->id_nacionalidad)->first()->nacionalidad;
 			$datos[$x]->tipo_sangre = Tiposangre::where('id_tipo_sanguineo', $paciente->id_tipo_sangre)->first()->tipo_sangre;
 
+			$probabilidad = 0.000627 + exp(-16.2395) + (0.286 * ($datos[$x]->edad - 0.5));
+			$datos[$x]->probabilidad = $probabilidad;
+			//$datos[$x]->riesgo = 1 / ((1 - $probabilidad)/($probabilidad));
+			$datos[$x]->riesgo = $probabilidad / (1 - $probabilidad);
+
 			$x++;	
 		}
 		return $datos;
