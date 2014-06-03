@@ -67,13 +67,15 @@ class Datos_PacientesController extends BaseController {
         $paciente->fuma = $data['fuma'];
         $paciente->save();
         //Almacenamiento de Foto
-        $id = Paciente::all()->last()->id;
-        $extension = $foto->getClientOriginalExtension();
-        $nombre_foto = $id.'.'.$extension;
-        $paciente = Paciente::find($id);
-        $paciente->foto = $nombre_foto;
-        $paciente->save();
-        $foto->move("imgs",$nombre_foto);
+        if(!is_null($foto)){
+	        $id = Paciente::all()->last()->id;
+	        $extension = $foto->getClientOriginalExtension();
+	        $nombre_foto = $id.'.'.$extension;
+	        $paciente = Paciente::find($id);
+	        $paciente->foto = $nombre_foto;
+	        $paciente->save();
+	        $foto->move("imgs",$nombre_foto);
+		}
         return Redirect::route('datos.pacientes.index');	
 	}
 
