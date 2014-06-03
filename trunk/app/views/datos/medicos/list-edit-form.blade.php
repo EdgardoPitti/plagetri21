@@ -80,12 +80,12 @@
 			{{ Form::text('email', null, array('placeholder' => 'E-mail', 'class' => 'form-control')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
-			{{ Form::label('niveles', 'Nivel:') }}
-			{{ Form::select('niveles', array('0' => 'SELECCIONE NIVEL') + Nivel::lists('nivel', 'id'), $datos['nivel'], array('class' => 'form-control')) }}
+			{{ Form::label('id_nivel', 'Nivel:') }}
+			{{ Form::select('id_nivel', array('0' => 'SELECCIONE NIVEL') + Nivel::lists('nivel', 'id'), null, array('class' => 'form-control')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
-			{{ Form::label('ubicaciones', 'Ubicación:') }}
-			{{ Form::select('ubicaciones', array('0' => 'SELECCIONE UBICACI&Oacute;N') + Ubicacion::lists('ubicacion', 'id'), $datos['ubicacion'], array('class' => 'form-control')) }}
+			{{ Form::label('id_ubicacion', 'Ubicación:') }}
+			{{ Form::select('id_ubicacion', array('0' => 'SELECCIONE UBICACI&Oacute;N') + Ubicacion::lists('ubicacion', 'id'), null, array('class' => 'form-control')) }}
 		</div>
 	  </div>
 	  <div class="form-group col-sm-12 col-md-12 col-lg-12">
