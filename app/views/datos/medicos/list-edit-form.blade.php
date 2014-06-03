@@ -56,10 +56,13 @@
 	      {{ Form::text('apellido_materno', null, array('placeholder' => 'Apellido Materno', 'class' => 'form-control')) }}
 	    </div>	   
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
-	      {{ Form::label('sexo', 'Sexo:') }}
-	      {{--*/ $select = array('null' => '', '0' => 'Femenino', '1' => 'Masculino'); /*--}}
-	      {{ Form::select('sexo', $select, null, array('class' => 'form-control')); }}
+	      {{ Form::label('sexo', 'Sexo:') }}	     
+	      {{ Form::select('sexo', array('null' => '', '0' => 'Femenino', '1' => 'Masculino'), null, array('class' => 'form-control')); }}
 	    </div>
+	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+			{{ Form::label('id_especialidades_medicas', 'Especialidad M&eacute;dica:') }}
+			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadesMedicas::lists('descripcion', 'id_especialidades_medicas'), $datos['especialidad'], array('class' => 'form-control')) }}
+		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('extension', 'Extensi&oacute;n:') }}
 			{{ Form::text('extension', null, array('placeholder' => 'Extensi&oacute;n', 'class' => 'form-control')) }}			
@@ -77,8 +80,12 @@
 			{{ Form::text('email', null, array('placeholder' => 'E-mail', 'class' => 'form-control')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
-			{{ Form::label('id_especialidades_medicas', 'Especialidad M&eacute;dica:') }}
-			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadesMedicas::lists('descripcion', 'id_especialidades_medicas'), $datos['especialidad'], array('class' => 'form-control')) }}
+			{{ Form::label('niveles', 'Nivel:') }}
+			{{ Form::select('niveles', array('0' => 'SELECCIONE NIVEL') + Nivel::lists('nivel', 'id'), $datos['nivel'], array('class' => 'form-control')) }}
+		</div>
+		<div class="form-group col-sm-4 col-md-4 col-lg-4">
+			{{ Form::label('ubicaciones', 'Ubicación:') }}
+			{{ Form::select('ubicaciones', array('0' => 'SELECCIONE UBICACI&Oacute;N') + Ubicacion::lists('ubicacion', 'id'), $datos['ubicacion'], array('class' => 'form-control')) }}
 		</div>
 	  </div>
 	  <div class="form-group col-sm-12 col-md-12 col-lg-12">
