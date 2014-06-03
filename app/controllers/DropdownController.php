@@ -13,12 +13,26 @@ class DropdownController extends BaseController
         $corregimiento = Corregimiento::where('id_distrito',$distrito);
         return ($corregimiento->get(['id_corregimiento', 'latitud', 'longitud', 'corregimiento']));
     }
-    //Provincias cargadas al select del mapa
-    public function getProvincia()
-    {
-        $prov = Provincia::where('id_provincia','>', '0');
-        return ($prov->get(['id_provincia', 'latitud', 'longitud', 'provincia']));
+    
+    public function marcadores(){
+        $xml = new DOMDocument("1.0", "UTF-8");
+
+        $node = $xml->createElement("marcadores");
+        $parnode = $xml->appendChild($node);
+        
+        foreach(Provincia::all() as $provincia){
+            $node = $xml->createElement('marca');
+            $marca = $parnode->appendChild($node);
+            $marca->setAttribute("latitud", $provincia->latitud);
+            $marca->setAttribute("longitud", $provincia->longitud);
+            $marca->setAttribute("provincia", $provincia->provincia);
+        }       
+        $xml->formatOutput = true;
+        $strings = $xml->saveXML();
+        $xml->save('assets/marcadores.xml');
+        return Redirect::to('datos/pacientesmapas');
     }
+
     public function getInstitucion()
     {
         $tipo = Input::get('tipo');

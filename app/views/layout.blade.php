@@ -33,5 +33,6 @@
     {{ HTML::script('assets/js/filtro.js') }}
     {{ HTML::script('assets/js/script.js') }}
     {{ HTML::script('assets/js/script_maps.js') }}
+    {{ HTML::script('https://maps.googleapis.com/maps/api/js?sensor=false') }}
   </body>
 </html>

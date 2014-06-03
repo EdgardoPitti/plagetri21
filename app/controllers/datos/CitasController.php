@@ -1,6 +1,6 @@
 <?php
 
-class Datos_CitasController extends \BaseController {
+class Datos_CitasController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
