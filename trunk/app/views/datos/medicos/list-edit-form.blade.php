@@ -17,8 +17,8 @@
 	  <div class="row">
 	  	<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      <center>
-	        {{ Form::label('photo', 'Foto de Perfil') }}<br>
-	        {{ Form::image('imgs/'.$datos['medico']->foto.'', 'photo', array('style' => 'heigth:150px; width:150px;')) }} <br><br>
+	        {{ Form::label('foto', 'Foto de Perfil') }}<br>
+	        {{ Form::image('imgs/'.$datos['medico']->foto.'', 'foto', array('style' => 'heigth:150px; width:150px;')) }} <br><br>
 	        <div class="input-group image-preview">
 	            <input type="text" class="form-control image-preview-filename" placeholder="Buscar Foto" disabled="disabled">
 	            <span class="input-group-btn">
@@ -30,7 +30,7 @@
 	                <div class="btn btn-default image-preview-input">
 	                    <span class="glyphicon glyphicon-folder-open"></span>
 	                    <span class="image-preview-input-title"></span>
-	                    {{ Form::file('photo', array('accept' => 'image/*')) }}
+	                    {{ Form::file('foto', array('accept' => 'image/*')) }}
 	                </div>
 	            </span>
 	        </div>   
@@ -124,7 +124,7 @@
 								<tr>
 									<td>{{ $n++ }}</td>
 									<td>{{ $medico->primer_nombre.' '.$medico->segundo_nombre.' '.$medico->apellido_paterno.' '.$medico->apellido_materno }} </td>
-									<td></td>
+									<td>{{ $medico->extension }}</td>
 									<td>{{ $medico->telefono }}</td>
 									<td>{{ $medico->celular }} </td><td>{{ $especialidad->descripcion }}</td>
 									<td align="center">

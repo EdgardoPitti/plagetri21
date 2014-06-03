@@ -38,7 +38,7 @@ class Datos_MedicosController extends BaseController {
 	{
 		$medico = new Medico;
         $data = Input::all();
-        $foto = Input::file("photo");
+        $foto = Input::file("foto");
  		$medico->cedula = $data['cedula'];
         $medico->primer_nombre = $data['primer_nombre'];
         $medico->segundo_nombre = $data['segundo_nombre'];
@@ -52,12 +52,12 @@ class Datos_MedicosController extends BaseController {
         $medico->email = $data['email'];
         $medico->save(); 
         if(!is_null($foto)){
-        	$id = Medico::all()->last->id;
+        	$id = Medico::all()->last()->id;
         	$extension = $foto->getClientOriginalExtension();
         	$name_foto = 'm_'.$id.'.'.$extension;
         	$medico = Medico::find($id);
-        	$paciente->foto = $name_foto;
-        	$paciente->save();
+        	$medico->foto = $name_foto;
+        	$medico->save();
         	$foto->move("imgs", $name_foto);
         }
         return Redirect::route('datos.medicos.index');
@@ -104,7 +104,7 @@ class Datos_MedicosController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$foto = Input::file('photo');
+		$foto = Input::file('foto');
 		$medico = Medico::find($id);
 		$data = Input::all();
 		if(!is_null($foto)){
