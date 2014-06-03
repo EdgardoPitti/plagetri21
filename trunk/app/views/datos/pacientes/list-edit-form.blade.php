@@ -149,6 +149,7 @@
       <a href="{{ route('datos.pacientes.index') }}" class="btn btn-info">Limpiar Campos</a>
     </center>
   </div>
+
 {{ Form::close() }}
 
      <div class="row">
