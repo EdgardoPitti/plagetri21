@@ -81,6 +81,7 @@
 						<th>Etnia</th>
 						<th>Raza</th>
 						<th>Tipo de Sangre</th>
+						<th>Riesgo</th>
 						<th>Casos Ant. con Trisomia</th>
 					</tr>
 					<tr align="center">
@@ -93,6 +94,7 @@
 						<td>{{ $datos[0]->etnia }}</td>
 						<td>{{ $datos[0]->raza }}</td>
 						<td>{{ $datos[0]->tipo_sangre }}</td>
+						<td>{{ $datos[0]->riesgo }}</td>
 						<td>{{ $datos[0]->embarazos_anteriores }}</td>
 					</tr>
 				</table>
