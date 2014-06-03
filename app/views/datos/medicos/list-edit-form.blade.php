@@ -12,13 +12,13 @@
 		<center>{{ $datos['label'] }} M&eacute;dico</center>
 	</h1><hr>
 	
-	{{ Form::model($datos['medico'][0], $datos['formulario'] + array('files' => 'true'), array('role' => 'form')) }}
+	{{ Form::model($datos['medico'], $datos['formulario'] + array('files' => 'true'), array('role' => 'form')) }}
 
 	  <div class="row">
 	  	<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      <center>
-	        {{ Form::label('foto', 'Foto de Perfil') }}<br>
-	        {{ Form::image('imgs/'.$datos['medico'][0]->foto.'', 'foto', array('style' => 'heigth:150px; width:150px;')) }} <br><br>
+	        {{ Form::label('photo', 'Foto de Perfil') }}<br>
+	        {{ Form::image('imgs/'.$datos['medico']->foto.'', 'photo', array('style' => 'heigth:150px; width:150px;')) }} <br><br>
 	        <div class="input-group image-preview">
 	            <input type="text" class="form-control image-preview-filename" placeholder="Buscar Foto" disabled="disabled">
 	            <span class="input-group-btn">
@@ -30,7 +30,7 @@
 	                <div class="btn btn-default image-preview-input">
 	                    <span class="glyphicon glyphicon-folder-open"></span>
 	                    <span class="image-preview-input-title"></span>
-	                    {{ Form::file('foto', array('accept' => 'image/*')) }}
+	                    {{ Form::file('photo', array('accept' => 'image/*')) }}
 	                </div>
 	            </span>
 	        </div>   
@@ -60,6 +60,10 @@
 	      {{--*/ $select = array('null' => '', '0' => 'Femenino', '1' => 'Masculino'); /*--}}
 	      {{ Form::select('sexo', $select, null, array('class' => 'form-control')); }}
 	    </div>
+		<div class="form-group col-sm-4 col-md-4 col-lg-4">
+			{{ Form::label('extension', 'Extensi&oacute;n:') }}
+			{{ Form::text('extension', null, array('placeholder' => 'Extensi&oacute;n', 'class' => 'form-control')) }}			
+		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('telefono', 'Tel&eacute;fono:') }}
 			{{ Form::text('telefono', null, array('placeholder' => 'Tel&eacute;fono', 'class' => 'form-control')) }}			
@@ -103,11 +107,10 @@
 							<thead>
 								<tr class="info">
 									<th>#</th>
-									<th>C&eacute;dula</th>
 									<th>Nombre</th>
+									<th>Extensi&oacute;n</th>
 									<th>Tel&eacute;fono</th>
-									<th>Celular</th>
-									<th>E-mail</th>
+									<th>Celular</th>									
 									<th>Especialidad M&eacute;dica</th>
 									<th></th>
 								</tr>
@@ -120,12 +123,10 @@
 								/*--}}
 								<tr>
 									<td>{{ $n++ }}</td>
-									<td>{{ $medico->cedula }}</td>
 									<td>{{ $medico->primer_nombre.' '.$medico->segundo_nombre.' '.$medico->apellido_paterno.' '.$medico->apellido_materno }} </td>
+									<td></td>
 									<td>{{ $medico->telefono }}</td>
-									<td>{{ $medico->celular }} </td>
-									<td>{{ $medico->email }} </td>
-									<td>{{ $especialidad->descripcion }}</td>
+									<td>{{ $medico->celular }} </td><td>{{ $especialidad->descripcion }}</td>
 									<td align="center">
 										<a href="{{ route('datos.medicos.edit', $medico->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar M&eacute;dico"><span class="glyphicon glyphicon-pencil"></span></a>
 					            		<a href="#" data-id="{{ $medico->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip"  title="Eliminar" style="margin:3px 0px;"><span class="glyphicon glyphicon-remove"></span></a>
