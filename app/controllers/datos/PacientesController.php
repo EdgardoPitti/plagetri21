@@ -70,7 +70,7 @@ class Datos_PacientesController extends BaseController {
         if(!is_null($foto)){
 	        $id = Paciente::all()->last()->id;
 	        $extension = $foto->getClientOriginalExtension();
-	        $nombre_foto = $id.'.'.$extension;
+	        $nombre_foto = 'p_'.$id.'.'.$extension;
 	        $paciente = Paciente::find($id);
 	        $paciente->foto = $nombre_foto;
 	        $paciente->save();
@@ -125,7 +125,7 @@ class Datos_PacientesController extends BaseController {
 			//Extraigo la extension de la foto
 			$extension = $foto->getClientOriginalExtension();
 			//Armo el nombre de la foto con el id y la extension de la nueva foto
-			$nombre_foto = $id.'.'.$extension;
+			$nombre_foto = 'p_'.$id.'.'.$extension;
 			//Ingreso el nuevo nombre de la foto en la base de datos con todo y extension
 			$paciente->foto = $nombre_foto;
 			//Busco en la carpeta de foto si existe alguna foto con ese mismo nombre y extension y la elimino

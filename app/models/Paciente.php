@@ -75,7 +75,6 @@ class Paciente extends Eloquent {
 
 			$probabilidad = 0.000627 + exp(-16.2395) + (0.286 * ($datos[$x]->edad - 0.5));
 			$datos[$x]->probabilidad = $probabilidad;
-			//$datos[$x]->riesgo = 1 / ((1 - $probabilidad)/($probabilidad));
 			$datos[$x]->riesgo = $probabilidad / (1 - $probabilidad);
 
 			$x++;	

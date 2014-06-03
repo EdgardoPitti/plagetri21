@@ -52,7 +52,7 @@
 							  			<td>{{ $paciente->etnia }}</td>
 							  			<td>{{ $paciente->raza }}</td>
 							  			<td>{{ $paciente->diabetes }}</td>
-							  			<td>{{ $paciente->fuma }} {{ $paciente->riesgo }}</td>
+							  			<td>{{ $paciente->fuma }}</td>
 							  			<td align="center">
 							  				<a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Crear Cita"><span class="glyphicon glyphicon-list-alt"></span></a>
 							  				<a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Paciente"><span class="glyphicon glyphicon-pencil"></span></a>
