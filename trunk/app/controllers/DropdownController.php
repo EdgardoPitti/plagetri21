@@ -1,12 +1,14 @@
 <?php
 class DropdownController extends BaseController
 {
+    //Funcion que recibe el id de la provincia y devuelve los distritos correspondientes de esa provincia
     public function getDistrito()
     {
         $provincia = Input::get('provincia');
         $distrito = Distrito::where('id_provincia',$provincia);
         return ($distrito->get(['id_distrito', 'latitud', 'longitud', 'distrito']));
     }
+    //Funcion que recibe el id del distrito y devuelve los corregimientos correspondientes de ese distrito
     public function getCorregimiento()
     {    
         $distrito = Input::get('distrito');
@@ -32,7 +34,7 @@ class DropdownController extends BaseController
         $xml->save('assets/marcadores.xml');
         return Redirect::to('datos/pacientesmapas');
     }
-
+    //Funcion que recibe el id del tipo de institucion obligatorio y/o el id de la provincia y devuelve las instituciones correspondientes de esa provincia y tipo
     public function getInstitucion()
     {
         $tipo = Input::get('tipo');
@@ -43,6 +45,7 @@ class DropdownController extends BaseController
         }
         return ($institucion->get(['id','denominacion']));
     }
+    //Funcion que recibe el id del tipo de institucion y/o el id de la provincia obligatorio y devuelve las instituciones correspondientes de esa provincia y tipo
     public function getInstitucionprovincia()
     {
         $tipo = Input::get('tipo');
@@ -52,5 +55,12 @@ class DropdownController extends BaseController
             $institucion = Institucion::where('id_provincia', $provincia)->where('id_tipo_institucion', $tipo);                   
         }
         return ($institucion->get(['id','denominacion']));
+    }
+    //Funcion que recibe el id del marcador y devuelve la mediana correspondiente a ese marcador
+    public function getMomMarcador()
+    {
+        $id = Input::get('idmarcador');
+        $mediana = MedianaMarcador::where('id_marcador', $id);
+        return ($mediana->get(['mediana_marcador']));
     }
 }

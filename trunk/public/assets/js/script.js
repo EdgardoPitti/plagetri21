@@ -150,3 +150,17 @@ function closePreview(){
     //    }
     //);      
 }
+//Funcion pque recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
+function Division(id){
+    $.get("http://localhost/plagetri21/public/calculo", 
+        { idmarcador: id }, 
+        function(data){
+            var campo = $('#mom_'+id+'');
+            $.each(data, function(index,element) {
+                var valor = $('#valor_'+id+'').val();
+                var mediana = element.mediana_marcador;
+                var resultado = valor/mediana;
+                campo.val(resultado);
+            });
+    });
+}

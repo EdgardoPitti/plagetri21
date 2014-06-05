@@ -198,90 +198,27 @@
 						    			</div>
 						    		</td>
 						    	</tr>
-								<tr>
-									<td>
-									    <div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-						    				{{ Form::label('afp', 'AFP:') }}
-						    				{{ Form::text('afp', $form['citas']->afp, array('placeholder' => 'AFP', 'class' => 'form-control')) }}        
-						    			</div>
-									</td>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('metodo_afp', 'Metodología para AFP:') }}
-		      								{{ Form::select('metodo_afp', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_afp, array('class' => 'form-control')) }}
-		    							</div>
-									</td>
-								</tr>
+						    @foreach (Marcador::all() as $marcadores)
 								<tr>
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('ue3', 'UE3:') }}
-						    				{{ Form::text('ue3', $form['citas']->ue3, array('placeholder' => 'UE3', 'class' => 'form-control')) }}
+											{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.':') }}
+						    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.')')) }}
 										</div>
 									</td>
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('metodo_ue3', 'Métodología para UE3:') }}
-		      								{{ Form::select('metodo_ue3', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_ue3, array('class' => 'form-control')) }}
-										</div
+		      								{{ Form::label('metodo_'.$marcadores->id, 'Métodología para '.$marcadores->marcador.':') }}
+		      								{{ Form::select('metodo_'.$marcadores->id, array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['marcador_'.$marcadores->id.'']->id_metodologia, array('class' => 'form-control')) }}
+										</div>
+									</td>
+									<td>
+										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
+		      								{{ Form::label('mom_'.$marcadores->id, 'MOM para '.$marcadores->marcador.':') }}
+						    				{{ Form::text('mom_'.$marcadores->id, null, array('placeholder' => 'MOM '.$marcadores->marcador, 'class' => 'form-control', 'disabled' => 'disabled')) }}										</div>
 									</td>
 								</tr>
-								<tr>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-									    	{{ Form::label('inha', 'Inhibin A:') }}
-						    				{{ Form::text('inha', $form['citas']->inha, array('placeholder' => 'Inhibin A', 'class' => 'form-control', 'required' => 'required')) }}
-										</div>
-									</td>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('metodo_inha', 'Métodología para Inhibin A:') }}
-		      								{{ Form::select('metodo_inha', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_inha, array('class' => 'form-control')) }}
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('hcg', 'HCG:') }}
-						    				{{ Form::text('hcg', $form['citas']->hcg, array('placeholder' => 'HCG', 'class' => 'form-control', 'required' => 'required')) }}
-										</div>
-									</td>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('metodo_hcg', 'Métodología para HCG:') }}
-		      								{{ Form::select('metodo_hcg', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_hcg, array('class' => 'form-control')) }}
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('pappa', 'PAPPA:') }}
-						    				{{ Form::text('pappa', $form['citas']->pappa, array('placeholder' => 'PAPPA', 'class' => 'form-control', 'required' => 'required')) }}
-										</div>
-									</td>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('metodo_pappa', 'Métodología para PAPPA:') }}
-		      								{{ Form::select('metodo_pappa', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_pappa, array('class' => 'form-control')) }}
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('tn', 'TN:') }}
-						    				{{ Form::text('tn', $form['citas']->tn, array('placeholder' => 'TN', 'class' => 'form-control', 'required' => 'required')) }}
-										</div>
-									</td>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('metodo_tn', 'Métodología para TN:') }}
-		      								{{ Form::select('metodo_tn', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['citas']->id_metodo_tn, array('class' => 'form-control')) }}
-										</div>
-									</td>
-								</tr>
+						    @endforeach
 							</table>
 						</div>
 					</div>
@@ -311,12 +248,9 @@
 									  			<th>Fecha de Flebotomía</th>
 									  			<th>Institucion</th>
 									  			<th>Peso</th>
-									  			<th>AFP</th>
-									  			<th>UE3</th>
-									  			<th>Inhibin A</th>
-									  			<th>HCG</th>
-									  			<th>PAPPA</th>
-									  			<th>TN</th>
+									  			@foreach (Marcador::all() as $marcador)
+									  				<th>{{ $marcador->marcador }}</th>
+									  			@endforeach
 									  			<th></th>
 									  		</tr>
 									  	</thead>
@@ -328,12 +262,13 @@
 									  			<td>{{ $citas->fecha }}</td>
 									  			<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
 									  			<td>{{ $citas->peso }}</td>
-									  			<td>{{ $citas->afp }}</td>
-									  			<td>{{ $citas->ue3 }}</td>
-									  			<td>{{ $citas->inha }}</td>
-									  			<td>{{ $citas->hcg }}</td>
-									  			<td>{{ $citas->pappa }}</td>
-									  			<td>{{ $citas->tn }}</td>
+									  			@foreach (Marcador::all() as $marcador)
+									  				 @if(empty(MarcadorCita::where('id_cita', $citas->id)->where('id_marcador', $marcador->id)->first()))
+									  					<td>0</td>
+									  				 @else
+									  				 	<td>{{ MarcadorCita::where('id_cita', $citas->id)->where('id_marcador', $marcador->id)->first()->valor }}</td> 
+									  				 @endif
+									  			@endforeach
 									  			<td align="center">
 									  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span></a>
 									  			</td>
