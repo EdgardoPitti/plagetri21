@@ -133,10 +133,12 @@ class Datos_PacientesController extends BaseController {
 			//Muevo la nueva foto a la carpeta imgs
 			$foto->move("imgs", $nombre_foto);	
 		}
+		//Si en caso el paciente fue borrado justo cuando fue editado se almacenara de nuevo
 		if(is_null($paciente))
 		{
 		 	$paciente = new Paciente;
 		}
+		//Sentencias para almacenar los datos correspondientes de cada paciente
         $paciente->cedula = $data['cedula'];
         $paciente->primer_nombre = $data['primer_nombre'];
         $paciente->segundo_nombre = $data['segundo_nombre'];

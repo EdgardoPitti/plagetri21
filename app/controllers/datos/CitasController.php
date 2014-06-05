@@ -40,46 +40,6 @@ class Datos_CitasController extends BaseController {
 		$citas->fecha_ultrasonido = $data['fecha_ultrasonido'];
 		$citas->fur = $data['fur'];
 		$citas->fpp = $data['fpp'];
-		$citas->afp = $data['afp'];
-		$citas->ue3 = $data['ue3'];
-		$citas->inha = $data['inha'];
-		$citas->hcg = $data['hcg'];
-		$citas->pappa = $data['pappa'];
-		$citas->tn = $data['tn'];
-		//Decisiones para almacenar las metodologias de cada marcador
-		if($data['met_general'] <> 0){
-			if($data['metodo_afp'] == 0){
-				$citas->id_metodo_afp = $data['met_general'];
-			}else{
-				$citas->id_metodo_afp = $data['metodo_afp'];
-			}
-			if($data['metodo_ue3'] == 0){
-				$citas->id_metodo_ue3 = $data['met_general'];
-			}else{
-				$citas->id_metodo_ue3 = $data['metodo_ue3'];		
-			}
-			if($data['metodo_inha'] == 0){
-				$citas->id_metodo_inha = $data['met_general'];
-			}else{
-				$citas->id_metodo_inha = $data['metodo_inha'];
-			}
-			if($data['metodo_hcg'] == 0){
-				$citas->id_metodo_hcg = $data['met_general'];
-			}else{
-				$citas->id_metodo_hcg = $data['metodo_hcg'];
-			}
-			if($data['metodo_pappa'] == 0){
-				$citas->id_metodo_pappa = $data['met_general'];
-			}else{
-				$citas->id_metodo_pappa = $data['metodo_pappa'];
-			}
-			if($data['metodo_tn'] == 0){
-				$citas->id_metodo_tn = $data['met_general'];
-			}else{
-				$citas->id_metodo_tn = $data['metodo_tn'];
-			}
-		}
-
 		$citas->fecha = $data['fecha'];
 		$citas->edad_gestacional = $data['edad_gestacional'];
 		$citas->observaciones = $data['observaciones'];
@@ -87,7 +47,23 @@ class Datos_CitasController extends BaseController {
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->hijos_embarazo = $data['hijos_embarazo'];
 		$citas->save();
-		
+		$id_cita = Cita::all()->first()->id;
+		//Decisiones para almacenar las metodologias de cada marcador
+		$met_general = $data['met_general'];
+		//Ciclo que recorre todo los marcadores y busca los valores de cada uno para almacenarlos respectivamente.
+		foreach(Marcador::all() as $marcador){
+			$marcadorcita = new MarcadorCita;
+			$marcadorcita->id_cita = $id_cita;
+			$marcadorcita->id_marcador = $marcador->id;
+			//Se comprueba si no se eligio un marcador para esa metodologia y se le asigna el que selecciono general
+			if($data['metodo_'.$marcador->id] == 0){
+				$marcadorcita->id_metodologia = $met_general;
+			}else{
+				$marcadorcita->id_metodologia = $data['metodo_'.$marcador->id.''];
+			}
+			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
+			$marcadorcita->save();
+		}
 		return Redirect::route('datos.citas.show', $data['id_paciente']);	
 		
 	}
@@ -108,6 +84,9 @@ class Datos_CitasController extends BaseController {
 		$form['datos'] = array('route' => 'datos.citas.store', 'method' => 'POST');
 		$form['label'] = 'Crear';
 		$form['citas'] = new Cita;
+		foreach (Marcador::all() as $marcador){
+			$form['marcador_'.$marcador->id.''] = new MarcadorCita;
+		}
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 
 	}
@@ -131,6 +110,16 @@ class Datos_CitasController extends BaseController {
 		$form['datos'] = array('route' => array('datos.citas.update', $id), 'method' => 'PATCH');
 		$form['label'] = 'Editar';
 		$form['citas'] =  $cita;
+		//Ciclo que recorre todos los marcadores y los busca para devolver los datos correspondientes
+		foreach (Marcador::all() as $marcador){
+			//Si no encuentra datos de ese marcador respectivo para esa cita entonces se le asigna un objeto en blanco
+			if(empty(MarcadorCita::where('id_cita', $id)->where('id_marcador', $marcador->id)->first())){
+				$form['marcador_'.$marcador->id.''] = new MarcadorCita;
+			}else{
+			//Sino devuelve los valores correspondientes.
+				$form['marcador_'.$marcador->id.''] = MarcadorCita::where('id_cita', $id)->where('id_marcador', $marcador->id)->first();
+			}
+		}
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 	}
 
@@ -145,27 +134,17 @@ class Datos_CitasController extends BaseController {
 	{
 		$data = Input::all();
 		$citas = Cita::find($id);
+		//sino encuentra una cita crea un nuevo objeto
 		if (is_null ($citas))
 		{
 		 	$citas = new Cita;
 		}
+		//Sentencias para almacenar los datos correspondientes de la cita
 		$citas->id_medico = $data['id_medico'];
 		$citas->peso = $data['peso'];
 		$citas->fecha_ultrasonido = $data['fecha_ultrasonido'];
 		$citas->fur = $data['fur'];
 		$citas->fpp = $data['fpp'];
-		$citas->afp = $data['afp'];
-		$citas->id_metodo_afp = $data['metodo_afp'];
-		$citas->ue3 = $data['ue3'];
-		$citas->id_metodo_ue3 = $data['metodo_ue3'];
-		$citas->inha = $data['inha'];
-		$citas->id_metodo_inha = $data['metodo_inha'];
-		$citas->hcg = $data['hcg'];
-		$citas->id_metodo_hcg = $data['metodo_hcg'];
-		$citas->pappa = $data['pappa'];
-		$citas->id_metodo_pappa = $data['metodo_pappa'];
-		$citas->tn = $data['tn'];
-		$citas->id_metodo_tn = $data['metodo_tn'];
 		$citas->fecha = $data['fecha'];
 		$citas->edad_gestacional = $data['edad_gestacional'];
 		$citas->observaciones = $data['observaciones'];
@@ -173,6 +152,32 @@ class Datos_CitasController extends BaseController {
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->hijos_embarazo = $data['hijos_embarazo'];
 		$citas->save();
+		//Se almacena en una variable el id de la metodologia que eleigio en general.
+		$met_general = $data['met_general'];
+		//Ciclo para recorrer todos los marcadores
+		foreach (Marcador::all() as $marcador){
+			//Si no encuentra un marcador almacenado para esa cita se crea ese marcador y se almacena como nuevo
+			if(empty(MarcadorCita::where('id_cita', $id)->where('id_marcador', $marcador->id)->first())){
+				//Se crea un nuevo objeto y se almacena el id de la cita y el id del marcador
+				$marcadorcita = new MarcadorCita;
+				$marcadorcita->id_cita = $id;
+				$marcadorcita->id_marcador = $marcador->id;
+			}else{
+				//sino entonces busca el registro para editar los campos
+				$marcadorcita = MarcadorCita::where('id_cita', $id)->where('id_marcador', $marcador->id)->first();
+			}
+			//Se almacena el valor correspondiente del marcador
+			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
+			//Si la metodologia es distinta de 0 quiere decir que se eligio una para ese marcador
+			if($data['metodo_'.$marcador->id.''] <> 0){
+				//Se almacena la metodologia correspondiente
+				$marcadorcita->id_metodologia = $data['metodo_'.$marcador->id.''];	
+			}else{
+				//Sino entonces se almacena el metodo que se eligio como general.
+				$marcadorcita->id_metodologia = $met_general;
+			}
+			$marcadorcita->save();
+		}
 		return Redirect::route('datos.citas.show', $data['id_paciente']);	
 	}
 

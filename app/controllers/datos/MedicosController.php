@@ -50,8 +50,8 @@ class Datos_MedicosController extends BaseController {
         $medico->telefono = $data['telefono'];
         $medico->extension = $data['extension'];
         $medico->email = $data['email'];
-        $medico->id_nivel = $data['niveles'];
-        $medico->id_ubicacion = $data['ubicaciones'];
+        $medico->id_nivel = $data['id_nivel'];
+        $medico->id_ubicacion = $data['id_ubicacion'];
         $medico->save(); 
         if(!is_null($foto)){
         	$id = Medico::all()->last()->id;
@@ -130,8 +130,8 @@ class Datos_MedicosController extends BaseController {
         $medico->telefono = $data['telefono'];
         $medico->email = $data['email'];
         $medico->extension = $data['extension'];
-        $medico->id_nivel = $data['niveles'];
-        $medico->id_ubicacion = $data['ubicaciones'];
+        $medico->id_nivel = $data['id_nivel'];
+        $medico->id_ubicacion = $data['id_ubicacion'];
         $medico->save();
         return Redirect::route('datos.medicos.index');
 	}
