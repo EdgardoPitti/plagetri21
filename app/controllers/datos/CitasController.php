@@ -85,8 +85,10 @@ class Datos_CitasController extends BaseController {
 		$form['datos'] = array('route' => 'datos.citas.store', 'method' => 'POST');
 		$form['label'] = 'Crear';
 		$form['citas'] = new Cita;
+		$marcadorcita = new MarcadorCita;
 		foreach (Marcador::all() as $marcador){
 			$form['marcador_'.$marcador->id.''] = new MarcadorCita;
+			$form['marcador_cita_'.$marcador->id.''] = $marcadorcita->obtenerMarcador($marcador->id, $id);
 		}
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 
@@ -111,15 +113,11 @@ class Datos_CitasController extends BaseController {
 		$form['datos'] = array('route' => array('datos.citas.update', $id), 'method' => 'PATCH');
 		$form['label'] = 'Editar';
 		$form['citas'] =  $cita;
+		$marcadorcita = new MarcadorCita;
 		//Ciclo que recorre todos los marcadores y los busca para devolver los datos correspondientes
-		foreach (Marcador::all() as $marcador){
-			//Si no encuentra datos de ese marcador respectivo para esa cita entonces se le asigna un objeto en blanco
-			if(empty(MarcadorCita::where('id_cita', $id)->where('id_marcador', $marcador->id)->first())){
-				$form['marcador_'.$marcador->id.''] = new MarcadorCita;
-			}else{
-			//Sino devuelve los valores correspondientes.
-				$form['marcador_'.$marcador->id.''] = MarcadorCita::where('id_cita', $id)->where('id_marcador', $marcador->id)->first();
-			}
+		foreach(Marcador::all() as $marcador){
+			$form['marcador_'.$marcador->id.''] = $marcadorcita->obtenerMarcador($marcador->id, $id);
+			$form['marcador_cita_'.$marcador->id.''] = $marcadorcita->obtenerMarcador($marcador->id, $id);
 		}
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 	}
@@ -156,18 +154,11 @@ class Datos_CitasController extends BaseController {
 		//Se almacena en una variable el id de la metodologia que eleigio en general.
 		$met_general = $data['met_general'];
 		//Ciclo para recorrer todos los marcadores
-		foreach (Marcador::all() as $marcador){
-			//Si no encuentra un marcador almacenado para esa cita se crea ese marcador y se almacena como nuevo
-			if(empty(MarcadorCita::where('id_cita', $id)->where('id_marcador', $marcador->id)->first())){
-				//Se crea un nuevo objeto y se almacena el id de la cita y el id del marcador
-				$marcadorcita = new MarcadorCita;
-				$marcadorcita->id_cita = $id;
-				$marcadorcita->id_marcador = $marcador->id;
-			}else{
-				//sino entonces busca el registro para editar los campos
-				$marcadorcita = MarcadorCita::where('id_cita', $id)->where('id_marcador', $marcador->id)->first();
-			}
-			//Se almacena el valor correspondiente del marcador
+		foreach (Marcador::all() as $marcador){		
+			$marcador_cita = new MarcadorCita;
+			$marcadorcita = $marcador_cita->obtenerMarcador($marcador->id, $id);
+			$marcadorcita->id_cita = $id;
+			$marcadorcita->id_marcador = $marcador->id;
 			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
 			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
 			//Si la metodologia es distinta de 0 quiere decir que se eligio una para ese marcador
