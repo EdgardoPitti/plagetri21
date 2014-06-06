@@ -194,7 +194,7 @@ function Cancelar(id){
 }
 function SalvarMediana(id){
     $.get("http://localhost/plagetri21/public/salvar_mediana", 
-        { id: id, valor: $('valor_'+id+'').val() }, 
+        { id: id }, 
         function(data){
             var campo = $('#mediana_'+id+'');
             var button = $('#button_'+id+'');
