@@ -12,9 +12,8 @@
     <!--[if lt IE 9]>
         {{ HTML::script('assets/js/html5shiv.js') }}
         {{ HTML::script('assets/js/respond.min.js') }}
-
-    <![endif]-->    
-    {{--<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>    --}}
+    <![endif]-->      
+    @yield('scripts')  
   </head>
   <body>    
     {{-- Wrap all page content here --}}
@@ -22,7 +21,6 @@
       {{-- Begin page content --}}          
       <div class="container">        
         @yield('content')  
-        @yield('scripts')  
       </div>
     </div>
     {{-- jQuery (necessary for Bootstrap's JavaScript plugins) --}}
@@ -32,7 +30,6 @@
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/filtro.js') }}
     {{ HTML::script('assets/js/script.js') }}
-    {{ HTML::script('assets/js/script_maps.js') }}
-    {{ HTML::script('https://maps.googleapis.com/maps/api/js?sensor=false') }}
+    {{ HTML::script('assets/js/script_maps.js') }}        
   </body>
 </html>
