@@ -12,13 +12,13 @@
 		<center>{{ $datos['label'] }} M&eacute;dico</center>
 	</h1><hr>
 	
-	{{ Form::model($datos['medico'], $datos['formulario'] + array('files' => 'true'), array('role' => 'form')) }}
+	{{ Form::model($datos['medico'][0], $datos['formulario'] + array('files' => 'true'), array('role' => 'form')) }}
 
 	  <div class="row">
 	  	<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      <center>
 	        {{ Form::label('foto', 'Foto de Perfil') }}<br>
-	        {{ Form::image('imgs/'.$datos['medico']->foto.'', 'foto', array('style' => 'heigth:150px; width:150px;')) }} <br><br>
+	        {{ Form::image('imgs/'.$datos['medico'][0]->foto.'', 'foto', array('style' => 'heigth:150px; width:150px;')) }} <br><br>
 	        <div class="input-group image-preview">
 	            <input type="text" class="form-control image-preview-filename" placeholder="Buscar Foto" disabled="disabled">
 	            <span class="input-group-btn">
@@ -61,7 +61,7 @@
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('id_especialidades_medicas', 'Especialidad M&eacute;dica:') }}
-			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadesMedicas::lists('descripcion', 'id_especialidades_medicas'), $datos['especialidad'], array('class' => 'form-control')) }}
+			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadesMedicas::lists('descripcion', 'id_especialidades_medicas'), $datos['medico'][0]->especialidad, array('class' => 'form-control')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('extension', 'Extensi&oacute;n:') }}

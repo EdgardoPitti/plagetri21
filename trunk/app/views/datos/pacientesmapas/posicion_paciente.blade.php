@@ -3,9 +3,12 @@
 @section('title')
 	Buscar Pacientes en el Mapa
 @stop
+@section('scripts')
+  {{ HTML::script('https://maps.googleapis.com/maps/api/js?sensor=false') }}
+@stop
 
-@section ('content')
-	   <h1>
+@section ('content')   
+     <h1>
      <div style="position:relative;">
         <div style="position:absolute;left:0px;">
           <a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span><span class="return"> Inicio</span></a>
@@ -30,5 +33,4 @@
       <a href="marcadores" class="btn btn-primary">Actualizar Mapa</a>
   	  <div id="map-canvas" style="margin-top:4px;"></div>
   	</center>
-  
 @stop

@@ -11,9 +11,9 @@ class Datos_MedicosController extends BaseController {
 	{		
 		$datos['formulario'] = array('route' => 'datos.medicos.store', 'method' => 'POST');
 		$datos['label'] = 'Crear';
-		$datos['especialidad'] = '25';		
-		$datos['medico'] = new Medico; 
-		$datos['medico']->foto = 'default1.png';
+		$datos['medico'][0] = new Medico; 
+		$datos['medico'][0]->especialidad = '25';		
+		$datos['medico'][0]->foto = 'default1.png';
 		return View::make('datos/medicos/list-edit-form')->with('datos', $datos);
 	}
 
@@ -53,14 +53,15 @@ class Datos_MedicosController extends BaseController {
         $medico->id_nivel = $data['id_nivel'];
         $medico->id_ubicacion = $data['id_ubicacion'];
         $medico->save(); 
+        //Almacenamiento de la foto
         if(!is_null($foto)){
-        	$id = Medico::all()->last()->id;
-        	$extension = $foto->getClientOriginalExtension();
-        	$name_foto = 'm_'.$id.'.'.$extension;
-        	$medico = Medico::find($id);
+        	$id = Medico::all()->last()->id; //Se obtiene el id del ultimo medico registrado
+        	$extension = $foto->getClientOriginalExtension(); //se obtiene la extension de la foto
+        	$name_foto = 'm_'.$id.'.'.$extension; //Se guarda el nombre del medico con prefijo m_ y el id del medico
+        	$medico = Medico::find($id); //Buscamos el medico guardado anteriormente
         	$medico->foto = $name_foto;
-        	$medico->save();
-        	$foto->move("imgs", $name_foto);
+        	$medico->save();  			//Guardamos el nombre de la foto en la base de datos
+        	$foto->move("imgs", $name_foto); //Movemos la foto a la carpeta imgs
         }
         return Redirect::route('datos.medicos.index');
 	}
@@ -86,14 +87,13 @@ class Datos_MedicosController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$medico = Medico::find($id);
+		$medico = new Medico;
 		if(is_null ($medico)){
 			App::abort(404);
 		}
 		$datos['formulario'] = array('route' => array('datos.medicos.update',$id), 'method' => 'PATCH');
 		$datos['label'] = 'Editar';
-		$datos['medico'] = $medico; 
-		$datos['especialidad'] = $medico->id_especialidades_medicas;
+		$datos['medico'] = $medico->datos_medico($id); 	
 		return View::make('datos/medicos/list-edit-form')->with('datos', $datos);
 	}
 

@@ -8,108 +8,84 @@ jQuery(document).ready(function($){
         function(data){
             var campo = $('#id_dist');
             var campo1 = $('#id_correg');
-            var posdist = [];
-            var cantidad = 0;
+            var posdist = [];    
             campo.empty();
             campo1.empty();
             campo.append("<option value='0'>SELECCIONE DISTRITO</option>");
             campo1.append("<option value='0'>SELECCIONE CORREGIMIENTO</option>");
             $.each(data, function(index,element) {
                 campo.append("<option value='"+ element.id_distrito +","+ element.latitud +","+ element.longitud +"'>" + element.distrito + "</option>");
-                posdist[index] = [element.latitud, element.longitud, element.distrito];
-                cantidad++;
-                /*latlng[index] = new google.maps.LatLng(posdist[index][0], posdist[index][1]);                   
-                var myOptions = {
-                  center: latlng[index],            
-                  zoom: 8,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP              
-                };
-                map = new google.maps.Map(document.getElementById("map-canvas"),myOptions);              
-                marcador[index] = new google.maps.Marker({
-                    map: map,//el mapa creado en el paso anterior
-                    position: latlng[index]//objeto con latitud y longitud
-                });
-               
-                infowindow = new google.maps.InfoWindow({
-                    content: ''
-                });
-                google.maps.event.addListener(marcador[index], 'click', function(){                 
-                    infowindow.setContent('Distrito: '+posdist[index][2]);
-                    infowindow.open(map,marcador[index]);                
-                }); */              
+                //Se almacena en un arreglo todos los distritos de la provincia seleccionada
+                posdist[index] = [element.latitud, element.longitud, element.distrito];                
             });         
             
-            cargadistrito(posdist, cantidad, 8);
+            var icono  = new google.maps.MarkerImage('http://localhost/plagetri21/public/imgs/distrito.png');         
+            setMarkers(map, posdist, icono);//Función que insertara los diferentes marcadores de los distritos de la provincia que se selecciona
         });
-        coordenada = $(this).find(':selected').val().split(',');   
+        coordenada = $(this).find(':selected').val().split(',');   //obtener datos del distrito seleccionado        
+        //si el arreglo coordenada tiene valor 0 carga el mapa inicial sino carga 
+        //la posicion de la provincia seleccionada
         if(coordenada[0] == 0){
             initialize();
-        }else{            
-            //Inicializamos la función de google maps una vez el DOM este cargado                  
-            coordenadas(coordenada, 8);             
+        }else{                        
+            //envia a la funcion coordenadas el arreglo coordenada y el zoom para que se acerque el mapa
+            coordenadas(coordenada, 9);                         
         }
     });      
-    function cargadistrito(distrito, cantidad, zoom){
-            var latlng = [];
-            var marcador = [];
-            //alert(distrito[1][1]);
-            $.each(distrito, function(index, elemento){
-                
-                latlng[index] = new google.maps.LatLng(elemento[0], elemento[1]);   
-                
-                var myOptions = {
-                  center: latlng[index],            
-                  zoom: zoom,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP              
-                };
-                map = new google.maps.Map(document.getElementById("map-canvas"),myOptions);              
-                //creamos el marcador en el mapa
-                marcador[index] = new google.maps.Marker({
-                    map: map,//el mapa creado en el paso anterior
-                    position: latlng[index]//objeto con latitud y longitud
-                });
-                
-                google.maps.event.addListener(marcador[index], 'click', function(){                 
-                    infowindow = new google.maps.InfoWindow({
-                        content: 'Distrito: ' + elemento[2] 
-                    });
-                    infowindow.open(map,marcador[index]);                
-                });
-            });
-        
-    }
+
     $("#id_dist").change(function(){
         $.get("http://localhost/plagetri21/public/corregimiento", 
         { distrito: $(this).val() }, 
         function(data){
             var campo = $('#id_correg');            
+            var poscor = [];
             campo.empty();
             campo.append("<option value='0'>SELECCIONE CORREGIMIENTO</option>");
             $.each(data, function(index,element) {
                 campo.append("<option value='"+ element.id_corregimiento +","+ element.latitud +","+ element.longitud +"'>" + element.corregimiento + "</option>");
+                poscor[index] = [element.latitud, element.longitud, element.corregimiento];                
             });
+            var icono  = new google.maps.MarkerImage('http://localhost/plagetri21/public/imgs/corregimiento.png'); 
+            setMarkers(map, poscor, icono);
         });
-        coordenada = $("#id_dist").find(':selected').val().split(',');                      
-        //Inicializamos la función de google maps una vez el DOM este cargado                  
-        coordenadas(coordenada, 10);            
+        coordenada = $("#id_dist").find(':selected').val().split(',');     
+        //si el arreglo coordenada tiene valor 0 carga el mapa inicial sino carga 
+        //la posicion del distrito seleccionado
+        if(coordenada[0] == 0){
+            initialize();
+        }else{       
+            //envia a la funcion coordenadas el arreglo coordenada y el zoom para que se acerque el mapa       
+            coordenadas(coordenada, 10);             
+        }                         
     });  
 
     $('#id_correg').change(function(){
         coordenada = $("#id_correg").find(':selected').val().split(',');                      
-        //Inicializamos la función de google maps una vez el DOM este cargado                  
-        coordenadas(coordenada, 14);
+        if(coordenada[0] == 0){
+            initialize();
+        }else{
+            //Inicializamos la función de google maps una vez el DOM este cargado                  
+            coordenadas(coordenada, 14);             
+        }
     });
 
+    //Funcion que carga el mapa inicial con todos los marcadores de cada provincia del pais.
     var map = null;
     function initialize() {                  
         var myOptions = {
           center: new google.maps.LatLng(8.51516, -79.986131),            
           zoom: 7,
-          mapTypeId: google.maps.MapTypeId.ROADMAP              
+          zoomControlOptions: {style: google.maps.ZoomControlStyle.SMALL},
+          mapTypeId: google.maps.MapTypeId.ROADMAP,              
+          mapTypeControl: true,
+          mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+          streetViewControl:false
         };
         map = new google.maps.Map(document.getElementById("map-canvas"),myOptions);        
         //Obtener todos los marcadores en cada provincia y comarca extraidos del XML
-        $.get('http://localhost/plagetri21/public/assets/marcadores.xml',function(data) {  
+        $.get('http://localhost/plagetri21/public/assets/marcadores.xml',function(data) { 
+            //Luego de obtener los datos del XML, busca el nodo hijo con nombre marca dentro del archivo XML
+            //Y obtiene todos los atributos dentro del mismo
             $(data).find('marca').each(function(){
                 var lat    = $(this).attr('latitud');  
                 var lng    = $(this).attr('longitud');  
@@ -119,10 +95,13 @@ jQuery(document).ready(function($){
                 infowindow = new google.maps.InfoWindow({
                     content: ''
                 })
+
+                var icono  = new google.maps.MarkerImage('http://localhost/plagetri21/public/imgs/provincia.png'); 
                 marker = new google.maps.Marker({
                     position: point,
                     map:map,
-                    html: html
+                    html: html,
+                    icon: icono
                 });  
                 google.maps.event.addListener(marker, "click", function () {                                    
                     infowindow.setContent(this.html);                   
@@ -134,29 +113,39 @@ jQuery(document).ready(function($){
     google.maps.event.addDomListener(window, 'load', initialize);
     
 
+    //Funcion para cargar los distintos marcadores al seleccionar provincia o distrito
+    //Recibe el mapa original (map) y el arreglo con las coordenads y nombre de distritos o corregimientos
+    function setMarkers(map, locations, icono) {                        
+        for (var i = 0; i < locations.length; i++) {            
+            var newmarker = locations[i];                      
+            var latlng = new google.maps.LatLng(newmarker[0], newmarker[1]);            
+            marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                html: newmarker[2],
+                icon: icono                
+            });
+            google.maps.event.addListener(marker, "click", function () {                                    
+                infowindow.setContent(this.html);                   
+                infowindow.open(map, this);
+            });
+        }
+    }
+
     //Funcion para posicionar las provincias, distritos y corregimientos cuando se seleccionan
     var coordinate = null;
     var latlng = null;
-    var marker = null;
     function coordenadas(coordinate, zoom){
         latlng = new google.maps.LatLng(coordinate[1], coordinate[2]);   
         var myOptions = {
           center: latlng,            
-          zoom: zoom,
-          mapTypeId: google.maps.MapTypeId.ROADMAP              
-        };
-        map = new google.maps.Map(document.getElementById("map-canvas"),myOptions);              
-        /*infowindow = new google.maps.InfoWindow({
-            content: ''
-        })
-        //creamos el marcador en el mapa
-        marker = new google.maps.Marker({
-            map: map,//el mapa creado en el paso anterior
-            position: latlng//objeto con latitud y longitud
-        });
-        google.maps.event.addListener(marker, 'click', function(){                 
-            infowindow.setContent('Latitud: ' + coordinate[1] + '<br>Longitud: ' + coordinate[2]); 
-            infowindow.open(map,marker);                
-        });*/
-    }   
-});    
+          zoom: zoom,          
+          zoomControlOptions: {style: google.maps.ZoomControlStyle.SMALL},
+          mapTypeId: google.maps.MapTypeId.ROADMAP,              
+          mapTypeControl: true,
+          mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+          streetViewControl:false
+        };        
+        map = new google.maps.Map(document.getElementById("map-canvas"),myOptions);                            
+    }     
+});
