@@ -9,13 +9,9 @@ class Datos_MedianaController extends BaseController {
 	 */
 	public function index()
 	{
+		$mediana = new MedianaMarcador;
 		foreach (Marcador::all() as $marcador){
-			if(empty(MedianaMarcador::where('id_marcador', $marcador->id)->first()->mediana_marcador)){
-				$valor = 0;
-			}else{
-				$valor = MedianaMarcador::where('id_marcador', $marcador->id)->first()->mediana_marcador;
-			}
-			$marcadores[$marcador->id] = $valor;
+			$marcadores[$marcador->id] = $mediana->obtenerMediana($marcador->id);
 		}
 		return View::make('datos/mediana/list-edit-form')->with('marcadores', $marcadores);
 	}
@@ -23,7 +19,27 @@ class Datos_MedianaController extends BaseController {
 	{
 		$id = Input::get('id');
         $mediana = MedianaMarcador::where('id_marcador',$id);
+        if(empty($mediana)){
+        	$mediana = new MedianaMarcador;
+        	$mediana->mediana_marcador = 0;
+        }
         return ($mediana->get(['mediana_marcador']));
+	}
+
+	public function getSalvarMediana()
+	{
+		$id = Input::get('id');
+		$valor = Input::get('valor');
+		$mediana = MedianaMarcador::where('id_marcador', $id);
+		if(empty($mediana)){
+			$mediana = new MedianaMarcador;
+			$mediana->id_marcador = $id;
+		}
+		$mediana->mediana_marcador = $valor;
+		$mediana->save();
+		$mediana = MedianaMarcador::where('id_marcador', $id);
+		return ($mediana->get(['mediana_marcador']));
+
 	}
 	/**
 	 * Show the form for creating a new resource.

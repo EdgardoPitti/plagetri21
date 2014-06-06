@@ -179,8 +179,8 @@ class Datos_PacientesController extends BaseController {
 	{
 		$paciente = Paciente::find($id);
 		$paciente->delete();
+		
 		$paciente = new Paciente;
-
 		$datos['paciente'] = $paciente;
        return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}

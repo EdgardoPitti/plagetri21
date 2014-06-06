@@ -31,7 +31,7 @@
 				  			<td>{{ $marcador->marcador }}</td>
 				  			<td>
 				  				<div id="mediana_{{ $marcador->id }}">
-				  				{{ Form::text('valor_'.$marcador->id.'', $marcadores[$marcador->id], array('class' => 'form-control', 'readonly' => 'readonly')) }}	
+				  				{{ Form::text('valor_'.$marcador->id.'', $marcadores[$marcador->id]->mediana_marcador, array('class' => 'form-control', 'readonly' => 'readonly')) }}	
 				  				</div>
 				  			</td>
 				  			<td>

@@ -9,6 +9,15 @@ class MedianaMarcador extends Eloquent {
 	 */
 
 	protected $table = 'mediana_marcadores';
+
+	function  obtenerMediana($id){
+		$valor = MedianaMarcador::where('id_marcador', $id)->first();
+		if(is_null($valor)){
+			$valor = new MedianaMarcador;
+			$valor->mediana_marcador = 0;
+		}
+		return $valor;
+	}
 }
 
 ?>

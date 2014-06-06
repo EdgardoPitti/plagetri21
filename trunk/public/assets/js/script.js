@@ -173,14 +173,13 @@ function CambioMediana(id){
             campo.empty();
             button.empty();
             $.each(data, function(index,element){
-                campo.append("<input class='form-control' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"'>");
-                button.append("<button type='submit' class='btn btn-success' onClick='Mediana("+id+")' title='Salvar Mediana'>Gur</button><button type='submit' class='btn btn-success' onClick='Mediana("+id+")' title='Salvar Mediana'>Salvar</button>")
+                campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"'>");
+                button.append("<button type='submit' class='btn btn-danger' onClick='Cancelar("+id+")' title='Cerrar'>Cerrar</button> <button type='submit' class='btn btn-success' onClick='SalvarMediana("+id+")' title='Salvar Mediana'>Salvar</button>")
             });
     });
-    
 }
-function Mediana(id){
-    $.get("http://localhost/plagetri21/public/salvar_mediana", 
+function Cancelar(id){
+    $.get("http://localhost/plagetri21/public/obtener_mediana", 
         { id: id }, 
         function(data){
             var campo = $('#mediana_'+id+'');
@@ -188,15 +187,23 @@ function Mediana(id){
             campo.empty();
             button.empty();
             $.each(data, function(index,element){
-                campo.append("<input class='form-control' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"'>");
-                button.append("<button type='submit' class='btn btn-success' onClick='Mediana("+id+")' title='Salvar Mediana'>Gur</button><button type='submit' class='btn btn-success' onClick='Mediana("+id+")' title='Salvar Mediana'>Gur</button>")
+                campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"' readonly>");
+                button.append("<button type='submit' class='btn btn-primary' onClick='CambioMediana("+id+")' title='Editar'>Editar</button>");
+            });
+    });    
+}
+function SalvarMediana(id){
+    $.get("http://localhost/plagetri21/public/salvar_mediana", 
+        { id: id, valor: $('valor_'+id+'').val() }, 
+        function(data){
+            var campo = $('#mediana_'+id+'');
+            var button = $('#button_'+id+'');
+            campo.empty();
+            button.empty();
+            $.each(data, function(index,element){
+                campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"' readonly>");
+                button.append("<button type='submit' class='btn btn-primary' onClick='CambioMediana("+id+")' title='Editar'>Editar</button>")
             });
     });
 
-    var campo = $('#mediana_'+id+'');
-    var button = $('#button_'+id+'');
-    campo.empty();
-    campo.append("<input class='form-control' name='valor_"+id+"' type='text' value=''>");
-    button.empty();
-    button.append("<button type='submit' class='btn btn-default' onClick='CambioMediana("+id+")' title='Editar Mediana'>Editar</button>")   
 }

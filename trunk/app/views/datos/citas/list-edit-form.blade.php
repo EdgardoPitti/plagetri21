@@ -223,7 +223,7 @@
 						</div>
 					</div>
 					{{ Form::button($form['label'].' Cita', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-					<a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-info"> Limpiar Campos</a>
+					<a href="{{ route('datos.citas.show', $datos[0]->id) }}" class="btn btn-info"> Limpiar Campos</a>
 				</center>
 			{{ Form::close() }}		
 			@if (!empty(Cita::where('id_paciente', $datos[0]->id)->first()->id))
@@ -257,22 +257,18 @@
 									  	<tbody>
 									  		{{--*/ $n=1; /*--}}
 									  		@foreach (Cita::where('id_paciente', $datos[0]->id)->get() as $citas)
-									  		<tr align="center">
-									  			<td>{{ $n++ }}.</td>
-									  			<td>{{ $citas->fecha }}</td>
-									  			<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
-									  			<td>{{ $citas->peso }}</td>
-									  			@foreach (Marcador::all() as $marcador)
-									  				 @if(empty(MarcadorCita::where('id_cita', $citas->id)->where('id_marcador', $marcador->id)->first()))
-									  					<td>0</td>
-									  				 @else
-									  				 	<td>{{ MarcadorCita::where('id_cita', $citas->id)->where('id_marcador', $marcador->id)->first()->valor }}</td> 
-									  				 @endif
-									  			@endforeach
-									  			<td align="center">
-									  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span></a>
-									  			</td>
-									  		</tr>
+										  		<tr align="center">
+										  			<td>{{ $n++ }}.</td>
+										  			<td>{{ $citas->fecha }}</td>
+										  			<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
+										  			<td>{{ $citas->peso }}</td>
+										  			@foreach (Marcador::all() as $marcador)
+										  				 	<td>{{ $form['marcador_cita_'.$marcador->id.'']->valor }}</td> 
+										  			@endforeach
+										  			<td align="center">
+										  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span></a>
+										  			</td>
+										  		</tr>
 									  		@endforeach
 									  	</tbody>
 									</table>
