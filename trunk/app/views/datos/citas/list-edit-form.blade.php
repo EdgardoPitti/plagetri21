@@ -215,7 +215,7 @@
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
 		      								{{ Form::label('mom_'.$marcadores->id, 'MOM para '.$marcadores->marcador.':') }}
-						    				{{ Form::text('mom_'.$marcadores->id, null, array('placeholder' => 'MOM '.$marcadores->marcador, 'class' => 'form-control', 'disabled' => 'disabled')) }}										</div>
+						    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('placeholder' => 'MOM '.$marcadores->marcador, 'class' => 'form-control', 'readonly' => 'readonly')) }}										</div>
 									</td>
 								</tr>
 						    @endforeach

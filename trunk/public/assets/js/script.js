@@ -164,3 +164,39 @@ function Division(id){
             });
     });
 }
+function CambioMediana(id){
+    $.get("http://localhost/plagetri21/public/obtener_mediana", 
+        { id: id }, 
+        function(data){
+            var campo = $('#mediana_'+id+'');
+            var button = $('#button_'+id+'');
+            campo.empty();
+            button.empty();
+            $.each(data, function(index,element){
+                campo.append("<input class='form-control' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"'>");
+                button.append("<button type='submit' class='btn btn-success' onClick='Mediana("+id+")' title='Salvar Mediana'>Gur</button><button type='submit' class='btn btn-success' onClick='Mediana("+id+")' title='Salvar Mediana'>Salvar</button>")
+            });
+    });
+    
+}
+function Mediana(id){
+    $.get("http://localhost/plagetri21/public/salvar_mediana", 
+        { id: id }, 
+        function(data){
+            var campo = $('#mediana_'+id+'');
+            var button = $('#button_'+id+'');
+            campo.empty();
+            button.empty();
+            $.each(data, function(index,element){
+                campo.append("<input class='form-control' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"'>");
+                button.append("<button type='submit' class='btn btn-success' onClick='Mediana("+id+")' title='Salvar Mediana'>Gur</button><button type='submit' class='btn btn-success' onClick='Mediana("+id+")' title='Salvar Mediana'>Gur</button>")
+            });
+    });
+
+    var campo = $('#mediana_'+id+'');
+    var button = $('#button_'+id+'');
+    campo.empty();
+    campo.append("<input class='form-control' name='valor_"+id+"' type='text' value=''>");
+    button.empty();
+    button.append("<button type='submit' class='btn btn-default' onClick='CambioMediana("+id+")' title='Editar Mediana'>Editar</button>")   
+}
