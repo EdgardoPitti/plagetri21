@@ -47,7 +47,7 @@ class Datos_CitasController extends BaseController {
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->hijos_embarazo = $data['hijos_embarazo'];
 		$citas->save();
-		$id_cita = Cita::all()->first()->id;
+		$id_cita = Cita::all()->last()->id;
 		//Decisiones para almacenar las metodologias de cada marcador
 		$met_general = $data['met_general'];
 		//Ciclo que recorre todo los marcadores y busca los valores de cada uno para almacenarlos respectivamente.
@@ -62,6 +62,7 @@ class Datos_CitasController extends BaseController {
 				$marcadorcita->id_metodologia = $data['metodo_'.$marcador->id.''];
 			}
 			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
+			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
 			$marcadorcita->save();
 		}
 		return Redirect::route('datos.citas.show', $data['id_paciente']);	
@@ -168,6 +169,7 @@ class Datos_CitasController extends BaseController {
 			}
 			//Se almacena el valor correspondiente del marcador
 			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
+			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
 			//Si la metodologia es distinta de 0 quiere decir que se eligio una para ese marcador
 			if($data['metodo_'.$marcador->id.''] <> 0){
 				//Se almacena la metodologia correspondiente
