@@ -14,19 +14,19 @@
 		  <center>Mediana Marcadores</center>
 		</h1>
 		<div class="overthrow" style="overflow:auto;width:100%;">
-	        <table class="table table-bordered table-hover" id="tabla_citas">
+	        <table class="table table-bordered" id="tabla_citas">
 			  	<thead>
 			  		<tr class="info">
 			  			<th>#</th>
 			  			<th>Marcador</th>
 			  			<th>Mediana</th>
-			  			<th></th>
+			  			<th style="width:90px;"></th>
 			  		</tr>
 			  	</thead>
 			  	<tbody>
 			  		{{--*/ $x = 1; /*--}}
 			  		@foreach (Marcador::all() as $marcador)
-				  		<tr>
+				  		<tr align="center">
 				  			<td>{{ $x++ }}.</td>
 				  			<td>{{ $marcador->marcador }}</td>
 				  			<td>
@@ -36,12 +36,12 @@
 				  			</td>
 				  			<td>
 				  				<div id="button_{{ $marcador->id }}">
-				  					{{ Form::button('Editar', array('type' => 'submit', 'class' => 'btn btn-primary', 'onClick' => 'CambioMediana('.$marcador->id.')', 'title' => 'Editar Mediana')) }}
+				  					{{ Form::button('<span class="glyphicon glyphicon-pencil"></span> Editar', array('type' => 'submit', 'class' => 'btn btn-primary btn-sm', 'onClick' => 'CambioMediana('.$marcador->id.')', 'title' => 'Editar Mediana')) }}
 				  				</div>
+				  			</td>
 				  		</tr>
 			  		@endforeach
 			  	</tbody>
 			</table>
 		</div>
-
 @stop

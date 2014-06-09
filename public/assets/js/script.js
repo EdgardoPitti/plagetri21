@@ -137,6 +137,7 @@ jQuery(document).ready(function($){
                 });
             });
         });
+
 });    
 function closePreview(){
     $('.image-preview').popover('hide'); 
@@ -174,7 +175,7 @@ function CambioMediana(id){
             button.empty();
             $.each(data, function(index,element){
                 campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"'>");
-                button.append("<button type='submit' class='btn btn-danger' onClick='Cancelar("+id+")' title='Cerrar'>Cerrar</button> <button type='submit' class='btn btn-success' onClick='SalvarMediana("+id+")' title='Salvar Mediana'>Salvar</button>")
+                button.append("<button type='submit' class='btn btn-danger btn-sm' title='Cerrar' onClick='Cancelar("+id+")' style='margin-bottom:3px;'><span class='glyphicon glyphicon-remove'></span> Cerrar</button> <button type='submit' class='btn btn-success btn-sm' title='Salvar Mediana' onClick='SalvarMediana("+id+")'><span class='glyphicon glyphicon-floppy-disk'></span> Guardar</button>")
             });
     });
 }
@@ -188,7 +189,7 @@ function Cancelar(id){
             button.empty();
             $.each(data, function(index,element){
                 campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"' readonly>");
-                button.append("<button type='submit' class='btn btn-primary' onClick='CambioMediana("+id+")' title='Editar'>Editar</button>");
+                button.append("<button type='submit' class='btn btn-primary btn-sm' title='Editar Mediana' onClick='CambioMediana("+id+")'><span class='glyphicon glyphicon-pencil'></span> Editar</button>");
             });
     });    
 }
@@ -202,7 +203,7 @@ function SalvarMediana(id){
             button.empty();
             $.each(data, function(index,element){
                 campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"' readonly>");
-                button.append("<button type='submit' class='btn btn-primary' onClick='CambioMediana("+id+")' title='Editar'>Editar</button>")
+                button.append("<button type='submit' class='btn btn-primary' onClick='CambioMediana("+id+")' title='Editar'><span class='glyphicon glyphicon-pencil'></span> Editar</button>")
             });
     });
 
