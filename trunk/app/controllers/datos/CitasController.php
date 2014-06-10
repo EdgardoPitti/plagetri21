@@ -63,7 +63,7 @@ class Datos_CitasController extends BaseController {
 			}
 			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
 			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
-			$marcadorcita->mom_corr1 = $data['mom_corr1_'.$marcador->id.''];
+			$m|arcadorcita->mom_corr1 = $data['mom_corr1_'.$marcador->id.''];
 			$marcadorcita->save();
 		}
 		return Redirect::route('datos.citas.show', $data['id_paciente']);	
