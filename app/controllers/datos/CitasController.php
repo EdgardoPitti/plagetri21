@@ -63,6 +63,7 @@ class Datos_CitasController extends BaseController {
 			}
 			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
 			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
+			$marcadorcita->mom_corr1 = $data['mom_corr1_'.$marcador->id.''];
 			$marcadorcita->save();
 		}
 		return Redirect::route('datos.citas.show', $data['id_paciente']);	
@@ -88,7 +89,7 @@ class Datos_CitasController extends BaseController {
 		$marcadorcita = new MarcadorCita;
 		foreach (Marcador::all() as $marcador){
 			$form['marcador_'.$marcador->id.''] = new MarcadorCita;
-			$form['marcador_cita_'.$marcador->id.''] = $marcadorcita->obtenerMarcador($marcador->id, $id);
+			$form['marcador_cita'] = $marcadorcita;
 		}
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 
@@ -117,7 +118,7 @@ class Datos_CitasController extends BaseController {
 		//Ciclo que recorre todos los marcadores y los busca para devolver los datos correspondientes
 		foreach(Marcador::all() as $marcador){
 			$form['marcador_'.$marcador->id.''] = $marcadorcita->obtenerMarcador($marcador->id, $id);
-			$form['marcador_cita_'.$marcador->id.''] = $marcadorcita->obtenerMarcador($marcador->id, $id);
+			$form['marcador_cita'] = $marcadorcita;
 		}
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 	}
@@ -161,6 +162,7 @@ class Datos_CitasController extends BaseController {
 			$marcadorcita->id_marcador = $marcador->id;
 			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
 			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
+			$marcadorcita->mom_corr1 = $data['mom_corr1_'.$marcador->id.''];
 			//Si la metodologia es distinta de 0 quiere decir que se eligio una para ese marcador
 			if($data['metodo_'.$marcador->id.''] <> 0){
 				//Se almacena la metodologia correspondiente

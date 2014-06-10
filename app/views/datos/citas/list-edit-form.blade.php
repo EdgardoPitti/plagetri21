@@ -187,6 +187,7 @@
 						<div class="col-sm-12 col-md-12 col-lg-12">
 							<table style="width:100%">
 								<tr align="center">
+									<td></td>
 									<td>			
 										<div class="col-md-offset-2 col-sm-10 col-md-10 col-lg-10">
 						    				{{ Form::label('met_general', 'Métodología en General:') }}
@@ -197,13 +198,14 @@
 						    				{{ Form::select('met_general', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), null, array('class' => 'form-control')) }}
 						    			</div>
 						    		</td>
+						    		<td></td>
 						    	</tr>
 						    @foreach (Marcador::all() as $marcadores)
 								<tr>
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
 											{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.':') }}
-						    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.')')) }}
+						    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')')) }}
 										</div>
 									</td>
 									<td>
@@ -215,7 +217,14 @@
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
 		      								{{ Form::label('mom_'.$marcadores->id, 'MOM para '.$marcadores->marcador.':') }}
-						    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('placeholder' => 'MOM '.$marcadores->marcador, 'class' => 'form-control', 'readonly' => 'readonly')) }}										</div>
+						    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('placeholder' => 'MOM '.$marcadores->marcador, 'class' => 'form-control', 'readonly' => 'readonly')) }}	
+						    			</div>
+									</td>
+									<td>
+										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
+		      								{{ Form::label('mom_corr1_'.$marcadores->id, 'MOM Corregido Peso:') }}
+						    				{{ Form::text('mom_corr1_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom_corr1, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'readonly' => 'readonly')) }}	
+						    			</div>
 									</td>
 								</tr>
 						    @endforeach
@@ -263,7 +272,7 @@
 										  			<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
 										  			<td>{{ $citas->peso }}</td>
 										  			@foreach (Marcador::all() as $marcador)
-										  				 	<td>{{ $form['marcador_cita_'.$marcador->id.'']->valor }}</td> 
+										  				 	<td>{{ $form['marcador_cita']->obtenerMarcador($marcador->id, $citas->id)->valor }}</td> 
 										  			@endforeach
 										  			<td align="center">
 										  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span></a>

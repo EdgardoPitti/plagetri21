@@ -63,4 +63,11 @@ class DropdownController extends BaseController
         $mediana = MedianaMarcador::where('id_marcador', $id);
         return ($mediana->get(['mediana_marcador']));
     }
+    public function getCoeficiente()
+    {
+        $idraza = Input::get('idraza');
+        $idmarcador = Input::get('idmarcador');
+        $coeficiente = Coeficiente::where('id_raza', $idraza)->where('id_marcador', $idmarcador);
+        return ($coeficiente->get(['a', 'b']));
+    }
 }

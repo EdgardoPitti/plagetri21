@@ -152,7 +152,7 @@ function closePreview(){
     //);      
 }
 //Funcion pque recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
-function Division(id){
+function Division(id, idraza){
     $.get("http://localhost/plagetri21/public/calculo", 
         { idmarcador: id }, 
         function(data){
@@ -161,6 +161,23 @@ function Division(id){
                 var valor = $('#valor_'+id+'').val();
                 var mediana = element.mediana_marcador;
                 var resultado = valor/mediana;
+                campo.val(resultado);
+                Correccion1(id, idraza, resultado);
+            });
+    });
+}
+function Correccion1(id, idraza, mom){
+    $.get("http://localhost/plagetri21/public/correccion1", 
+        { idmarcador: id, idraza: idraza }, 
+        function(data){
+            var campo = $('#mom_corr1_'+id+'');
+            $.each(data, function(index,element) {
+                var valor = $('#valor_'+id+'').val();
+                var a = element.a;
+                var b = element.b;
+                var peso = $('#peso').val();
+                var resultado = mom/(a+(b/peso));
+                
                 campo.val(resultado);
             });
     });
