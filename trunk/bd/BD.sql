@@ -28,24 +28,12 @@ USE plagetri21;
 DROP TABLE IF EXISTS `citas_medicas`;
 CREATE TABLE `citas_medicas` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_paciente` int(10) unsigned NOT NULL,
-  `id_medico` int(10) unsigned NOT NULL,
-  `peso` double NOT NULL,
-  `fecha_ultrasonido` varchar(45) NOT NULL,
-  `fur` varchar(45) NOT NULL,
-  `fpp` varchar(45) NOT NULL,
-  `afp` double NOT NULL,
-  `id_metodo_afp` int(10) unsigned NOT NULL,
-  `ue3` double NOT NULL,
-  `id_metodo_ue3` int(10) unsigned NOT NULL,
-  `inha` double NOT NULL,
-  `id_metodo_inha` int(10) unsigned NOT NULL DEFAULT '0',
-  `hcg` double NOT NULL,
-  `id_metodo_hcg` int(10) unsigned NOT NULL,
-  `pappa` double NOT NULL,
-  `id_metodo_pappa` int(10) unsigned NOT NULL,
-  `tn` double NOT NULL,
-  `id_metodo_tn` int(10) unsigned NOT NULL,
+  `id_paciente` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_medico` int(10) unsigned NOT NULL DEFAULT '0',
+  `peso` double NOT NULL DEFAULT '0',
+  `fecha_ultrasonido` varchar(45) NOT NULL DEFAULT '',
+  `fur` varchar(45) NOT NULL DEFAULT '',
+  `fpp` varchar(45) NOT NULL DEFAULT '',
   `fecha` varchar(45) NOT NULL,
   `edad_gestacional` int(10) unsigned NOT NULL,
   `created_at` varchar(45) NOT NULL,
@@ -56,13 +44,7 @@ CREATE TABLE `citas_medicas` (
   `hijos_embarazo` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `FK_citas_medicas_paciente` (`id_paciente`),
-  KEY `FK_citas_medicas_medico` (`id_medico`),
-  KEY `FK_citas_medicas_afp` (`id_metodo_afp`),
-  KEY `FK_citas_medicas_ue3` (`id_metodo_ue3`),
-  KEY `FK_citas_medicas_hcg` (`id_metodo_hcg`),
-  KEY `FK_citas_medicas_tn` (`id_metodo_tn`),
-  KEY `FK_citas_medicas_ia` (`id_metodo_inha`) USING BTREE,
-  KEY `FK_citas_medicas_papa` (`id_metodo_pappa`) USING BTREE
+  KEY `FK_citas_medicas_medico` (`id_medico`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -70,9 +52,44 @@ CREATE TABLE `citas_medicas` (
 --
 
 /*!40000 ALTER TABLE `citas_medicas` DISABLE KEYS */;
-INSERT INTO `citas_medicas` (`id`,`id_paciente`,`id_medico`,`peso`,`fecha_ultrasonido`,`fur`,`fpp`,`afp`,`id_metodo_afp`,`ue3`,`id_metodo_ue3`,`inha`,`id_metodo_inha`,`hcg`,`id_metodo_hcg`,`pappa`,`id_metodo_pappa`,`tn`,`id_metodo_tn`,`fecha`,`edad_gestacional`,`created_at`,`updated_at`,`observaciones`,`estatura`,`id_institucion`,`hijos_embarazo`) VALUES 
- (1,1,3,34,'2014-05-23','2014-05-23','2014-05-23',34,1,34,1,34,1,34,1,34,1,34,1,'2014-05-23',34,'2014-05-23 20:50:45','2014-05-23 20:50:45','Observaciones',34,406012304,2);
+INSERT INTO `citas_medicas` (`id`,`id_paciente`,`id_medico`,`peso`,`fecha_ultrasonido`,`fur`,`fpp`,`fecha`,`edad_gestacional`,`created_at`,`updated_at`,`observaciones`,`estatura`,`id_institucion`,`hijos_embarazo`) VALUES 
+ (1,1,3,45,'2014-06-04','2014-06-04','2014-06-04','2014-06-04',22,'2014-06-04 18:46:56','2014-06-10 19:46:16','Observaciones',1.65,406011303,2);
 /*!40000 ALTER TABLE `citas_medicas` ENABLE KEYS */;
+
+
+--
+-- Definition of table `coeficientes`
+--
+
+DROP TABLE IF EXISTS `coeficientes`;
+CREATE TABLE `coeficientes` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_raza` int(10) unsigned NOT NULL,
+  `id_marcador` int(10) unsigned NOT NULL,
+  `a` double NOT NULL,
+  `b` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `coeficientes`
+--
+
+/*!40000 ALTER TABLE `coeficientes` DISABLE KEYS */;
+INSERT INTO `coeficientes` (`id`,`id_raza`,`id_marcador`,`a`,`b`) VALUES 
+ (1,1,1,0.00173,0.2583),
+ (2,1,4,0.00177,0.267),
+ (3,1,2,0.0006,0.0912),
+ (4,2,1,0.00137,0.2227),
+ (5,2,4,0.00141,0.2276),
+ (6,2,2,0.00069,0.1127),
+ (7,3,1,0.00173,0.2466),
+ (8,3,4,0.00151,0.2184),
+ (9,3,2,0.00075,0.1076),
+ (10,4,1,0.00231,0.2904),
+ (11,4,4,0.00341,0.4369),
+ (12,4,2,0.00129,0.1625);
+/*!40000 ALTER TABLE `coeficientes` ENABLE KEYS */;
 
 
 --
@@ -105,11 +122,11 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (1,1,3,'CAUCHERO','9.15000','-82.26667'),
  (1,1,4,'PUNTA LAUREL','9.13333','-82.13333'),
  (1,1,5,'TIERRA OSCURA','9.18333','-82.28333'),
- (1,2,6,'CHANGUINOLA','9.43333','-82.51667'),
+ (1,2,6,'CHANGUINOLA','9.45363','-82.50869'),
  (1,2,7,'ALMIRANTE','9.30000','-82.40000'),
  (1,2,8,'GUABITO','8.85000','-82.18333'),
  (1,2,9,'EL TERIBE','9.36667','-82.53333'),
- (1,2,10,'VALLE DEL RISCO','9.23333','-82.43333'),
+ (1,2,10,'VALLE DEL RISCO','9.24136','-82.44082'),
  (1,2,11,'EL EMPALME','9.41667','-82.51667'),
  (1,2,12,'LAS TABLAS','9.54374','-82.74010'),
  (1,2,13,'VALLE DE AGUA','9.25000','-82.38333'),
@@ -136,14 +153,14 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (2,5,34,'LIMONES','8.10000','-82.86667'),
  (2,5,35,'PROGRESO','8.45000','-82.83333'),
  (2,5,36,'BACO','8.08333','-82.86667'),
- (2,5,37,'RODOLFO AGUILAR DELGADO','',''),
+ (2,5,37,'RODOLFO AGUILAR DELGADO','8.39131','-82.86717'),
  (2,6,38,'BOQUERON','8.50000','-82.56667'),
  (2,6,39,'BÁGALA','8.46667','-82.53333'),
  (2,6,40,'CORDILLERA','8.50624','-82.57121'),
  (2,6,41,'GUABAL','8.58333','-82.53333'),
  (2,6,42,'GUAYABAL','8.33333','-82.03333'),
  (2,6,43,'PARAISO','8.50624','-82.57121'),
- (2,6,44,'PEDREGAL','',''),
+ (2,6,44,'PEDREGAL','8.37791','-82.42612'),
  (2,6,45,'TIJERAS','8.47005','-82.55600'),
  (2,7,46,'BAJO BOQUETE','8.76854','-82.46272'),
  (2,7,47,'CALDERA','8.70762','-82.31295'),
@@ -218,7 +235,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (2,16,116,'QUEBRADA DE PIEDRA','8.07830','-81.67901'),
  (2,16,117,'BELLA VISTA','8.21236','-81.62595'),
  (2,16,118,'EL CRISTO','8.33370','-81.59967'),
- (2,16,119,'JUSTO FIDEL PALACIOS','',''),
+ (2,16,119,'JUSTO FIDEL PALACIOS','8.29547','-81.58871'),
  (2,16,120,'VELADERO','8.23330','-81.65283'),
  (3,17,121,'AGUADULCE','8.22021','-80.54581'),
  (3,17,122,'EL CRISTO','8.43071','-80.68148'),
@@ -234,34 +251,34 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (3,18,132,'RÍO HATO','8.39472','-80.16294'),
  (3,18,133,'SAN JUAN DE DIOS','8.46868','-80.28380'),
  (3,18,134,'SANTA RITA','7.95877','-80.42285'),
- (3,18,135,'CABALLERO','',''),
- (3,19,136,'LA PINTADA','',''),
- (3,19,137,'EL HARINO','',''),
- (3,19,138,'EL POTRERO','',''),
- (3,19,139,'LLANO GRANDE','',''),
- (3,19,140,'PIEDRAS GORDAS','',''),
- (3,19,141,'LAS LOMAS','',''),
- (3,20,142,'NATÁ','',''),
- (3,20,143,'CAPELLANIA','',''),
- (3,20,144,'EL CAÑO','',''),
- (3,20,145,'GUZMAN','',''),
- (3,20,146,'LAS HUACAS','',''),
- (3,20,147,'TOZA','',''),
- (3,21,148,'OLÁ','',''),
- (3,21,149,'EL COPÉ','',''),
- (3,21,150,'EL PALMAR','',''),
- (3,21,151,'EL PICACHO','',''),
- (3,21,152,'LA PAVA','',''),
- (3,22,153,'PENONOMÉ','',''),
- (3,22,154,'CAÑAVERAL','',''),
- (3,22,155,'COCLÉ','',''),
- (3,22,156,'CHIGUIRÍ ARRIBA','',''),
- (3,22,157,'EL COCO','',''),
- (3,22,158,'PAJONAL','',''),
- (3,22,159,'RIO GRANDE','',''),
- (3,22,160,'RIO INDIO','',''),
- (3,22,161,'TOABRE','',''),
- (3,22,162,'TULU','',''),
+ (3,18,135,'CABALLERO','8.54790','-80.18947'),
+ (3,19,136,'LA PINTADA','8.59439','-80.44588'),
+ (3,19,137,'EL HARINO','8.56713','-80.17323'),
+ (3,19,138,'EL POTRERO','8.57387','-80.32178'),
+ (3,19,139,'LLANO GRANDE','8.63379','-80.44020'),
+ (3,19,140,'PIEDRAS GORDAS','8.63025','-80.51860'),
+ (3,19,141,'LAS LOMAS','8.49999','-80.38334'),
+ (3,20,142,'NATÁ','8.33602','-80.52111'),
+ (3,20,143,'CAPELLANIA','8.30095','-80.55448'),
+ (3,20,144,'EL CAÑO','8.40962','-80.52652'),
+ (3,20,145,'GUZMAN','8.50984','-80.58453'),
+ (3,20,146,'LAS HUACAS','8.46844','-80.75150'),
+ (3,20,147,'TOZA','8.34644','-80.64221'),
+ (3,21,148,'OLÁ','8.42271','-80.64817'),
+ (3,21,149,'EL COPÉ','8.62119','-80.58518'),
+ (3,21,150,'EL PALMAR','8.65317','-80.39713'),
+ (3,21,151,'EL PICACHO','8.63333','-80.05000'),
+ (3,21,152,'LA PAVA','8.43333','-80.61666'),
+ (3,22,153,'PENONOMÉ','8.51279','-80.35756'),
+ (3,22,154,'CAÑAVERAL','8.52141','-80.42690'),
+ (3,22,155,'COCLÉ','8.45921','-80.42129'),
+ (3,22,156,'CHIGUIRÍ ARRIBA','8.67443','-80.18798'),
+ (3,22,157,'EL COCO','8.40167','-80.35301'),
+ (3,22,158,'PAJONAL','8.59442','-80.25511'),
+ (3,22,159,'RIO GRANDE','8.42737','-80.48564'),
+ (3,22,160,'RIO INDIO','9.04038','-80.18729'),
+ (3,22,161,'TOABRE','8.65023','-80.32239'),
+ (3,22,162,'TULU','8.76649','-80.40000'),
  (3,22,163,'EL VALLE DE SAN MIGUEL','',''),
  (4,23,164,'BARRIO NORTE','',''),
  (4,23,165,'BARRIO SUR','',''),
@@ -770,79 +787,79 @@ INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`,`latitud`,`long
  (1,1,'BOCAS DEL TORO','9.34967','-82.2559'),
  (1,2,'CHANGUINOLA','9.46762','-82.51161'),
  (1,3,'CHIRIQUÍ GRANDE','8.96015','-82.13859'),
- (2,4,'ALANJE','',''),
- (2,5,'BARÚ','',''),
- (2,6,'BOQUERÓN','',''),
- (2,7,'BOQUETE','',''),
- (2,8,'BUGABA','',''),
- (2,9,'SAN JOSÉ DE DAVID','',''),
- (2,10,'DOLEGA','',''),
- (2,11,'GUALACA','',''),
- (2,12,'REMEDIOS','',''),
- (2,13,'RENACIMIENTO','',''),
- (2,14,'SAN FÉLIX','',''),
- (2,15,'SAN LORENZO','',''),
- (2,16,'TOLÉ','',''),
- (3,17,'AGUADULCE','',''),
- (3,18,'ANTÓN','',''),
- (3,19,'LA PINTADA','',''),
- (3,20,'NATÁ','',''),
- (3,21,'OLÁ','',''),
- (3,22,'PENONOMÉ','',''),
- (4,23,'COLÓN','',''),
- (4,24,'CHAGRES','',''),
- (4,25,'DONOSO','',''),
- (4,26,'PORTOBELO','',''),
- (4,27,'SANTA ISABÉL','',''),
- (5,28,'CHEPIGANA','',''),
- (5,29,'PINOGANA','',''),
- (6,30,'CHITRE','',''),
- (6,31,'LAS MINAS','',''),
- (6,32,'LOS POZOS','',''),
- (6,33,'OCÚ','',''),
- (6,34,'PARITA','',''),
- (6,35,'PESÉ','',''),
- (6,36,'SANTA MARÍA','',''),
- (7,37,'GUARARÉ','',''),
- (7,38,'LAS TABLAS','',''),
- (7,39,'LOS SANTOS','',''),
- (7,40,'MACARACAS','',''),
- (7,41,'PEDASÍ','',''),
- (7,42,'POCRÍ','',''),
- (7,43,'TONOSÍ','',''),
- (8,44,'ARRAIJÁN','',''),
- (8,45,'BALBOA','',''),
- (8,46,'CAPIRA','',''),
- (8,47,'CHAME','',''),
- (8,48,'CHEPO','',''),
- (8,49,'CHIMAN','',''),
- (8,50,'LA CHORRERA','',''),
- (8,51,'PANAMÁ','',''),
- (8,52,'SAN CARLOS','',''),
- (8,53,'SAN MIGUELITO','',''),
- (8,54,'TABOGA','',''),
- (9,55,'ATALAYA','',''),
- (9,56,'CALOBRE','',''),
- (9,57,'CAÑAZAS','',''),
- (9,58,'LA MESA','',''),
- (9,59,'LAS PALMAS','',''),
- (9,60,'MARIATO','',''),
- (9,61,'MONTIJO','',''),
- (9,62,'RÍO DE JESÚS','',''),
- (9,63,'SAN FRANCISCO','',''),
- (9,64,'SANTA FÉ','',''),
- (9,65,'SANTIAGO','',''),
- (9,66,'SONÁ','',''),
- (10,67,'KUNA YALA','',''),
- (11,68,'CÉMACO','',''),
- (11,69,'SAMBÚ','',''),
- (12,70,'KANKINTÚ','',''),
- (12,71,'KUSAPIN','',''),
- (12,72,'BESIKÓ','',''),
- (12,73,'MIRONÓ','',''),
- (12,74,'NOLE DÜIMA','',''),
- (12,75,'MÜNA','',''),
- (12,76,'ÑÜRÜM','','');
+ (2,4,'ALANJE','8.36444','-82.62508'),
+ (2,5,'BARÚ','8.30178','-82.87360'),
+ (2,6,'BOQUERÓN','8.63261','-82.57040'),
+ (2,7,'BOQUETE','8.75190','-82.43642'),
+ (2,8,'BUGABA','8.67547','-82.68606'),
+ (2,9,'SAN JOSÉ DE DAVID','8.48993','-82.38072'),
+ (2,10,'DOLEGA','8.62438','-82.45854'),
+ (2,11,'GUALACA','8.60660','-82.26146'),
+ (2,12,'REMEDIOS','8.22021','-81.78935'),
+ (2,13,'RENACIMIENTO','8.72200','-82.85631'),
+ (2,14,'SAN FÉLIX','8.25859','-81.91146'),
+ (2,15,'SAN LORENZO','8.31131','-82.13278'),
+ (2,16,'TOLÉ','8.18544','-81.64480'),
+ (3,17,'AGUADULCE','8.21072','-80.60173'),
+ (3,18,'ANTÓN','8.39888','-80.26924'),
+ (3,19,'LA PINTADA','8.53856','-80.59483'),
+ (3,20,'NATÁ','8.33956','-80.5316'),
+ (3,21,'OLÁ','8.41638','-80.67077'),
+ (3,22,'PENONOMÉ','8.50165','-80.37039'),
+ (4,23,'COLÓN','9.35998','-79.92634'),
+ (4,24,'CHAGRES','9.12755','-80.09925'),
+ (4,25,'DONOSO','9.02364','-80.47087'),
+ (4,26,'PORTOBELO','9.53375','-79.66577'),
+ (4,27,'SANTA ISABÉL','9.50174','-79.34448'),
+ (5,28,'CHEPIGANA','8.30182','-78.05404'),
+ (5,29,'PINOGANA','8.13919','-77.67272'),
+ (6,30,'CHITRE','7.97281','-80.42408'),
+ (6,31,'LAS MINAS','7.80023','-80.74496'),
+ (6,32,'LOS POZOS','7.78808','-80.64643'),
+ (6,33,'OCÚ','7.95307','-80.77090'),
+ (6,34,'PARITA','8.00500','-80.52347'),
+ (6,35,'PESÉ','7.90652','-80.60786'),
+ (6,36,'SANTA MARÍA','8.09279','-80.68316'),
+ (7,37,'GUARARÉ','7.81476','-80.27860'),
+ (7,38,'LAS TABLAS','7.77004','-80.27452'),
+ (7,39,'LOS SANTOS','7.83333','-80.33333'),
+ (7,40,'MACARACAS','7.72723','-80.55038'),
+ (7,41,'PEDASÍ','7.49832','-80.04888'),
+ (7,42,'POCRÍ','7.65207','-80.15140'),
+ (7,43,'TONOSÍ','7.39434','-80.43528'),
+ (8,44,'ARRAIJÁN','8.94303','-79.64525'),
+ (8,45,'BALBOA','8.95753','-79.56030'),
+ (8,46,'CAPIRA','8.75534','-79.85095'),
+ (8,47,'CHAME','8.60085','-79.89700'),
+ (8,48,'CHEPO','9.16472','-79.09499'),
+ (8,49,'CHIMAN','8.72277','-78.62523'),
+ (8,50,'LA CHORRERA','8.93490','-79.81335'),
+ (8,51,'PANAMÁ','9.00878','-79.47588'),
+ (8,52,'SAN CARLOS','8.51241','-79.98786'),
+ (8,53,'SAN MIGUELITO','9.05581','-79.48761'),
+ (8,54,'TABOGA','8.78953','-79.55608'),
+ (9,55,'ATALAYA','8.04109','-80.92370'),
+ (9,56,'CALOBRE','8.32053','-80.84036'),
+ (9,57,'CAÑAZAS','8.31099','-81.21437'),
+ (9,58,'LA MESA','8.15463','-81.17789'),
+ (9,59,'LAS PALMAS','8.06189','-81.52961'),
+ (9,60,'MARIATO','7.66664','-81.01553'),
+ (9,61,'MONTIJO','7.99395','-81.05455'),
+ (9,62,'RÍO DE JESÚS','7.98137','-81.16471'),
+ (9,63,'SAN FRANCISCO','8.24627','-80.95473'),
+ (9,64,'SANTA FÉ','8.51042','-81.07764'),
+ (9,65,'SANTIAGO','8.10549','-80.96670'),
+ (9,66,'SONÁ','8.00677','-81.31571'),
+ (10,67,'KUNA YALA','9.22338','-78.44965'),
+ (11,68,'CÉMACO','8.44793','-77.61331'),
+ (11,69,'SAMBÚ','7.87427','-78.19284'),
+ (12,70,'KANKINTÚ','8.84583','-81.81474'),
+ (12,71,'KUSAPIN','7.90573','-78.10907'),
+ (12,72,'BESIKÓ','8.55138','-82.04375'),
+ (12,73,'MIRONÓ','8.48076','-81.88968'),
+ (12,74,'NOLE DÜIMA','8.41078','-81.78475'),
+ (12,75,'MÜNA','8.45410','-81.63762'),
+ (12,76,'ÑÜRÜM','8.50979','-81.40938');
 /*!40000 ALTER TABLE `distritos` ENABLE KEYS */;
 
 
@@ -1571,7 +1588,7 @@ CREATE TABLE `marcadores` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `marcador` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `marcadores`
@@ -1584,8 +1601,43 @@ INSERT INTO `marcadores` (`id`,`marcador`) VALUES
  (3,'INHIBIN A'),
  (4,'HCG'),
  (5,'PAPPA'),
- (6,'TN');
+ (6,'TN'),
+ (7,'HCG TOTAL');
 /*!40000 ALTER TABLE `marcadores` ENABLE KEYS */;
+
+
+--
+-- Definition of table `marcadores_citas`
+--
+
+DROP TABLE IF EXISTS `marcadores_citas`;
+CREATE TABLE `marcadores_citas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_cita` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_marcador` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_metodologia` int(10) unsigned NOT NULL DEFAULT '0',
+  `valor` double NOT NULL DEFAULT '0',
+  `created_at` varchar(45) NOT NULL DEFAULT '',
+  `updated_at` varchar(45) NOT NULL DEFAULT '',
+  `mom` double NOT NULL DEFAULT '0',
+  `mom_corr1` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `marcadores_citas`
+--
+
+/*!40000 ALTER TABLE `marcadores_citas` DISABLE KEYS */;
+INSERT INTO `marcadores_citas` (`id`,`id_cita`,`id_marcador`,`id_metodologia`,`valor`,`created_at`,`updated_at`,`mom`,`mom_corr1`) VALUES 
+ (1,1,1,2,1,'2014-06-04 18:46:56','2014-06-10 19:46:16',1,133.86880856760376),
+ (2,1,2,2,2,'2014-06-04 18:46:56','2014-06-10 19:46:16',1,380.71065989848),
+ (3,1,3,1,3,'2014-06-04 18:46:56','2014-06-10 19:46:16',1,0),
+ (4,1,4,1,4,'2014-06-04 18:46:56','2014-06-10 19:46:16',1,129.81393336218),
+ (5,1,5,1,5,'2014-06-04 18:46:56','2014-06-10 19:46:17',1,0),
+ (6,1,6,2,6,'2014-06-04 18:46:56','2014-06-10 19:46:17',1,0),
+ (7,1,7,1,7,'2014-06-05 01:37:19','2014-06-10 19:46:17',1,0);
+/*!40000 ALTER TABLE `marcadores_citas` ENABLE KEYS */;
 
 
 --
@@ -1598,13 +1650,21 @@ CREATE TABLE `mediana_marcadores` (
   `id_marcador` int(10) unsigned NOT NULL,
   `mediana_marcador` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mediana_marcadores`
 --
 
 /*!40000 ALTER TABLE `mediana_marcadores` DISABLE KEYS */;
+INSERT INTO `mediana_marcadores` (`id`,`id_marcador`,`mediana_marcador`) VALUES 
+ (1,1,1),
+ (2,2,2),
+ (3,3,3),
+ (4,4,4),
+ (5,5,5),
+ (6,6,6),
+ (7,7,7);
 /*!40000 ALTER TABLE `mediana_marcadores` ENABLE KEYS */;
 
 
@@ -1632,7 +1692,7 @@ CREATE TABLE `medicos` (
   `id_nivel` int(10) unsigned NOT NULL,
   `id_ubicacion` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `medicos`
@@ -1640,7 +1700,10 @@ CREATE TABLE `medicos` (
 
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
 INSERT INTO `medicos` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`sexo`,`created_at`,`updated_at`,`id_especialidades_medicas`,`telefono`,`celular`,`email`,`foto`,`extension`,`id_nivel`,`id_ubicacion`) VALUES 
- (3,'4-759-372','Edgardo','Joel','Pitti','Sanchez',1,'2014-05-15 20:47:24','2014-05-26 19:23:54',22,'75464234','645678789','ed_joel28@hortmail.com','','',0,0);
+ (3,'4-759-372','Edgardo','Joel','Pitti','Sanchez',1,'2014-05-15 20:47:24','2014-06-05 19:29:27',5,'75464234','645678789','ed_joel28@hortmail.com','','',2,1),
+ (4,'4-760-768','Luis','Agustin','Mendoza','Pitti',1,'2014-06-05 01:50:28','2014-06-05 21:34:12',25,'7743095','60083613','ed_joel28@hortmail.com','','69',1,1),
+ (5,'4-1241-1231','jose','mario','perez','gutierrez',1,'2014-06-05 19:30:51','2014-06-05 21:33:24',25,'764-2487','6154-4789','josegutierrez@hotmail.com','m_5.png','711',1,1),
+ (6,'','','','','',0,'2014-06-05 21:33:27','2014-06-05 21:33:27',25,'','','','','',0,0);
 /*!40000 ALTER TABLE `medicos` ENABLE KEYS */;
 
 
@@ -1656,7 +1719,7 @@ CREATE TABLE `metodologia` (
   `created_at` varchar(45) NOT NULL,
   `updated_at` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `metodologia`
@@ -1664,9 +1727,8 @@ CREATE TABLE `metodologia` (
 
 /*!40000 ALTER TABLE `metodologia` DISABLE KEYS */;
 INSERT INTO `metodologia` (`id`,`metodologia`,`observacion`,`created_at`,`updated_at`) VALUES 
- (1,'DEFAULT','','',''),
- (2,'RIA','','',''),
- (3,'ELISA','','','');
+ (1,'RIA','','',''),
+ (2,'ELISA','','','');
 /*!40000 ALTER TABLE `metodologia` ENABLE KEYS */;
 
 
@@ -1783,13 +1845,16 @@ CREATE TABLE `niveles` (
   `created_at` varchar(45) NOT NULL,
   `updated_at` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `niveles`
 --
 
 /*!40000 ALTER TABLE `niveles` DISABLE KEYS */;
+INSERT INTO `niveles` (`id`,`nivel`,`created_at`,`updated_at`) VALUES 
+ (1,'PLANTA BAJA','',''),
+ (2,'PRIMER PISO','','');
 /*!40000 ALTER TABLE `niveles` ENABLE KEYS */;
 
 
@@ -1829,7 +1894,7 @@ CREATE TABLE `pacientes` (
   `embarazo_trisomia` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `foto` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pacientes`
@@ -1837,8 +1902,9 @@ CREATE TABLE `pacientes` (
 
 /*!40000 ALTER TABLE `pacientes` DISABLE KEYS */;
 INSERT INTO `pacientes` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`sexo`,`fecha_nacimiento`,`lugar_nacimiento`,`created_at`,`updated_at`,`celular`,`telefono`,`email`,`id_provincia_nacimiento`,`id_distrito_nacimiento`,`id_corregimiento_nacimiento`,`id_nacionalidad`,`id_etnia`,`id_tipo_sangre`,`diabetes`,`id_raza`,`id_provincia_residencia`,`id_distrito_residencia`,`id_corregimiento_residencia`,`lugar_residencia`,`fuma`,`embarazo_trisomia`,`foto`) VALUES 
- (1,'4-769-466','Sarah','Stephanie','Pimentel','Quiel',0,'1993-11-06','Pedregal','2014-05-12 22:33:03','2014-05-23 21:00:05','60083613','7743095','saritah_0611@hotmail.com',2,9,72,62,1,1,0,1,2,9,72,'16 de Diciembre',0,0,NULL),
- (2,'4-205-369','Fany','Estela','Sanchez','Perez',0,'1969-06-01','David','2014-05-21 19:27:54','2014-05-23 21:00:14','69234484','7743095','fany_sanchez@hotmail.com',2,9,66,62,1,1,1,3,2,9,66,'San Cristobal',0,0,NULL);
+ (1,'4-769-466','Sarah','Stephanie','Pimentel','Quiel',0,'1993-11-06','Pedregal','2014-05-12 22:33:03','2014-06-10 19:40:41','60083613','7743095','saritah_0611@hotmail.com',2,9,72,62,1,1,0,1,2,9,72,'16 de Diciembre',0,0,'p_1.png'),
+ (2,'4-205-369','Fany','Estela','Sanchez','Perez',0,'1969-06-01','David','2014-05-21 19:27:54','2014-06-03 19:21:44','69234484','7743095','fany_sanchez@hotmail.com',2,9,66,62,1,1,0,3,2,9,66,'San Cristobal',0,0,'p_2.jpg'),
+ (3,'4-789-333','Ariadne','Leovelia','Pitti','Sanchez',0,'1995-12-29','Gualaca','2014-06-03 03:42:42','2014-06-03 03:42:42','67149299','7743095','ariadne_29@hotmail.com',2,11,86,62,1,3,0,3,3,21,149,'El Cope',0,0,NULL);
 /*!40000 ALTER TABLE `pacientes` ENABLE KEYS */;
 
 
@@ -1864,13 +1930,13 @@ INSERT INTO `provincias` (`id_provincia`,`provincia`,`latitud`,`longitud`) VALUE
  (1,'BOCAS DEL TORO','9.34055','-82.24055'),
  (2,'CHIRIQUÍ','8.43781','-82.28204'),
  (3,'COCLÉ','8.57432','-80.43275'),
- (4,'COLÓN','9.16666','-80.16666'),
+ (4,'COLÓN','9.35998','-79.92634'),
  (5,'DARIÉN','8.07837','-77.84287'),
  (6,'HERRERA','7.82251','-80.67948'),
  (7,'LOS SANTOS','7.61501','-80.36428'),
  (8,'PANAMÁ','9.02523','-79.44292'),
  (9,'VERAGUAS','8.04259','-81.25017'),
- (10,'KUNA YALA','9.0586','-78.3205'),
+ (10,'KUNA YALA','9.17797','-78.32330'),
  (11,'COMARCA EMBERA','8.18295','-77.79184'),
  (12,'COMARCA NGÄBE-BUGLÉ','8.72144','-81.78672');
 /*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
@@ -1987,13 +2053,15 @@ CREATE TABLE `ubicacion` (
   `created_at` varchar(45) NOT NULL,
   `updated_at` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ubicacion`
 --
 
 /*!40000 ALTER TABLE `ubicacion` DISABLE KEYS */;
+INSERT INTO `ubicacion` (`id`,`ubicacion`,`created_at`,`updated_at`) VALUES 
+ (1,'TORRE A','','');
 /*!40000 ALTER TABLE `ubicacion` ENABLE KEYS */;
 
 

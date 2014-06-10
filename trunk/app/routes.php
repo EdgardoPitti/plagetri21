@@ -29,5 +29,6 @@ Route::get('corregimiento','DropdownController@getCorregimiento');
 Route::get('institucion', 'DropdownController@getInstitucion');
 Route::get('institucionprovincia', 'DropdownController@getInstitucionprovincia');
 Route::get('calculo', 'DropdownController@getMomMarcador');
+Route::get('correccion1', 'DropdownController@getCoeficiente');
 Route::get('obtener_mediana', 'Datos_MedianaController@getObtenerMediana');
 Route::get('salvar_mediana', 'Datos_MedianaController@getSalvarMediana');
