@@ -22,6 +22,33 @@ CREATE DATABASE IF NOT EXISTS plagetri21;
 USE plagetri21;
 
 --
+-- Definition of table `agendas`
+--
+
+DROP TABLE IF EXISTS `agendas`;
+CREATE TABLE `agendas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre_completo` varchar(90) NOT NULL,
+  `profesion` varchar(45) NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `celular` varchar(45) NOT NULL,
+  `extension` varchar(45) NOT NULL,
+  `created_at` varchar(45) NOT NULL,
+  `updated_at` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `agendas`
+--
+
+/*!40000 ALTER TABLE `agendas` DISABLE KEYS */;
+INSERT INTO `agendas` (`id`,`nombre_completo`,`profesion`,`telefono`,`celular`,`extension`,`created_at`,`updated_at`) VALUES 
+ (1,'Luis Mendoza','Agricultor','7723911','67231122','276','2014-06-11 19:45:51','2014-06-11 19:52:53');
+/*!40000 ALTER TABLE `agendas` ENABLE KEYS */;
+
+
+--
 -- Definition of table `citas_medicas`
 --
 
@@ -1588,7 +1615,7 @@ CREATE TABLE `marcadores` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `marcador` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `marcadores`
@@ -1622,7 +1649,7 @@ CREATE TABLE `marcadores_citas` (
   `mom` double NOT NULL DEFAULT '0',
   `mom_corr1` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `marcadores_citas`
