@@ -25,7 +25,7 @@
     </div>
     {{-- jQuery (necessary for Bootstrap's JavaScript plugins) --}}
     {{ HTML::script('assets/js/jquery.js') }}
-
+    {{ HTML::script('assets/js/admin.js') }}
     {{-- Include all compiled plugins (below), or include individual files as needed --}}
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/filtro.js') }}
