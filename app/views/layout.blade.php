@@ -30,6 +30,7 @@
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/filtro.js') }}
     {{ HTML::script('assets/js/script.js') }}
+    {{ HTML::script('assets/js/script_foto.js') }}
     {{ HTML::script('assets/js/script_maps.js') }}        
   </body>
 </html>

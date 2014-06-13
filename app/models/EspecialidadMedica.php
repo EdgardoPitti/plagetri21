@@ -1,6 +1,6 @@
 <?php
 
-class EspecialidadesMedicas extends Eloquent {
+class EspecialidadMedica extends Eloquent {
 
 	/**
 	 * The database table used by the model.

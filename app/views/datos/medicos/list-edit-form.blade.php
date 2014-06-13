@@ -61,7 +61,7 @@
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('id_especialidades_medicas', 'Especialidad M&eacute;dica:') }}
-			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadesMedicas::lists('descripcion', 'id_especialidades_medicas'), $datos['medico'][0]->especialidad, array('class' => 'form-control')) }}
+			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadMedica::lists('descripcion', 'id_especialidades_medicas'), $datos['medico'][0]->id_especialidad_medica, array('class' => 'form-control')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('extension', 'Extensi&oacute;n:') }}
@@ -87,6 +87,10 @@
 			{{ Form::label('id_ubicacion', 'Ubicación:') }}
 			{{ Form::select('id_ubicacion', array('0' => 'SELECCIONE UBICACI&Oacute;N') + Ubicacion::lists('ubicacion', 'id'), null, array('class' => 'form-control')) }}
 		</div>
+	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+	    	{{ Form::label('observaciones', 'Observaciones:') }}
+	    	{{ Form::textarea('observaciones', $datos['medico'][0]->observacion, array('placeholder' => 'Observaciones', 'class' => 'form-control', 'size' => '1x1')) }}        
+	    </div>
 	  </div>
 	  <div class="form-group col-sm-12 col-md-12 col-lg-12">
     	<center>
@@ -114,6 +118,7 @@
 							<thead>
 								<tr class="info">
 									<th>#</th>
+									<th>Foto</th>
 									<th>Nombre</th>
 									<th>Extensi&oacute;n</th>
 									<th>Tel&eacute;fono</th>
@@ -125,15 +130,14 @@
 							<tbody>
 								{{--*/ $n = 1; /*--}}
 								@foreach (Medico::all() as $medico) 
-								{{--*/								
-									$especialidad = EspecialidadesMedicas::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first(); 
-								/*--}}
 								<tr>
 									<td>{{ $n++ }}</td>
+									<td>{{ Form::image('imgs/'.$medico->datos_medico($medico->id)[0]->foto.'', 'foto', array('style' => 'heigth:50px; width:50px;')) }}</td>
 									<td>{{ $medico->primer_nombre.' '.$medico->segundo_nombre.' '.$medico->apellido_paterno.' '.$medico->apellido_materno }} </td>
 									<td>{{ $medico->extension }}</td>
 									<td>{{ $medico->telefono }}</td>
-									<td>{{ $medico->celular }} </td><td>{{ $especialidad->descripcion }}</td>
+									<td>{{ $medico->celular }} </td>
+									<td>{{ EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion }}</td>
 									<td align="center">
 										<a href="{{ route('datos.medicos.edit', $medico->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar M&eacute;dico"><span class="glyphicon glyphicon-pencil"></span></a>
 					            		<a href="#" data-id="{{ $medico->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip"  title="Eliminar" style="margin:3px 0px;"><span class="glyphicon glyphicon-remove"></span></a>

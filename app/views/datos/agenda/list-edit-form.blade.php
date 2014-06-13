@@ -22,6 +22,10 @@
 		      {{ Form::text('nombre_completo', null, array('placeholder' => 'Nombre Completo', 'class' => 'form-control', 'required' => 'required')) }}
 		    </div>
 			<div class="form-group col-sm-4 col-md-4 col-lg-4">
+		      {{ Form::label('ruc', 'RUC:') }}
+		      {{ Form::text('ruc', null, array('placeholder' => 'RUC', 'class' => 'form-control')) }}
+		    </div>		    
+			<div class="form-group col-sm-4 col-md-4 col-lg-4">
 		      {{ Form::label('profesion', 'Profesión:') }}
 		      {{ Form::text('profesion', null, array('placeholder' => 'Profesión', 'class' => 'form-control')) }}
 		    </div>
@@ -32,6 +36,10 @@
 			<div class="form-group col-sm-4 col-md-4 col-lg-4">
 		      {{ Form::label('celular', 'Celular:') }}
 		      {{ Form::text('celular', null, array('placeholder' => 'Celular', 'class' => 'form-control')) }}
+		    </div>
+			<div class="form-group col-sm-4 col-md-4 col-lg-4">
+		      {{ Form::label('correo', 'Correo:') }}
+		      {{ Form::text('correo', null, array('placeholder' => 'Correo', 'class' => 'form-control')) }}
 		    </div>
 			<div class="form-group col-sm-4 col-md-4 col-lg-4">
 		      {{ Form::label('extension', 'Extensión:') }}

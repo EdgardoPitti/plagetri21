@@ -23,7 +23,7 @@ class Medico extends Eloquent {
 				$foto = $datos[$x]->foto;
 			}
 			$datos[$x]->foto = $foto;
-			$datos[$x]->especialidad = $medico->id_especialidades_medicas;			
+			$datos[$x]->especialidad = EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion;			
 		}
 		return $datos;
 	}
