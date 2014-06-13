@@ -22,6 +22,39 @@ CREATE DATABASE IF NOT EXISTS plagetri21;
 USE plagetri21;
 
 --
+-- Definition of table `activos`
+--
+
+DROP TABLE IF EXISTS `activos`;
+CREATE TABLE `activos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(45) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `descripcion` text NOT NULL,
+  `id_tipo` int(10) unsigned NOT NULL,
+  `marca` varchar(45) NOT NULL,
+  `id_nivel` int(10) unsigned NOT NULL,
+  `id_ubicacion` int(10) unsigned NOT NULL,
+  `fecha_compra` varchar(45) NOT NULL,
+  `num_factura` varchar(45) NOT NULL,
+  `costo` double NOT NULL,
+  `id_proveedor` int(10) unsigned NOT NULL,
+  `created_at` varchar(45) NOT NULL,
+  `updated_at` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `activos`
+--
+
+/*!40000 ALTER TABLE `activos` DISABLE KEYS */;
+INSERT INTO `activos` (`id`,`codigo`,`nombre`,`descripcion`,`id_tipo`,`marca`,`id_nivel`,`id_ubicacion`,`fecha_compra`,`num_factura`,`costo`,`id_proveedor`,`created_at`,`updated_at`) VALUES 
+ (1,'A-001','Cama','Excelente Cama',1,'LG',2,1,'2014-06-13','2231-44',100.05,2,'2014-06-13 22:00:32','2014-06-13 22:04:24');
+/*!40000 ALTER TABLE `activos` ENABLE KEYS */;
+
+
+--
 -- Definition of table `agendas`
 --
 
@@ -29,22 +62,25 @@ DROP TABLE IF EXISTS `agendas`;
 CREATE TABLE `agendas` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombre_completo` varchar(90) NOT NULL,
-  `profesion` varchar(45) NOT NULL,
+  `profesion` varchar(45) DEFAULT NULL,
   `telefono` varchar(45) NOT NULL,
   `celular` varchar(45) NOT NULL,
-  `extension` varchar(45) NOT NULL,
+  `extension` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) NOT NULL,
   `updated_at` varchar(45) NOT NULL,
+  `correo` varchar(45) DEFAULT NULL,
+  `ruc` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `agendas`
 --
 
 /*!40000 ALTER TABLE `agendas` DISABLE KEYS */;
-INSERT INTO `agendas` (`id`,`nombre_completo`,`profesion`,`telefono`,`celular`,`extension`,`created_at`,`updated_at`) VALUES 
- (1,'Luis Mendoza','Agricultor','7723911','67231122','276','2014-06-11 19:45:51','2014-06-11 19:52:53');
+INSERT INTO `agendas` (`id`,`nombre_completo`,`profesion`,`telefono`,`celular`,`extension`,`created_at`,`updated_at`,`correo`,`ruc`) VALUES 
+ (1,'Luis Mendoza','Agricultor','7723911','67231122','276','2014-06-11 19:45:51','2014-06-13 20:57:24','luis.mendoza1@utp.ac.pa','222'),
+ (2,'Edgardo Pitti','Gigolo','7743095','62510254','507','2014-06-13 22:04:07','2014-06-13 22:04:07','edgardo.pitti2@utp.ac.pa','1254-778-7777');
 /*!40000 ALTER TABLE `agendas` ENABLE KEYS */;
 
 
@@ -1607,6 +1643,30 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
 
 
 --
+-- Definition of table `mantenimientos`
+--
+
+DROP TABLE IF EXISTS `mantenimientos`;
+CREATE TABLE `mantenimientos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fecha_realizacion` varchar(45) NOT NULL,
+  `realizado_por` varchar(45) NOT NULL,
+  `aprobado_por` varchar(45) NOT NULL,
+  `id_activo` int(10) unsigned NOT NULL,
+  `proximo_mant` varchar(45) NOT NULL,
+  `observacion` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mantenimientos`
+--
+
+/*!40000 ALTER TABLE `mantenimientos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mantenimientos` ENABLE KEYS */;
+
+
+--
 -- Definition of table `marcadores`
 --
 
@@ -1718,6 +1778,7 @@ CREATE TABLE `medicos` (
   `extension` varchar(45) NOT NULL,
   `id_nivel` int(10) unsigned NOT NULL,
   `id_ubicacion` int(10) unsigned NOT NULL,
+  `observacion` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
@@ -1726,11 +1787,10 @@ CREATE TABLE `medicos` (
 --
 
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
-INSERT INTO `medicos` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`sexo`,`created_at`,`updated_at`,`id_especialidades_medicas`,`telefono`,`celular`,`email`,`foto`,`extension`,`id_nivel`,`id_ubicacion`) VALUES 
- (3,'4-759-372','Edgardo','Joel','Pitti','Sanchez',1,'2014-05-15 20:47:24','2014-06-05 19:29:27',5,'75464234','645678789','ed_joel28@hortmail.com','','',2,1),
- (4,'4-760-768','Luis','Agustin','Mendoza','Pitti',1,'2014-06-05 01:50:28','2014-06-05 21:34:12',25,'7743095','60083613','ed_joel28@hortmail.com','','69',1,1),
- (5,'4-1241-1231','jose','mario','perez','gutierrez',1,'2014-06-05 19:30:51','2014-06-05 21:33:24',25,'764-2487','6154-4789','josegutierrez@hotmail.com','m_5.png','711',1,1),
- (6,'','','','','',0,'2014-06-05 21:33:27','2014-06-05 21:33:27',25,'','','','','',0,0);
+INSERT INTO `medicos` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`sexo`,`created_at`,`updated_at`,`id_especialidades_medicas`,`telefono`,`celular`,`email`,`foto`,`extension`,`id_nivel`,`id_ubicacion`,`observacion`) VALUES 
+ (3,'4-759-372','Edgardo','Joel','Pitti','Sanchez',1,'2014-05-15 20:47:24','2014-06-13 19:07:53',5,'75464234','645678789','ed_joel28@hortmail.com','m_3.jpg','',2,1,'Observacion Edgardo'),
+ (4,'4-760-768','Luis','Agustin','Mendoza','Pitti',1,'2014-06-05 01:50:28','2014-06-13 21:07:16',25,'7743095','60083613','ed_joel28@hortmail.com','m_4.jpg','69',1,1,''),
+ (5,'4-1241-1231','jose','mario','perez','gutierrez',1,'2014-06-05 19:30:51','2014-06-13 19:34:40',25,'764-2487','6154-4789','josegutierrez@hotmail.com','m_5.jpg','711',1,1,'');
 /*!40000 ALTER TABLE `medicos` ENABLE KEYS */;
 
 
@@ -2039,6 +2099,28 @@ INSERT INTO `tipo_instituciones` (`id`,`tipo_institucion`,`departamento`) VALUES
  (23,'CENTRO DE SALUD SIN CAMA','CSS'),
  (24,'OTROS','OTROS');
 /*!40000 ALTER TABLE `tipo_instituciones` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tipos_activos`
+--
+
+DROP TABLE IF EXISTS `tipos_activos`;
+CREATE TABLE `tipos_activos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(45) NOT NULL,
+  `descripcion` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tipos_activos`
+--
+
+/*!40000 ALTER TABLE `tipos_activos` DISABLE KEYS */;
+INSERT INTO `tipos_activos` (`id`,`tipo`,`descripcion`) VALUES 
+ (1,'Cama','Camas');
+/*!40000 ALTER TABLE `tipos_activos` ENABLE KEYS */;
 
 
 --

@@ -12,7 +12,7 @@ class Datos_MedicosController extends BaseController {
 		$datos['formulario'] = array('route' => 'datos.medicos.store', 'method' => 'POST');
 		$datos['label'] = 'Crear';
 		$datos['medico'][0] = new Medico; 
-		$datos['medico'][0]->especialidad = '25';		
+		$datos['medico'][0]->id_especialidad_medica = '25';		
 		$datos['medico'][0]->foto = 'default1.png';
 		return View::make('datos/medicos/list-edit-form')->with('datos', $datos);
 	}
@@ -52,6 +52,7 @@ class Datos_MedicosController extends BaseController {
         $medico->email = $data['email'];
         $medico->id_nivel = $data['id_nivel'];
         $medico->id_ubicacion = $data['id_ubicacion'];
+        $medico->observacion = $data['observaciones'];
         $medico->save(); 
         //Almacenamiento de la foto
         if(!is_null($foto)){
@@ -132,6 +133,7 @@ class Datos_MedicosController extends BaseController {
         $medico->extension = $data['extension'];
         $medico->id_nivel = $data['id_nivel'];
         $medico->id_ubicacion = $data['id_ubicacion'];
+        $medico->observacion = $data['observaciones'];
         $medico->save();
         return Redirect::route('datos.medicos.index');
 	}

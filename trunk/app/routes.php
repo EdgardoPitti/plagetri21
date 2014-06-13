@@ -21,6 +21,7 @@ Route::resource('datos/medicos', 'Datos_MedicosController');
 Route::resource('datos/citas', 'Datos_CitasController');
 Route::resource('datos/mediana', 'Datos_MedianaController');
 Route::resource('datos/agenda', 'Datos_AgendaController');
+Route::resource('datos/activos', 'Datos_ActivosController');
 //Ruta para el control del mapa
 Route::resource('datos/pacientesmapas', 'MapasController');
 //Rutas para elementos dinamicos
