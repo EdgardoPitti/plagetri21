@@ -109,7 +109,7 @@
 	                      <td>{{ Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion }}</td>
 	                      <td>{{ $activo->costo }}</td>
 	                      <td align="center">
-							{{--<a href="{{ route('datos.mantenimientos.show', $activo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>--}}                         
+							<a href="{{ route('datos.mantenimientos.show', $activo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>                       
 	                        <a href="{{ route('datos.activos.edit', $activo->id) }}" class="btn btn-primary btn-sm" style="margin:3px 0px;" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
 	                      </td>
 	                  </tr>

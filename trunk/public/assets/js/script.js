@@ -133,7 +133,7 @@ function CambioMediana(id){
             button.empty();
             $.each(data, function(index,element){
                 campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"'>");
-                button.append("<button type='submit' class='btn btn-danger btn-sm' title='Cerrar' onClick='Cancelar("+id+")' style='margin-bottom:3px;'><span class='glyphicon glyphicon-remove'></span> Cerrar</button> <button type='submit' class='btn btn-success btn-sm' title='Salvar Mediana' onClick='SalvarMediana("+id+")'><span class='glyphicon glyphicon-floppy-disk'></span> Guardar</button>")
+                button.append("<button type='submit' class='btn btn-danger btn-sm' title='Cerrar' onClick='Cancelar("+id+")' style='margin-bottom:3px;'><span class='glyphicon glyphicon-remove'></span> Cerrar</button> <button type='submit' class='btn btn-success btn-sm' title='Salvar Mediana' onClick='SalvarMediana("+id+")'><span class='glyphicon glyphicon-floppy-disk'></span> Guardar</button>");
             });
     });
 }
