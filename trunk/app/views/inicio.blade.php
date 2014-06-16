@@ -6,13 +6,58 @@
 @section ('content')
 	<center>
 		<h1>Menú Principal</h1><hr>
-		<a href="{{ route('datos.citas.index') }}" class="btn btn-primary btn-lg btn-block">Citas de Tamizaje</a> <br><br>
-        <a href="{{ route('datos.pacientes.index') }}" class="btn btn-primary btn-lg btn-block">Pacientes</a><br><br>
-		<a href="{{ route('datos.medicos.index') }}" class="btn btn-primary btn-lg btn-block">Médicos</a><br><br>
-		<a href="{{ route('datos.mediana.index') }}" class="btn btn-primary btn-lg btn-block">Mediana Marcadores</a><br><br>
-		<a href="{{ route('datos.activos.index') }}" class="btn btn-primary btn-lg btn-block">Activos</a><br><br>
-		<a href="{{ route('datos.mantenimientos.index') }}" class="btn btn-primary btn-lg btn-block">Mantenimientos</a><br><br>
-		<a href="{{ route('datos.agenda.index') }}" class="btn btn-primary btn-lg btn-block">Agenda Telefónica</a><br><br>
-		<a href="{{ route('datos.pacientesmapas.index') }}" class="btn btn-primary btn-lg btn-block">Mapa</a>
-	</center>
+	</center>		
+		<div class="row nav-row">
+			<a href="{{ route('datos.citas.index') }}">
+				<div class="col-sm-3 col-md-3 col-lg-3">
+					<span class="glyphicon glyphicon-list-alt"></span>
+					<p>Citas de Tamizaje</p>
+				</div>
+			</a>
+			<a href="{{ route('datos.pacientes.index') }}">
+				<div class="col-sm-3 col-md-3 col-lg-3">
+					<span class="glyphicon glyphicon-user"></span>
+					<p>Pacientes</p>
+				</div>
+			</a>
+			<a href="{{ route('datos.medicos.index') }}">
+				<div class="col-sm-3 col-md-3 col-lg-3">
+					<span class="glyphicon glyphicon-user"></span>
+					<p>Médicos</p>
+				</div>
+			</a>
+			<a href="{{ route('datos.mediana.index') }}">
+				<div class="col-sm-3 col-md-3 col-lg-3">
+					<span class="glyphicon glyphicon-leaf"></span>
+					<p>Mediana Marcadores</p>
+				</div>
+			</a>
+		</div>
+		<div class="row nav-row">
+			<a href="{{ route('datos.activos.index') }}">
+				<div class="col-sm-3 col-md-3 col-lg-3">
+					<span class="glyphicon glyphicon-time"></span>
+					<p>Activos</p>
+				</div>
+			</a>
+			<a href="{{ route('datos.mantenimientos.index') }}">
+				<div class="col-sm-3 col-md-3 col-lg-3">
+					<span class="glyphicon glyphicon-cog"></span>
+					<p>Mantenimientos</p>
+				</div>
+			</a>
+			<a href="{{ route('datos.agenda.index') }}">
+				<div class="col-sm-3 col-md-3 col-lg-3">
+					<span class="glyphicon glyphicon-calendar"></span>
+					<p>Agenda Telefónica</p>
+				</div>
+			</a>
+			<a href="{{ route('datos.pacientesmapas.index') }}">
+				<div class="col-sm-3 col-md-3 col-lg-3">
+					<span class="glyphicon glyphicon-globe"></span>
+					<p>Localizar</p>
+				</div>
+			</a>
+		</div>
+
 @stop

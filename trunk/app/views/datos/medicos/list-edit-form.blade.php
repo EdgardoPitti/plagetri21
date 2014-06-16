@@ -132,7 +132,7 @@
 								@foreach (Medico::all() as $medico) 
 								<tr>
 									<td>{{ $n++ }}</td>
-									<td>{{ Form::image('imgs/'.$medico->datos_medico($medico->id)[0]->foto.'', 'foto', array('style' => 'heigth:50px; width:50px;')) }}</td>
+									<td><img src="http://localhost/plagetri21/public/imgs/{{ $medico->datos_medico($medico->id)[0]->foto}}" style="height:50px;width:50px;"/></td>
 									<td>{{ $medico->primer_nombre.' '.$medico->segundo_nombre.' '.$medico->apellido_paterno.' '.$medico->apellido_materno }} </td>
 									<td>{{ $medico->extension }}</td>
 									<td>{{ $medico->telefono }}</td>

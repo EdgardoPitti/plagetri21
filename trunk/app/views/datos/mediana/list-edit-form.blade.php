@@ -20,7 +20,7 @@
 			  			<th>#</th>
 			  			<th>Marcador</th>
 			  			<th>Mediana</th>
-			  			<th style="width:90px;"></th>
+			  			<th style="width:185px;"></th>
 			  		</tr>
 			  	</thead>
 			  	<tbody>
@@ -36,7 +36,7 @@
 				  			</td>
 				  			<td>
 				  				<div id="button_{{ $marcador->id }}">
-				  					{{ Form::button('<span class="glyphicon glyphicon-pencil"></span> Editar', array('type' => 'submit', 'class' => 'btn btn-primary btn-sm', 'onClick' => 'CambioMediana('.$marcador->id.')', 'title' => 'Editar Mediana')) }}
+				  					{{ Form::button('<span class="glyphicon glyphicon-pencil"></span> Editar', array('type' => 'submit', 'class' => 'btn btn-primary btn-sm btn-block', 'onClick' => 'CambioMediana('.$marcador->id.')', 'title' => 'Editar Mediana')) }}
 				  				</div>
 				  			</td>
 				  		</tr>
