@@ -1482,6 +1482,15 @@ table th[class*="col-"] {
   display: table-cell;
   float: none;
 }
+.table > thead > tr > td.white,
+.table > tbody > tr > td.white,
+.table > tfoot > tr > td.white,
+.table > thead > tr.white > td,
+.table > tbody > tr.white > td,
+.table > tfoot > tr.white > td{
+  background-color: #fff;
+}
+
 .table > thead > tr > td.active,
 .table > tbody > tr > td.active,
 .table > tfoot > tr > td.active,

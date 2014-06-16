@@ -70,9 +70,9 @@
 		@if(!empty($datos))
 			<h3>Datos Generales del Paciente</h3>
 			<div class="overthrow" style="overflow:auto;width:100%;">
-				<table class="table table-striped">
+				<table class="table table-bordered">
 					<tr  class="info">
-						<th>Cédula</th>
+						<th style="width:100px">Cédula</th>
 						<th>Nombre Completo</th>
 						<th>Edad</th>
 						<th>Fuma</th>
@@ -84,7 +84,7 @@
 						<th>Riesgo</th>
 						<th>Casos Ant. con Trisomia</th>
 					</tr>
-					<tr align="center">
+					<tr class="white">
 						<td>{{ $datos[0]->cedula }}</td>
 						<td>{{ $datos[0]->primer_nombre.' '.$datos[0]->segundo_nombre.' '.$datos[0]->apellido_paterno.' '.$datos[0]->apellido_materno }}</td>
 						<td>{{ $datos[0]->edad }}</td>
@@ -102,7 +102,7 @@
 			<hr>
 			<h3>Datos de Contacto del Paciente</h3>
 			<div class="overthrow" style="overflow:auto;width:100%;">
-				<table class="table table-striped">
+				<table class="table table-bordered">
 					<tr class="info">
 						<th>Provincia</th>
 						<th>Distrito</th>
@@ -112,7 +112,7 @@
 						<th>E-mail</th>
 						<th>Celular</th>
 					</tr>
-					<tr>
+					<tr class="white">
 						<td>{{ $datos[0]->provincia_residencia }}</td>
 						<td>{{ $datos[0]->distrito_residencia }}</td>
 						<td>{{ $datos[0]->corregimiento_residencia }}</td>

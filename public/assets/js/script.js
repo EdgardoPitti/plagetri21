@@ -147,7 +147,7 @@ function Cancelar(id){
             button.empty();
             $.each(data, function(index,element){
                 campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"' readonly>");
-                button.append("<button type='submit' class='btn btn-primary btn-sm' title='Editar Mediana' onClick='CambioMediana("+id+")'><span class='glyphicon glyphicon-pencil'></span> Editar</button>");
+                button.append("<button type='submit' class='btn btn-primary btn-sm btn-block' title='Editar Mediana' onClick='CambioMediana("+id+")'><span class='glyphicon glyphicon-pencil'></span> Editar</button>");
             });
     });    
 }
