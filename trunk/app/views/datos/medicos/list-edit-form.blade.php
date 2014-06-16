@@ -18,7 +18,7 @@
 	  	<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      <center>
 	        {{ Form::label('foto', 'Foto de Perfil') }}<br>
-	        {{ Form::image('imgs/'.$datos['medico'][0]->foto.'', 'foto', array('style' => 'heigth:150px; width:150px;')) }} <br><br>
+	        {{ HTML::image('imgs/'.$datos['medico'][0]->foto.'', null, array('id' => 'foto', 'name' => 'foto', 'style' => 'heigth:150px; width:150px;')) }} <br><br>	        
 	        <div class="input-group image-preview">
 	            <input type="text" class="form-control image-preview-filename" placeholder="Buscar Foto" disabled="disabled">
 	            <span class="input-group-btn">
@@ -132,7 +132,7 @@
 								@foreach (Medico::all() as $medico) 
 								<tr>
 									<td>{{ $n++ }}</td>
-									<td><img src="http://localhost/plagetri21/public/imgs/{{ $medico->datos_medico($medico->id)[0]->foto}}" style="height:50px;width:50px;"/></td>
+									<td>{{ HTML::image('imgs/'.$medico->datos_medico($medico->id)[0]->foto,null ,array('style' => 'width:50px;height:50px;')); }}</td>									
 									<td>{{ $medico->primer_nombre.' '.$medico->segundo_nombre.' '.$medico->apellido_paterno.' '.$medico->apellido_materno }} </td>
 									<td>{{ $medico->extension }}</td>
 									<td>{{ $medico->telefono }}</td>

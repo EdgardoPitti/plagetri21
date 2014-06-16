@@ -17,7 +17,7 @@
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       <center>
         {{ Form::label('foto', 'Foto de Perfil') }}<br>
-        {{ Form::image('imgs/'.$datos['paciente'][0]->foto.'', 'foto', array('style' => 'heigth:150px; width:150px;')) }} <br><br>
+        {{ HTML::image('imgs/'.$datos['paciente'][0]->foto.'', null, array('id' => 'foto', 'name' => 'foto', 'style' => 'heigth:150px; width:150px;')) }} <br><br>
         <div class="input-group image-preview">
             <input type="text" class="form-control image-preview-filename" placeholder="Buscar Foto" disabled="disabled">
             <span class="input-group-btn">
