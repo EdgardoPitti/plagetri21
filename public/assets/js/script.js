@@ -111,15 +111,18 @@ function Correccion1(id, idraza, mom){
     $.get("http://localhost/plagetri21/public/correccion1", 
         { idmarcador: id, idraza: idraza }, 
         function(data){
-            var campo = $('#mom_corr1_'+id+'');
+            var campo = $('#corr_lineal_'+id+'');
+            var campo1 = $('#corr_exp_'+id+'');
             $.each(data, function(index,element) {
                 var valor = $('#valor_'+id+'').val();
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();
                 var resultado = mom/(a+(b/peso));
-                
+                var resultado1 = mom/(Math.pow(10,(a+b*peso)));
+
                 campo.val(resultado);
+                campo1.val(resultado1);
             });
     });
 }

@@ -222,8 +222,14 @@
 									</td>
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('mom_corr1_'.$marcadores->id, 'MOM Corregido Peso:') }}
-						    				{{ Form::text('mom_corr1_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom_corr1, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'readonly' => 'readonly')) }}	
+		      								{{ Form::label('corr_lineal_'.$marcadores->id, 'MOM Corregido Peso:') }}
+						    				{{ Form::text('corr_lineal_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'readonly' => 'readonly')) }}	
+						    			</div>
+									</td>
+									<td>
+										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
+		      								{{ Form::label('corr_exp_'.$marcadores->id, 'MOM Corregido Peso Exponencial:') }}
+						    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'readonly' => 'readonly')) }}	
 						    			</div>
 									</td>
 								</tr>
