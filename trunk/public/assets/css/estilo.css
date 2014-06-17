@@ -1,5 +1,5 @@
 body{
-	background-color: #fafafa;
+	background-color: #f2f2f2;
 }
 /*Mapa*/
  #map-canvas {
@@ -72,30 +72,12 @@ body{
 }
 .nav-row .col-md-3:hover {
 	color: #3276b1;
-	font-weight: bold;
+	font-weight: bold;	
     cursor: pointer;    
   	border-color: #3276b1;
- -webkit-box-shadow: 0 0 10px 1px #D4D4D4;
-box-shadow: 0 0 10px 1px #D4D4D4;
-}
-.nav-row .active .col-md-3{
-	color: #e92d00;
-	margin-top: -6px;
-	border-top: 6px solid #e92d00;
-	border-bottom: 6px solid #e92d00;
-}
-.nav-row .active .col-md-3:before{
-	content: '';
-	position: absolute;
-	border-style: solid;
-	border-width: 6px 6px 0;
-	border-color: #e92d00 transparent;
-	display: block;
-	width: 0;
-	z-index: 1;
-	margin-left: -6px;
-	top: 0;
-	left: 50%;
+	-webkit-box-shadow: 0 0 10px 1px #D4D4D4;
+	-moz-box-shadow: 0 0 10px 1px #D4D4D4;
+	box-shadow: 0 0 10px 1px #D4D4D4;
 }
 .nav-row .glyphicon {
 	padding-top: 15px;
