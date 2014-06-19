@@ -28,15 +28,16 @@ class Datos_MedianaController extends BaseController {
 
 	public function getSalvarMediana()
 	{
-		$data = Input::all();
-		$mediana = MedianaMarcador::where('id_marcador', $data['id']);
+		$id = Input::get('id');
+		$valor = Input::get('valor');
+		$mediana = MedianaMarcador::where('id_marcador', $id);
 		if(empty($mediana)){
 			$mediana = new MedianaMarcador;
-			$mediana->id_marcador = $data['id'];
+			$mediana->id_marcador = $id;
 		}
-		$mediana->mediana_marcador = $data['id'];
+		$mediana->mediana_marcador = $valor;
 		$mediana->save();
-		$mediana = MedianaMarcador::where('id_marcador', $data['id']);
+		$mediana = MedianaMarcador::where('id_marcador', $id);
 		return ($mediana->get(['mediana_marcador']));
 
 	}
