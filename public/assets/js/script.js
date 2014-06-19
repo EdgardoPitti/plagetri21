@@ -155,16 +155,17 @@ function Cancelar(id){
     });    
 }
 function SalvarMediana(id){
-    $.get("http://localhost/plagetri21/public/salvar_mediana", 
-        { id: id }, 
+    $.get("http://localhost/plagetri21/public/salvar", 
+        { id: id, valor:  $('#valor_'+id+'').val()}, 
         function(data){
             var campo = $('#mediana_'+id+'');
             var button = $('#button_'+id+'');
+            alert("ss");
             campo.empty();
             button.empty();
             $.each(data, function(index,element){
                 campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"' readonly>");
-                button.append("<button type='submit' class='btn btn-primary' onClick='CambioMediana("+id+")' title='Editar'><span class='glyphicon glyphicon-pencil'></span> Editar</button>")
+                button.append("<button type='submit' class='btn btn-primary btn-sm btn-block' title='Editar Mediana' onClick='CambioMediana("+id+")'><span class='glyphicon glyphicon-pencil'></span> Editar</button>");
             });
     });
 
