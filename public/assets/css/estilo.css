@@ -3,9 +3,15 @@ body{
 }
 /*Mapa*/
  #map-canvas {
-	height: 400px;
+ 	height: 400px;
 	width:600px;
 	border:1px solid #000;
+}
+@media(max-width: 768px){
+	#map-canvas{
+		width: 100%;
+		margin-bottom: 10px;
+	}
 }
 /*CSS DE LOS PANELES*/
 .row{
@@ -82,4 +88,10 @@ body{
 .nav-row .glyphicon {
 	padding-top: 15px;
 	font-size: 40px;
+}
+@media(max-width: 768px){
+	.menu-margen{
+		margin-top: 0px;
+		margin-bottom: 10px
+	}
 }
