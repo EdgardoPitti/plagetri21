@@ -33,7 +33,7 @@
 				</div>
 			</a>
 		</div>
-		<div class="row nav-row">
+		<div class="row nav-row menu-margen">
 			<a href="{{ route('datos.activos.index') }}">
 				<div class="col-sm-3 col-md-3 col-lg-3">
 					<img src="imgs/activo.png" style="width:43px;height:59px;padding-top:9px">

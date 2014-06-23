@@ -119,7 +119,7 @@
 
 	    @if (!empty($datos['activo']))
 	    	<div class="overthrow" style="overflow:auto;width:100%;">
-				<table class="table table-striped">
+				<table class="table table-bordered">
 					<tr class="info">
 						<th>Código</th>
 						<th>Nombre</th>
@@ -130,7 +130,7 @@
 						<th>Proveedor</th>
 						<th>Costo</th>
 					</tr>
-					<tr>
+					<tr class="white">
 						<td>{{ $datos['activo']->codigo }}</td>
 						<td>{{ $datos['activo']->nombre }}</td>
 						<td>{{ TipoActivo::where('id', $datos['activo']->id_tipo)->first()->tipo }}</td>
@@ -210,7 +210,7 @@
 									  				<td>{{ $mantenimiento->aprobado_por }}</td>
 									  				<td>{{ $mantenimiento->proximo_mant }}</td>
 									  				<td>{{ $mantenimiento->observacion }}</td>
-									  				<td>
+									  				<td align="center">
 									  					<a href="{{ route('datos.mantenimientos.edit', $mantenimiento->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>
 									  				</td>
 									  			</tr>

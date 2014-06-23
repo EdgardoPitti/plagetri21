@@ -46,8 +46,10 @@
 		      {{ Form::text('extension', null, array('placeholder' => 'Extensión', 'class' => 'form-control')) }}
 		    </div>
 		</div>
-		{{ Form::button($datos['label'].' Agenda', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-      <a href="{{ route('datos.agenda.index') }}" class="btn btn-info">Limpiar Campos</a>
+		<center>
+			{{ Form::button($datos['label'].' Agenda', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+	      <a href="{{ route('datos.agenda.index') }}" class="btn btn-info">Limpiar Campos</a>
+		</center>
 	{{ Form::close() }}
 
 	<div class="row">
@@ -86,7 +88,7 @@
 							<td>{{ $agenda->telefono }}</td>
 							<td>{{ $agenda->celular }}</td>
 							<td>{{ $agenda->extension }}</td>
-							<td><a href="{{ route('datos.agenda.edit', $agenda->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar Agenda"><span class="glyphicon glyphicon-list-alt"></span></a>                         </td>
+							<td align="center"><a href="{{ route('datos.agenda.edit', $agenda->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar Agenda"><span class="glyphicon glyphicon-list-alt"></span></a>                         </td>
 						</tr>
 					@endforeach
 					</tbody>

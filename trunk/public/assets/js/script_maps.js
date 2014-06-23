@@ -5,10 +5,10 @@ jQuery(document).ready(function($){
     $("#id_prov").change(function(){
         $.get("http://localhost/plagetri21/public/distrito", 
         { provincia: $(this).val() }, 
-        function(data){
+        function(data){            
             var campo = $('#id_dist');
             var campo1 = $('#id_correg');
-            var posdist = [];    
+            var posdist = [];
             campo.empty();
             campo1.empty();
             campo.append("<option value='0'>SELECCIONE DISTRITO</option>");
@@ -17,8 +17,7 @@ jQuery(document).ready(function($){
                 campo.append("<option value='"+ element.id_distrito +","+ element.latitud +","+ element.longitud +"'>" + element.distrito + "</option>");
                 //Se almacena en un arreglo todos los distritos de la provincia seleccionada
                 posdist[index] = [element.latitud, element.longitud, element.distrito];                
-            });         
-            
+            });       
             var icono  = new google.maps.MarkerImage('http://localhost/plagetri21/public/imgs/distrito.png');         
             setMarkers(map, posdist, icono);//Función que insertara los diferentes marcadores de los distritos de la provincia que se selecciona
         });
@@ -27,7 +26,7 @@ jQuery(document).ready(function($){
         //la posicion de la provincia seleccionada
         if(coordenada[0] == 0){
             initialize();
-        }else{                        
+        }else{                                    
             //envia a la funcion coordenadas el arreglo coordenada y el zoom para que se acerque el mapa
             coordenadas(coordenada, 9);                         
         }
@@ -75,7 +74,6 @@ jQuery(document).ready(function($){
         var myOptions = {
           center: new google.maps.LatLng(8.51516, -79.986131),            
           zoom: 7,
-          zoomControlOptions: {style: google.maps.ZoomControlStyle.SMALL},
           mapTypeId: google.maps.MapTypeId.ROADMAP,              
           mapTypeControl: true,
           mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
@@ -140,7 +138,6 @@ jQuery(document).ready(function($){
         var myOptions = {
           center: latlng,            
           zoom: zoom,          
-          zoomControlOptions: {style: google.maps.ZoomControlStyle.SMALL},
           mapTypeId: google.maps.MapTypeId.ROADMAP,              
           mapTypeControl: true,
           mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
