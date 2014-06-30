@@ -1844,14 +1844,14 @@ CREATE TABLE `medicos` (
   `id_especialidades_medicas` int(10) unsigned NOT NULL,
   `telefono` varchar(45) NOT NULL,
   `celular` varchar(45) NOT NULL,
-  `email` varchar(60) NOT NULL,
-  `foto` varchar(45) NOT NULL,
+  `email` varchar(60) NOT NULL DEFAULT '',
+  `foto` varchar(45) NOT NULL DEFAULT 'default1.png',
   `extension` varchar(45) NOT NULL,
   `id_nivel` int(10) unsigned NOT NULL,
   `id_ubicacion` int(10) unsigned NOT NULL,
   `observacion` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `plagetri21`.`medicos`
