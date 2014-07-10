@@ -23,6 +23,7 @@ Route::resource('datos/mediana', 'Datos_MedianaController');
 Route::resource('datos/agenda', 'Datos_AgendaController');
 Route::resource('datos/activos', 'Datos_ActivosController');
 Route::resource('datos/mantenimientos', 'Datos_MantenimientosController');
+Route::resource('datos/mediana', 'Datos_MedianaController');
 //Ruta para el control del mapa
 Route::resource('datos/pacientesmapas', 'MapasController');
 //Rutas para elementos dinamicos
@@ -33,5 +34,4 @@ Route::get('institucion', 'DropdownController@getInstitucion');
 Route::get('institucionprovincia', 'DropdownController@getInstitucionprovincia');
 Route::get('calculo', 'DropdownController@getMomMarcador');
 Route::get('correccion1', 'DropdownController@getCoeficiente');
-Route::get('obtener_mediana', 'Datos_MedianaController@getObtenerMediana');
-Route::get('salvar', 'Datos_MedianaController@getSalvarMediana');
+Route::get('obtenermediana', 'Datos_MedianaController@getObtenerMediana');
