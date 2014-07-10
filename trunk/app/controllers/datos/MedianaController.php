@@ -8,17 +8,14 @@ class Datos_MedianaController extends BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{
-		$mediana = new MedianaMarcador;
-		foreach (Marcador::all() as $marcador){
-			$marcadores[$marcador->id] = $mediana->obtenerMediana($marcador->id);
-		}
-		return View::make('datos/mediana/list-edit-form')->with('marcadores', $marcadores);
+	{		
+		return View::make('datos/mediana/list-edit-form');
 	}
 	public function getObtenerMediana()
 	{
-		$id = Input::get('id');
-        $mediana = MedianaMarcador::where('id_marcador',$id);
+		$id = Input::get('marcador');
+		$semana = Input::get('semana');
+        $mediana = MedianaMarcador::where('id_marcador',$id)->where('semana', $semana);
         if(empty($mediana)){
         	$mediana = new MedianaMarcador;
         	$mediana->mediana_marcador = 0;
@@ -28,17 +25,6 @@ class Datos_MedianaController extends BaseController {
 
 	public function getSalvarMediana()
 	{
-		$id = Input::get('id');
-		$valor = Input::get('valor');
-		$mediana = MedianaMarcador::where('id_marcador', $id);
-		if(empty($mediana)){
-			$mediana = new MedianaMarcador;
-			$mediana->id_marcador = $id;
-		}
-		$mediana->mediana_marcador = $valor;
-		$mediana->save();
-		$mediana = MedianaMarcador::where('id_marcador', $id);
-		return ($mediana->get(['mediana_marcador']));
 
 	}
 	/**
@@ -58,8 +44,16 @@ class Datos_MedianaController extends BaseController {
 	 */
 	public function store()
 	{
-
-		
+		$data = Input::all();
+		$mediana = MedianaMarcador::where('id_marcador', $data['marcador'])->where('semana', $data['semana'])->first();
+		if(empty($mediana)){
+			$mediana = new MedianaMarcador;
+			$mediana->id_marcador = $data['marcador'];
+			$mediana->semana = $data['semana'];
+		}
+		$mediana->mediana_marcador = $data['mediana'];
+		$mediana->save();
+		return Redirect::route('datos.mediana.index');
 	}
 
 

@@ -90,6 +90,30 @@ jQuery(document).ready(function($){
                 });
             });
         });
+        $("#semana").change(function(){
+            $.get("http://localhost/plagetri21/public/obtenermediana", 
+            { semana: $("#semana").find(':selected').val(), marcador: $("#marcador").find(':selected').val() }, 
+            function(data){
+                var campo = $('#mediana');
+                var valor = 0;
+                $.each(data, function(index,element) {
+                    valor = element.mediana_marcador;
+                });
+                campo.val(valor);
+            });
+        });
+         $("#marcador").change(function(){
+            $.get("http://localhost/plagetri21/public/obtenermediana", 
+            { marcador: $("#marcador").find(':selected').val(), semana: $("#semana").find(':selected').val() }, 
+            function(data){
+                var campo = $('#mediana');
+                var valor = 0;
+                $.each(data, function(index,element) {
+                    valor = element.mediana_marcador;
+                });
+                campo.val(valor);
+            });
+        });
 
 });    
 //Funcion pque recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
@@ -119,54 +143,10 @@ function Correccion1(id, idraza, mom){
                 var b = element.b;
                 var peso = $('#peso').val();
                 var resultado = mom/(a+(b/peso));
-                var resultado1 = mom/(Math.pow(10,(a+b*peso)));
+                var resultado1 = mom/(Math.pow(10,(a+(b*peso))));
 
                 campo.val(resultado);
                 campo1.val(resultado1);
             });
     });
-}
-function CambioMediana(id){
-    $.get("http://localhost/plagetri21/public/obtener_mediana", 
-        { id: id }, 
-        function(data){
-            var campo = $('#mediana_'+id+'');
-            var button = $('#button_'+id+'');
-            campo.empty();
-            button.empty();
-            $.each(data, function(index,element){
-                campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"'>");
-                button.append("<button type='submit' class='btn btn-danger btn-sm' title='Cerrar' onClick='Cancelar("+id+")' style='margin-bottom:3px;'><span class='glyphicon glyphicon-remove'></span> Cerrar</button> <button type='submit' class='btn btn-success btn-sm' title='Salvar Mediana' onClick='SalvarMediana("+id+")'><span class='glyphicon glyphicon-floppy-disk'></span> Guardar</button>");
-            });
-    });
-}
-function Cancelar(id){
-    $.get("http://localhost/plagetri21/public/obtener_mediana", 
-        { id: id }, 
-        function(data){
-            var campo = $('#mediana_'+id+'');
-            var button = $('#button_'+id+'');
-            campo.empty();
-            button.empty();
-            $.each(data, function(index,element){
-                campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"' readonly>");
-                button.append("<button type='submit' class='btn btn-primary btn-sm btn-block' title='Editar Mediana' onClick='CambioMediana("+id+")'><span class='glyphicon glyphicon-pencil'></span> Editar</button>");
-            });
-    });    
-}
-function SalvarMediana(id){
-    $.get("http://localhost/plagetri21/public/salvar", 
-        { id: id, valor:  $('#valor_'+id+'').val()}, 
-        function(data){
-            var campo = $('#mediana_'+id+'');
-            var button = $('#button_'+id+'');
-            alert("ss");
-            campo.empty();
-            button.empty();
-            $.each(data, function(index,element){
-                campo.append("<input class='form-control' id='valor_"+id+"' name='valor_"+id+"' type='text' value='"+element.mediana_marcador+"' readonly>");
-                button.append("<button type='submit' class='btn btn-primary btn-sm btn-block' title='Editar Mediana' onClick='CambioMediana("+id+")'><span class='glyphicon glyphicon-pencil'></span> Editar</button>");
-            });
-    });
-
 }

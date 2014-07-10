@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.6.17
+-- Server version	5.6.12-log
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,11 +18,11 @@
 -- Create schema plagetri21
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ plagetri21;
+CREATE DATABASE IF NOT EXISTS plagetri21;
 USE plagetri21;
 
 --
--- Table structure for table `plagetri21`.`activos`
+-- Definition of table `activos`
 --
 
 DROP TABLE IF EXISTS `activos`;
@@ -45,7 +45,7 @@ CREATE TABLE `activos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`activos`
+-- Dumping data for table `activos`
 --
 
 /*!40000 ALTER TABLE `activos` DISABLE KEYS */;
@@ -55,7 +55,7 @@ INSERT INTO `activos` (`id`,`codigo`,`nombre`,`descripcion`,`id_tipo`,`marca`,`i
 
 
 --
--- Table structure for table `plagetri21`.`agendas`
+-- Definition of table `agendas`
 --
 
 DROP TABLE IF EXISTS `agendas`;
@@ -74,7 +74,7 @@ CREATE TABLE `agendas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`agendas`
+-- Dumping data for table `agendas`
 --
 
 /*!40000 ALTER TABLE `agendas` DISABLE KEYS */;
@@ -85,7 +85,7 @@ INSERT INTO `agendas` (`id`,`nombre_completo`,`profesion`,`telefono`,`celular`,`
 
 
 --
--- Table structure for table `plagetri21`.`citas_medicas`
+-- Definition of table `citas_medicas`
 --
 
 DROP TABLE IF EXISTS `citas_medicas`;
@@ -111,17 +111,17 @@ CREATE TABLE `citas_medicas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`citas_medicas`
+-- Dumping data for table `citas_medicas`
 --
 
 /*!40000 ALTER TABLE `citas_medicas` DISABLE KEYS */;
 INSERT INTO `citas_medicas` (`id`,`id_paciente`,`id_medico`,`peso`,`fecha_ultrasonido`,`fur`,`fpp`,`fecha`,`edad_gestacional`,`created_at`,`updated_at`,`observaciones`,`estatura`,`id_institucion`,`hijos_embarazo`) VALUES 
- (1,1,3,45,'2014-06-04','2014-06-04','2014-06-04','2014-06-04',22,'2014-06-04 18:46:56','2014-06-10 19:46:16','Observaciones',1.65,406011303,2);
+ (1,1,3,45,'2014-06-04','2014-06-04','2014-06-04','2014-06-04',22,'2014-06-04 18:46:56','2014-06-17 22:00:19','Observaciones',1.65,406011303,2);
 /*!40000 ALTER TABLE `citas_medicas` ENABLE KEYS */;
 
 
 --
--- Table structure for table `plagetri21`.`coeficientes`
+-- Definition of table `coeficientes`
 --
 
 DROP TABLE IF EXISTS `coeficientes`;
@@ -135,7 +135,7 @@ CREATE TABLE `coeficientes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`coeficientes`
+-- Dumping data for table `coeficientes`
 --
 
 /*!40000 ALTER TABLE `coeficientes` DISABLE KEYS */;
@@ -156,7 +156,7 @@ INSERT INTO `coeficientes` (`id`,`id_raza`,`id_marcador`,`a`,`b`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`corregimientos`
+-- Definition of table `corregimientos`
 --
 
 DROP TABLE IF EXISTS `corregimientos`;
@@ -175,7 +175,7 @@ CREATE TABLE `corregimientos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`corregimientos`
+-- Dumping data for table `corregimientos`
 --
 
 /*!40000 ALTER TABLE `corregimientos` DISABLE KEYS */;
@@ -199,8 +199,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (1,2,17,'LA GLORIA','8.98333','-82.23333'),
  (1,3,18,'CHIRIQUI GRANDE','8.95000','-82.11667'),
  (1,3,19,'BAJO CEDRO','9.10012','-82.28309'),
- (1,3,20,'MIRAMAR','9.00000','-82.25000');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (1,3,20,'MIRAMAR','9.00000','-82.25000'),
  (1,3,21,'PUNTA PEÑA','8.90042','-82.18471'),
  (1,3,22,'PUNTA ROBALO','9.03333','-82.25000'),
  (1,3,23,'RAMBALA','8.94663','-82.17586'),
@@ -221,8 +220,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (2,6,38,'BOQUERON','8.50000','-82.56667'),
  (2,6,39,'BÁGALA','8.46667','-82.53333'),
  (2,6,40,'CORDILLERA','8.50624','-82.57121'),
- (2,6,41,'GUABAL','8.58333','-82.53333');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (2,6,41,'GUABAL','8.58333','-82.53333'),
  (2,6,42,'GUAYABAL','8.33333','-82.03333'),
  (2,6,43,'PARAISO','8.50624','-82.57121'),
  (2,6,44,'PEDREGAL','8.37791','-82.42612'),
@@ -242,8 +240,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (2,8,58,'SAN ANDRÉS','8.60000','-82.73333'),
  (2,8,59,'SANTA MARTA','8.50190','-82.69781'),
  (2,8,60,'SANTA ROSA','8.60000','-82.68333'),
- (2,8,61,'SANTO DOMINGO','8.48120','-82.74025');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (2,8,61,'SANTO DOMINGO','8.48120','-82.74025'),
  (2,8,62,'SORTOVÁ','8.50494','-82.61545'),
  (2,8,63,'VOLCÁN','8.68867','-82.62658'),
  (2,8,64,'EL BONGO','8.57290','-82.61754'),
@@ -264,8 +261,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (2,10,79,'POTRERILLOS','8.67512','-82.48981'),
  (2,10,80,'POTRERILLOS ABAJO','8.64920','-82.48573'),
  (2,10,81,'ROVIRA','8.64507','-82.50080'),
- (2,10,82,'TINAJAS','8.55727','-82.46595');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (2,10,82,'TINAJAS','8.55727','-82.46595'),
  (2,10,83,'LOS ALGARROBOS','8.51311','-82.42520'),
  (2,11,84,'GUALACA','8.53416','-82.29781'),
  (2,11,85,'HORNITO','8.64852','-82.17344'),
@@ -285,8 +281,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (2,13,99,'SANTA CRUZ','8.63624','-82.77588'),
  (2,13,100,'DOMINICAL','8.67411','-82.80180'),
  (2,13,101,'SANTA CLARA','8.83791','-82.77494'),
- (2,14,102,'LAS LAJAS','8.20793','-81.86871');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (2,14,102,'LAS LAJAS','8.20793','-81.86871'),
  (2,14,103,'JUAY','8.28271','-81.95685'),
  (2,14,104,'SAN FELIX','8.25859','-81.91146'),
  (2,14,105,'LAJAS ADENTRO','8.24013','-81.93506'),
@@ -305,8 +300,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (2,16,118,'EL CRISTO','8.33370','-81.59967'),
  (2,16,119,'JUSTO FIDEL PALACIOS','8.29547','-81.58871'),
  (2,16,120,'VELADERO','8.23330','-81.65283'),
- (3,17,121,'AGUADULCE','8.22021','-80.54581');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (3,17,121,'AGUADULCE','8.22021','-80.54581'),
  (3,17,122,'EL CRISTO','8.43071','-80.68148'),
  (3,17,123,'EL ROBLE','8.16612','-80.62625'),
  (3,17,124,'POCRÍ','8.25950','-80.56156'),
@@ -326,8 +320,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (3,19,138,'EL POTRERO','8.57387','-80.32178'),
  (3,19,139,'LLANO GRANDE','8.63379','-80.44020'),
  (3,19,140,'PIEDRAS GORDAS','8.63025','-80.51860'),
- (3,19,141,'LAS LOMAS','8.49999','-80.38334');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (3,19,141,'LAS LOMAS','8.49999','-80.38334'),
  (3,20,142,'NATÁ','8.33602','-80.52111'),
  (3,20,143,'CAPELLANIA','8.30095','-80.55448'),
  (3,20,144,'EL CAÑO','8.40962','-80.52652'),
@@ -347,8 +340,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (3,22,158,'PAJONAL','8.59442','-80.25511'),
  (3,22,159,'RIO GRANDE','8.42737','-80.48564'),
  (3,22,160,'RIO INDIO','9.04038','-80.18729'),
- (3,22,161,'TOABRE','8.65023','-80.32239');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (3,22,161,'TOABRE','8.65023','-80.32239'),
  (3,22,162,'TULU','8.76649','-80.40000'),
  (3,22,163,'EL VALLE DE SAN MIGUEL','',''),
  (4,23,164,'BARRIO NORTE','',''),
@@ -376,8 +368,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (4,25,186,'COCLÉ DEL NORTE','',''),
  (4,25,187,'EL GUASIMO','',''),
  (4,25,188,'GOBEA','',''),
- (4,25,189,'RÍO ÍNDIO','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (4,25,189,'RÍO ÍNDIO','',''),
  (4,25,190,'SAN JOSÉ DEL GENERAL','',''),
  (4,26,191,'PORTOBÉLO','',''),
  (4,26,192,'CACIQUE','',''),
@@ -406,8 +397,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (5,28,215,'TUCUTÍ','',''),
  (5,28,216,'AGUA FRÍA','',''),
  (5,28,217,'CUCUNATI','',''),
- (5,28,218,'RÍO CONGO ARRIBA','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (5,28,218,'RÍO CONGO ARRIBA','',''),
  (5,28,219,'SANTA FÉ','',''),
  (5,29,220,'EL REAL DE SANTA MARÍA','',''),
  (5,29,221,'BOCA DE CUPÉ','',''),
@@ -436,8 +426,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (6,32,243,'LA ARENA','',''),
  (6,32,244,'LA PITALOZA','',''),
  (6,32,245,'LOS CERRITOS','',''),
- (6,32,246,'LOS CERROS DE PAJA','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (6,32,246,'LOS CERROS DE PAJA','',''),
  (6,32,247,'LAS LLANAS','',''),
  (6,33,248,'OCÚ','',''),
  (6,33,249,'CERRO LARGO','',''),
@@ -466,8 +455,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (6,36,272,'CHUPAMPA','',''),
  (6,36,273,'EL RINCÓN','',''),
  (6,36,274,'EL LIMÓN','',''),
- (6,36,275,'LOS CANELOS','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (6,36,275,'LOS CANELOS','',''),
  (7,37,276,'GUARARÉ','',''),
  (7,37,277,'EL ESPINAL','',''),
  (7,37,278,'EL MACANO','',''),
@@ -496,8 +484,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (7,38,301,'PALMIRA','',''),
  (7,38,302,'PEÑA BLANCA','',''),
  (7,38,303,'RIO HONDO','',''),
- (7,38,304,'SAN JOSÉ','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (7,38,304,'SAN JOSÉ','',''),
  (7,38,305,'SAN MIGUEL','',''),
  (7,38,306,'SANTO DOMINGO','',''),
  (7,38,307,'EL SESTEADERO','',''),
@@ -525,8 +512,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (7,40,329,'COROZAL','',''),
  (7,40,330,'CHUPA','',''),
  (7,40,331,'EL CEDRO','',''),
- (7,40,332,'ESPINO AMARILLO','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (7,40,332,'ESPINO AMARILLO','',''),
  (7,40,333,'LA MESA','',''),
  (7,40,334,'LLANO DE PIEDRAS','',''),
  (7,40,335,'LAS PALMAS','',''),
@@ -555,8 +541,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (8,44,358,'ARRAIJÁN','',''),
  (8,44,359,'BURUNGA','',''),
  (8,44,360,'CERRO SILVESTRE','',''),
- (8,44,361,'JUAN DEMÓSTENES AROSEMENA','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (8,44,361,'JUAN DEMÓSTENES AROSEMENA','',''),
  (8,44,362,'NUEVO EMPERADOR','',''),
  (8,44,363,'SANTA CLARA','',''),
  (8,44,364,'VERACRUZ','',''),
@@ -585,8 +570,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (8,47,387,'BUENOS AIRES','',''),
  (8,47,388,'CABUYA','',''),
  (8,47,389,'CHICA','',''),
- (8,47,390,'EL LIBANO','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (8,47,390,'EL LIBANO','',''),
  (8,47,391,'LAS LAJAS','',''),
  (8,47,392,'NUEVA GORGONA','',''),
  (8,47,393,'PUNTA CHAME','',''),
@@ -615,8 +599,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (8,50,416,'GUADALUPE','',''),
  (8,50,417,'HERRERA','',''),
  (8,50,418,'HURTADO','',''),
- (8,50,419,'ITURRALDE','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (8,50,419,'ITURRALDE','',''),
  (8,50,420,'LA REPRESA','',''),
  (8,50,421,'LOS DIAZ','',''),
  (8,50,422,'MENDOZA','',''),
@@ -644,8 +627,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (8,51,444,'PUEBLO NUEVO','',''),
  (8,51,445,'RÍO ABAJO','',''),
  (8,51,446,'SAN FELIPE','',''),
- (8,51,447,'SAN FRANCISCO','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (8,51,447,'SAN FRANCISCO','',''),
  (8,51,448,'SAN MARTÍN','',''),
  (8,51,449,'SANTA ANA','',''),
  (8,51,450,'TOCUMEN','',''),
@@ -672,8 +654,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (8,54,471,'OTOQUE ORIENTE','',''),
  (9,55,472,'ATALAYA','',''),
  (9,55,473,'EL BARRITO','',''),
- (9,55,474,'LA MONTAÑUELA','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (9,55,474,'LA MONTAÑUELA','',''),
  (9,55,475,'SAN ANTONIO','',''),
  (9,55,476,'LA CARRILLO','',''),
  (9,56,477,'CALOBRE','',''),
@@ -702,8 +683,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (9,58,500,'LLANO GRANDE','',''),
  (9,58,501,'SAN BARTOLO','',''),
  (9,58,502,'LOS MILAGROS','',''),
- (9,58,503,'EL HIGO','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (9,58,503,'EL HIGO','',''),
  (9,59,504,'LAS PALMAS','',''),
  (9,59,505,'CERRO DE CASA','',''),
  (9,59,506,'COROZAL','',''),
@@ -732,8 +712,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (9,61,529,'UNIÓN DEL NORTE','',''),
  (9,62,530,'RÍO DE JESÚS','',''),
  (9,62,531,'LAS HUACAS','',''),
- (9,62,532,'LOS CASTILLOS','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (9,62,532,'LOS CASTILLOS','',''),
  (9,62,533,'UTIRA','',''),
  (9,62,534,'CATORCE DE NOVIEMBRE','',''),
  (9,63,535,'SAN FRANCISCO','',''),
@@ -761,8 +740,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (9,65,557,'CARLOS SANTANA ÁVILA','',''),
  (9,65,558,'EDWIN FÁBREGA','',''),
  (9,65,559,'SAN MARTÍN DE PORRES','',''),
- (9,65,560,'URRACÁ','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (9,65,560,'URRACÁ','',''),
  (9,65,561,'LA SOLEDAD','',''),
  (9,65,562,'RINCÓN LARGO','',''),
  (9,65,563,'EL LLANITO','',''),
@@ -790,8 +768,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (12,70,585,'BURÍ','',''),
  (12,70,586,'KANKINTÚ','',''),
  (12,70,587,'GUARIVIARA','',''),
- (12,70,588,'GUORONÍ','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (12,70,588,'GUORONÍ','',''),
  (12,70,589,'MUNUNÍ','',''),
  (12,70,590,'PIEDRA ROJA','',''),
  (12,70,591,'TUWAI','',''),
@@ -819,8 +796,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
  (12,73,613,'HATO JULÍ','',''),
  (12,73,614,'QUEBRADA DE LORO','',''),
  (12,73,615,'SALTO DUPÍ','',''),
- (12,74,616,'CERRO IGLESIAS','','');
-INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`corregimiento`,`latitud`,`longitud`) VALUES 
+ (12,74,616,'CERRO IGLESIAS','',''),
  (12,74,617,'LAJERO','',''),
  (12,74,618,'HATO CHAMÍ','',''),
  (12,74,619,'SUSAMA','',''),
@@ -850,7 +826,7 @@ INSERT INTO `corregimientos` (`id_provincia`,`id_distrito`,`id_corregimiento`,`c
 
 
 --
--- Table structure for table `plagetri21`.`distritos`
+-- Definition of table `distritos`
 --
 
 DROP TABLE IF EXISTS `distritos`;
@@ -866,7 +842,7 @@ CREATE TABLE `distritos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`distritos`
+-- Dumping data for table `distritos`
 --
 
 /*!40000 ALTER TABLE `distritos` DISABLE KEYS */;
@@ -893,8 +869,7 @@ INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`,`latitud`,`long
  (3,20,'NATÁ','8.33956','-80.5316'),
  (3,21,'OLÁ','8.41638','-80.67077'),
  (3,22,'PENONOMÉ','8.50165','-80.37039'),
- (4,23,'COLÓN','9.35998','-79.92634');
-INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`,`latitud`,`longitud`) VALUES 
+ (4,23,'COLÓN','9.35998','-79.92634'),
  (4,24,'CHAGRES','9.12755','-80.09925'),
  (4,25,'DONOSO','9.02364','-80.47087'),
  (4,26,'PORTOBELO','9.53375','-79.66577'),
@@ -917,8 +892,7 @@ INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`,`latitud`,`long
  (7,43,'TONOSÍ','7.39434','-80.43528'),
  (8,44,'ARRAIJÁN','8.94303','-79.64525'),
  (8,45,'BALBOA','8.95753','-79.56030'),
- (8,46,'CAPIRA','8.75534','-79.85095');
-INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`,`latitud`,`longitud`) VALUES 
+ (8,46,'CAPIRA','8.75534','-79.85095'),
  (8,47,'CHAME','8.60085','-79.89700'),
  (8,48,'CHEPO','9.16472','-79.09499'),
  (8,49,'CHIMAN','8.72277','-78.62523'),
@@ -941,8 +915,7 @@ INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`,`latitud`,`long
  (9,66,'SONÁ','8.00677','-81.31571'),
  (10,67,'KUNA YALA','9.22338','-78.44965'),
  (11,68,'CÉMACO','8.44793','-77.61331'),
- (11,69,'SAMBÚ','7.87427','-78.19284');
-INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`,`latitud`,`longitud`) VALUES 
+ (11,69,'SAMBÚ','7.87427','-78.19284'),
  (12,70,'KANKINTÚ','8.84583','-81.81474'),
  (12,71,'KUSAPIN','7.90573','-78.10907'),
  (12,72,'BESIKÓ','8.55138','-82.04375'),
@@ -954,7 +927,7 @@ INSERT INTO `distritos` (`id_provincia`,`id_distrito`,`distrito`,`latitud`,`long
 
 
 --
--- Table structure for table `plagetri21`.`especialidades_medicas`
+-- Definition of table `especialidades_medicas`
 --
 
 DROP TABLE IF EXISTS `especialidades_medicas`;
@@ -965,7 +938,7 @@ CREATE TABLE `especialidades_medicas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`especialidades_medicas`
+-- Dumping data for table `especialidades_medicas`
 --
 
 /*!40000 ALTER TABLE `especialidades_medicas` DISABLE KEYS */;
@@ -999,8 +972,7 @@ INSERT INTO `especialidades_medicas` (`id_especialidades_medicas`,`descripcion`)
  (27,'HEMATOLOGO INFANTIL'),
  (28,'HEMOTERAPIA E INMUNOHEMATOLOGÍA'),
  (29,'INFECTOLOGÍA'),
- (30,'INFECTOLOGO INFANTIL');
-INSERT INTO `especialidades_medicas` (`id_especialidades_medicas`,`descripcion`) VALUES 
+ (30,'INFECTOLOGO INFANTIL'),
  (31,'MEDICINA DEL DEPORTE'),
  (32,'MEDICINA DEL TRABAJO'),
  (33,'MEDICINA GENERAL/MEDICINA DE FAMILIA'),
@@ -1036,7 +1008,7 @@ INSERT INTO `especialidades_medicas` (`id_especialidades_medicas`,`descripcion`)
 
 
 --
--- Table structure for table `plagetri21`.`estados_civiles`
+-- Definition of table `estados_civiles`
 --
 
 DROP TABLE IF EXISTS `estados_civiles`;
@@ -1047,7 +1019,7 @@ CREATE TABLE `estados_civiles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`estados_civiles`
+-- Dumping data for table `estados_civiles`
 --
 
 /*!40000 ALTER TABLE `estados_civiles` DISABLE KEYS */;
@@ -1061,7 +1033,7 @@ INSERT INTO `estados_civiles` (`id_estado_civil`,`estado_civil`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`etnias`
+-- Definition of table `etnias`
 --
 
 DROP TABLE IF EXISTS `etnias`;
@@ -1072,7 +1044,7 @@ CREATE TABLE `etnias` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`etnias`
+-- Dumping data for table `etnias`
 --
 
 /*!40000 ALTER TABLE `etnias` DISABLE KEYS */;
@@ -1090,7 +1062,7 @@ INSERT INTO `etnias` (`id_etnia`,`etnia`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`instituciones`
+-- Definition of table `instituciones`
 --
 
 DROP TABLE IF EXISTS `instituciones`;
@@ -1106,7 +1078,7 @@ CREATE TABLE `instituciones` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1102021403 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`instituciones`
+-- Dumping data for table `instituciones`
 --
 
 /*!40000 ALTER TABLE `instituciones` DISABLE KEYS */;
@@ -1125,8 +1097,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (102010803,1,2,6,9,'FINCA 63','C. DE S. FINCA 63 / ANTONIO PRECIADO'),
  (102011201,1,2,6,11,'CHARAGRE','S. C. DE S. CHARAGRE'),
  (102011601,1,2,6,22,'CHANGUINOLA','OFICINA REGIONAL DE BOCAS DEL TORO'),
- (102012501,1,2,6,24,'CHANGUINOLA','HOSPITAL DE CHANGUINOLA');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (102012501,1,2,6,24,'CHANGUINOLA','HOSPITAL DE CHANGUINOLA'),
  (102021201,1,2,7,11,'OJO DE AGUA','S. C. DE S. OJO DE AGUA'),
  (102021401,1,2,7,12,'NUEVO PARAISO','P. DE S. DE NUEVO PARAISO'),
  (102022501,1,2,7,24,'ALMIRANTE','HOSPITAL DE ALMIRANTE'),
@@ -1143,8 +1114,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (102041408,1,2,9,12,'SAN SAN','P. DE S. SAN SAN'),
  (102050801,1,2,10,9,'VALLE DEL RISCO','C. DE S. VALLE RISCO'),
  (102060801,1,2,11,9,'EL SILENCIO','C. DE S. SILENCIO'),
- (102060802,1,2,11,23,'FINCA 04','C. DE S. FINCA 04');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (102060802,1,2,11,23,'FINCA 04','C. DE S. FINCA 04'),
  (102070801,1,2,12,9,'LA MESA','C. DE S. LA MESA'),
  (102071401,1,2,12,12,'BARRANCO ADENTRO','P. DE S. DE BARRANCO ADENTRO'),
  (102091201,1,2,17,11,'LA GLORIA','S. C. DE SALUD LA GLORIA'),
@@ -1159,8 +1129,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (103052501,1,3,23,24,'RAMBALA (P)','HOSPITAL DE CHIRIQUI GRANDE'),
  (201010601,3,17,121,19,'CABECERA','POLICLÍNICA MANUEL DE ROJAS SUCRE'),
  (201011101,3,17,121,13,'AGUADULCE','CENTRO DE PROMOCIÓN AGUADULCE'),
- (201012501,3,17,121,24,'CABECERA','HOSPITAL RAFAEL ESTEVEZ');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (201012501,3,17,121,24,'CABECERA','HOSPITAL RAFAEL ESTEVEZ'),
  (201020801,3,17,122,24,'EL CRISTO','C. DE S. EL CRISTO'),
  (201021201,3,17,122,11,'EL CRISTO','S. C. DE S. EL HATO 1/'),
  (201030801,3,17,123,24,'EL JAGÜITO','C. DE S. EL JAGÜITO'),
@@ -1176,8 +1145,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (202050901,3,18,130,10,'EL VALLE','C.S.M.I DEL VALLE'),
  (202061401,3,18,131,12,'JUAN DÍAZ','P. DE S. JUAN DÍAZ'),
  (202070801,3,18,132,24,'RÍO HATO','C. DE S.  RÍO HATO'),
- (202071401,3,18,132,12,'LAS MATAS','P. DE S. LAS MATAS');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (202071401,3,18,132,12,'LAS MATAS','P. DE S. LAS MATAS'),
  (202081401,3,18,133,12,'ALTOS DE LA ESTANCIA','P. DE S. ALTOS DE LA ESTANCIA'),
  (202081402,3,18,133,12,'SAN JUAN DE DIOS','P. DE S. SAN JUAN DE DIOS'),
  (202090801,3,18,134,24,'SANTA RITA','C. DE S.  SANTA RITA'),
@@ -1192,8 +1160,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (203021403,3,19,137,12,'SANTA MARTA','P. DE S. SANTA MARTA'),
  (203031201,3,19,138,11,'EL POTRERO','S. C. DE S. EL POTRERO'),
  (203031401,3,19,138,12,'PIEDRAS AMARILLAS','P. DE S. PIEDRAS AMARILLAS'),
- (203041401,3,19,139,12,'EMBARCADERO DEL CASCAJAL','P. DE S. EMBARCADERO DEL CASCAJAL');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (203041401,3,19,139,12,'EMBARCADERO DEL CASCAJAL','P. DE S. EMBARCADERO DEL CASCAJAL'),
  (203041402,3,19,139,12,'ARENAL GRANDE','P. DE S. ARENAL GRANDE'),
  (203041403,3,19,139,12,'CUTEVILLA','P. DE S. CUTEVILLA'),
  (203041404,3,19,139,12,'MOLEJÓN','P. DE S. MOLEJÓN'),
@@ -1208,8 +1175,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (204011101,3,20,142,13,'NATÁ','C. DE PROMOC. OFELINA CHIARI DE NATÁ'),
  (204021201,3,20,143,11,'CAPELLANÍA','S. C. DE S. CAPELLANÍA'),
  (204021401,3,20,143,12,'VILLAREAL','P. DE S. VILLARREAL'),
- (204031201,3,20,144,11,'CHURUBÉ ABAJO','S. C. DE S. CHURUBÉ');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (204031201,3,20,144,11,'CHURUBÉ ABAJO','S. C. DE S. CHURUBÉ'),
  (204031202,3,20,144,11,'EL CAÑO','S. C. DE S. EL CAÑO'),
  (204041401,3,20,145,12,'GUZMÁN','P. DE S. GUZMÁN'),
  (204041402,3,20,145,12,'SAPILLO ARRIBA','P. DE S. SAPILLO'),
@@ -1224,8 +1190,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (205041401,3,21,151,12,'BARRANCO COLORADO','P. DE S. BARRANCO COLORADO 1/'),
  (205051201,3,21,152,11,'NUESTRO AMO','S. C. DE S. NUESTRO AMO'),
  (206010401,3,22,153,24,'PENONOMÉ','HISPITAL AQUILINO TEJEIRA'),
- (206010601,3,22,153,19,'PENONOMÉ','POLICLÍNICA MANUEL P. OCAÑA');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (206010601,3,22,153,19,'PENONOMÉ','POLICLÍNICA MANUEL P. OCAÑA'),
  (206010801,3,22,153,24,'PENONOMÉ','C. DE S. PENONOMÉ'),
  (206011101,3,22,153,13,'PENONOMÉ','CENTRO DE PROMOCIÓN PENONOMÉ'),
  (206011601,3,22,153,22,'PENONOMÉ','OFICINA REGIONAL DE COCLÉ'),
@@ -1239,8 +1204,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (206081402,3,22,160,12,'EL JOBO ARRIBA','P. DE S. EL JOBO ARRIBA'),
  (206081403,3,22,160,12,'LAS PALMAS','P. DE S. LAS PALMAS 1/'),
  (206081404,3,22,160,12,'SAN CRISTÓBAL','P. DE S. SAN CRISTÓBAL'),
- (206081405,3,22,160,12,'U CENTRO (P)','P. DE S. U CENTRO');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (206081405,3,22,160,12,'U CENTRO (P)','P. DE S. U CENTRO'),
  (206081406,3,22,160,12,'LAS MARÍAS','P. DE S. LAS MARÍAS'),
  (206090801,3,22,161,24,'TOABRÉ','C. DE S. TOABRÉ'),
  (206091401,3,22,161,12,'EL GUAYABO','P. DE S. EL GUAYABO'),
@@ -1255,8 +1219,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (301010803,4,23,165,9,'BARRIO SUR','C. DE S. DE ATENCION INTEGRAL DEL ADOLESCENTE'),
  (301020401,4,23,165,24,'BARRIO SUR','HOSPITAL MANUEL AMADOR GUERRERO'),
  (301021601,4,23,165,22,'BARRIO SUR','OFICINA REGIONAL DE COLON'),
- (301030801,4,23,166,9,'BUENA VISTA','C. DE S. BUENA VISTA (DR. HENRY SIMONS)');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (301030801,4,23,166,9,'BUENA VISTA','C. DE S. BUENA VISTA (DR. HENRY SIMONS)'),
  (301031201,4,23,166,11,'EL GIRAL','S. C. DE S. GIRAL'),
  (301031202,4,23,166,11,'QUEBRADA BONITA','S. C. DE S. QDA. BONITA'),
  (301040801,4,23,167,9,'CATIVA','C. DE S. CATIVA 1/'),
@@ -1270,8 +1233,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (301070801,4,23,175,9,'ESCOBAL (P)','C. DE S. ESCOBAL (SR. CIRILO ESCOBAR)'),
  (301071403,4,23,175,12,'QUEBRAON','P. DE S.  QUEBRAON'),
  (301081201,4,23,171,11,'EL LIMON (P)','S. C. DE S. EK LIMON'),
- (301101401,4,23,173,12,'VILLA ALONDRA','P. DE S.  VILLA ALONDRA');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (301101401,4,23,173,12,'VILLA ALONDRA','P. DE S.  VILLA ALONDRA'),
  (301110601,4,23,169,19,'SABANITAS','POLICLINICA SABANITAS'),
  (301120801,4,23,170,9,'SARDINILLA (P)','C. DE S. JUVENTINA MONTENEGRO SARDINILLA'),
  (301121401,4,23,170,12,'SALAMANQUITA','P. DE S. SALAMANQUITA'),
@@ -1285,8 +1247,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (302021402,4,24,179,12,'LA TAGUA','P. DE S. LA TAGUA'),
  (302031401,4,24,180,12,'EL GUABO','P. DE S. EL GUABO'),
  (302031403,4,24,180,12,'STA. FE ARRIBA','P. DE S.  SANTA FE DEL GUABO'),
- (302041401,4,24,181,12,'LA ENCANTADA','P. DE S. LA ENCANTADA');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (302041401,4,24,181,12,'LA ENCANTADA','P. DE S. LA ENCANTADA'),
  (302041402,4,24,181,12,'SANTA ROSA','P. DE S. STA. ROSA DE RIO INDIO'),
  (302041403,4,24,181,12,'QUEBRADA BONITA','P. DE S. QUEBRADA BONITA'),
  (302041404,4,24,181,12,'LAS CRUCES','P. DE S.  LAS CRUCES'),
@@ -1301,8 +1262,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (303020801,4,25,186,9,'BELEN','C. DE S. BELEN'),
  (303021401,4,25,186,12,'COCLE DEL NORTE','P. DE S. COCLE DEL NORTE'),
  (303021402,4,25,186,12,'SABANITA VERDE','P. DE S. SABANITA VERDE'),
- (303031401,4,25,187,12,'CERRO MIGUEL','P. DE S. CERRO MIGUEL 1/');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (303031401,4,25,187,12,'CERRO MIGUEL','P. DE S. CERRO MIGUEL 1/'),
  (303031402,4,25,187,12,'BOCA DEL CONGAL','P. DE S. BOCA DEL CONGAL'),
  (303031403,4,25,187,12,'SANTA MARIA (P)','P. DE S. STA. MARIA'),
  (303031404,4,25,187,12,'EL GUASIMO','P. DE S. VILLA DEL CARMEN'),
@@ -1317,8 +1277,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (304021401,4,26,192,12,'CACIQUE','P. DE S. CACIQUE'),
  (304031401,4,26,193,12,'GARROTE O PTO. LINDO','P. DE S. PUERTO LINDO'),
  (304040120,4,26,192,12,'JOSE DEL MAR','P. DE S. JOSE DEL MAR'),
- (304041402,4,26,194,12,'LA GUAIRA','P. DE S. LA GUAIRA 1/');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (304041402,4,26,194,12,'LA GUAIRA','P. DE S. LA GUAIRA 1/'),
  (304041403,4,26,194,12,'SAN ANTONIO (P)','P. DE S. SAN ANTONIO'),
  (304051201,4,26,191,11,'MARIA CHIQUITA','S. C. DE S. MARIA CHIQUITA'),
  (305011401,4,27,196,12,'PALENQUE CABECERA','P. DE S. PALENQUE'),
@@ -1334,8 +1293,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (401031401,2,4,26,12,'LA PITA','P. DE S. LA PITA'),
  (401041201,2,4,27,11,'GUARUMAL','S. C. DE S. GUARUMAL'),
  (401051401,2,4,28,12,'PALO GRANDE','P. DE S. PALO GRANDE 1/'),
- (401061201,2,4,29,11,'QUEREVALO','S. C. DE S. QUEREVALO');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (401061201,2,4,29,11,'QUEREVALO','S. C. DE S. QUEREVALO'),
  (401061401,2,4,29,12,'ORILLAS DEL RIO','P. DE S. ORILLA DEL RIO'),
  (401071401,2,4,30,12,'SANTO TOMAS','P. DE S. SANTO TOMAS'),
  (401081401,2,4,31,12,'CANTA GALLO','P. DE S. CANTA GALLO'),
@@ -1351,8 +1309,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (402051001,2,5,37,21,'FINCA BLANCO','CAPPS DE BLANCO'),
  (402051002,2,5,37,21,'FINCA BALSA','CAPPS DE BALSA 1/'),
  (402051003,2,5,37,21,'PROYECTO CAOBA','CAPPS DE CAOBA'),
- (402051004,2,5,37,21,'FINCA LECHOZA','CAPPS DE LECHOZA 1/');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (402051004,2,5,37,21,'FINCA LECHOZA','CAPPS DE LECHOZA 1/'),
  (402051005,2,5,37,21,'FINCA MALAQUETO','CAPPS DE MALAQUETO'),
  (402051006,2,5,37,21,'FINCA ZAPATERO','CAPPS DE ZAPATERO'),
  (402051007,2,5,37,21,'FINCA CORREDOR','CAPPS DE CORREDOR'),
@@ -1368,8 +1325,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (404010801,2,7,46,9,'BAJO BOQUETE','C. DE S. DE BOQUETE'),
  (404020801,2,7,47,9,'CALDERA','C. DE S. DE CALDERA'),
  (404030801,2,7,48,9,'PALMIRA CENTRO','C. DE S. PALMIRA'),
- (405020801,2,8,53,9,'ASERRIO DE GARICHE','C. DE S. ASERRIO DE GARICHE');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (405020801,2,8,53,9,'ASERRIO DE GARICHE','C. DE S. ASERRIO DE GARICHE'),
  (405021401,2,8,53,12,'SAN PEDRO','P. DE S. SAN PEDRO 1/'),
  (405031201,2,8,54,11,'MATA DE BUGABA','S. C. DE S. MATA DE BUGABA'),
  (405040801,2,8,55,9,'CERRO PUNTA','C. DE S. CERRO PUNTA'),
@@ -1385,8 +1341,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (405111201,2,8,60,11,'SANTA ROSA','S. C. DE S. SANTA ROSA'),
  (405121001,2,8,63,20,'VOLCAN','ULAPS DE VOLCAN'),
  (405131201,2,8,64,11,'EL BONGO','S. C. DE S. BONGO ARRIBA'),
- (406010801,2,9,66,9,'BARRIO BOLIVAR','C. DE S. BOLIVAR (SECTOR 2)');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (406010801,2,9,66,9,'BARRIO BOLIVAR','C. DE S. BOLIVAR (SECTOR 2)'),
  (406010802,2,9,66,9,'BARRIO SAN CRISTOBAL','C. DE S. CRISTOBAL (JOSE DIEZ SECTOR 9)'),
  (406010803,2,9,66,9,'BARRIO SAN MATEO','C. DE S. SAN MATEO (SECTOR 4)'),
  (406011001,2,9,66,20,'NVO. VEDADO','ULAPS NUEVO VEDADO'),
@@ -1399,8 +1354,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (406012302,2,9,66,24,'CABECERA','CLINICA DEL COLEGIO FRANCISCO MORAZAN'),
  (406012303,2,9,66,24,'CABECERA','CLINICA DEL COLEGIO INSTITUTO DAVID'),
  (406012304,2,9,66,24,'CABECERA','CLINICA DEL I.P.T ARNULFO ARIAS'),
- (406031401,2,6,42,12,'GUAYABAL','P. DE S. DE GUAYABAL 1/');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (406031401,2,6,42,12,'GUAYABAL','P. DE S. DE GUAYABAL 1/'),
  (406040801,2,9,69,9,'CHIRIQUI','C. DE S. CHIRIQUI (SECTOR 10)'),
  (406051401,2,9,70,12,'GUACA','P. DE S. DE GUACA'),
  (406060801,2,9,71,9,'LAS LOMAS','C. DE S. LAS LOMAS (SECTOR 5)'),
@@ -1415,8 +1369,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (407011001,2,10,76,20,'DOLEGA','ULAPS DE DOLEGA'),
  (407011401,2,10,76,12,'LAS CAÑAS','P. DE S. LAS CAÑAS'),
  (407021401,2,10,77,12,'DOS RIOS ARRIBA','P. DE S. DOS RIOS'),
- (407030801,2,10,78,9,'LOS ANASTASIOS','C. DE S. LOS ANASTASIOS');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (407030801,2,10,78,9,'LOS ANASTASIOS','C. DE S. LOS ANASTASIOS'),
  (407041201,2,10,79,11,'POTRERILLOS ARRIBA','S. C. DE S. POTRERILLOS ARRIBA'),
  (407050801,2,10,80,9,'PROTERILLOS ABAJO','C. DE S. POTRERILLOS ABAJO (SEC. 11) '),
  (407061401,2,10,81,12,'ROVIRA ARRIBA','P. DE S. ROVIRA 1/'),
@@ -1431,8 +1384,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (409041401,2,12,92,12,'REMEDIOS','P. DE S. DE REMEDIOS 1/'),
  (410010901,2,13,94,10,'RIO SERENO','C. DE S. RIO SERENO'),
  (410021401,2,13,95,12,'BREÑON','P. DE S. BREÑON'),
- (410031201,2,13,96,11,'CAÑAS GORDAS','S. C. DE S. CAÑAS GORDAS');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (410031201,2,13,96,11,'CAÑAS GORDAS','S. C. DE S. CAÑAS GORDAS'),
  (410031401,2,13,96,12,'CAÑAS GORDAS','P. DE S. BAJO CHIRIQUI'),
  (410041201,2,13,97,11,'MONTE LIRIO','S. C. DE S. MONTE LIRIO'),
  (410051201,2,13,98,11,'PLAZA DE CAISAN','S. C. DE S. CAISAN'),
@@ -1447,8 +1399,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (412031201,2,15,109,11,'BOCA DEL MONTE','S. C. DE S. BOCA DEL MONTE'),
  (412031401,2,15,109,12,'SABALO','P. DE S. SABALO'),
  (412040801,2,15,110,9,'SAN JUAN CERRILLOS','C. DE S. SAN JUAN'),
- (412041401,2,15,110,12,'CIENEGUITA','P. DE S. CINEGUITA');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (412041401,2,15,110,12,'CIENEGUITA','P. DE S. CINEGUITA'),
  (412050801,2,15,111,9,'SAN LORENZO','C. DE S. SAN LORENZO'),
  (413010901,2,16,112,10,'TOLE','C. DE S. M. I. DE TOLE'),
  (413031401,2,16,113,12,'CERRO VIEJO N°1','P. DE S. CERRO VIEJO'),
@@ -1463,8 +1414,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (413091403,2,9,69,9,'CHIRIQUI','C. DE S. CHIRIQUI (SECTOR 10)'),
  (413091404,2,9,71,9,'LAS LOMAS','C. DE S. LAS LOMAS (SECTOR 5)'),
  (413091405,2,10,76,9,'DOLEGA','C. DE S. DOLEGA (SECTOR 6)'),
- (413091406,2,14,102,9,'LAS LAJAS','C. DE S. LAS LAJAS');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (413091406,2,14,102,9,'LAS LAJAS','C. DE S. LAS LAJAS'),
  (413091407,2,10,78,9,'LOS ANASTASIOS','C. DE S. LOS ANASTASIOS'),
  (413091408,2,10,80,9,'POTRERILLOS ABAJO','C. DE S. POTRERILLOS ABAJO (SEC. 11)'),
  (413091409,2,11,84,9,'GUALACA','C. DE S. GUALACA (SECTOR 8)'),
@@ -1479,8 +1429,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (501021401,5,28,205,12,'CAMOGANTI','P. DE S. CAMOGANTI'),
  (501031201,5,28,206,11,'CHEPIGANA','S. C. DE S. CHEPIGANA'),
  (501031401,5,28,206,12,'LA MAREA','P. DE S. LA MAREA'),
- (501040901,5,28,207,10,'GARACHINE','C. DE S. GARACHINE');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (501040901,5,28,207,10,'GARACHINE','C. DE S. GARACHINE'),
  (501041401,5,28,207,12,'CALLE LARGA','P. DE S. CALLE LARGA'),
  (501041402,5,28,207,12,'RIO DE JESUS','P. DE S. RIO DE JESUS'),
  (501050901,5,28,208,10,'JAQUE','C. DE S. JAQUE'),
@@ -1496,8 +1445,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (501101401,5,28,213,12,'QUINTIN','P. DE S. QUINTIN'),
  (501101402,5,28,213,12,'SETEGANTI','P. DE S. SETEGANTI'),
  (501111401,5,28,214,12,'TAIMATI','P. DE S. TAIMATI'),
- (501121201,5,28,215,11,'TUCUTI','S. C. DE S. TUCUTI');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (501121201,5,28,215,11,'TUCUTI','S. C. DE S. TUCUTI'),
  (501121401,5,28,215,12,'MANENE','P. DE S. MANENE'),
  (501131401,5,28,216,12,'EL TIRAO','P. DE S. EL TIRAO'),
  (501141201,5,28,217,11,'CUCUNATI','S. C. DE S. CUCUNATI'),
@@ -1513,8 +1461,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (502031401,5,29,222,12,'PAYA','P. DE S. PAYA'),
  (502051401,5,29,223,12,'PUCURO','P. DE S. PUCURO'),
  (502070501,5,29,225,24,'YAVIZA','HOSPITAL YAVIZA (MANUEL NIETO)'),
- (502071201,5,29,226,11,'CANGLON','S. C. DE S. CANGLON');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (502071201,5,29,226,11,'CANGLON','S. C. DE S. CANGLON'),
  (502080901,5,29,226,10,'METETI','C. DE S. METETI'),
  (502081401,5,29,226,12,'METETI','P. DE S. METETI'),
  (502091401,5,29,227,12,'WARGANDI','P. DE S. WALA'),
@@ -1529,8 +1476,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (601030801,6,30,642,9,'MONAGRILLO','C. DE S. MONAGRILLO'),
  (601031201,6,30,642,11,'BOCA DE PARITA','S. C DE S. BOCA DE PARITA'),
  (601040801,6,30,230,9,'LLANO BONITO','C. DE S. LLANO BONITO'),
- (601050801,6,30,228,9,'ASERRIO','C. DE S. DE CHITRE');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (601050801,6,30,228,9,'ASERRIO','C. DE S. DE CHITRE'),
  (601051601,6,30,228,22,'ASERRIO','OFICINA REGIONAL DE HERRERA'),
  (602010801,6,31,232,9,'LAS MINAS','C. DE S. LAS MINAS'),
  (602020801,6,31,233,9,'CHEPO (P)','C. DE S. CHEPO'),
@@ -1546,8 +1492,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (604021201,6,33,249,11,'CERRO LARGO','S. C DE S. CERRO LARGO'),
  (604030801,6,33,250,9,'LOS LLANOS','C. DE S. LOS LLANOS'),
  (604041201,6,33,251,11,'LLANO GRANDE','S. C DE S. LLANO GRANDE 1/'),
- (604051201,6,33,252,11,'PEÑAS CHATAS','S. C DE S. PEÑAS CHATAS');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (604051201,6,33,252,11,'PEÑAS CHATAS','S. C DE S. PEÑAS CHATAS'),
  (604061201,6,33,253,11,'TIJERAS','S. C DE S. TIJERAS 1/'),
  (605010801,6,34,256,9,'PARITA','C. DE S. PARITA'),
  (605021201,6,34,257,11,'CABUYA','S. C DE S. CABUYA'),
@@ -1563,8 +1508,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (606051201,6,35,267,11,'EL PEDREGOSO','S. C DE S. PEDREGOSO'),
  (606071201,6,35,269,11,'SABANA GRANDE','S. C DE S. SABANA GRANDE'),
  (606080801,6,35,270,9,'RINCON HONDO','C. DE S. RINCON HONDO'),
- (607010801,6,36,271,9,'SANTA MARIA','C. DE S. SANTA MARIA');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (607010801,6,36,271,9,'SANTA MARIA','C. DE S. SANTA MARIA'),
  (607011001,6,36,271,21,'SANTA MARIA','CAPPS SANTA MARIA'),
  (607020801,6,36,272,9,'CHUPAMPA','C. DE S. CHUPAMPA'),
  (607031201,6,36,273,11,'EL RINCON','S. C DE S. EL RINCON'),
@@ -1579,8 +1523,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (702091201,7,38,294,11,'LA LAJA','S. C. DE S. LA LAJA'),
  (702110801,7,38,296,9,'LA PALMA','C. DE S. LA PALMA'),
  (702190801,7,38,304,9,'SAN JOSE','C. DE S. SAN JOSE'),
- (702210801,7,38,306,9,'SANTO DOMINGO','C. DE S. STO. DOMINGO');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (702210801,7,38,306,9,'SANTO DOMINGO','C. DE S. STO. DOMINGO'),
  (702230801,7,38,308,9,'VALLE RICO','C. DE S. VALLE RICO'),
  (702241201,7,38,309,11,'VALLERRIQUITO','S. C. DE S. VALLERRIQUITO'),
  (703010601,7,39,310,19,'LA VILLA DE LOS SANTOS','POLICLINICA SAN JUAN DE DIOS'),
@@ -1594,8 +1537,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (703110401,7,39,322,24,'SANTA ANA','HOSPITAL REGIONAL ANITA MORENO'),
  (703111601,7,39,322,22,'SANTA ANA','OFICINA REGIONAL DE LOS SANTOS'),
  (704010501,7,40,326,24,'MACARACAS','HOSPITAL LUIS H. MORENO'),
- (704011001,7,40,326,21,'MACARACAS','CAPPS DE MACARACAS');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (704011001,7,40,326,21,'MACARACAS','CAPPS DE MACARACAS'),
  (704021201,7,40,327,11,'BAHIA HONDA','S. C. DE S. BAHIA HONDA'),
  (704031201,7,40,328,11,'BAJO GUERA','S. C. DE S. BAJO GUERA 1/'),
  (704051201,7,40,330,11,'CHUPA','S. C. DE S. CHUPA'),
@@ -1610,8 +1552,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (706031201,7,42,344,11,'LAJAMINA','S. C. DE S. LAJAMINA'),
  (706050801,7,42,346,9,'PARITILLA','C. DE S. PARITILLA'),
  (707010501,7,43,347,24,'TONOSI','HOSPITAL TONOSI'),
- (707011001,7,43,347,21,'TONOSI','CAPPS DE TONOSI');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (707011001,7,43,347,21,'TONOSI','CAPPS DE TONOSI'),
  (707011201,7,43,347,11,'BUCARO','S. C. DE S. BUCARO'),
  (707021201,7,43,348,11,'ALTOS DE GUERRA','S. C. DE S. ALTO DE GUERRA'),
  (707100801,7,43,356,9,'CAMBUTAL','C. DE S. DE CAMBUTAL'),
@@ -1626,8 +1567,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (805010701,8,48,396,8,'CHEPO','POLICENTRO DE SALUD DE CHEPO'),
  (805011401,8,48,396,12,'CALOBRE ABAJO','P. DE S. CALOBRE DE SAN JUDAS'),
  (805011402,8,48,396,12,'EL TIGRE','P. DE S. EL TIGRE'),
- (805011403,8,48,396,12,'JESUS MARIA','P. DE S. JESUS MARIA');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (805011403,8,48,396,12,'JESUS MARIA','P. DE S. JESUS MARIA'),
  (805011405,8,48,396,12,'LIMONADA','P. DE S. LA LIMONADA'),
  (805011406,8,48,396,12,'TRAPICHE ARRIBA','P. DE S. TRAPICHE ARRIBA 1/'),
  (805011407,8,48,396,12,'SAN JUDAS','P. DE S. DE SAN JUDAS'),
@@ -1642,8 +1582,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (805040806,8,48,399,9,'LOMA DE NARANJO','C. DE S. LOMA DE NARANJO'),
  (805041403,8,48,399,12,'EL LLANO','P. DE S. EL LLANO'),
  (805041404,8,48,399,12,'PAVITA','P. DE S. PAVITA DE MAJÉ'),
- (805041407,8,48,399,12,'BUENA VISTA','P. DE S. BUENA VISTA 1/');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (805041407,8,48,399,12,'BUENA VISTA','P. DE S. BUENA VISTA 1/'),
  (805041411,8,48,399,12,'TRES QUEBRADAS','P. DE S. TRES QUEBRADAS'),
  (805050801,8,48,400,9,'MARGARITAS','C. DE S. MARGARITAS'),
  (805051401,8,48,400,12,'MAMONI ARRIBA','P. DE S. ALTO DE MAMONI'),
@@ -1658,8 +1597,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (805071402,8,48,402,12,'IPETI KUNA','P. DE S. IPETI KUNA'),
  (805071403,8,48,402,12,'PIRIATI','P. DE S. PIRIATI'),
  (805071404,8,48,402,12,'IPETI EMBERA','P. DE S. IPETI EMBERA'),
- (805071405,8,48,402,12,'PINTUPO','P. DE S. PINTUPO 1/');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (805071405,8,48,402,12,'PINTUPO','P. DE S. PINTUPO 1/'),
  (805071406,8,48,402,12,'AKUA YALA','P. DE S. AKUA YALA'),
  (805080801,8,48,403,9,'TORTI','C. DE S. TORTI'),
  (805081401,8,48,403,12,'AGUA FRIA','P. DE S. DE AGUA FRIA N° 1 1/'),
@@ -1675,8 +1613,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (806050801,8,49,408,9,'UNION SANTEÑA','C. DE S. UNION SANTEÑA'),
  (806051401,8,49,408,12,'RIO HONDO','P. DE S. RIO HONDO'),
  (806051402,8,49,408,12,'UNION SANTEÑA','P. DE S. RIO PLATANARES'),
- (808170803,8,51,441,9,'PACORA','C. DE S. PACORA');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (808170803,8,51,441,9,'PACORA','C. DE S. PACORA'),
  (808170807,8,51,441,9,'PACORA','C. DE S. VIRGEN DE LAS MERCEDEZ'),
  (808171401,8,51,441,12,'ALTOS DE PACORA','P. DE S. ALTO DE PACORA'),
  (808180801,8,51,448,9,'SAN MIGUEL','C. DE S. SAN MIGUEL'),
@@ -1691,8 +1628,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
  (1101021401,11,68,580,12,'BAJO CHIQUITO','P. DE S. BAJO CHIQUITO'),
  (1101021402,11,68,580,12,'EL SALTO','P. DE S. EL SALTO'),
  (1101021404,11,68,580,12,'MARROGANTI','P. DE S. MARROGANTI'),
- (1101021405,11,68,580,12,'CANAAN','P. DE S. CANAAN');
-INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento`,`id_tipo_institucion`,`lugar`,`denominacion`) VALUES 
+ (1101021405,11,68,580,12,'CANAAN','P. DE S. CANAAN'),
  (1101021406,11,68,580,12,'PEÑA BIJAGUAL','P. DE S. PEÑA BIJAGUAL'),
  (1101021407,11,68,580,12,'LA CALETA','P. DE S. BELLA AMOR Y CALETA'),
  (1101031401,11,68,581,12,'COMUN','P. DE S. COMUN'),
@@ -1707,7 +1643,7 @@ INSERT INTO `instituciones` (`id`,`id_provincia`,`id_distrito`,`id_corregimiento
 
 
 --
--- Table structure for table `plagetri21`.`mantenimientos`
+-- Definition of table `mantenimientos`
 --
 
 DROP TABLE IF EXISTS `mantenimientos`;
@@ -1719,25 +1655,19 @@ CREATE TABLE `mantenimientos` (
   `id_activo` int(10) unsigned NOT NULL,
   `proximo_mant` varchar(45) NOT NULL,
   `observacion` text NOT NULL,
-  `created_at` varchar(45) NOT NULL DEFAULT '',
-  `updated_at` varchar(45) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`mantenimientos`
+-- Dumping data for table `mantenimientos`
 --
 
 /*!40000 ALTER TABLE `mantenimientos` DISABLE KEYS */;
-INSERT INTO `mantenimientos` (`id`,`fecha_realizacion`,`realizado_por`,`aprobado_por`,`id_activo`,`proximo_mant`,`observacion`,`created_at`,`updated_at`) VALUES 
- (1,'2014-06-13','Edgardo Pitti','Luis Mendoza',1,'2014-06-13','Muy Sucio','2014-06-14 03:55:45','2014-06-14 03:55:45'),
- (2,'2014-06-13','Edgardo Pitti','Luis Mendoza',1,'2014-06-13','Muy Sucio','2014-06-14 03:56:00','2014-06-14 03:56:00'),
- (3,'2014-06-13','Edgardo Pitti','Luis Mendoza',1,'2014-06-13','Muy Sució','2014-06-14 03:58:13','2014-06-14 17:31:39');
 /*!40000 ALTER TABLE `mantenimientos` ENABLE KEYS */;
 
 
 --
--- Table structure for table `plagetri21`.`marcadores`
+-- Definition of table `marcadores`
 --
 
 DROP TABLE IF EXISTS `marcadores`;
@@ -1745,10 +1675,10 @@ CREATE TABLE `marcadores` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `marcador` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`marcadores`
+-- Dumping data for table `marcadores`
 --
 
 /*!40000 ALTER TABLE `marcadores` DISABLE KEYS */;
@@ -1759,13 +1689,12 @@ INSERT INTO `marcadores` (`id`,`marcador`) VALUES
  (4,'HCG'),
  (5,'PAPPA'),
  (6,'TN'),
- (7,'HCG TOTAL'),
- (8,'HCG 2');
+ (7,'HCG TOTAL');
 /*!40000 ALTER TABLE `marcadores` ENABLE KEYS */;
 
 
 --
--- Table structure for table `plagetri21`.`marcadores_citas`
+-- Definition of table `marcadores_citas`
 --
 
 DROP TABLE IF EXISTS `marcadores_citas`;
@@ -1778,28 +1707,29 @@ CREATE TABLE `marcadores_citas` (
   `created_at` varchar(45) NOT NULL DEFAULT '',
   `updated_at` varchar(45) NOT NULL DEFAULT '',
   `mom` double NOT NULL DEFAULT '0',
-  `mom_corr1` double NOT NULL,
+  `corr_peso_exponencial` double NOT NULL,
+  `corr_peso_lineal` double NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`marcadores_citas`
+-- Dumping data for table `marcadores_citas`
 --
 
 /*!40000 ALTER TABLE `marcadores_citas` DISABLE KEYS */;
-INSERT INTO `marcadores_citas` (`id`,`id_cita`,`id_marcador`,`id_metodologia`,`valor`,`created_at`,`updated_at`,`mom`,`mom_corr1`) VALUES 
- (1,1,1,2,1,'2014-06-04 18:46:56','2014-06-10 19:46:16',1,133.86880856760376),
- (2,1,2,2,2,'2014-06-04 18:46:56','2014-06-10 19:46:16',1,380.71065989848),
- (3,1,3,1,3,'2014-06-04 18:46:56','2014-06-10 19:46:16',1,0),
- (4,1,4,1,4,'2014-06-04 18:46:56','2014-06-10 19:46:16',1,129.81393336218),
- (5,1,5,1,5,'2014-06-04 18:46:56','2014-06-10 19:46:17',1,0),
- (6,1,6,2,6,'2014-06-04 18:46:56','2014-06-10 19:46:17',1,0),
- (7,1,7,1,7,'2014-06-05 01:37:19','2014-06-10 19:46:17',1,0);
+INSERT INTO `marcadores_citas` (`id`,`id_cita`,`id_marcador`,`id_metodologia`,`valor`,`created_at`,`updated_at`,`mom`,`corr_peso_exponencial`,`corr_peso_lineal`) VALUES 
+ (1,1,1,2,1,'2014-06-04 18:46:56','2014-06-17 22:00:19',1,0.0000000000023701181715117916,133.86880856760376),
+ (2,1,2,2,2,'2014-06-04 18:46:56','2014-06-17 22:00:19',1,0.000078595919651819,380.71065989847716),
+ (3,1,3,1,3,'2014-06-04 18:46:56','2014-06-17 22:00:20',1,0,0),
+ (4,1,4,1,4,'2014-06-04 18:46:56','2014-06-17 22:00:20',1,0.0000000000009621216779017788,129.81393336218088),
+ (5,1,5,1,5,'2014-06-04 18:46:56','2014-06-17 22:00:20',1,0,0),
+ (6,1,6,2,6,'2014-06-04 18:46:56','2014-06-17 22:00:20',1,0,0),
+ (7,1,7,1,7,'2014-06-05 01:37:19','2014-06-17 22:00:20',1,0,0);
 /*!40000 ALTER TABLE `marcadores_citas` ENABLE KEYS */;
 
 
 --
--- Table structure for table `plagetri21`.`mediana_marcadores`
+-- Definition of table `mediana_marcadores`
 --
 
 DROP TABLE IF EXISTS `mediana_marcadores`;
@@ -1807,27 +1737,33 @@ CREATE TABLE `mediana_marcadores` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_marcador` int(10) unsigned NOT NULL,
   `mediana_marcador` double NOT NULL,
+  `id_unidad` int(10) unsigned NOT NULL,
+  `semana` int(10) unsigned NOT NULL,
+  `updated_at` varchar(45) NOT NULL,
+  `created_at` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`mediana_marcadores`
+-- Dumping data for table `mediana_marcadores`
 --
 
 /*!40000 ALTER TABLE `mediana_marcadores` DISABLE KEYS */;
-INSERT INTO `mediana_marcadores` (`id`,`id_marcador`,`mediana_marcador`) VALUES 
- (1,1,1),
- (2,2,2),
- (3,3,3),
- (4,4,4),
- (5,5,5),
- (6,6,6),
- (7,7,7);
+INSERT INTO `mediana_marcadores` (`id`,`id_marcador`,`mediana_marcador`,`id_unidad`,`semana`,`updated_at`,`created_at`) VALUES 
+ (1,1,23.2,1,1,'',''),
+ (2,2,2,1,2,'',''),
+ (3,3,3,1,2,'',''),
+ (4,4,4,1,1,'',''),
+ (5,5,5,1,1,'',''),
+ (6,6,6,1,1,'',''),
+ (7,7,7,1,37,'',''),
+ (8,5,25.3,1,15,'',''),
+ (9,2,0,0,1,'2014-07-10 21:31:02','2014-07-10 21:30:34');
 /*!40000 ALTER TABLE `mediana_marcadores` ENABLE KEYS */;
 
 
 --
--- Table structure for table `plagetri21`.`medicos`
+-- Definition of table `medicos`
 --
 
 DROP TABLE IF EXISTS `medicos`;
@@ -1844,17 +1780,17 @@ CREATE TABLE `medicos` (
   `id_especialidades_medicas` int(10) unsigned NOT NULL,
   `telefono` varchar(45) NOT NULL,
   `celular` varchar(45) NOT NULL,
-  `email` varchar(60) NOT NULL DEFAULT '',
-  `foto` varchar(45) NOT NULL DEFAULT 'default1.png',
+  `email` varchar(60) NOT NULL,
+  `foto` varchar(45) NOT NULL,
   `extension` varchar(45) NOT NULL,
   `id_nivel` int(10) unsigned NOT NULL,
   `id_ubicacion` int(10) unsigned NOT NULL,
   `observacion` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`medicos`
+-- Dumping data for table `medicos`
 --
 
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
@@ -1866,7 +1802,7 @@ INSERT INTO `medicos` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellido_
 
 
 --
--- Table structure for table `plagetri21`.`metodologia`
+-- Definition of table `metodologia`
 --
 
 DROP TABLE IF EXISTS `metodologia`;
@@ -1880,7 +1816,7 @@ CREATE TABLE `metodologia` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`metodologia`
+-- Dumping data for table `metodologia`
 --
 
 /*!40000 ALTER TABLE `metodologia` DISABLE KEYS */;
@@ -1891,7 +1827,7 @@ INSERT INTO `metodologia` (`id`,`metodologia`,`observacion`,`created_at`,`update
 
 
 --
--- Table structure for table `plagetri21`.`nacionalidades`
+-- Definition of table `nacionalidades`
 --
 
 DROP TABLE IF EXISTS `nacionalidades`;
@@ -1902,7 +1838,7 @@ CREATE TABLE `nacionalidades` (
 ) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`nacionalidades`
+-- Dumping data for table `nacionalidades`
 --
 
 /*!40000 ALTER TABLE `nacionalidades` DISABLE KEYS */;
@@ -1958,8 +1894,7 @@ INSERT INTO `nacionalidades` (`id_nacionalidad`,`nacionalidad`) VALUES
  (49,'LETONA'),
  (50,'LIBANESA'),
  (51,'LITUANA'),
- (52,'LUXEMBURGUESA');
-INSERT INTO `nacionalidades` (`id_nacionalidad`,`nacionalidad`) VALUES 
+ (52,'LUXEMBURGUESA'),
  (53,'MALTESA'),
  (54,'MEXICANA'),
  (55,'MOLDAVA'),
@@ -1994,7 +1929,7 @@ INSERT INTO `nacionalidades` (`id_nacionalidad`,`nacionalidad`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`niveles`
+-- Definition of table `niveles`
 --
 
 DROP TABLE IF EXISTS `niveles`;
@@ -2007,7 +1942,7 @@ CREATE TABLE `niveles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`niveles`
+-- Dumping data for table `niveles`
 --
 
 /*!40000 ALTER TABLE `niveles` DISABLE KEYS */;
@@ -2018,7 +1953,7 @@ INSERT INTO `niveles` (`id`,`nivel`,`created_at`,`updated_at`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`pacientes`
+-- Definition of table `pacientes`
 --
 
 DROP TABLE IF EXISTS `pacientes`;
@@ -2056,7 +1991,7 @@ CREATE TABLE `pacientes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`pacientes`
+-- Dumping data for table `pacientes`
 --
 
 /*!40000 ALTER TABLE `pacientes` DISABLE KEYS */;
@@ -2068,7 +2003,7 @@ INSERT INTO `pacientes` (`id`,`cedula`,`primer_nombre`,`segundo_nombre`,`apellid
 
 
 --
--- Table structure for table `plagetri21`.`provincias`
+-- Definition of table `provincias`
 --
 
 DROP TABLE IF EXISTS `provincias`;
@@ -2081,7 +2016,7 @@ CREATE TABLE `provincias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`provincias`
+-- Dumping data for table `provincias`
 --
 
 /*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
@@ -2102,7 +2037,7 @@ INSERT INTO `provincias` (`id_provincia`,`provincia`,`latitud`,`longitud`) VALUE
 
 
 --
--- Table structure for table `plagetri21`.`razas`
+-- Definition of table `razas`
 --
 
 DROP TABLE IF EXISTS `razas`;
@@ -2115,7 +2050,7 @@ CREATE TABLE `razas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`razas`
+-- Dumping data for table `razas`
 --
 
 /*!40000 ALTER TABLE `razas` DISABLE KEYS */;
@@ -2129,7 +2064,7 @@ INSERT INTO `razas` (`id_razas`,`raza`,`created_at`,`updated_at`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`tipo_instituciones`
+-- Definition of table `tipo_instituciones`
 --
 
 DROP TABLE IF EXISTS `tipo_instituciones`;
@@ -2141,7 +2076,7 @@ CREATE TABLE `tipo_instituciones` (
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`tipo_instituciones`
+-- Dumping data for table `tipo_instituciones`
 --
 
 /*!40000 ALTER TABLE `tipo_instituciones` DISABLE KEYS */;
@@ -2174,7 +2109,7 @@ INSERT INTO `tipo_instituciones` (`id`,`tipo_institucion`,`departamento`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`tipos_activos`
+-- Definition of table `tipos_activos`
 --
 
 DROP TABLE IF EXISTS `tipos_activos`;
@@ -2186,7 +2121,7 @@ CREATE TABLE `tipos_activos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`tipos_activos`
+-- Dumping data for table `tipos_activos`
 --
 
 /*!40000 ALTER TABLE `tipos_activos` DISABLE KEYS */;
@@ -2196,7 +2131,7 @@ INSERT INTO `tipos_activos` (`id`,`tipo`,`descripcion`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`tipos_sanguineos`
+-- Definition of table `tipos_sanguineos`
 --
 
 DROP TABLE IF EXISTS `tipos_sanguineos`;
@@ -2207,7 +2142,7 @@ CREATE TABLE `tipos_sanguineos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `plagetri21`.`tipos_sanguineos`
+-- Dumping data for table `tipos_sanguineos`
 --
 
 /*!40000 ALTER TABLE `tipos_sanguineos` DISABLE KEYS */;
@@ -2224,7 +2159,7 @@ INSERT INTO `tipos_sanguineos` (`id_tipo_sanguineo`,`tipo_sangre`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`ubicacion`
+-- Definition of table `ubicacion`
 --
 
 DROP TABLE IF EXISTS `ubicacion`;
@@ -2237,13 +2172,38 @@ CREATE TABLE `ubicacion` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`ubicacion`
+-- Dumping data for table `ubicacion`
 --
 
 /*!40000 ALTER TABLE `ubicacion` DISABLE KEYS */;
 INSERT INTO `ubicacion` (`id`,`ubicacion`,`created_at`,`updated_at`) VALUES 
  (1,'TORRE A','','');
 /*!40000 ALTER TABLE `ubicacion` ENABLE KEYS */;
+
+
+--
+-- Definition of table `unidades`
+--
+
+DROP TABLE IF EXISTS `unidades`;
+CREATE TABLE `unidades` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `unidad` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `unidades`
+--
+
+/*!40000 ALTER TABLE `unidades` DISABLE KEYS */;
+INSERT INTO `unidades` (`id`,`unidad`) VALUES 
+ (1,'UI/mL'),
+ (2,'ng/mL');
+/*!40000 ALTER TABLE `unidades` ENABLE KEYS */;
+
+
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
