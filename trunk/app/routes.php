@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('inicio');
+Route::get('/', function(){
+	if(Auth::check()){
+		return View::make('inicio');
+	}else{
+		return View::make('login');		
+	}
 });
+Route::post('sigin', 'AuthController@postLogin');
+Route::get('logout', 'AuthController@getLogout');
+Route::post('registrar', 'AuthController@register');
+
 //Rutas para controladores
 Route::resource('datos/pacientes', 'Datos_PacientesController');
 Route::resource('datos/medicos', 'Datos_MedicosController');

@@ -6,7 +6,10 @@
 @section ('content')
 	<center>
 		<h1><strong>Menú Principal</strong></h1><hr>
-	</center>		
+	</center>
+		<div class="row col-md-12">
+			<a href="logout" title="Cerrar Sesión" class="btn btn-default pull-right">Salir</a>
+		</div>		
 		<div class="row nav-row">
 			<a href="{{ route('datos.citas.index') }}">
 				<div class="col-sm-3 col-md-3 col-lg-3">
@@ -58,6 +61,5 @@
 					<p>Localizar</p>
 				</div>
 			</a>
-		</div>
-
+		</div>	 
 @stop
