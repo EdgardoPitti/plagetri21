@@ -10,6 +10,7 @@ class Paciente extends Eloquent {
 	protected $table = 'pacientes';
 
 	//Funcion para calcular la edad de una persona recibiendo como parametro la fecha de nacimiento
+
 	function edad($fecha)
 	{
 		$fecha_actual = getdate();
@@ -80,14 +81,17 @@ class Paciente extends Eloquent {
 			$datos[$x]->corregimiento_residencia = Corregimiento::where('id_corregimiento', $paciente->id_corregimiento_nacimiento)->first()->corregimiento;
 			$datos[$x]->nacionalidad = Nacionalidad::where('id_nacionalidad', $paciente->id_nacionalidad)->first()->nacionalidad;
 			$datos[$x]->tipo_sangre = Tiposangre::where('id_tipo_sanguineo', $paciente->id_tipo_sangre)->first()->tipo_sangre;
-			//Sentencias del calculo de la probablidad por edad
-			$probabilidad = 0.000627 + exp(-16.2395) + (0.286 * ($datos[$x]->edad - 0.5));
-			$datos[$x]->probabilidad = $probabilidad;
-			//Sentencia para el calculo del riesgo
-			$datos[$x]->riesgo = $probabilidad / (1 - $probabilidad);
-
 			$x++;	
 		}
+		return $datos;
+    }
+    function riesgo($edad){
+		//Sentencias del calculo de la probablidad por edad
+		$probabilidad = number_format(0.000627 + exp(-16.2395 + (0.286 * ($edad - 0.5))), 6, '.', '');
+		//Sentencia para el calculo del riesgo
+		$riesgo = number_format(number_format(1/number_format(1 - $probabilidad, 6, '.', ''), 6, '.', '')/$probabilidad, 2, '.', '');
+		$datos['p'] = $probabilidad;
+		$datos['r'] = $riesgo;
 		return $datos;
     }
 }

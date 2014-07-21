@@ -40,12 +40,14 @@ class Datos_CitasController extends BaseController {
 		$citas->fecha_ultrasonido = $data['fecha_ultrasonido'];
 		$citas->fur = $data['fur'];
 		$citas->fpp = $data['fpp'];
-		$citas->fecha = $data['fecha'];
+		$citas->fecha_flebotomia = $data['fecha_flebotomia'];
+		$citas->fecha_cita = $data['fecha_cita'];
 		$citas->edad_gestacional = $data['edad_gestacional'];
 		$citas->observaciones = $data['observaciones'];
 		$citas->estatura = $data['estatura'];
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->hijos_embarazo = $data['hijos_embarazo'];
+		$citas->riesgo = $data['riesgo'];
 		$citas->save();
 		$id_cita = Cita::all()->last()->id;
 		//Decisiones para almacenar las metodologias de cada marcador
@@ -87,6 +89,7 @@ class Datos_CitasController extends BaseController {
 		$form['datos'] = array('route' => 'datos.citas.store', 'method' => 'POST');
 		$form['label'] = 'Crear';
 		$form['citas'] = new Cita;
+		$form['citas']->riesgo = 100;
 		$marcadorcita = new MarcadorCita;
 		foreach (Marcador::all() as $marcador){
 			$form['marcador_'.$marcador->id.''] = new MarcadorCita;
@@ -146,12 +149,14 @@ class Datos_CitasController extends BaseController {
 		$citas->fecha_ultrasonido = $data['fecha_ultrasonido'];
 		$citas->fur = $data['fur'];
 		$citas->fpp = $data['fpp'];
-		$citas->fecha = $data['fecha'];
+		$citas->fecha_flebotomia = $data['fecha_flebotomia'];
+		$citas->fecha_cita = $data['fecha_cita'];
 		$citas->edad_gestacional = $data['edad_gestacional'];
 		$citas->observaciones = $data['observaciones'];
 		$citas->estatura = $data['estatura'];
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->hijos_embarazo = $data['hijos_embarazo'];
+		$citas->riesgo = $data['riesgo'];
 		$citas->save();
 		//Se almacena en una variable el id de la metodologia que eleigio en general.
 		$met_general = $data['met_general'];
