@@ -42,3 +42,4 @@ Route::get('institucionprovincia', 'DropdownController@getInstitucionprovincia')
 Route::get('calculo', 'DropdownController@getMomMarcador');
 Route::get('correccion1', 'DropdownController@getCoeficiente');
 Route::get('obtenermediana', 'Datos_MedianaController@getObtenerMediana');
+Route::get('obtenerRiesgo', 'DropdownController@getRiesgo');

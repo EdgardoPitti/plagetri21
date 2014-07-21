@@ -19,7 +19,7 @@
 				<div class="row">
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('semana', 'Semana del Marcador:') }}
-      					{{ Form::selectRange('semana', 0, 37, null ,array('class' => 'form-control', 'required' => 'required')) }}
+      					{{ Form::selectRange('semana', 1, 37, null ,array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
     				<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('marcador', 'Marcador:') }}
@@ -44,12 +44,12 @@
 			  	</thead>
 			  	<tbody>
 			  		@for($s = 1; $s < 38; $s++)
-			  			@if (!empty(MedianaMarcador::where('semana', $s)->first()->id))
+			  			@if (!empty(MedianaMarcador::where('semana', $s)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->first()->id))
 			  			<tr align="center">
 			  				<td>{{ $s }}</td>
 			  				@foreach (Marcador::all() as $marcador)
-			  					@if (!empty(MedianaMarcador::where('id_marcador', $marcador->id)->where('semana', $s)->first()->id))
-			  						<td>{{ MedianaMarcador::where('id_marcador', $marcador->id)->where('semana', $s)->first()->mediana_marcador }}</td>
+			  					@if (!empty(MedianaMarcador::where('id_marcador', $marcador->id)->where('semana', $s)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->first()->id))
+			  						<td>{{ MedianaMarcador::where('id_marcador', $marcador->id)->where('semana', $s)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->first()->mediana_marcador }}</td>
 			  					@else
 			  						<td>0</td>
 			  					@endif

@@ -81,7 +81,6 @@
 						<th>Etnia</th>
 						<th>Raza</th>
 						<th>Tipo de Sangre</th>
-						<th>Riesgo</th>
 						<th>Casos Ant. con Trisomia</th>
 					</tr>
 					<tr class="white">
@@ -94,7 +93,6 @@
 						<td>{{ $datos[0]->etnia }}</td>
 						<td>{{ $datos[0]->raza }}</td>
 						<td>{{ $datos[0]->tipo_sangre }}</td>
-						<td>{{ $datos[0]->riesgo }}</td>
 						<td>{{ $datos[0]->embarazos_anteriores }}</td>
 					</tr>
 				</table>
@@ -127,10 +125,19 @@
 			<h3>Datos de la Cita</h3>
 			{{ Form::model($form['citas'], $form['datos'] , array('role' => 'form')) }}
 				<div class="row">
-					{{ Form::text('id_paciente', $datos[0]->id, array('style' => 'display:none')) }}
+					{{ Form::text('id_paciente', $datos[0]->id, array('style' => 'display:none', 'id' => 'id_paciente')) }}
+					{{ Form::text('fecha_nacimiento', $datos[0]->fecha_nacimiento, array('style' => 'display:none', 'id' => 'fecha_nacimiento')) }}
+				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+				    	{{ Form::label('riesgo', 'Riesgo:') }}<div id="riesgo_pantalla">1/{{ $form['citas']->riesgo }}</div>
+				    	{{ Form::text('riesgo', $form['citas']->riesgo, array('style' => 'display:none')) }}        
+				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
-      					{{ Form::label('fecha', 'Fecha de Flebotomia:') }}
-      					{{ Form::date('fecha', $form['citas']->fecha, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+      					{{ Form::label('fecha_cita', 'Fecha de Cita:') }}
+      					{{ Form::date('fecha_cita', $form['citas']->fecha_cita, array('id' => 'fecha_cita','class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+    				</div>
+					<div class="form-group col-sm-4 col-md-4 col-lg-4">
+      					{{ Form::label('fecha_flebotomia', 'Fecha de Flebotomia:') }}
+      					{{ Form::date('fecha_flebotomia', $form['citas']->fecha_flebotomia, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('id_medico', 'Médico:') }}
@@ -260,6 +267,7 @@
 									  	<thead>
 									  		<tr class="info">
 									  			<th>#</th>
+									  			<th>Fecha de Cita</th>
 									  			<th>Fecha de Flebotomía</th>
 									  			<th>Institucion</th>
 									  			<th>Peso</th>
@@ -274,7 +282,8 @@
 									  		@foreach (Cita::where('id_paciente', $datos[0]->id)->get() as $citas)
 										  		<tr align="center">
 										  			<td>{{ $n++ }}.</td>
-										  			<td>{{ $citas->fecha }}</td>
+										  			<td>{{ $citas->fecha_cita }}</td>
+										  			<td>{{ $citas->fecha_flebotomia }}</td>
 										  			<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
 										  			<td>{{ $citas->peso }}</td>
 										  			@foreach (Marcador::all() as $marcador)

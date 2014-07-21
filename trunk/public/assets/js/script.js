@@ -114,6 +114,31 @@ jQuery(document).ready(function($){
                 campo.val(valor);
             });
         });
+         $("#fecha_cita").change(function(){
+            var riesgo_pantalla = $("#riesgo_pantalla");
+            var valor = $("#riesgo");
+            riesgo_pantalla.empty();
+            var fecha = $("#fecha_cita").val();
+            var fecha_cita = fecha.split('-');
+            fecha = $("#fecha_nacimiento").val();
+            var fecha_nac = fecha.split('-');
+            var edad = 0;
+            var agno = 0;
+            var mes = 0;
+            agno = fecha_cita[0] - fecha_nac[0];
+            
+            if(fecha_nac[1] < fecha_cita[1]){
+                mes = (fecha_cita[1] - fecha_nac[1])/12;
+            }else{
+                mes = ((12 - (fecha_nac[1] - fecha_cita[1]))/12);
+                agno--;
+            }
+            edad = parseFloat(agno) + parseFloat(mes.toFixed(2));
+            var probabilidad = parseFloat(0.000627) + parseFloat(Math.exp(parseFloat(-16.2395) + parseFloat((0.286 * (edad - 0.5)))));
+            var riesgo = (1/(1-probabilidad))/probabilidad;
+            valor.val(riesgo.toFixed(2));
+            riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"");
+        });
 
 });    
 //Funcion pque recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom

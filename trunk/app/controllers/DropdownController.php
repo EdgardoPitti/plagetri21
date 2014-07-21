@@ -70,4 +70,11 @@ class DropdownController extends BaseController
         $coeficiente = Coeficiente::where('id_raza', $idraza)->where('id_marcador', $idmarcador);
         return ($coeficiente->get(['a', 'b']));
     }
+    public function getRiesgo()
+    {
+        $fecha = Input::get('fecha');
+        $id_paciente = Input::get('paciente');
+        $paciente = Paciente::where('id', $id_paciente);
+        return ($paciente->get(['fecha_nacimiento']));
+    }
 }

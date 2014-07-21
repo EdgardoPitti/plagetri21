@@ -97,7 +97,7 @@ CREATE TABLE `citas_medicas` (
   `fecha_ultrasonido` varchar(45) NOT NULL DEFAULT '',
   `fur` varchar(45) NOT NULL DEFAULT '',
   `fpp` varchar(45) NOT NULL DEFAULT '',
-  `fecha` varchar(45) NOT NULL,
+  `fecha_flebotomia` varchar(45) NOT NULL,
   `edad_gestacional` int(10) unsigned NOT NULL,
   `created_at` varchar(45) NOT NULL,
   `updated_at` varchar(45) NOT NULL,
@@ -105,6 +105,8 @@ CREATE TABLE `citas_medicas` (
   `estatura` double NOT NULL DEFAULT '0',
   `id_institucion` int(10) unsigned NOT NULL DEFAULT '0',
   `hijos_embarazo` int(10) unsigned NOT NULL DEFAULT '1',
+  `fecha_cita` varchar(45) NOT NULL,
+  `riesgo` varchar(45) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK_citas_medicas_paciente` (`id_paciente`),
   KEY `FK_citas_medicas_medico` (`id_medico`)
@@ -115,8 +117,8 @@ CREATE TABLE `citas_medicas` (
 --
 
 /*!40000 ALTER TABLE `citas_medicas` DISABLE KEYS */;
-INSERT INTO `citas_medicas` (`id`,`id_paciente`,`id_medico`,`peso`,`fecha_ultrasonido`,`fur`,`fpp`,`fecha`,`edad_gestacional`,`created_at`,`updated_at`,`observaciones`,`estatura`,`id_institucion`,`hijos_embarazo`) VALUES 
- (1,1,3,45,'2014-06-04','2014-06-04','2014-06-04','2014-06-04',22,'2014-06-04 18:46:56','2014-06-17 22:00:19','Observaciones',1.65,406011303,2);
+INSERT INTO `citas_medicas` (`id`,`id_paciente`,`id_medico`,`peso`,`fecha_ultrasonido`,`fur`,`fpp`,`fecha_flebotomia`,`edad_gestacional`,`created_at`,`updated_at`,`observaciones`,`estatura`,`id_institucion`,`hijos_embarazo`,`fecha_cita`,`riesgo`) VALUES 
+ (1,1,3,45,'2014-06-04','2014-06-04','2014-06-04','2014-06-04',22,'2014-06-04 18:46:56','2014-07-18 19:33:31','Observaciones',1.65,406011303,2,'2014-07-04','1526.90');
 /*!40000 ALTER TABLE `citas_medicas` ENABLE KEYS */;
 
 
@@ -153,6 +155,29 @@ INSERT INTO `coeficientes` (`id`,`id_raza`,`id_marcador`,`a`,`b`) VALUES
  (11,4,4,0.00341,0.4369),
  (12,4,2,0.00129,0.1625);
 /*!40000 ALTER TABLE `coeficientes` ENABLE KEYS */;
+
+
+--
+-- Definition of table `configuraciones`
+--
+
+DROP TABLE IF EXISTS `configuraciones`;
+CREATE TABLE `configuraciones` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_unidad_marcador` int(10) unsigned NOT NULL,
+  `created_at` varchar(45) NOT NULL,
+  `updated_at` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `configuraciones`
+--
+
+/*!40000 ALTER TABLE `configuraciones` DISABLE KEYS */;
+INSERT INTO `configuraciones` (`id`,`id_unidad_marcador`,`created_at`,`updated_at`) VALUES 
+ (1,2,'','');
+/*!40000 ALTER TABLE `configuraciones` ENABLE KEYS */;
 
 
 --
@@ -1718,13 +1743,13 @@ CREATE TABLE `marcadores_citas` (
 
 /*!40000 ALTER TABLE `marcadores_citas` DISABLE KEYS */;
 INSERT INTO `marcadores_citas` (`id`,`id_cita`,`id_marcador`,`id_metodologia`,`valor`,`created_at`,`updated_at`,`mom`,`corr_peso_exponencial`,`corr_peso_lineal`) VALUES 
- (1,1,1,2,1,'2014-06-04 18:46:56','2014-06-17 22:00:19',1,0.0000000000023701181715117916,133.86880856760376),
- (2,1,2,2,2,'2014-06-04 18:46:56','2014-06-17 22:00:19',1,0.000078595919651819,380.71065989847716),
- (3,1,3,1,3,'2014-06-04 18:46:56','2014-06-17 22:00:20',1,0,0),
- (4,1,4,1,4,'2014-06-04 18:46:56','2014-06-17 22:00:20',1,0.0000000000009621216779017788,129.81393336218088),
- (5,1,5,1,5,'2014-06-04 18:46:56','2014-06-17 22:00:20',1,0,0),
- (6,1,6,2,6,'2014-06-04 18:46:56','2014-06-17 22:00:20',1,0,0),
- (7,1,7,1,7,'2014-06-05 01:37:19','2014-06-17 22:00:20',1,0,0);
+ (1,1,1,2,1,'2014-06-04 18:46:56','2014-07-18 19:33:31',1,0.0000000000023701181715118,133.8688085676),
+ (2,1,2,2,2,'2014-06-04 18:46:56','2014-07-18 19:33:31',1,0.000078595919651819,380.71065989848),
+ (3,1,3,1,3,'2014-06-04 18:46:56','2014-07-18 19:33:31',1,0,0),
+ (4,1,4,1,4,'2014-06-04 18:46:56','2014-07-18 19:33:31',1,0.00000000000096212167790178,129.81393336218),
+ (5,1,5,1,5,'2014-06-04 18:46:56','2014-07-18 19:33:31',1,0,0),
+ (6,1,6,2,6,'2014-06-04 18:46:56','2014-07-18 19:33:31',1,0,0),
+ (7,1,7,1,7,'2014-06-05 01:37:19','2014-07-18 19:33:31',1,0,0);
 /*!40000 ALTER TABLE `marcadores_citas` ENABLE KEYS */;
 
 
@@ -1742,7 +1767,7 @@ CREATE TABLE `mediana_marcadores` (
   `updated_at` varchar(45) NOT NULL,
   `created_at` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mediana_marcadores`
@@ -1750,15 +1775,17 @@ CREATE TABLE `mediana_marcadores` (
 
 /*!40000 ALTER TABLE `mediana_marcadores` DISABLE KEYS */;
 INSERT INTO `mediana_marcadores` (`id`,`id_marcador`,`mediana_marcador`,`id_unidad`,`semana`,`updated_at`,`created_at`) VALUES 
- (1,1,23.2,1,1,'',''),
- (2,2,2,1,2,'',''),
- (3,3,3,1,2,'',''),
- (4,4,4,1,1,'',''),
- (5,5,5,1,1,'',''),
- (6,6,6,1,1,'',''),
- (7,7,7,1,37,'',''),
- (8,5,25.3,1,15,'',''),
- (9,2,0,0,1,'2014-07-10 21:31:02','2014-07-10 21:30:34');
+ (1,1,23.2,2,1,'',''),
+ (2,2,2,2,2,'',''),
+ (3,3,3,2,2,'',''),
+ (4,4,4,2,1,'',''),
+ (5,5,5,2,1,'2014-07-10 21:35:21',''),
+ (6,6,6,2,1,'',''),
+ (7,7,7,2,37,'',''),
+ (8,5,25.3,2,15,'',''),
+ (9,2,0,2,1,'2014-07-10 21:31:02','2014-07-10 21:30:34'),
+ (10,1,12,2,16,'2014-07-15 18:12:29','2014-07-15 18:12:29'),
+ (12,2,12,1,3,'2014-07-15 18:37:29','2014-07-15 18:37:29');
 /*!40000 ALTER TABLE `mediana_marcadores` ENABLE KEYS */;
 
 

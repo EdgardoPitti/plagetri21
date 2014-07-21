@@ -15,7 +15,7 @@ class Datos_MedianaController extends BaseController {
 	{
 		$id = Input::get('marcador');
 		$semana = Input::get('semana');
-        $mediana = MedianaMarcador::where('id_marcador',$id)->where('semana', $semana);
+        $mediana = MedianaMarcador::where('id_marcador',$id)->where('semana', $semana)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador);
         if(empty($mediana)){
         	$mediana = new MedianaMarcador;
         	$mediana->mediana_marcador = 0;
@@ -51,6 +51,7 @@ class Datos_MedianaController extends BaseController {
 			$mediana->id_marcador = $data['marcador'];
 			$mediana->semana = $data['semana'];
 		}
+		$mediana->id_unidad = Configuracion::all()->last()->id_unidad_marcador;
 		$mediana->mediana_marcador = $data['mediana'];
 		$mediana->save();
 		return Redirect::route('datos.mediana.index');
