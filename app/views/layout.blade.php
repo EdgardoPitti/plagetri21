@@ -19,7 +19,38 @@
     {{-- Wrap all page content here --}}
     <div id="wrap">
       {{-- Begin page content --}}          
-      <div class="container">        
+      <div class="container">     
+        @if(Auth::check())
+          <div class="row">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+              <div class="container" style="margin-top:auto">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/plagetri21/public">Plagetri21</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">          
+                  <ul class="nav navbar-nav navbar-right">           
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-weight:bold;"> {{ Auth::user()->user }} <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li>{{ HTML::link('registro', 'Registrar Usuario') }}</li>                        
+                        <li class="divider"></li>
+                        <li>{{ HTML::link('logout', 'Cerrar Sesión') }}</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>   
+          </div>
+        @endif
         @yield('content')  
       </div>
     </div>
