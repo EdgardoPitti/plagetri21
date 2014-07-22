@@ -1,22 +1,18 @@
 <?php
 	class AuthController extends BaseController{
 		
+		
 		//Función para verificar los datos del usuario e iniciar sesión
 		public function postLogin() {
 		  $reglas = array(
 	  			'user' => 'required', 
-	  			'password' => 'required|alphaNum'
+	  			'password' => 'required|alpha_num'
 		  ); 	
-		  $msg = array(
-		  		'user.required' => 'El campo Usuario es obligatorio',
-		  		'password.required' => 'El campo Password es obligatorio',
-		  		'password.alphaNum' => 'El campo Password debe ser alfanumerico'
-		  );
-
+		  
 		  $validator = Validator::make(Input::all(), $reglas);
 
 		  if($validator->fails()){
-		  	return View::make('login')->withErrors($validator);
+		  	return Redirect::to('/')->withErrors($validator)->withInput();
 		  }else{
 
 		      $user_data = array(
@@ -27,7 +23,7 @@
 		      if(Auth::attempt($user_data)){
 		        return View::make('inicio');
 		      }else{
-		      	return View::make('login')->with('error', true);	      	
+		      	return View::make('login')->with('error_login', 'Usuario o Contraseña Incorrectos');	      	
 		      }		  	
 		  }	     
 	    } 
@@ -40,30 +36,30 @@
 	      return Redirect::to('/');
 	    }
 
+	    //Función para mostrar formulario de registro
+	    public function getRegistro(){
+	    	return View::make('datos/usuarios/registrar');
+	    }
+
 	    //Función para registrar usuario
 	    public function register(){
 	    	$rules = array(
-	    		'usuario' => 'required|min:10|max:30', 
-	    		'pass' => "required|alphaNum|min:12|max:25"
+	    		'usuario' => 'required|max:30', 
+	    		'password' => "required|alpha_num|min:6|max:20"
 	    	);
-	    	$mensaje = array(
-	    		'required' => 'El campo :attribute es obligatorio',
-	    		'min' => 'El campo :attribute no puede tener menos de :min caracteres',
-	    		'max' => 'El campo :attribute no puede tener más de :max caracteres',
-	    		'alphaNum' => 'El campo :attribute debe ser alfanumerico'
-	    	);
+	    	
 	    	$datos = Input::all();
-	    	$validar = Validator::make($datos, $rules, $mensaje);
+	    	$validar = Validator::make($datos, $rules);
 
 	    	if($validar->fails()){
-	    		return View::make('login')->with('activo', true)->withErrors($validar)->withInput();
+	    		return Redirect::to('registro')->withErrors($validar)->withInput();
 	    	}else{
 	    		
 	    		$user = new User;
 	    		$user->user = $datos['usuario'];
-	    		$user->password = Hash::make($datos['pass']);
+	    		$user->password = Hash::make($datos['password']);
 	    		$user->save();
-	    		return Redirect::to('/');
+	    		return View::make('datos/usuarios/registrar')->with('user_save', 'Usuario Agregado Correctamente');
 	    	}
 	    }
 	}

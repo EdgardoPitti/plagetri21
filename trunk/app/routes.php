@@ -20,6 +20,7 @@ Route::get('/', function(){
 });
 Route::post('sigin', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');
+Route::get('registro', 'AuthController@getRegistro')->before('auth');
 Route::post('registrar', 'AuthController@register');
 
 //Rutas para controladores
