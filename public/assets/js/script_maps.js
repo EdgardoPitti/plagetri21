@@ -6,15 +6,15 @@ jQuery(document).ready(function($){
         $.get("http://localhost/plagetri21/public/distrito", 
         { provincia: $(this).val() }, 
         function(data){            
-            var campo = $('#id_dist');
-            var campo1 = $('#id_correg');
+            var distrito = $('#id_dist');
+            var corregimiento = $('#id_correg');
             var posdist = [];
-            campo.empty();
-            campo1.empty();
-            campo.append("<option value='0'>SELECCIONE DISTRITO</option>");
-            campo1.append("<option value='0'>SELECCIONE CORREGIMIENTO</option>");
+            distrito.empty();
+            corregimiento.empty();
+            distrito.append("<option value='0'>SELECCIONE DISTRITO</option>");
+            corregimiento.append("<option value='0'>SELECCIONE CORREGIMIENTO</option>");
             $.each(data, function(index,element) {
-                campo.append("<option value='"+ element.id_distrito +","+ element.latitud +","+ element.longitud +"'>" + element.distrito + "</option>");
+                distrito.append("<option value='"+ element.id_distrito +","+ element.latitud +","+ element.longitud +"'>" + element.distrito + "</option>");
                 //Se almacena en un arreglo todos los distritos de la provincia seleccionada
                 posdist[index] = [element.latitud, element.longitud, element.distrito];                
             });       
@@ -36,12 +36,12 @@ jQuery(document).ready(function($){
         $.get("http://localhost/plagetri21/public/corregimiento", 
         { distrito: $(this).val() }, 
         function(data){
-            var campo = $('#id_correg');            
+            var corregimiento = $('#id_correg');            
             var poscor = [];
-            campo.empty();
-            campo.append("<option value='0'>SELECCIONE CORREGIMIENTO</option>");
+            corregimiento.empty();
+            corregimiento.append("<option value='0'>SELECCIONE CORREGIMIENTO</option>");
             $.each(data, function(index,element) {
-                campo.append("<option value='"+ element.id_corregimiento +","+ element.latitud +","+ element.longitud +"'>" + element.corregimiento + "</option>");
+                corregimiento.append("<option value='"+ element.id_corregimiento +","+ element.latitud +","+ element.longitud +"'>" + element.corregimiento + "</option>");
                 poscor[index] = [element.latitud, element.longitud, element.corregimiento];                
             });
             var icono  = new google.maps.MarkerImage('http://localhost/plagetri21/public/imgs/corregimiento.png'); 
@@ -112,7 +112,7 @@ jQuery(document).ready(function($){
     
 
     //Funcion para cargar los distintos marcadores al seleccionar provincia o distrito
-    //Recibe el mapa original (map) y el arreglo con las coordenads y nombre de distritos o corregimientos
+    //Recibe el mapa original (map) y el arreglo con las coordenads y nombre de distritos o corregimientos, y el icono del marcador
     function setMarkers(map, locations, icono) {                        
         for (var i = 0; i < locations.length; i++) {            
             var newmarker = locations[i];                      
