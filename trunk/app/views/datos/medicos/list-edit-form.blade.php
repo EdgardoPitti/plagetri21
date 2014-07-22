@@ -37,11 +37,11 @@
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('cedula', 'N&uacute;mero de C&eacute;dula:') }}
-	      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control')) }}
+	      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required')) }}
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('primer_nombre', 'Primer Nombre:') }}
-	      {{ Form::text('primer_nombre', null, array('placeholder' => 'Primer Nombre', 'class' => 'form-control')) }}        
+	      {{ Form::text('primer_nombre', null, array('placeholder' => 'Primer Nombre', 'class' => 'form-control', 'required' => 'required')) }}        
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('segundo_nombre', 'Segundo Nombre:') }}
@@ -49,7 +49,7 @@
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('apellido_paterno', 'Apellido Paterno:') }}
-	      {{ Form::text('apellido_paterno', null, array('placeholder' => 'Apellido Paterno', 'class' => 'form-control')) }}        
+	      {{ Form::text('apellido_paterno', null, array('placeholder' => 'Apellido Paterno', 'class' => 'form-control', 'required' => 'required')) }}        
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('apellido_materno', 'Apellido Materno:') }}
@@ -57,11 +57,11 @@
 	    </div>	   
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('sexo', 'Sexo:') }}	     
-	      {{ Form::select('sexo', array('null' => '', '0' => 'Femenino', '1' => 'Masculino'), null, array('class' => 'form-control')); }}
+	      {{ Form::select('sexo', array('null' => '', '0' => 'Femenino', '1' => 'Masculino'), null, array('class' => 'form-control', 'required' => 'required')); }}
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('id_especialidades_medicas', 'Especialidad M&eacute;dica:') }}
-			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadMedica::lists('descripcion', 'id_especialidades_medicas'), $datos['medico'][0]->id_especialidad_medica, array('class' => 'form-control')) }}
+			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadMedica::lists('descripcion', 'id_especialidades_medicas'), $datos['medico'][0]->id_especialidad_medica, array('class' => 'form-control', 'required' => 'required')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('extension', 'Extensi&oacute;n:') }}
