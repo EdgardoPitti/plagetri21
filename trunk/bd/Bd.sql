@@ -1087,6 +1087,31 @@ INSERT INTO `etnias` (`id_etnia`,`etnia`) VALUES
 
 
 --
+-- Definition of table `grupos_usuarios`
+--
+
+DROP TABLE IF EXISTS `grupos_usuarios`;
+CREATE TABLE `grupos_usuarios` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `grupo_usuario` varchar(45) NOT NULL,
+  `created_at` varchar(45) NOT NULL DEFAULT 'aaaa-mm-dd',
+  `updated_at` varchar(45) NOT NULL DEFAULT 'aaaa-mm-dd',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `grupos_usuarios`
+--
+
+/*!40000 ALTER TABLE `grupos_usuarios` DISABLE KEYS */;
+INSERT INTO `grupos_usuarios` (`id`,`grupo_usuario`,`created_at`,`updated_at`) VALUES 
+ (1,'ADMINISTRADOR','aaaa-mm-dd','aaaa-mm-dd'),
+ (2,'MEDICOS','aaaa-mm-dd','aaaa-mm-dd'),
+ (3,'ENFERMEROS','aaaa-mm-dd','aaaa-mm-dd');
+/*!40000 ALTER TABLE `grupos_usuarios` ENABLE KEYS */;
+
+
+--
 -- Definition of table `instituciones`
 --
 
@@ -1874,6 +1899,68 @@ INSERT INTO `migrations` (`migration`,`batch`) VALUES
 
 
 --
+-- Definition of table `modulos`
+--
+
+DROP TABLE IF EXISTS `modulos`;
+CREATE TABLE `modulos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `modulo` varchar(45) NOT NULL,
+  `ruta` varchar(45) NOT NULL,
+  `imagen` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modulos`
+--
+
+/*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
+INSERT INTO `modulos` (`id`,`modulo`,`ruta`,`imagen`) VALUES 
+ (1,'Citas de Tamizaje','datos.citas.index','citas.png'),
+ (2,'Pacientes','datos.pacientes.index','woman.png'),
+ (3,'Médicos','datos.medicos.index','medico.png'),
+ (4,'Mediana de Marcadores','datos.mediana.index','marcadores.png'),
+ (5,'Activos','datos.activos.index','activo.png'),
+ (6,'Mantenimiento','datos.mantenimientos.index','mantenimiento.png'),
+ (7,'Agenda Telefónica','datos.agenda.index','agenda.png'),
+ (8,'Localizar','datos.pacientesmapas.index','mapa.png');
+/*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
+
+
+--
+-- Definition of table `modulos_usuarios`
+--
+
+DROP TABLE IF EXISTS `modulos_usuarios`;
+CREATE TABLE `modulos_usuarios` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_modulo` int(10) unsigned NOT NULL,
+  `id_grupo_usuario` int(10) unsigned NOT NULL,
+  `created_at` varchar(45) NOT NULL DEFAULT 'aaaa-mm-dd',
+  `updated_at` varchar(45) NOT NULL DEFAULT 'aaaa-mm-dd',
+  `inactivo` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modulos_usuarios`
+--
+
+/*!40000 ALTER TABLE `modulos_usuarios` DISABLE KEYS */;
+INSERT INTO `modulos_usuarios` (`id`,`id_modulo`,`id_grupo_usuario`,`created_at`,`updated_at`,`inactivo`) VALUES 
+ (1,1,1,'aaaa-mm-dd','aaaa-mm-dd',0),
+ (19,2,1,'2014-07-29 21:22:22','2014-07-29 21:28:48',0),
+ (20,3,1,'2014-07-29 21:22:29','2014-07-29 21:23:36',0),
+ (21,4,1,'2014-07-29 21:24:40','2014-07-29 21:28:48',0),
+ (22,5,1,'2014-07-29 21:25:44','2014-07-29 21:25:44',0),
+ (23,6,1,'2014-07-29 21:28:48','2014-07-29 21:28:48',0),
+ (24,7,1,'2014-07-29 21:28:48','2014-07-29 21:28:48',0),
+ (25,8,1,'2014-07-29 21:28:48','2014-07-29 21:29:17',0);
+/*!40000 ALTER TABLE `modulos_usuarios` ENABLE KEYS */;
+
+
+--
 -- Definition of table `nacionalidades`
 --
 
@@ -2262,18 +2349,20 @@ CREATE TABLE `usuarios` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `remember_token` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `id_grupo_usuario` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `usuarios`
 --
 
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` (`id`,`user`,`password`,`created_at`,`updated_at`,`remember_token`) VALUES 
- (1,'luis','$2y$10$hSEri3jOF/tZ.4WockNFg.qzyrTNSoG.Yps97ncfvoeZccpUq7lBm','0000-00-00 00:00:00','2014-07-22 19:26:43','VpjSiJsYCulifXdFTvReOk9Z5ZCP3BEe2Y88jgYbQb3uTxvPRrHPp17wtRdt'),
- (2,'edgardo','$2y$10$ywno8NxLR4eDCaVyyYmuZeZVda9SZyiL573wG6vh8Wq83NvOR4j0W','2014-07-18 19:47:45','2014-07-18 20:16:08','GV8Pf2UHdCshjlL7h4svw5ZBdK3syhYZ1QEgptuWuEv3CYG7oMtjnlObP7hR'),
- (3,'admin','$2y$10$LoVzFmumJ8bw38J4BKEf8OJR1cKC0hgXyXoYEjpSN6FnAEyCl1zry','2014-07-22 19:26:40','2014-07-22 19:26:51','mH5csldpORgrwZjh4OUPjQQNE0VwBDdTk5ptuwtsdLxgqRCsjBiJe007GNPH');
+INSERT INTO `usuarios` (`id`,`user`,`password`,`created_at`,`updated_at`,`remember_token`,`id_grupo_usuario`) VALUES 
+ (1,'luis','$2y$10$hSEri3jOF/tZ.4WockNFg.qzyrTNSoG.Yps97ncfvoeZccpUq7lBm','0000-00-00 00:00:00','2014-07-22 19:26:43','VpjSiJsYCulifXdFTvReOk9Z5ZCP3BEe2Y88jgYbQb3uTxvPRrHPp17wtRdt',1),
+ (2,'edgardo','$2y$10$ywno8NxLR4eDCaVyyYmuZeZVda9SZyiL573wG6vh8Wq83NvOR4j0W','2014-07-18 19:47:45','2014-07-18 20:16:08','GV8Pf2UHdCshjlL7h4svw5ZBdK3syhYZ1QEgptuWuEv3CYG7oMtjnlObP7hR',1),
+ (3,'admin','$2y$10$LoVzFmumJ8bw38J4BKEf8OJR1cKC0hgXyXoYEjpSN6FnAEyCl1zry','2014-07-22 19:26:40','2014-07-28 20:20:14','KPYDV0wiBAxI0GNXXwydhEzqk3Rzzj4dJ35Tp6n87ZuTLEjpS2TTmDbofPnA',1),
+ (4,'Cachii','$2y$10$eguWzXX356VveDSwDHV7u.PDC0xDog1shjwE9.h/Pwf/hnmSUtg5.','2014-07-28 20:20:09','2014-07-28 22:01:57','66TfrEkdcRseXMMvJ1WWUoGAp1RG42ArrzU81Km7EYYChQ3bTTyIZSuQPCVg',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 
