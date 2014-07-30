@@ -201,9 +201,9 @@ function Correccion1(id, idraza, mom){
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();
+                
                 var resultado = mom/(a+(b/peso));
                 var resultado1 = mom/(Math.pow(10,(a+(b*peso))));
-                alert("Valor de a:"+a+" Valor de b:"+b);
                 campo.val(resultado);
                 campo1.val(resultado1);
             });
