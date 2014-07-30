@@ -58,6 +58,7 @@
 	    		$user = new User;
 	    		$user->user = $datos['usuario'];
 	    		$user->password = Hash::make($datos['password']);
+	    		$user->id_grupo_usuario = $datos['grupo_usuario'];
 	    		$user->save();
 	    		return View::make('datos/usuarios/registrar')->with('user_save', 'Usuario Agregado Correctamente');
 	    	}
