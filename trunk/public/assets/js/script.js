@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
         		});
         	});
         });     
-
+        //Funcion que percibe cuando se cambia un distrito para poder cargar los corregimientos pertenecientes a ese distrito
      	$("#id_distrito").change(function(){
             $.get("http://localhost/plagetri21/public/corregimiento", 
             { distrito: $(this).val() }, 
@@ -35,7 +35,7 @@ jQuery(document).ready(function($){
         		});
         	});
         });
-
+        //Funcion que percibe cuando se cambia una provincia de residencia para poder cargar los distritos pertenecientes a esa provincia
         $("#id_provincia_residencia").change(function(){
             $.get("http://localhost/plagetri21/public/distrito", 
             { provincia: $(this).val() }, 
@@ -51,7 +51,7 @@ jQuery(document).ready(function($){
                 });
             });
         }); 
-
+        //Funcion que percibe cuando se cambia un distrito de residencia para poder cargar los corregimientos pertenecientes a ese distrito
         $("#id_distrito_residencia").change(function(){
             $.get("http://localhost/plagetri21/public/corregimiento", 
             { distrito: $(this).val() }, 
@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
                 });
             });
         });
-
+        //Funcion que al clickear en el tipo de institucion carga las instituciones pertenecientes a ese tipo
         $("#id_tipo_institucion").click(function(){
             $.get("http://localhost/plagetri21/public/institucion", 
             { tipo: $(this).val(), provincia: $("#id_provincia_institucion").find(':selected').val() },
@@ -77,7 +77,7 @@ jQuery(document).ready(function($){
                 });
             });
         });
-
+        //Funcion que al clickear en la provincia de la institucion carga las instituciones pertenecientes a esa provincia
         $("#id_provincia_institucion").click(function(){
             $.get("http://localhost/plagetri21/public/institucionprovincia", 
             { provincia: $(this).val(), tipo: $("#id_tipo_institucion").find(':selected').val() }, 
@@ -90,6 +90,7 @@ jQuery(document).ready(function($){
                 });
             });
         });
+        //Funcion que al cambiar la semana este carga el valor automatico de la mediana del marcador correspondiente
         $("#semana").change(function(){
             $.get("http://localhost/plagetri21/public/obtenermediana", 
             { semana: $("#semana").find(':selected').val(), marcador: $("#marcador").find(':selected').val() }, 
@@ -102,6 +103,7 @@ jQuery(document).ready(function($){
                 campo.val(valor);
             });
         });
+        //Funcion que al cambiar el marcadir este carga el valor automatico de la mediana del marcador correspondiente
          $("#marcador").change(function(){
             $.get("http://localhost/plagetri21/public/obtenermediana", 
             { marcador: $("#marcador").find(':selected').val(), semana: $("#semana").find(':selected').val() }, 
@@ -114,6 +116,7 @@ jQuery(document).ready(function($){
                 campo.val(valor);
             });
         });
+         //Funcion calcular la edad exacta con respecto a la cita
          $("#fecha_cita").change(function(){
             var riesgo_pantalla = $("#riesgo_pantalla");
             var valor = $("#riesgo");
@@ -139,12 +142,41 @@ jQuery(document).ready(function($){
             valor.val(riesgo.toFixed(2));
             riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"");
         });
+        //Funcion para el calculo de las semanas de gestacion
+        $("#fur").change(function(){
+            var semana = $("#semana");
+            var date1 = $("#fur").val();
+            var date2 = $("#fecha_cita").val();
+            //Sentencias para el calculo de los dias entre dos fechas
+            if (date1.indexOf("-") != -1) { date1 = date1.split("-"); } else if (date1.indexOf("/") != -1) { date1 = date1.split("/"); } else { return 0; } 
+            if (date2.indexOf("-") != -1) { date2 = date2.split("-"); } else if (date2.indexOf("/") != -1) { date2 = date2.split("/"); } else { return 0; } 
+            if (parseInt(date1[0], 10) >= 1000) { 
+               var sDate = new Date(date1[0]+"/"+date1[1]+"/"+date1[2]);
+            } else if (parseInt(date1[2], 10) >= 1000) { 
+               var sDate = new Date(date1[2]+"/"+date1[0]+"/"+date1[1]);
+            } else { 
+               return 0; 
+            } 
+            if (parseInt(date2[0], 10) >= 1000) { 
+               var eDate = new Date(date2[0]+"/"+date2[1]+"/"+date2[2]);
+            } else if (parseInt(date2[2], 10) >= 1000) { 
+               var eDate = new Date(date2[2]+"/"+date2[0]+"/"+date2[1]);
+            } else { 
+               return 0; 
+            } 
+            var one_day = 1000*60*60*24; 
+            var daysApart = Math.abs(Math.ceil((sDate.getTime()-eDate.getTime())/one_day)); 
+            //Sentencia para el calculo de la semanas obteniendo los dias
+            var semanas = Math.round(daysApart/7);
+            semana.val(semanas);
+        });
+
 
 });    
 //Funcion pque recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
 function Division(id, idraza){
     $.get("http://localhost/plagetri21/public/calculo", 
-        { idmarcador: id }, 
+        { idmarcador: id , semana: $("#semana").val() }, 
         function(data){
             var campo = $('#mom_'+id+'');
             $.each(data, function(index,element) {
@@ -152,10 +184,12 @@ function Division(id, idraza){
                 var mediana = element.mediana_marcador;
                 var resultado = valor/mediana;
                 campo.val(resultado);
+                //Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso
                 Correccion1(id, idraza, resultado);
             });
     });
 }
+//Funcion que recibe el id que es el id del marcador, el id de la raza y la mom para realizar los calculos de la correccion
 function Correccion1(id, idraza, mom){
     $.get("http://localhost/plagetri21/public/correccion1", 
         { idmarcador: id, idraza: idraza }, 
@@ -169,7 +203,7 @@ function Correccion1(id, idraza, mom){
                 var peso = $('#peso').val();
                 var resultado = mom/(a+(b/peso));
                 var resultado1 = mom/(Math.pow(10,(a+(b*peso))));
-
+                alert("Valor de a:"+a+" Valor de b:"+b);
                 campo.val(resultado);
                 campo1.val(resultado1);
             });

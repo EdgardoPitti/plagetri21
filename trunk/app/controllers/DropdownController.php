@@ -60,21 +60,16 @@ class DropdownController extends BaseController
     public function getMomMarcador()
     {
         $id = Input::get('idmarcador');
-        $mediana = MedianaMarcador::where('id_marcador', $id);
+        $semana = Input::get('semana');
+        $mediana = MedianaMarcador::where('id_marcador', $id)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->where('semana', $semana);
         return ($mediana->get(['mediana_marcador']));
     }
+    //Funcion que recibe el id de la raza y del marcador y devuelve los coeficientes correspondientes 
     public function getCoeficiente()
     {
         $idraza = Input::get('idraza');
         $idmarcador = Input::get('idmarcador');
         $coeficiente = Coeficiente::where('id_raza', $idraza)->where('id_marcador', $idmarcador);
         return ($coeficiente->get(['a', 'b']));
-    }
-    public function getRiesgo()
-    {
-        $fecha = Input::get('fecha');
-        $id_paciente = Input::get('paciente');
-        $paciente = Paciente::where('id', $id_paciente);
-        return ($paciente->get(['fecha_nacimiento']));
     }
 }

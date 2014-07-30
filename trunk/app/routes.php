@@ -18,6 +18,7 @@ Route::get('/', function(){
 		return View::make('login');		
 	}
 });
+//Rutas de Logueo y Registro de Usuarios
 Route::post('sigin', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');
 Route::get('registro', 'AuthController@getRegistro')->before('auth');
@@ -32,8 +33,11 @@ Route::resource('datos/agenda', 'Datos_AgendaController');
 Route::resource('datos/activos', 'Datos_ActivosController');
 Route::resource('datos/mantenimientos', 'Datos_MantenimientosController');
 Route::resource('datos/mediana', 'Datos_MedianaController');
+Route::resource('datos/modulos', 'Datos_ModulosController');
+
 //Ruta para el control del mapa
 Route::resource('datos/pacientesmapas', 'MapasController');
+
 //Rutas para elementos dinamicos
 Route::get('datos/marcadores', 'DropdownController@marcadores');
 Route::get('distrito','DropdownController@getDistrito');
@@ -43,4 +47,3 @@ Route::get('institucionprovincia', 'DropdownController@getInstitucionprovincia')
 Route::get('calculo', 'DropdownController@getMomMarcador');
 Route::get('correccion1', 'DropdownController@getCoeficiente');
 Route::get('obtenermediana', 'Datos_MedianaController@getObtenerMediana');
-Route::get('obtenerRiesgo', 'DropdownController@getRiesgo');

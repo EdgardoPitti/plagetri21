@@ -40,8 +40,11 @@
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-weight:bold;"> {{ Auth::user()->user }} <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
-                        <li>{{ HTML::link('registro', 'Registrar Usuario') }}</li>                        
-                        <li class="divider"></li>
+                        @if(Auth::user()->id_grupo_usuario == 1)
+                          <li>{{ HTML::link('registro', 'Registrar Usuario') }}</li>
+                          <li>{{ HTML::link('datos/modulos', 'Módulos - Usuarios') }}</li>
+                          <li>{{ HTML::link('grupos', 'Grupos de Usuarios') }}</li>
+                        @endif
                         <li>{{ HTML::link('logout', 'Cerrar Sesión') }}</li>
                       </ul>
                     </li>

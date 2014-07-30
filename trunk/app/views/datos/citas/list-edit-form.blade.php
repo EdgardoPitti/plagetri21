@@ -127,6 +127,7 @@
 				<div class="row">
 					{{ Form::text('id_paciente', $datos[0]->id, array('style' => 'display:none', 'id' => 'id_paciente')) }}
 					{{ Form::text('fecha_nacimiento', $datos[0]->fecha_nacimiento, array('style' => 'display:none', 'id' => 'fecha_nacimiento')) }}
+					{{ Form::text('semana', null , array('style' => 'display:none', 'id' => 'semana')) }}
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('riesgo', 'Riesgo:') }}<div id="riesgo_pantalla">1/{{ $form['citas']->riesgo }}</div>
 				    	{{ Form::text('riesgo', $form['citas']->riesgo, array('style' => 'display:none')) }}        
@@ -153,7 +154,7 @@
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fur', 'Fecha de Ultima Menstruación:') }}
-      					{{ Form::date('fur', $form['citas']->fur, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+      					{{ Form::date('fur', $form['citas']->fur, array('id' =>'fur','class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fpp', 'Fecha Probable de Parto:') }}
