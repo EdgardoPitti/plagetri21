@@ -155,15 +155,13 @@ class ProcessBuilder
     /**
      * Sets the input of the process.
      *
-     * @param string|null $stdin The input as a string
+     * @param string $stdin The input as a string
      *
      * @return ProcessBuilder
-     *
-     * @throws InvalidArgumentException In case the argument is invalid
      */
     public function setInput($stdin)
     {
-        $this->stdin = ProcessUtils::validateInput(sprintf('%s::%s', __CLASS__, __FUNCTION__), $stdin);
+        $this->stdin = $stdin;
 
         return $this;
     }

@@ -163,9 +163,9 @@ class Carbon extends DateTime
    {
       // If the class has a test now set and we are trying to create a now()
       // instance then override as required
-      if (static::hasTestNow() && (empty($time) || $time === 'now' || static::hasRelativeKeywords($time))) {
+      if (static::hasTestNow() && (empty($time) || $time === 'now' || self::hasRelativeKeywords($time))) {
          $testInstance = clone static::getTestNow();
-         if (static::hasRelativeKeywords($time)) {
+         if (self::hasRelativeKeywords($time)) {
    	     $testInstance->modify($time);
          }
 
@@ -180,7 +180,7 @@ class Carbon extends DateTime
       }
 
       if ($tz !== null) {
-         parent::__construct($time, static::safeCreateDateTimeZone($tz));
+         parent::__construct($time, self::safeCreateDateTimeZone($tz));
       } else {
          parent::__construct($time);
       }
@@ -298,7 +298,7 @@ class Carbon extends DateTime
          $second = ($second === null) ? 0 : $second;
       }
 
-      return static::createFromFormat('Y-n-j G:i:s', sprintf('%s-%s-%s %s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $tz);
+      return self::createFromFormat('Y-n-j G:i:s', sprintf('%s-%s-%s %s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $tz);
    }
 
    /**
@@ -313,7 +313,7 @@ class Carbon extends DateTime
     */
    public static function createFromDate($year = null, $month = null, $day = null, $tz = null)
    {
-      return static::create($year, $month, $day, null, null, null, $tz);
+      return self::create($year, $month, $day, null, null, null, $tz);
    }
 
    /**
@@ -328,7 +328,7 @@ class Carbon extends DateTime
     */
    public static function createFromTime($hour = null, $minute = null, $second = null, $tz = null)
    {
-      return static::create(null, null, null, $hour, $minute, $second, $tz);
+      return self::create(null, null, null, $hour, $minute, $second, $tz);
    }
 
    /**
@@ -345,13 +345,13 @@ class Carbon extends DateTime
    public static function createFromFormat($format, $time, $tz = null)
    {
       if ($tz !== null) {
-         $dt = parent::createFromFormat($format, $time, static::safeCreateDateTimeZone($tz));
+         $dt = parent::createFromFormat($format, $time, self::safeCreateDateTimeZone($tz));
       } else {
          $dt = parent::createFromFormat($format, $time);
       }
 
       if ($dt instanceof DateTime) {
-         return static::instance($dt);
+         return self::instance($dt);
       }
 
       $errors = static::getLastErrors();
@@ -368,7 +368,7 @@ class Carbon extends DateTime
     */
    public static function createFromTimestamp($timestamp, $tz = null)
    {
-      return static::now($tz)->setTimestamp($timestamp);
+      return self::now($tz)->setTimestamp($timestamp);
    }
 
    /**
@@ -390,7 +390,7 @@ class Carbon extends DateTime
     */
    public function copy()
    {
-      return static::instance($this);
+      return self::instance($this);
    }
 
    ///////////////////////////////////////////////////////////////////
@@ -719,7 +719,7 @@ class Carbon extends DateTime
     */
    public function setTimezone($value)
    {
-      parent::setTimezone(static::safeCreateDateTimeZone($value));
+      parent::setTimezone(self::safeCreateDateTimeZone($value));
 
       return $this;
    }
@@ -785,7 +785,7 @@ class Carbon extends DateTime
          return false;
       }
 
-      foreach(static::$relativeKeywords as $keyword) {
+      foreach(self::$relativeKeywords as $keyword) {
          if (stripos($time, $keyword) !== false) {
             return true;
         }
@@ -806,7 +806,7 @@ class Carbon extends DateTime
     *
     * @return string
     */
-   public function formatLocalized($format = self::COOKIE)
+   public function formatLocalized($format)
    {
       // Check for Windows to find and replace the %e
       // modifier correctly
@@ -1161,7 +1161,7 @@ class Carbon extends DateTime
     */
    public function isYesterday()
    {
-      return $this->toDateString() === static::now($this->tz)->subDay()->toDateString();
+      return $this->toDateString() === self::now($this->tz)->subDay()->toDateString();
    }
 
    /**
@@ -1171,7 +1171,7 @@ class Carbon extends DateTime
     */
    public function isToday()
    {
-      return $this->toDateString() === static::now($this->tz)->toDateString();
+      return $this->toDateString() === self::now($this->tz)->toDateString();
    }
 
    /**
@@ -1181,7 +1181,7 @@ class Carbon extends DateTime
     */
    public function isTomorrow()
    {
-      return $this->toDateString() === static::now($this->tz)->addDay()->toDateString();
+      return $this->toDateString() === self::now($this->tz)->addDay()->toDateString();
    }
 
    /**
@@ -1191,7 +1191,7 @@ class Carbon extends DateTime
     */
    public function isFuture()
    {
-      return $this->gt(static::now($this->tz));
+      return $this->gt(self::now($this->tz));
    }
 
    /**
