@@ -137,7 +137,7 @@ jQuery(document).ready(function($){
                 agno--;
             }
             edad = parseFloat(agno) + parseFloat(mes.toFixed(2));
-            alert(edad);
+            //alert(edad);
             var probabilidad = parseFloat(0.000627) + parseFloat(Math.exp(parseFloat(-16.2395) + parseFloat((0.286 * (edad - 0.5)))));
             var riesgo = (1/(1-probabilidad))/probabilidad;
             valor.val(riesgo.toFixed(2));
@@ -170,7 +170,7 @@ jQuery(document).ready(function($){
             //Sentencia para el calculo de la semanas obteniendo los dias
             var semanas = Math.round(daysApart/7);
             semana.val(semanas);
-            alert(semanas);
+            //alert(semanas);
         });
 
 
@@ -203,7 +203,7 @@ function Correccion1(id, idraza, mom){
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();
-                alert("mom: "+mom+" a: "+a+" b: "+b+" peso: "+peso);
+               //alert("mom: "+mom+" a: "+a+" b: "+b+" peso: "+peso);
                 var resultado = mom/(parseFloat(a)+parseFloat(b/peso));
                 var resultado1 = mom/(Math.pow(10,(parseFloat(a)+parseFloat((b*peso)))));
                 campo.val(resultado);
