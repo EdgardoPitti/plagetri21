@@ -1,5 +1,14 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('../fonts/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+}
 body{
-	background-color: #f2f2f2;
+   background-color: #f2f2f2;
+   font-family: 'Open Sans';
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 /*Mapa*/
  #map-canvas {
@@ -65,7 +74,7 @@ body{
 .image-preview-input-title {
     margin-left:2px;
 }
-/*CSS del menu*/
+/*CSS del menu inicio*/
 .nav-row {
 	text-align: center;
 }
