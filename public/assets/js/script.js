@@ -103,7 +103,7 @@ jQuery(document).ready(function($){
                 campo.val(valor);
             });
         });
-        //Funcion que al cambiar el marcadir este carga el valor automatico de la mediana del marcador correspondiente
+        //Funcion que al cambiar el marcador este carga el valor automatico de la mediana del marcador correspondiente
          $("#marcador").change(function(){
             $.get("http://localhost/plagetri21/public/obtenermediana", 
             { marcador: $("#marcador").find(':selected').val(), semana: $("#semana").find(':selected').val() }, 
@@ -137,6 +137,7 @@ jQuery(document).ready(function($){
                 agno--;
             }
             edad = parseFloat(agno) + parseFloat(mes.toFixed(2));
+            alert(edad);
             var probabilidad = parseFloat(0.000627) + parseFloat(Math.exp(parseFloat(-16.2395) + parseFloat((0.286 * (edad - 0.5)))));
             var riesgo = (1/(1-probabilidad))/probabilidad;
             valor.val(riesgo.toFixed(2));
@@ -169,6 +170,7 @@ jQuery(document).ready(function($){
             //Sentencia para el calculo de la semanas obteniendo los dias
             var semanas = Math.round(daysApart/7);
             semana.val(semanas);
+            alert(semanas);
         });
 
 
@@ -182,7 +184,7 @@ function Division(id, idraza){
             $.each(data, function(index,element) {
                 var valor = $('#valor_'+id+'').val();
                 var mediana = element.mediana_marcador;
-                var resultado = valor/mediana;
+                var resultado = (valor/mediana).toFixed(2);
                 campo.val(resultado);
                 //Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso
                 Correccion1(id, idraza, resultado);
@@ -201,9 +203,9 @@ function Correccion1(id, idraza, mom){
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();
-                
-                var resultado = mom/(a+(b/peso));
-                var resultado1 = mom/(Math.pow(10,(a+(b*peso))));
+                alert("mom: "+mom+" a: "+a+" b: "+b+" peso: "+peso);
+                var resultado = mom/(parseFloat(a)+parseFloat(b/peso));
+                var resultado1 = mom/(Math.pow(10,(parseFloat(a)+parseFloat((b*peso)))));
                 campo.val(resultado);
                 campo1.val(resultado1);
             });
