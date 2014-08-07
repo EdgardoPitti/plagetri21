@@ -13,7 +13,7 @@ class Datos_ModulosController extends BaseController {
 	public function index()
 	{
 		$grupo = new GrupoUsuario;
-		$form['datos'] = array('route' => 'datos.grupos.store', 'method' => 'POST');
+		$form['datos'] = array('route' => 'datos.modulos.create', 'method' => 'POST');
 		$form['grupo'] = $grupo;
 		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
 	}
@@ -23,9 +23,19 @@ class Datos_ModulosController extends BaseController {
 	 *
 	 * @return Response
 	 */
+	public function almacenar()
+	{
+		$data = Input::all();
+		$grupo = new GrupoUsuario;
+		$grupo->grupo_usuario = $data['grupo_usuario'];
+		$grupo->save();
+		
+		$form['datos'] = array('route' => 'datos.modulos.create', 'method' => 'POST');
+		$form['grupo'] = $grupo;
+		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);	
+	}
 	public function create()
 	{
-		
 	}
 
 
@@ -74,7 +84,9 @@ class Datos_ModulosController extends BaseController {
 	public function show($id)
 	{	
 		$grupo = GrupoUsuario::find($id);
-		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo);
+		$form['datos'] = array('route' => 'datos.modulos.create', 'method' => 'POST');
+		$form['grupo'] = new GrupoUsuario;
+		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
 	}
 
 
@@ -86,7 +98,10 @@ class Datos_ModulosController extends BaseController {
 	 */
 	public function edit($id)
 	{
-
+		$grupo = new GrupoUsuario;
+		$form['datos'] = array('route' => array('datos.modulos.update', $id), 'method' => 'PATCH');
+		$form['grupo'] = GrupoUsuario::find($id);
+		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
 	}
 
 
@@ -98,6 +113,13 @@ class Datos_ModulosController extends BaseController {
 	 */
 	public function update($id)
 	{
+		$data = Input::all();
+		$grupo = GrupoUsuario::find($id);
+		$grupo->grupo_usuario = $data['grupo_usuario'];
+		$grupo->save();
+		$form['datos'] = array('route' => 'datos.modulos.create', 'method' => 'POST');
+		$form['grupo'] = new GrupoUsuario;
+		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
 
 	}
 
