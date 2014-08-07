@@ -45,6 +45,7 @@
 							  			<td>{{ User::where('id_grupo_usuario', $grupo->id)->count() }}</td>
 							  			<td align="center">
 							  				<a href="{{ route('datos.modulos.show', $grupo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Cargar Módulos"><span class="glyphicon glyphicon-list-alt"></span></a>
+							  				<a href="{{ route('datos.grupos.show', $grupo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Cargar Módulos"><span class="glyphicon glyphicon-list-alt"></span></a>
 							  			</td>
 							  		</tr>
 							  		@endforeach
@@ -53,6 +54,13 @@
 						</div>
 			        </div>
 		        </div>
+		        <center>
+		        	{{ Form::open($form['datos'] , array('role' => 'form')) }}
+				    	{{ Form::label('grupo_usuario', 'Nombre de Grupo:') }}
+				    	{{ Form::text('grupo_usuario', $form['grupo']->grupo_usuario, array('placeholder' => 'Nombre de Grupo', 'class' => 'form-control', 'required' => 'required')) }}<br>        
+						{{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+		        	{{ Form::close() }}
+		        	</center>
 		    </div>
 		    @if(!is_null($tipousuario->id))
 			    <center>
