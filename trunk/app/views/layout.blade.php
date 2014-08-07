@@ -42,8 +42,7 @@
                       <ul class="dropdown-menu" role="menu">
                         @if(Auth::user()->id_grupo_usuario == 1)
                           <li>{{ HTML::link('registro', 'Registrar Usuario') }}</li>
-                          <li>{{ HTML::link('datos/modulos', 'Módulos - Usuarios') }}</li>
-                          <li>{{ HTML::link('grupos', 'Grupos de Usuarios') }}</li>
+                          <li>{{ HTML::link('datos/modulos', 'Grupos - Módulos') }}</li>
                         @endif
                         <li>{{ HTML::link('logout', 'Cerrar Sesión') }}</li>
                       </ul>

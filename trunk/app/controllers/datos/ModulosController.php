@@ -13,7 +13,9 @@ class Datos_ModulosController extends BaseController {
 	public function index()
 	{
 		$grupo = new GrupoUsuario;
-		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo);
+		$form['datos'] = array('route' => 'datos.grupos.store', 'method' => 'POST');
+		$form['grupo'] = $grupo;
+		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
 	}
 
 	/**

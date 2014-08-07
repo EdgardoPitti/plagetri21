@@ -34,6 +34,7 @@ Route::resource('datos/activos', 'Datos_ActivosController');
 Route::resource('datos/mantenimientos', 'Datos_MantenimientosController');
 Route::resource('datos/mediana', 'Datos_MedianaController');
 Route::resource('datos/modulos', 'Datos_ModulosController');
+Route::resource('datos/grupos', 'Datos_GruposController');
 
 //Ruta para el control del mapa
 Route::resource('datos/pacientesmapas', 'MapasController');

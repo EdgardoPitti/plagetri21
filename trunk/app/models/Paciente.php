@@ -70,17 +70,61 @@ class Paciente extends Eloquent {
 			}
 			//Sentencias para almacenar los datos del/los paciente(s) en la variable a retornar
 			$datos[$x]->foto = $foto;
-			$datos[$x]->etnia = Etnia::where('id_etnia', $paciente->id_etnia)->first()->etnia;
-			$datos[$x]->raza = Raza::where('id_razas', $paciente->id_raza)->first()->raza;
-			$datos[$x]->edad = $this->edad($paciente->fecha_nacimiento);
-			$datos[$x]->provincia_nacimiento = Provincia::where('id_provincia', $paciente->id_provincia_nacimiento)->first()->provincia;
-			$datos[$x]->distrito_nacimiento = Distrito::where('id_distrito', $paciente->id_distrito_nacimiento)->first()->distrito;
-			$datos[$x]->corregimiento_nacimiento = Corregimiento::where('id_corregimiento', $paciente->id_corregimiento_nacimiento)->first()->corregimiento;
-			$datos[$x]->provincia_residencia = Provincia::where('id_provincia', $paciente->id_provincia_residencia)->first()->provincia;
-			$datos[$x]->distrito_residencia = Distrito::where('id_distrito', $paciente->id_distrito_residencia)->first()->distrito;
-			$datos[$x]->corregimiento_residencia = Corregimiento::where('id_corregimiento', $paciente->id_corregimiento_nacimiento)->first()->corregimiento;
-			$datos[$x]->nacionalidad = Nacionalidad::where('id_nacionalidad', $paciente->id_nacionalidad)->first()->nacionalidad;
-			$datos[$x]->tipo_sangre = Tiposangre::where('id_tipo_sanguineo', $paciente->id_tipo_sangre)->first()->tipo_sangre;
+			if(empty($paciente->id_etnia)){
+				$datos[$x]->etnia = 'No Definida';
+			}else{
+				$datos[$x]->etnia = Etnia::where('id_etnia', $paciente->id_etnia)->first()->etnia;
+			}
+			if(empty($paciente->id_raza)){
+				$datos[$x]->raza = 'No Definida';				
+			}else{
+				$datos[$x]->raza = Raza::where('id_razas', $paciente->id_raza)->first()->raza;
+			}
+			if(empty($paciente->fecha_nacimiento)){
+				$datos[$x]->edad = '0';
+			}else{
+				$datos[$x]->edad = $this->edad($paciente->fecha_nacimiento);
+			}
+			if(empty($paciente->id_provincia_nacimiento)){
+				$datos[$x]->provincia_nacimiento = 'No Definida';
+			}else{
+				$datos[$x]->provincia_nacimiento = Provincia::where('id_provincia', $paciente->id_provincia_nacimiento)->first()->provincia;
+			}
+			if(empty($paciente->id_distrito_nacimiento)){
+				$datos[$x]->distrito_nacimiento = 'No Definido';
+			}else{
+				$datos[$x]->distrito_nacimiento = Distrito::where('id_distrito', $paciente->id_distrito_nacimiento)->first()->distrito;
+			}
+			if(empty($paciente->id_corregimiento_nacimiento)){
+				$datos[$x]->corregimiento_nacimiento = 'No Definido';
+			}else{
+				$datos[$x]->corregimiento_nacimiento = Corregimiento::where('id_corregimiento', $paciente->id_corregimiento_nacimiento)->first()->corregimiento;
+			}
+			if(empty($paciente->id_provincia_residencia)){
+				$datos[$x]->provincia_residencia = 'No Definida';
+			}else{
+				$datos[$x]->provincia_residencia = Provincia::where('id_provincia', $paciente->id_provincia_residencia)->first()->provincia;	
+			}
+			if(empty($paciente->id_distrito_residencia)){
+				$datos[$x]->distrito_residencia = 'No Definido';
+			}else{
+				$datos[$x]->distrito_residencia = Distrito::where('id_distrito', $paciente->id_distrito_residencia)->first()->distrito;
+			}
+			if(empty($paciente->id_corregimiento_nacimiento)){
+				$datos[$x]->corregimiento_residencia = 'No Definido';
+			}else{
+				$datos[$x]->corregimiento_residencia = Corregimiento::where('id_corregimiento', $paciente->id_corregimiento_nacimiento)->first()->corregimiento;				
+			}
+			if(empty($paciente->id_nacionalidad)){
+				$datos[$x]->nacionalidad = 'No Definida';
+			}else{
+				$datos[$x]->nacionalidad = Nacionalidad::where('id_nacionalidad', $paciente->id_nacionalidad)->first()->nacionalidad;
+			}
+			if(empty($paciente->id_tipo_sangre)){
+				$datos[$x]->tipo_sangre = 'No Definida';
+			}else{
+				$datos[$x]->tipo_sangre = Tiposangre::where('id_tipo_sanguineo', $paciente->id_tipo_sangre)->first()->tipo_sangre;
+			}
 			$x++;	
 		}
 		return $datos;
