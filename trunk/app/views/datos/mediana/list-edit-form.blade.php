@@ -45,7 +45,7 @@
 			  	<tbody>
 			  		@for($s = 1; $s < 38; $s++)
 			  			@if (!empty(MedianaMarcador::where('semana', $s)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->first()->id))
-			  			<tr align="center">
+			  			<tr class="white" align="center">
 			  				<td>{{ $s }}</td>
 			  				@foreach (Marcador::all() as $marcador)
 			  					@if (!empty(MedianaMarcador::where('id_marcador', $marcador->id)->where('semana', $s)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->first()->id))
