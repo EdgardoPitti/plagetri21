@@ -111,11 +111,16 @@ class Datos_CitasController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$paciente = neW Paciente;
+		$paciente = new Paciente;
 		$cita = Cita::find($id);
 		$institucion = Institucion::find($cita->id_institucion);
-		$cita->id_provincia = $institucion->id_provincia;
-		$cita->id_tipo = $institucion->id_tipo_institucion;
+		if(! empty($institucion)){
+			$cita->id_provincia = $institucion->id_provincia;
+			$cita->id_tipo = $institucion->id_tipo_institucion;
+		}else{
+			$cita->id_provincia = '0';
+			$cita->id_tipo = '0';
+		}
 		$datos = $paciente->datos_pacientes(0);
 		$dato_paciente = $paciente->datos_pacientes($cita->id_paciente);
 		$form['datos'] = array('route' => array('datos.citas.update', $id), 'method' => 'PATCH');

@@ -171,7 +171,6 @@
                 <tr class="info">
                     <th>#</th>
                     <th>Nombre Completo</th>
-                    <th>Lugar de Nacimiento</th>
                     <th>Fecha Nacimiento</th>
                     <th>Celular</th>
                     <th>Telefono</th>
@@ -185,7 +184,6 @@
                   <tr>
                       <td>{{ $x++ }}.</td>
                       <td>{{ $paciente->primer_nombre.' '.$paciente->segundo_nombre.' '.$paciente->apellido_paterno.' '.$paciente->apellido_materno }}</td>
-                      <td>{{ $paciente->lugar_nacimiento }}</td>
                       <td>{{ $paciente->fecha_nacimiento }}</td>
                       <td>{{ $paciente->celular }}</td>
                       <td>{{ $paciente->telefono }}</td>
