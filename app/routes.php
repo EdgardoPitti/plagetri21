@@ -23,7 +23,7 @@ Route::post('sigin', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');
 Route::get('registro', 'AuthController@getRegistro')->before('auth');
 Route::post('registrar', 'AuthController@register');
-Route::post('grupostore', 'Datos_ModulosController@almacenar');
+
 
 //Rutas para controladores
 Route::resource('datos/pacientes', 'Datos_PacientesController');
@@ -35,6 +35,7 @@ Route::resource('datos/activos', 'Datos_ActivosController');
 Route::resource('datos/mantenimientos', 'Datos_MantenimientosController');
 Route::resource('datos/mediana', 'Datos_MedianaController');
 Route::resource('datos/modulos', 'Datos_ModulosController');
+Route::post('almacenargrupo', 'Datos_ModulosController@almacenargrupo');
 
 
 //Ruta para el control del mapa

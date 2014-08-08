@@ -46,6 +46,7 @@
 							  			<td align="center">
 											<a href="{{ route('datos.modulos.edit', $grupo->id) }}" class="btn btn-primary btn-sm" style="margin:3px 0px;" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>								  				
 							  				<a href="{{ route('datos.modulos.show', $grupo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Cargar Módulos"><span class="glyphicon glyphicon-list-alt"></span></a>
+							  				<a href="#" data-id="{{ $grupo->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>                                            
 							  			</td>
 							  		</tr>
 							  		@endforeach
@@ -58,7 +59,8 @@
 		        	{{ Form::open($form['datos'] , array('role' => 'form')) }}
 				    	{{ Form::label('grupo_usuario', 'Nombre de Grupo:') }}
 				    	{{ Form::text('grupo_usuario', $form['grupo']->grupo_usuario, array('placeholder' => 'Nombre de Grupo', 'class' => 'form-control', 'required' => 'required')) }}<br>        
-						{{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}<hr>
+						{{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+						 <a href="{{ route('datos.modulos.index') }}" class="btn btn-info">Limpiar Campos</a><hr>
 		        	{{ Form::close() }}
 		        	</center>
 		    </div>
@@ -85,4 +87,6 @@
 			    </center>
 		   	@endif
 		</div>
+		{{ Form::open(array('route' => array('datos.modulos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
+		{{ Form::close() }}
 @stop

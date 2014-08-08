@@ -13,27 +13,26 @@ class Datos_ModulosController extends BaseController {
 	public function index()
 	{
 		$grupo = new GrupoUsuario;
-		$form['datos'] = array('route' => 'datos.modulos.create', 'method' => 'POST');
+		$form['datos'] = array('url' => 'almacenargrupo', 'method' => 'POST');
 		$form['grupo'] = $grupo;
 		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
 	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function almacenar()
+	 public function almacenargrupo()
 	{
 		$data = Input::all();
 		$grupo = new GrupoUsuario;
 		$grupo->grupo_usuario = $data['grupo_usuario'];
 		$grupo->save();
 		
-		$form['datos'] = array('route' => 'datos.modulos.create', 'method' => 'POST');
+		$form['datos'] = array('url' => 'almacenargrupo', 'method' => 'POST');
 		$form['grupo'] = $grupo;
 		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);	
 	}
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
 	public function create()
 	{
 	}
@@ -85,7 +84,7 @@ class Datos_ModulosController extends BaseController {
 	{	
 		$grupo = GrupoUsuario::find($id);
 		$form['datos'] = array('route' => 'datos.modulos.create', 'method' => 'POST');
-		$form['grupo'] = new GrupoUsuario;
+		$form['grupo'] = $grupo;
 		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
 	}
 
@@ -132,6 +131,14 @@ class Datos_ModulosController extends BaseController {
 	 */
 	public function destroy($id)
 	{
+		$grupos = GrupoUsuario::find($id);
+		$grupos->delete();
+		
+		$grupo = new GrupoUsuario;
+		$form['datos'] = array('url' => 'almacenar', 'method' => 'POST');
+		$form['grupo'] = $grupo;
+		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
+		
 	}
 
 

@@ -63,5 +63,6 @@
 	    		return View::make('datos/usuarios/registrar')->with('user_save', 'Usuario Agregado Correctamente');
 	    	}
 	    }
+	    
 	}
 ?>
