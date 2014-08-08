@@ -165,7 +165,7 @@
           </div>
           <div class="panel-body">
             <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" /><br>
-            <div class="overthrow"  style="overflow:auto;width:100%;">
+            <div class="overthrow"  style="overflow:auto;width:100%;height:100%;max-height:240px;">
               <table class="table table-bordered table-hover" id="dev-table">
                 <thead>
                 <tr class="info">
