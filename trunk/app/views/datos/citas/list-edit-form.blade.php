@@ -150,7 +150,7 @@
 				    </div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('estatura', 'Estatura(m):') }}
-				    	{{ Form::text('estatura', $form['citas']->estatura, array('placeholder' => 'Edad Gestacional', 'class' => 'form-control', 'required' => 'required')) }}        
+				    	{{ Form::text('estatura', $form['citas']->estatura, array('placeholder' => 'Estatura', 'class' => 'form-control')) }}        
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fur', 'Fecha de Ultima Menstruación:') }}
@@ -158,7 +158,7 @@
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fpp', 'Fecha Probable de Parto:') }}
-      					{{ Form::date('fpp', $form['citas']->fpp, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+      					{{ Form::date('fpp', $form['citas']->fpp, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('edad_gestacional', 'Edad Gestacional por Ultrasonido:') }}
@@ -170,7 +170,7 @@
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fecha_ultrasonido', 'Fecha del Ultrasonido:') }}
-      					{{ Form::date('fecha_ultrasonido', $form['citas']->fecha_ultrasonido, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+      					{{ Form::date('fecha_ultrasonido', $form['citas']->fecha_ultrasonido, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31')) }}
     				</div>
     			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('observaciones', 'Observaciones:') }}
