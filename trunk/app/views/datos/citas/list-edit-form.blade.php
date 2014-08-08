@@ -285,7 +285,11 @@
 										  			<td>{{ $n++ }}.</td>
 										  			<td>{{ $citas->fecha_cita }}</td>
 										  			<td>{{ $citas->fecha_flebotomia }}</td>
-										  			<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
+										  			@if($citas->id_institucion == 0)
+														<td>No Definida</td>
+													@else
+														<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
+													@endif	
 										  			<td>{{ $citas->peso }}</td>
 										  			@foreach (Marcador::all() as $marcador)
 										  				 	<td>{{ $form['marcador_cita']->obtenerMarcador($marcador->id, $citas->id)->valor }}</td> 
