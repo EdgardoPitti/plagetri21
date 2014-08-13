@@ -214,6 +214,7 @@
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
 											{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.':') }}
 						    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')')) }}
+						    				{{ Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }}
 										</div>
 									</td>
 									<td>
@@ -262,7 +263,7 @@
 				        		</div>
 				      		</div>
 					    	<div class="panel-body">
-						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_citas" placeholder="Filtrar Citas" /><br>
+						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_citas" placeholder="Filtrar Citas"/><br>
 							    <div class="overthrow" style="overflow:auto;width:100%;height:100%;max-height:240px;">
 							        <table class="table table-bordered table-hover" id="tabla_citas">
 									  	<thead>
