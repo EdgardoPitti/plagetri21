@@ -187,14 +187,14 @@ function Division(id, idraza){
                 var resultado = (valor/mediana).toFixed(2);
                 campo.val(resultado);
                 //Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso
-                Correccion1(id, idraza, resultado);
+                Correccion1(id, resultado);
             });
     });
 }
-//Funcion que recibe el id que es el id del marcador, el id de la raza y la mom para realizar los calculos de la correccion
-function Correccion1(id, idraza, mom){
+//Funcion que recibe el id que es el id del marcador, el id de la raza y la mom para realizar los calculos de la correccion por peso lineal y luego la exponencial
+function Correccion1(id, mom){
     $.get("http://localhost/plagetri21/public/correccion1", 
-        { idmarcador: id, idraza: idraza }, 
+        { idmarcador: id }, 
         function(data){
             var campo = $('#corr_lineal_'+id+'');
             var campo1 = $('#corr_exp_'+id+'');
@@ -203,11 +203,11 @@ function Correccion1(id, idraza, mom){
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();
-               //alert("mom: "+mom+" a: "+a+" b: "+b+" peso: "+peso);
-                var resultado = mom/(parseFloat(a)+parseFloat(b/peso));
-                var resultado1 = mom/(Math.pow(10,(parseFloat(a)+parseFloat((b*peso)))));
-                campo.val(resultado);
-                campo1.val(resultado1);
+                var lineal = mom/(parseFloat(a)+parseFloat(b/peso));
+                var exponencial = mom/(Math.pow(10,(parseFloat(a)+parseFloat(b*peso))));
+                //alert(b*peso);
+                campo.val(lineal);
+                campo1.val(exponencial);
             });
     });
 }
