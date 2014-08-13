@@ -44,6 +44,7 @@
                         @if(Auth::user()->id_grupo_usuario == 1)
                           <li>{{ HTML::link('registro', 'Registrar Usuario') }}</li>
                           <li>{{ HTML::link('datos/modulos', 'Grupos - Módulos') }}</li>
+                          <li><a href="{{ route('datos.configuracion.index') }}">Configuración</a></li>
                         @endif
                         <li>{{ HTML::link('logout', 'Cerrar Sesión') }}</li>
                       </ul>

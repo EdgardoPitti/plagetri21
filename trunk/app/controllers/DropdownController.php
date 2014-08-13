@@ -61,15 +61,14 @@ class DropdownController extends BaseController
     {
         $id = Input::get('idmarcador');
         $semana = Input::get('semana');
-        $mediana = MedianaMarcador::where('id_marcador', $id)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->where('semana', $semana);
+        $mediana = MedianaMarcador::where('id_marcador', $id)->where('semana', $semana)->where('id_unidad', UnidadMarcador::where('id_marcador', $id)->get()->last()->id_unidad);
         return ($mediana->get(['mediana_marcador']));
     }
     //Funcion que recibe el id de la raza y del marcador y devuelve los coeficientes correspondientes 
     public function getCoeficiente()
     {
-        $idraza = Input::get('idraza');
         $idmarcador = Input::get('idmarcador');
-        $coeficiente = Coeficiente::where('id_raza', $idraza)->where('id_marcador', $idmarcador);
+        $coeficiente = CoeficienteNuevo::where('id_marcador', $idmarcador);
         return ($coeficiente->get(['a', 'b']));
     }
 }
