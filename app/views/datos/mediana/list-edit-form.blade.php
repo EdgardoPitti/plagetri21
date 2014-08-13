@@ -29,6 +29,10 @@
       					{{ Form::label('mediana', 'Mediana del Marcador:') }}
       					{{ Form::text('mediana', null, array('placeholder' => 'MEDIANA MARCADOR', 'class' => 'form-control', 'required' => 'required')) }}
     				</div>
+    				<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4">
+						{{ Form::label('id_unidad', 'Unidad del Marcador:') }}
+						{{ Form::select('id_unidad', Unidad::lists('unidad', 'id'), null , array('class' => 'form-control')) }}
+					</div>
     			</div>
     			<center>{{ Form::button('Salvar Marcador', array('type' => 'submit', 'class' => 'btn btn-primary')) }}</center>
 			{{ Form::close() }}<hr>
@@ -44,12 +48,12 @@
 			  	</thead>
 			  	<tbody>
 			  		@for($s = 1; $s < 38; $s++)
-			  			@if (!empty(MedianaMarcador::where('semana', $s)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->first()->id))
+			  			@if (!empty(MedianaMarcador::where('semana', $s)->first()->id))
 			  			<tr class="white" align="center">
 			  				<td>{{ $s }}</td>
 			  				@foreach (Marcador::all() as $marcador)
-			  					@if (!empty(MedianaMarcador::where('id_marcador', $marcador->id)->where('semana', $s)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->first()->id))
-			  						<td>{{ MedianaMarcador::where('id_marcador', $marcador->id)->where('semana', $s)->where('id_unidad', Configuracion::all()->last()->id_unidad_marcador)->first()->mediana_marcador }}</td>
+			  					@if (!empty(MedianaMarcador::where('id_marcador', $marcador->id)->where('semana', $s)->where('id_unidad', UnidadMarcador::where('id_marcador', $marcador->id)->get()->last()->id_unidad)->first()->id))
+			  						<td>{{ MedianaMarcador::where('id_marcador', $marcador->id)->where('semana', $s)->where('id_unidad', UnidadMarcador::where('id_marcador', $marcador->id)->get()->last()->id_unidad)->first()->mediana_marcador }}</td>
 			  					@else
 			  						<td>0</td>
 			  					@endif

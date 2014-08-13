@@ -57,8 +57,12 @@
 		        </div>
 		        <center>
 		        	{{ Form::open($form['datos'] , array('role' => 'form')) }}
-				    	{{ Form::label('grupo_usuario', 'Nombre de Grupo:') }}
-				    	{{ Form::text('grupo_usuario', $form['grupo']->grupo_usuario, array('placeholder' => 'Nombre de Grupo', 'class' => 'form-control', 'required' => 'required')) }}<br>        
+		        	<div class="row">
+						<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4">
+							{{ Form::label('grupo_usuario', 'Nombre de Grupo:') }}
+							{{ Form::text('grupo_usuario', $form['grupo']->grupo_usuario, array('placeholder' => 'Nombre de Grupo', 'class' => 'form-control', 'required' => 'required')) }}
+						</div>
+				    </div>
 						{{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
 						 <a href="{{ route('datos.modulos.index') }}" class="btn btn-info">Limpiar Campos</a><hr>
 		        	{{ Form::close() }}
