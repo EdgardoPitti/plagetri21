@@ -12,7 +12,7 @@ class Datos_CitasController extends BaseController {
 	 */
 	public function index()
 	{
-		$paciente = neW Paciente;
+		$paciente = new Paciente;
 		$datos = $paciente->datos_pacientes(0);
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos);
 	}
@@ -66,6 +66,7 @@ class Datos_CitasController extends BaseController {
 			}else{
 				$marcadorcita->id_metodologia = $data['metodo_'.$marcador->id.''];
 			}
+			$marcadorcita->id_unidad = UnidadMarcador::where('id_marcador', $marcador->id)->get()->last()->id_unidad;
 			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
 			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
 			$marcadorcita->corr_peso_lineal = $data['corr_lineal_'.$marcador->id.''];
@@ -97,6 +98,10 @@ class Datos_CitasController extends BaseController {
 		foreach (Marcador::all() as $marcador){
 			$form['marcador_'.$marcador->id.''] = new MarcadorCita;
 			$form['marcador_cita'] = $marcadorcita;
+			$form['marcador_'.$marcador->id.'']->mom = '0.00000';
+			$form['marcador_'.$marcador->id.'']->corr_peso_lineal = '0.00000';
+			$form['marcador_'.$marcador->id.'']->corr_peso_exponencial = '0.00000';
+			
 		}
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 
