@@ -106,7 +106,20 @@ jQuery(document).ready(function($){
         //Funcion que al cambiar el marcador este carga el valor automatico de la mediana del marcador correspondiente
          $("#marcador").change(function(){
             $.get("http://localhost/plagetri21/public/obtenermediana", 
-            { marcador: $("#marcador").find(':selected').val(), semana: $("#semana").find(':selected').val() }, 
+            { marcador: $("#marcador").find(':selected').val(), semana: $("#semana").find(':selected').val(), unidad: $("#id_unidad").find(':selected').val() }, 
+            function(data){
+                var campo = $('#mediana');
+                var valor = 0;
+                $.each(data, function(index,element) {
+                    valor = element.mediana_marcador;
+                });
+                campo.val(valor);
+            });
+        });
+        //Funcion que al cambiar la unidad este carga el valor automatico de la mediana del marcador correspondiente
+         $("#id_unidad").change(function(){
+            $.get("http://localhost/plagetri21/public/obtenermediana", 
+            { marcador: $("#marcador").find(':selected').val(), semana: $("#semana").find(':selected').val(), unidad: $("#id_unidad").find(':selected').val() }, 
             function(data){
                 var campo = $('#mediana');
                 var valor = 0;
@@ -172,42 +185,89 @@ jQuery(document).ready(function($){
             semana.val(semanas);
             //alert(semanas);
         });
+        
+ 
 
 
 });    
-//Funcion pque recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
+function Comparar(id){
+    $.get("http://localhost/plagetri21/public/comparar", 
+        { idmarcador: id , semana: $("#semana").val() }, 
+        function(data){
+			var valor = $('#valor_'+id+'').val();
+            var campo = $('#alerta_'+id+'');
+			campo.empty();
+            $.each(data, function(index,element) {
+                var superior = element.lim_superior;
+                var inferior = element.lim_inferior;
+                if(valor < inferior){
+					campo.append('<span class="label label-danger">Inferior</span>');            
+				}else{
+					if(valor > superior){
+						campo.append('<span class="label label-warning">Superior</span>');
+					}else{
+						campo.append('<span class="label label-success">Normal</span>');
+					}
+				}
+            });
+    });
+}
+//Funcion que recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
 function Division(id, idraza){
     $.get("http://localhost/plagetri21/public/calculo", 
         { idmarcador: id , semana: $("#semana").val() }, 
         function(data){
             var campo = $('#mom_'+id+'');
+            var pantalla = $('#pantalla_mom_'+id+'');
+            pantalla.empty();
             $.each(data, function(index,element) {
                 var valor = $('#valor_'+id+'').val();
                 var mediana = element.mediana_marcador;
                 var resultado = (valor/mediana).toFixed(2);
                 campo.val(resultado);
+                pantalla.append(resultado);
                 //Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso
-                Correccion1(id, resultado);
+                Correccion_lineal(id, resultado);
+                Correccion_exponencial(id, idraza, resultado);
             });
     });
 }
 //Funcion que recibe el id que es el id del marcador, el id de la raza y la mom para realizar los calculos de la correccion por peso lineal y luego la exponencial
-function Correccion1(id, mom){
-    $.get("http://localhost/plagetri21/public/correccion1", 
+function Correccion_lineal(id, mom){
+    $.get("http://localhost/plagetri21/public/correccion_lineal", 
         { idmarcador: id }, 
         function(data){
             var campo = $('#corr_lineal_'+id+'');
-            var campo1 = $('#corr_exp_'+id+'');
+            var pantalla = $('#pantalla_lineal_'+id+'');
+            pantalla.empty();
             $.each(data, function(index,element) {
                 var valor = $('#valor_'+id+'').val();
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();
                 var lineal = mom/(parseFloat(a)+parseFloat(b/peso));
+                //alert(b*peso);
+                campo.val(lineal.toFixed(5));
+                pantalla.append(lineal.toFixed(5));
+            });
+    });
+}
+function Correccion_exponencial(id, idraza, mom){
+    $.get("http://localhost/plagetri21/public/correccion_exponencial", 
+        { idmarcador: id , idraza: idraza}, 
+        function(data){
+            var campo = $('#corr_exp_'+id+'');
+            var pantalla = $('#pantalla_exponencial_'+id+'');
+            pantalla.empty();
+            $.each(data, function(index,element) {
+                var valor = $('#valor_'+id+'').val();
+                var a = element.a;
+                var b = element.b;
+                var peso = $('#peso').val();
                 var exponencial = mom/(Math.pow(10,(parseFloat(a)+parseFloat(b*peso))));
                 //alert(b*peso);
-                campo.val(lineal);
-                campo1.val(exponencial);
+                campo.val(exponencial.toFixed(5));
+                pantalla.append(exponencial.toFixed(5));
             });
     });
 }
