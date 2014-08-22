@@ -134,11 +134,11 @@
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fecha_cita', 'Fecha de Cita:') }}
-      					{{ Form::date('fecha_cita', $form['citas']->fecha_cita, array('id' => 'fecha_cita','class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+      					{{ Form::date('fecha_cita', $form['citas']->fecha_cita, array('id' => 'fecha_cita','class' => 'form-control', 'min' => '2010-01-01', 'max' => '2099-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fecha_flebotomia', 'Fecha de Flebotomia:') }}
-      					{{ Form::date('fecha_flebotomia', $form['citas']->fecha_flebotomia, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+      					{{ Form::date('fecha_flebotomia', $form['citas']->fecha_flebotomia, array('class' => 'form-control', 'min' => '2010-01-01', 'max' => '2099-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('id_medico', 'Médico:') }}
@@ -158,7 +158,7 @@
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fpp', 'Fecha Probable de Parto:') }}
-      					{{ Form::date('fpp', $form['citas']->fpp, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31')) }}
+      					{{ Form::date('fpp', $form['citas']->fpp, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('edad_gestacional', 'Edad Gestacional por Ultrasonido:') }}
@@ -195,7 +195,6 @@
 						<div class="col-sm-12 col-md-12 col-lg-12">
 							<table style="width:100%">
 								<tr align="center">
-									<td></td>
 									<td>			
 										<div class="col-md-offset-2 col-sm-10 col-md-10 col-lg-10">
 						    				{{ Form::label('met_general', 'Métodología en General:') }}
@@ -206,14 +205,17 @@
 						    				{{ Form::select('met_general', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), null, array('class' => 'form-control')) }}
 						    			</div>
 						    		</td>
-						    		<td></td>
+						    		<td>MOM del Marcador</td>
+						    		<td>Correccion por Peso</td>
+						    		<td>Correccion por Peso</td>
+						    		
 						    	</tr>
 						    @foreach (Marcador::all() as $marcadores)
 								<tr>
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.':') }}
-						    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')')) }}
+											{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}"><span class="label label-default">PorDefecto</span></div>
+						    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')', 'onKeyPress' =>'Comparar('.$marcadores->id.')')) }}
 						    				{{ Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }}
 										</div>
 									</td>
@@ -225,20 +227,23 @@
 									</td>
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('mom_'.$marcadores->id, 'MOM para '.$marcadores->marcador.':') }}
-						    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('placeholder' => 'MOM '.$marcadores->marcador, 'class' => 'form-control', 'readonly' => 'readonly')) }}	
+		      								{{ Form::label('mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
+		      								<div id="pantalla_mom_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->mom }}</div>
+						    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('placeholder' => 'MOM '.$marcadores->marcador, 'class' => 'form-control', 'style' => 'display:none')) }}	
 						    			</div>
 									</td>
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('corr_lineal_'.$marcadores->id, 'MOM Corregido Peso:') }}
-						    				{{ Form::text('corr_lineal_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'readonly' => 'readonly')) }}	
+		      								{{ Form::label('corr_lineal_'.$marcadores->id, 'Lineal:') }}
+		      								<div id="pantalla_lineal_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_lineal }}</div>
+						    				{{ Form::text('corr_lineal_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}	
 						    			</div>
 									</td>
 									<td>
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('corr_exp_'.$marcadores->id, 'MOM Corregido Peso Exponencial:') }}
-						    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'readonly' => 'readonly')) }}	
+		      								{{ Form::label('corr_exp_'.$marcadores->id, 'Exponencial:') }}
+		      								<div id="pantalla_exponencial_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial }}</div>
+						    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}	
 						    			</div>
 									</td>
 								</tr>
