@@ -56,6 +56,13 @@ class DropdownController extends BaseController
         }
         return ($institucion->get(['id','denominacion']));
     }
+    public function getLimites()
+    {
+        $id = Input::get('idmarcador');
+        $semana = Input::get('semana');
+        $limites = ValorNormal::where('id_marcador', $id)->where('semana', $semana)->where('id_unidad', UnidadMarcador::where('id_marcador', $id)->get()->last()->id_unidad);
+        return ($limites->get(['lim_inferior', 'lim_superior']));
+    }
     //Funcion que recibe el id del marcador y devuelve la mediana correspondiente a ese marcador
     public function getMomMarcador()
     {
@@ -65,10 +72,17 @@ class DropdownController extends BaseController
         return ($mediana->get(['mediana_marcador']));
     }
     //Funcion que recibe el id de la raza y del marcador y devuelve los coeficientes correspondientes 
-    public function getCoeficiente()
+    public function getCoeficienteLineal()
     {
         $idmarcador = Input::get('idmarcador');
         $coeficiente = CoeficienteNuevo::where('id_marcador', $idmarcador);
+        return ($coeficiente->get(['a', 'b']));
+    }
+    public function getCoeficienteExponencial()
+    {
+        $idmarcador = Input::get('idmarcador');
+        $idraza = Input::get('idraza');
+        $coeficiente = Coeficiente::where('id_marcador', $idmarcador)->where('id_raza', $idraza);
         return ($coeficiente->get(['a', 'b']));
     }
 }
