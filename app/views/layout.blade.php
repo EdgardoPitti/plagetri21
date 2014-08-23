@@ -5,7 +5,7 @@
     <meta charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	 <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">    
+	  <link rel="shortcut icon" href='/plagetri21/public/imgs/favicon.ico' type="image/x-icon">    
     {{-- Bootstrap --}}
     {{ HTML::style('assets/css/bootstrap.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/estilo.css', array('media' => 'screen')) }}
@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="/plagetri21/public"><img src="imgs/logo.png"/><b>Plagetri21</b></a>
+                  <a class="navbar-brand" href="/plagetri21/public"><img src="/plagetri21/public/imgs/logo.png"/><b>Plagetri21</b></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">          
