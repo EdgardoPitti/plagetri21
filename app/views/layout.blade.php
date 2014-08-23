@@ -20,7 +20,7 @@
     {{-- Wrap all page content here --}}
     <div id="wrap">
       {{-- Begin page content --}}          
-      <div class="container">     
+      <div class="container">    
         @if(Auth::check())
           <div class="row">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="/plagetri21/public">Plagetri21</a>
+                  <a class="navbar-brand" href="/plagetri21/public"><img src="imgs/logo.png"/><b>Plagetri21</b></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">          

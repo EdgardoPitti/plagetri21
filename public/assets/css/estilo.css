@@ -104,3 +104,9 @@ body{
 		margin-bottom: 10px
 	}
 }
+.navbar-brand > img{
+	margin-top: -10px;
+}
+.navbar-brand > b:before{
+	margin-top: -4px;
+}
