@@ -58,20 +58,28 @@ class Datos_CitasController extends BaseController {
 		//Ciclo que recorre todo los marcadores y busca los valores de cada uno para almacenarlos respectivamente.
 		foreach(Marcador::all() as $marcador){
 			$marcadorcita = new MarcadorCita;
+			$valormarcador = new ValorMarcador;
 			$marcadorcita->id_cita = $id_cita;
 			$marcadorcita->id_marcador = $marcador->id;
+			$valormarcador->id_marcador = $marcador->id;
 			//Se comprueba si no se eligio un marcador para esa metodologia y se le asigna el que selecciono general
 			if($data['metodo_'.$marcador->id] == 0){
 				$marcadorcita->id_metodologia = $met_general;
+				$valormarcador->id_metodologia = $met_general;
 			}else{
 				$marcadorcita->id_metodologia = $data['metodo_'.$marcador->id.''];
+				$valormarcador->id_metodologia = $data['metodo_'.$marcador->id.''];
 			}
 			$marcadorcita->id_unidad = UnidadMarcador::where('id_marcador', $marcador->id)->get()->last()->id_unidad;
+			$valormarcador->id_unidad = UnidadMarcador::where('id_marcador', $marcador->id)->get()->last()->id_unidad;
 			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
+			$valormarcador->valor = $data['valor_'.$marcador->id.''];
+			$valormarcador->positivo = $data['positivo_'.$marcador->id.''];
 			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
 			$marcadorcita->corr_peso_lineal = $data['corr_lineal_'.$marcador->id.''];
 			$marcadorcita->corr_peso_exponencial = $data['corr_exp_'.$marcador->id.''];
 			$marcadorcita->save();
+			$valormarcador->save();
 		}
 		return Redirect::route('datos.citas.show', $data['id_paciente']);	
 		
