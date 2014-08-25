@@ -196,17 +196,21 @@ function Comparar(id){
         function(data){
 			var valor = $('#valor_'+id+'').val();
             var campo = $('#alerta_'+id+'');
+            var positivo = $('#positivo_'+id+'');
 			campo.empty();
             $.each(data, function(index,element) {
                 var superior = element.lim_superior;
                 var inferior = element.lim_inferior;
                 if(valor < inferior){
-					campo.append('<span class="label label-danger">Inferior</span>');            
+					campo.append('<span class="label label-danger">Inferior</span>');           
+					positivo.val(-1);
 				}else{
 					if(valor > superior){
 						campo.append('<span class="label label-warning">Superior</span>');
+						positivo.val(1);
 					}else{
 						campo.append('<span class="label label-success">Normal</span>');
+						positivo.val(0);
 					}
 				}
             });
@@ -232,7 +236,7 @@ function Division(id, idraza){
             });
     });
 }
-//Funcion que recibe el id que es el id del marcador, el id de la raza y la mom para realizar los calculos de la correccion por peso lineal y luego la exponencial
+//Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Lineal
 function Correccion_lineal(id, mom){
     $.get("http://localhost/plagetri21/public/correccion_lineal", 
         { idmarcador: id }, 
@@ -252,6 +256,7 @@ function Correccion_lineal(id, mom){
             });
     });
 }
+//Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Exponencial
 function Correccion_exponencial(id, idraza, mom){
     $.get("http://localhost/plagetri21/public/correccion_exponencial", 
         { idmarcador: id , idraza: idraza}, 
