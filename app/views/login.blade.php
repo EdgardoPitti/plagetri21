@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <div class="well well-sm">
-            {{ Form::open(array('url' => 'sigin', 'method' => 'POST')) }} 
+            {{ Form::open(array('url' => 'sigin', 'method' => 'POST', 'id' => 'sigin')) }} 
               <fieldset style="padding:20px;">
                 
                 @if(isset($error_login))
@@ -36,7 +36,8 @@
                   <p style="color:#f00;text-align:center;">{{ $errors->first('password') }}</p>                  
                 @endif
                 <div class="form-group">
-                  {{ Form::submit('Ingresar', array('class' => 'btn btn-primary btn-block')) }} 
+                  <center><i class="fa fa-spinner fa-spin fa-3x" id="loading" style="color:#428bca;margin-bottom:10px;display:none;"></i></center>
+                  {{ Form::submit('Ingresar', array('class' => 'btn btn-primary btn-block', 'id' => 'boton')) }} 
                 </div>
               </fieldset>
             {{ Form::close() }}

@@ -54,7 +54,7 @@
 		@if($unidadmarcador->id_marcador <> 0)
 			{{ Form::open(array('route' => 'datos.configuracion.store', 'method' => 'POST'), array('role' => 'form')) }}
 					<div class="row">
-						<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4">
+						<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4 col-sm-offset-2">
 							{{ Form::label('marcador', 'Marcador:') }}
 							{{ Form::text('marcador', Marcador::where('id', $unidadmarcador->id_marcador)->first()->marcador, array('class' => 'form-control', 'disabled' => 'disabled')) }}        
 							{{ Form::text('id_marcador', $unidadmarcador->id_marcador, array('class' => 'form-control', 'style' => 'display:none')) }}        

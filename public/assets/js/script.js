@@ -186,7 +186,11 @@ jQuery(document).ready(function($){
             //alert(semanas);
         });
         
- 
+        $("#sigin").submit(function() {
+            $('#loading').show(); 
+            $('#boton').hide();
+            return true; 
+        });
 
 
 });    
