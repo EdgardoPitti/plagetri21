@@ -58,7 +58,7 @@
 		        <center>
 		        	{{ Form::open($form['datos'] , array('role' => 'form')) }}
 		        	<div class="row">
-						<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4">
+						<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4 col-sm-offset-4">
 							{{ Form::label('grupo_usuario', 'Nombre de Grupo:') }}
 							{{ Form::text('grupo_usuario', $form['grupo']->grupo_usuario, array('placeholder' => 'Nombre de Grupo', 'class' => 'form-control', 'required' => 'required')) }}
 						</div>
@@ -74,19 +74,22 @@
 			    	{{ Form::open(array('route' => 'datos.modulos.store', 'method' => 'POST'), array('role' => 'form')) }}
 			    		<div class="row">
 			    			{{ Form::text('id_grupo_usuario', $tipousuario->id , array('style' => 'display:none', 'id' => 'id_grupo_usuario')) }}
-			    	@foreach ( Modulo::all() as $modulo)
-							<div class="form-group col-sm-4 col-md-4 col-lg-4">
+			    	@foreach ( Modulo::all() as $modulo)			    					        		
+			    			<div class="form-group col-sm-3 col-md-3 col-lg-3">
 						    	{{ Form::label('modulo_'.$modulo->id.'', $modulo->modulo) }}
-						    	{{ Form::checkbox('modulo_'.$modulo->id.'', 1, ModuloUsuario::where('id_grupo_usuario', $tipousuario->id)->where('id_modulo', $modulo->id)->where('inactivo', '0')->first(),  array('class' => 'form-control')) }}
 						    </div>
-			    	@endforeach
-			    		</div>
-		    			<div class="form-group col-sm-12 col-md-12 col-lg-12">
-						    <center>
-						      {{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-						      <a href="{{ route('datos.modulos.index') }}" class="btn btn-info">Limpiar Campos</a>
-						    </center>
-			 			</div>
+			        		<div class="form-group col-sm-3 col-md-3 col-lg-3">
+						    	{{ Form::checkbox('modulo_'.$modulo->id.'', 1, ModuloUsuario::where('id_grupo_usuario', $tipousuario->id)->where('id_modulo', $modulo->id)->where('inactivo', '0')->first(),  array('class' => 'form-control cmn-toggle cmn-toggle-round-flat', 'id' => 'cmn-toggle-'.$modulo->id.'')) }}
+						    	<label for="cmn-toggle-{{$modulo->id}}"></label>
+						    </div>
+			    	@endforeach			    		
+			    			<div class="form-group col-sm-12 col-md-12 col-lg-12">
+							    <center>
+							      {{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+							      <a href="{{ route('datos.modulos.index') }}" class="btn btn-info">Limpiar Campos</a>
+							    </center>
+				 			</div>
+				 		</div>
 					{{ Form::close() }}
 			    </center>
 		   	@endif

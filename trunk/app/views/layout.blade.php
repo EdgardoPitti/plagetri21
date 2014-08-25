@@ -9,6 +9,7 @@
     {{-- Bootstrap --}}
     {{ HTML::style('assets/css/bootstrap.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/estilo.css', array('media' => 'screen')) }}
+    {{ HTML::style('assets/css/font-awesome.min.css', array('media' => 'screen')) }}
     {{-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --}}
     <!--[if lt IE 9]>
         {{ HTML::script('assets/js/html5shiv.js') }}
@@ -31,7 +32,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                      
                   </button>
                   <a class="navbar-brand" href="/plagetri21/public"><img src="/plagetri21/public/imgs/logo.png"/><b>Plagetri21</b></a>
                 </div>
@@ -39,14 +40,16 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">          
                   <ul class="nav navbar-nav navbar-right">           
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-weight:bold;"> {{ Auth::user()->user }} <span class="caret"></span></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-weight:bold;"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->user }} <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         @if(Auth::user()->id_grupo_usuario == 1)
-                          <li>{{ HTML::link('registro', 'Registrar Usuario') }}</li>
-                          <li>{{ HTML::link('datos/modulos', 'Grupos - Módulos') }}</li>
-                          <li><a href="{{ route('datos.configuracion.index') }}">Configuración</a></li>
+                          <li><a href="/plagetri21/public/registro"><i class="fa fa-user fa-lg"></i>&nbsp; Registrar Usuario</a></li>                       
+                          <li><a href="/plagetri21/public/datos/modulos"><i class="fa fa-users fa-lg"></i> Grupos - Módulos</a></li>
+                          <!--li>{{ HTML::link('datos/modulos', ' Grupos - Módulos', array('class' => 'fa fa-users')) }}</li-->
+                          <li><a href="{{ route('datos.configuracion.index') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Configuración</a></li>
                         @endif
-                        <li>{{ HTML::link('logout', 'Cerrar Sesión') }}</li>
+                        <li><a href="/plagetri21/public/logout"><i class="fa fa-sign-out fa-lg"></i> Cerrar Sesión</a></li>                       
+                        <!--li>{{ HTML::link('logout', ' Cerrar Sesión', array('class' => 'fa fa-sign-out')) }}</li-->
                       </ul>
                     </li>
                   </ul>
