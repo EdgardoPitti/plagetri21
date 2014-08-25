@@ -62,6 +62,7 @@ class Datos_CitasController extends BaseController {
 			$marcadorcita->id_cita = $id_cita;
 			$marcadorcita->id_marcador = $marcador->id;
 			$valormarcador->id_marcador = $marcador->id;
+			$valormarcador->semana = $data['semana'];
 			//Se comprueba si no se eligio un marcador para esa metodologia y se le asigna el que selecciono general
 			if($data['metodo_'.$marcador->id] == 0){
 				$marcadorcita->id_metodologia = $met_general;
