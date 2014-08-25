@@ -229,7 +229,8 @@
 										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
 		      								{{ Form::label('mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
 		      								<div id="pantalla_mom_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->mom }}</div>
-						    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('placeholder' => 'MOM '.$marcadores->marcador, 'class' => 'form-control', 'style' => 'display:none')) }}	
+						    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}	
+						    				{{ Form::text('positivo_'.$marcadores->id, null, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
 						    			</div>
 									</td>
 									<td>
