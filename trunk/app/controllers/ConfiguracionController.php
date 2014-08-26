@@ -36,11 +36,33 @@ class ConfiguracionController extends BaseController {
 	public function store()
 	{
 		$data = Input::all();
-		$unidadmarcador = new UnidadMarcador;
-		$unidadmarcador->id_marcador = $data['id_marcador'];
-		$unidadmarcador->id_unidad = $data['id_unidad'];
-		$unidadmarcador->id_usuario = Auth::user()->id;
-		$unidadmarcador->save();
+		if($data['control'] == 1){
+			$unidadmarcador = new UnidadMarcador;
+			$unidadmarcador->id_marcador = $data['id_marcador'];
+			$unidadmarcador->id_unidad = $data['id_unidad'];
+			$unidadmarcador->id_usuario = Auth::user()->id;
+			$unidadmarcador->save();
+		}else{
+			if(empty($data['automatico'])){
+				$data['automatico'] = 0;
+				$data['registros'] = 0;
+			}
+			$configuracion = new Configuracion;
+			$configuracion->id_usuario = Auth::user()->id;
+			$configuracion->automatico = $data['automatico'];
+			$configuracion->cantidad_registros = $data['registros'];
+			$configuracion->save();
+			$id = Configuracion::all()->last()->id;
+			if($data['automatico'] == 1){
+				foreach(Marcador::all() as $marcador){
+					$detalleconfiguracion = new DetalleConfiguracion;
+					$detalleconfiguracion->id_configuracion = $id;
+					$detalleconfiguracion->id_marcador = $marcador->id;
+					$detalleconfiguracion->id_unidad = UnidadMarcador::where('id_marcador', $marcador->id)->get()->last()->id_unidad;
+					$detalleconfiguracion->save();				
+				}
+			}
+		}
 		$unidadmarcador = new UnidadMarcador;
 		$unidadmarcador->id_marcador = 0;
 		return View::make('datos/configuracion/list-edit-form')->with('unidadmarcador', $unidadmarcador);
