@@ -1,13 +1,13 @@
 <?php
 
-class CoeficienteNuevo extends Eloquent {
+class CoeficienteLineal extends Eloquent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	*/
-	protected $table = 'coeficientes_nuevos';
+	protected $table = 'coeficientes_lineales';
 
 }
 
