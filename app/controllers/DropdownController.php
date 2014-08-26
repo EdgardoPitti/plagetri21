@@ -75,14 +75,14 @@ class DropdownController extends BaseController
     public function getCoeficienteLineal()
     {
         $idmarcador = Input::get('idmarcador');
-        $coeficiente = CoeficienteNuevo::where('id_marcador', $idmarcador);
+        $coeficiente = CoeficienteLineal::where('id_marcador', $idmarcador);
         return ($coeficiente->get(['a', 'b']));
     }
     public function getCoeficienteExponencial()
     {
         $idmarcador = Input::get('idmarcador');
         $idraza = Input::get('idraza');
-        $coeficiente = Coeficiente::where('id_marcador', $idmarcador)->where('id_raza', $idraza);
+        $coeficiente = CoeficienteExponencial::where('id_marcador', $idmarcador);
         return ($coeficiente->get(['a', 'b']));
     }
 }
