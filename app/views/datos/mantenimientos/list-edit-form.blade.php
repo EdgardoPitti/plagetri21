@@ -48,10 +48,26 @@
 	                      <td>{{ $x++ }}.</td>
 	                      <td>{{ $activo->codigo }}</td>
 	                      <td>{{ $activo->nombre }}</td>
-	                      <td>{{ TipoActivo::where('id', $activo->id_tipo)->first()->tipo }}</td>
-	                      <td>{{ Agenda::where('id', $activo->id_proveedor)->first()->nombre_completo }}</td>
-	                      <td>{{ Nivel::where('id', $activo->id_nivel)->first()->nivel }}</td>
-	                      <td>{{ Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion }}</td>
+	                      @if(empty(TipoActivo::where('id', $activo->id_tipo)->first()->tipo))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ TipoActivo::where('id', $activo->id_tipo)->first()->tipo }}</td>
+	                      @endif
+	                      @if(empty(Agenda::where('id', $activo->id_proveedor)->first()->nombre_completo))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ Agenda::where('id', $activo->id_proveedor)->first()->nombre_completo }}</td>
+	                      @endif
+	                      @if(empty(Nivel::where('id', $activo->id_nivel)->first()->nivel))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ Nivel::where('id', $activo->id_nivel)->first()->nivel }}</td>
+	                      @endif
+	                      @if(empty(Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion }}</td>
+	                      @endif
 	                      <td>{{ $activo->costo }}</td>
 	                      <td align="center">
 							<a href="{{ route('datos.mantenimientos.show', $activo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>                        
@@ -100,9 +116,21 @@
 	                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->codigo }}</td>
 	                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->nombre }}</td>
 	                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->marca }}</td>
-	                      <td>{{ Agenda::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id)->first()->nombre_completo }}</td>
-	                      <td>{{ Nivel::where('id', $activo->id_nivel)->first()->nivel }}</td>
-	                      <td>{{ Ubicacion::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id)->first()->ubicacion }}</td>
+	                      @if(empty(Agenda::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_proveedor)->first()->nombre_completo))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ Agenda::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_proveedor)->first()->nombre_completo }}</td>
+	                      @endif
+	                      @if(empty(Nivel::where('id', $activo->id_nivel)->first()->nivel))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ Nivel::where('id', $activo->id_nivel)->first()->nivel }}</td>
+	                      @endif
+	                      @if(empty(Ubicacion::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id)->first()->ubicacion))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ Ubicacion::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id)->first()->ubicacion }}</td>
+	                      @endif
 	                      <td>{{ $mantenimiento->proximo_mant }}</td>
 	                      <td align="center">
 							<a href="{{ route('datos.mantenimientos.edit', $mantenimiento->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>
@@ -133,11 +161,27 @@
 					<tr class="white">
 						<td>{{ $datos['activo']->codigo }}</td>
 						<td>{{ $datos['activo']->nombre }}</td>
-						<td>{{ TipoActivo::where('id', $datos['activo']->id_tipo)->first()->tipo }}</td>
+						@if(empty(TipoActivo::where('id', $datos['activo']->id_tipo)->first()->tipo))
+							<td>No Definido</td>
+						@else
+							<td>{{ TipoActivo::where('id', $datos['activo']->id_tipo)->first()->tipo }}</td>
+						@endif
 						<td>{{ $datos['activo']->marca }}</td>
-						<td>{{ Nivel::where('id', $datos['activo']->id_nivel)->first()->nivel }}</td>
-						<td>{{ Ubicacion::where('id', $datos['activo']->id_ubicacion)->first()->ubicacion }}</td>
-						<td>{{ Agenda::where('id', $datos['activo']->id_proveedor)->first()->nombre_completo }}</td>
+						@if(empty(Nivel::where('id', $datos['activo']->id_nivel)->first()->nivel))
+							<td>No Definido</td>
+						@else
+							<td>{{ Nivel::where('id', $datos['activo']->id_nivel)->first()->nivel }}</td>
+						@endif
+						@if(empty(Ubicacion::where('id', $datos['activo']->id_ubicacion)->first()->ubicacion))
+							<td>No Definido</td>
+						@else
+							<td>{{ Ubicacion::where('id', $datos['activo']->id_ubicacion)->first()->ubicacion }}</td>
+						@endif
+						@if(empty(Agenda::where('id', $datos['activo']->id_proveedor)->first()->nombre_completo))
+							<td>No Definido</td>
+						@else
+							<td>{{ Agenda::where('id', $datos['activo']->id_proveedor)->first()->nombre_completo }}</td>
+						@endif
 						<td>{{ $datos['activo']->costo }}</td>
 					</tr>					
 				</table>
@@ -163,7 +207,7 @@
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	  					{{ Form::label('proximo', 'Próximo Mantenimiento:') }}
-	  					{{ Form::date('proximo', $datos['mantenimiento']->proximo_mant, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+	  					{{ Form::date('proximo', $datos['mantenimiento']->proximo_mant, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31')) }}
 					</div>
 				</div>
 				<div class="form-group col-sm-12 col-md-12 col-lg-12">
@@ -212,6 +256,7 @@
 									  				<td>{{ $mantenimiento->observacion }}</td>
 									  				<td align="center">
 									  					<a href="{{ route('datos.mantenimientos.edit', $mantenimiento->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>
+									  					 <a href="#" data-id="{{ $mantenimiento->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>                                            
 									  				</td>
 									  			</tr>
 									  		@endforeach
@@ -226,3 +271,5 @@
 
 	    @endif
 @stop
+  {{ Form::open(array('route' => array('datos.mantenimientos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
+  {{ Form::close() }}
