@@ -18,20 +18,17 @@ USE `plagetri21`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `valores_marcadores`
+-- Table structure for table `detalles_configuraciones`
 --
 
-DROP TABLE IF EXISTS `valores_marcadores`;
+DROP TABLE IF EXISTS `detalles_configuraciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `valores_marcadores` (
+CREATE TABLE `detalles_configuraciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_marcador` int(45) DEFAULT NULL,
-  `semana` int(45) DEFAULT NULL,
-  `id_metodologia` int(45) DEFAULT NULL,
-  `id_unidad` int(45) DEFAULT NULL,
-  `valor` double DEFAULT NULL,
-  `positivo` int(4) DEFAULT '0',
+  `id_configuracion` int(10) DEFAULT NULL,
+  `id_marcador` int(10) DEFAULT NULL,
+  `id_unidad` int(10) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -39,12 +36,12 @@ CREATE TABLE `valores_marcadores` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `valores_marcadores`
+-- Dumping data for table `detalles_configuraciones`
 --
 
-LOCK TABLES `valores_marcadores` WRITE;
-/*!40000 ALTER TABLE `valores_marcadores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `valores_marcadores` ENABLE KEYS */;
+LOCK TABLES `detalles_configuraciones` WRITE;
+/*!40000 ALTER TABLE `detalles_configuraciones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detalles_configuraciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
