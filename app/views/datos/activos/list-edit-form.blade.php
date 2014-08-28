@@ -103,14 +103,31 @@
 	                      <td>{{ $x++ }}.</td>
 	                      <td>{{ $activo->codigo }}</td>
 	                      <td>{{ $activo->nombre }}</td>
-	                      <td>{{ TipoActivo::where('id', $activo->id_tipo)->first()->tipo }}</td>
-	                      <td>{{ Agenda::where('id', $activo->id_proveedor)->first()->nombre_completo }}</td>
-	                      <td>{{ Nivel::where('id', $activo->id_nivel)->first()->nivel }}</td>
-	                      <td>{{ Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion }}</td>
+	                      @if(empty(TipoActivo::where('id', $activo->id_tipo)->first()->tipo))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ TipoActivo::where('id', $activo->id_tipo)->first()->tipo }}</td>
+	                      @endif
+	                      @if(empty(Agenda::where('id', $activo->id_proveedor)->first()->nombre_completo))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ Agenda::where('id', $activo->id_proveedor)->first()->nombre_completo }}</td>
+	                      @endif
+	                      @if(empty(Nivel::where('id', $activo->id_nivel)->first()->nivel))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ Nivel::where('id', $activo->id_nivel)->first()->nivel }}</td>
+	                      @endif
+	                      @if(empty(Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion))
+							<td>No Definido</td>
+	                      @else
+							<td>{{ Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion }}</td>
+	                      @endif
 	                      <td>{{ $activo->costo }}</td>
 	                      <td align="center">
 							<a href="{{ route('datos.mantenimientos.show', $activo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>                       
 	                        <a href="{{ route('datos.activos.edit', $activo->id) }}" class="btn btn-primary btn-sm" style="margin:3px 0px;" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+	                        <a href="#" data-id="{{ $activo->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>                                            
 	                      </td>
 	                  </tr>
 	                @endforeach
@@ -122,3 +139,5 @@
 	      </div>
 	    </div>
 @stop
+  {{ Form::open(array('route' => array('datos.activos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
+  {{ Form::close() }}

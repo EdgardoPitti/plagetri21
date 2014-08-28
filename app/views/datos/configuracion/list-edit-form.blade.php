@@ -73,6 +73,19 @@
 			{{ Form::close() }}
 		@endif
 			{{ Form::open(array('route' => 'datos.configuracion.store', 'method' => 'POST'), array('role' => 'form')) }}
+			<center>
+			Modo Actual: 
+			@if(empty(Configuracion::all()->last()->automatico))
+				<b>Manual</b>
+			@else
+				@if(Configuracion::all()->last()->automatico == 0)
+					<b>Manual</b>
+				@else
+					<b>Automatico</b> &nbsp&nbsp&nbsp&nbsp Cantidad de Registros: <b>{{ Configuracion::all()->last()->cantidad_registros }}</b>
+				@endif
+			@endif
+			<br><br>
+			</center>
 			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 					{{ Form::text('control', 2, array('class' => 'form-control', 'style' => 'display:none')) }}
 					{{ Form::label('automatico', 'Automatico:') }}
@@ -81,7 +94,7 @@
 				</div>
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 				   	{{ Form::label('registros', 'Cantidad de Registros:') }}
-				   	{{ Form::input('number', 'registros', null, array('class' => 'form-control','min' => '0' ,'max'=>'1000','step' => '5','id' => 'registros','placeholder' => 'Registros 0 - 1000', 'disabled' => 'true')) }}        
+				   	{{ Form::input('number', 'registros', null, array('class' => 'form-control','min' => '0' ,'max'=>'1000','step' => '5','id' => 'registros','placeholder' => 'Registros 0 - 1000', 'disabled' => 'true', 'required' => 'required')) }}        
 				</div>
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 					 	{{ Form::label('', '') }}
