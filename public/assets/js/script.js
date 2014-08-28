@@ -202,23 +202,31 @@ function Comparar(id){
             var campo = $('#alerta_'+id+'');
             var positivo = $('#positivo_'+id+'');
 			campo.empty();
+			var etiqueta = '<span class="label label-default">PorDefecto</span>';
             $.each(data, function(index,element) {
-                var superior = element.lim_superior;
-                var inferior = element.lim_inferior;
-                if(valor < inferior){
-					campo.append('<span class="label label-danger">Inferior</span>');           
+                if(parseFloat(valor) < element.lim_inferior){
+					etiqueta = '<span class="label label-danger">Inferior</span>';           
 					positivo.val(-1);
 				}else{
-					if(valor > superior){
-						campo.append('<span class="label label-warning">Superior</span>');
+					if(parseFloat(valor) > element.lim_superior){
+						etiqueta = '<span class="label label-warning">Superior</span>';
 						positivo.val(1);
 					}else{
-						campo.append('<span class="label label-success">Normal</span>');
+						etiqueta = '<span class="label label-success">Normal</span>';
 						positivo.val(0);
 					}
 				}
             });
+            campo.append(etiqueta);
     });
+}
+function Disable(){		
+		var registro = document.getElementById('registros');
+		if(registro.disabled == true){
+			registro.disabled = false;
+		}else{
+			registro.disabled = true;
+		}
 }
 //Funcion que recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
 function Division(id, idraza){
