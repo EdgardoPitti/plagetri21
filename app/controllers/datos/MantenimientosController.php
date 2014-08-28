@@ -108,7 +108,11 @@ class Datos_MantenimientosController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$mantenimiento = Mantenimiento::find($id);
+		$mantenimiento->delete();
+		
+		
+		return Redirect::route('datos.mantenimientos.index');
 	}
 
 

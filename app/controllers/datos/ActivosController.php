@@ -118,7 +118,13 @@ class Datos_ActivosController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$activo =  Activo::find($id);
+		$activo->delete();
+		
+		$datos['form'] = array('route' => 'datos.activos.store', 'method' => 'POST');
+		$datos['label'] = 'Crear';
+		$datos['activo'] = new Activo; 
+		return View::make('datos/activos/list-edit-form')->with('datos', $datos);
 	}
 
 
