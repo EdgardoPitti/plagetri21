@@ -51,6 +51,7 @@ class Datos_CitasController extends BaseController {
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->hijos_embarazo = $data['hijos_embarazo'];
 		$citas->riesgo = $data['riesgo'];
+		$citas->riesgo_fap = $data['riesgo_fap'];
 		$citas->save();
 		$id_cita = Cita::all()->last()->id;
 		//Decisiones para almacenar las metodologias de cada marcador
@@ -181,6 +182,7 @@ class Datos_CitasController extends BaseController {
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->hijos_embarazo = $data['hijos_embarazo'];
 		$citas->riesgo = $data['riesgo'];
+		$citas->riesgo_fap = $data['riesgo_fap'];
 		$citas->save();
 		//Se almacena en una variable el id de la metodologia que eleigio en general.
 		$met_general = $data['met_general'];
