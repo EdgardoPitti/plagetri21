@@ -81,6 +81,7 @@ class Datos_CitasController extends BaseController {
 			$valormarcador->id_unidad = UnidadMarcador::where('id_marcador', $marcador->id)->get()->last()->id_unidad;
 			$valormarcador->valor = $data['valor_'.$marcador->id.''];
 			$valormarcador->positivo = $data['positivo_'.$marcador->id.''];
+			$valormarcador->id_institucion = $data['id_institucion'];
 			$valormarcador->save();
 		}
 		return Redirect::route('datos.citas.show', $data['id_paciente']);	
