@@ -110,18 +110,6 @@
     {{--Orden de Datos en los select: Name,arreglo con valores, value, arreglo con la clase de diseño--}}
  
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
-      {{ Form::label('telefono', 'Telefono:') }}
-      {{ Form::text('telefono', null, array('placeholder' => 'Telefono', 'class' => 'form-control')) }}        
-    </div>
-    <div class="form-group col-sm-4 col-md-4 col-lg-4">
-      {{ Form::label('celular', 'Celular:') }}
-      {{ Form::text('celular', null, array('placeholder' => 'Celular', 'class' => 'form-control')) }}        
-    </div>
-    <div class="form-group col-sm-4 col-md-4 col-lg-4">
-      {{ Form::label('email', 'E-Mail:') }}
-      {{ Form::text('email', null, array('placeholder' => 'E-Mail', 'class' => 'form-control')) }}        
-    </div>
-    <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('id_nacionalidad', 'Nacionalidad:') }}
       {{ Form::select('id_nacionalidad',  array('0' => 'SELECCIONE LA NACIONALIDAD') + Nacionalidad::lists('nacionalidad', 'id_nacionalidad'), $datos['paciente'][0]->id_nacionalidad, array('class' => 'form-control')); }}    
     </div>   
@@ -152,7 +140,19 @@
    </div>
    <div class="row" style="margin-top:0px;">
 	{{--Datos de Nacimiento--}}
-	<h3>Datos de Contacto Dirección</h3><br>
+	<h3>Datos de Contacto Dirección</h3><br>   
+	<div class="form-group col-sm-4 col-md-4 col-lg-4">
+      {{ Form::label('telefono', 'Telefono:') }}
+      {{ Form::text('telefono', null, array('placeholder' => 'Telefono', 'class' => 'form-control')) }}        
+    </div>
+    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+      {{ Form::label('celular', 'Celular:') }}
+      {{ Form::text('celular', null, array('placeholder' => 'Celular', 'class' => 'form-control')) }}        
+    </div>
+    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+      {{ Form::label('email', 'E-Mail:') }}
+      {{ Form::text('email', null, array('placeholder' => 'E-Mail', 'class' => 'form-control')) }}        
+    </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('id_provincia', 'Provincia de Nacimiento:') }}
       {{ Form::select('id_provincia',  array('0' => 'SELECCIONE PROVINCIA') + Provincia::lists('provincia','id_provincia'), $datos['paciente'][0]->id_provincia_nacimiento, array('class' => 'form-control')); }}    
