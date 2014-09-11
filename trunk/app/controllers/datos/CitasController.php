@@ -51,6 +51,8 @@ class Datos_CitasController extends BaseController {
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->hijos_embarazo = $data['hijos_embarazo'];
 		$citas->riesgo = $data['riesgo'];
+		$citas->edad_materna = $data['edad'];
+		$citas->edad_gestacional_fur = $data['semana'];
 		$citas->riesgo_fap = $data['riesgo_fap'];
 		$citas->save();
 		$id_cita = Cita::all()->last()->id;
@@ -106,6 +108,7 @@ class Datos_CitasController extends BaseController {
 		$form['label'] = 'Crear';
 		$form['citas'] = new Cita;
 		$form['citas']->riesgo = 100;
+		$form['citas']->riesgo_fap = 100;
 		$marcadorcita = new MarcadorCita;
 		foreach (Marcador::all() as $marcador){
 			$form['marcador_'.$marcador->id.''] = new MarcadorCita;
@@ -181,6 +184,8 @@ class Datos_CitasController extends BaseController {
 		$citas->estatura = $data['estatura'];
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->hijos_embarazo = $data['hijos_embarazo'];
+		$citas->edad_materna = $data['edad'];
+		$citas->edad_gestacional_fur = $data['semana'];
 		$citas->riesgo = $data['riesgo'];
 		$citas->riesgo_fap = $data['riesgo_fap'];
 		$citas->save();
