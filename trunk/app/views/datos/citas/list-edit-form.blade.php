@@ -128,12 +128,13 @@
 					{{ Form::text('id_paciente', $datos[0]->id, array('style' => 'display:none', 'id' => 'id_paciente')) }}
 					{{ Form::text('fecha_nacimiento', $datos[0]->fecha_nacimiento, array('style' => 'display:none', 'id' => 'fecha_nacimiento')) }}
 					{{ Form::text('semana', null , array('style' => 'display:none', 'id' => 'semana')) }}
+					{{ Form::text('edad', null , array('style' => 'display:none', 'id' => 'edad')) }}
 					{{ Form::text('caso_anterior', $datos[0]->embarazo_trisomia , array('style' => 'display:none', 'id' => 'caso_anterior')) }}
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('riesgo', 'Riesgo:') }}&nbsp;&nbsp;&nbsp;&nbsp;{{ Form::label('riesgocorregido', 'Corrección por FAP:') }}
-				    	<div id="riesgo_pantalla">1/{{ $form['citas']->riesgo }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1/{{ $form['citas']->riesgo }}</div>
-				    	{{ Form::text('riesgo', $form['citas']->riesgo, array('style' => 'display:none')) }}  
-				    	{{ Form::text('riesgo_fap', $form['citas']->riesgo_afp, array('style' => 'display:none')) }}  
+				    	<div id="riesgo_pantalla">1/{{ $form['citas']->riesgo }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1/{{ $form['citas']->riesgo_fap }}</div>
+				    	{{ Form::text('riesgo', $form['citas']->riesgo, array('style' => 'display:none', 'id' => 'riesgo')) }}  
+				    	{{ Form::text('riesgo_fap', $form['citas']->riesgo_afp, array('style' => 'display:none', 'id' => 'riesgo_fap')) }}  
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fecha_cita', 'Fecha de Cita:') }}
