@@ -42,7 +42,7 @@
 			  		<tr class="info">
 			  			<th>Semana</th>
 			  			@foreach (Marcador::all() as $marcadores)
-			  				<th>{{ $marcadores->marcador }}</th>
+			  				<th>{{ $marcadores->marcador}} ({{Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }})</th>
 			  			@endforeach
 			  		</tr>
 			  	</thead>
