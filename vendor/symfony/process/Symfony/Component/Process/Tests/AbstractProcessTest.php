@@ -172,6 +172,47 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         $process->stop();
     }
 
+    /**
+     * @dataProvider provideInvalidStdinValues
+     * @expectedException \Symfony\Component\Process\Exception\InvalidArgumentException
+     * @expectedExceptionMessage Symfony\Component\Process\Process::setStdin only accepts strings.
+     */
+    public function testInvalidStdin($value)
+    {
+        $process = $this->getProcess('php -v');
+        $process->setStdin($value);
+    }
+
+    public function provideInvalidStdinValues()
+    {
+        return array(
+            array(array()),
+            array(new NonStringifiable()),
+            array(fopen('php://temporary', 'w')),
+        );
+    }
+
+    /**
+     * @dataProvider provideStdinValues
+     */
+    public function testValidStdin($expected, $value)
+    {
+        $process = $this->getProcess('php -v');
+        $process->setStdin($value);
+        $this->assertSame($expected, $process->getStdin());
+    }
+
+    public function provideStdinValues()
+    {
+        return array(
+            array(null, null),
+            array('24.5', 24.5),
+            array('input data', 'input data'),
+            // to maintain BC, supposed to be removed in 3.0
+            array('stringifiable', new Stringifiable()),
+        );
+    }
+
     public function chainedCommandsOutputProvider()
     {
         if (defined('PHP_WINDOWS_VERSION_BUILD')) {
@@ -219,13 +260,23 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetIncrementalErrorOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { usleep(100000); file_put_contents(\'php://stderr\', \'ERROR\'); $n++; }')));
+        // use a lock file to toggle between writing ("W") and reading ("R") the
+        // error stream
+        $lock = tempnam(sys_get_temp_dir(), get_class($this).'Lock');
+        file_put_contents($lock, 'W');
+
+        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { if (\'W\' === file_get_contents('.var_export($lock, true).')) { file_put_contents(\'php://stderr\', \'ERROR\'); $n++; file_put_contents('.var_export($lock, true).', \'R\'); } usleep(100); }')));
 
         $p->start();
         while ($p->isRunning()) {
-            $this->assertLessThanOrEqual(1, preg_match_all('/ERROR/', $p->getIncrementalErrorOutput(), $matches));
-            usleep(20000);
+            if ('R' === file_get_contents($lock)) {
+                $this->assertLessThanOrEqual(1, preg_match_all('/ERROR/', $p->getIncrementalErrorOutput(), $matches));
+                file_put_contents($lock, 'W');
+            }
+            usleep(100);
         }
+
+        unlink($lock);
     }
 
     public function testFlushErrorOutput()
@@ -239,7 +290,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n=0;while ($n<3) {echo \' foo \';$n++; usleep(500); }')));
+        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { echo \' foo \'; $n++; }')));
 
         $p->run();
         $this->assertEquals(3, preg_match_all('/foo/', $p->getOutput(), $matches));
@@ -247,13 +298,23 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetIncrementalOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n=0;while ($n<3) { echo \' foo \'; usleep(50000); $n++; }')));
+        // use a lock file to toggle between writing ("W") and reading ("R") the
+        // output stream
+        $lock = tempnam(sys_get_temp_dir(), get_class($this).'Lock');
+        file_put_contents($lock, 'W');
+
+        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { if (\'W\' === file_get_contents('.var_export($lock, true).')) { echo \' foo \'; $n++; file_put_contents('.var_export($lock, true).', \'R\'); } usleep(100); }')));
 
         $p->start();
         while ($p->isRunning()) {
-            $this->assertLessThanOrEqual(1, preg_match_all('/foo/', $p->getIncrementalOutput(), $matches));
-            usleep(20000);
+            if ('R' === file_get_contents($lock)) {
+                $this->assertLessThanOrEqual(1, preg_match_all('/foo/', $p->getIncrementalOutput(), $matches));
+                file_put_contents($lock, 'W');
+            }
+            usleep(100);
         }
+
+        unlink($lock);
     }
 
     public function testFlushOutput()
@@ -263,6 +324,19 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         $p->run();
         $p->clearOutput();
         $this->assertEmpty($p->getOutput());
+    }
+
+    public function testZeroAsOutput()
+    {
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            // see http://stackoverflow.com/questions/7105433/windows-batch-echo-without-new-line
+            $p = $this->getProcess('echo | set /p dummyName=0');
+        } else {
+            $p = $this->getProcess('printf 0');
+        }
+
+        $p->run();
+        $this->assertSame('0', $p->getOutput());
     }
 
     public function testExitCodeCommandFailed()
@@ -537,7 +611,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testPhpDeadlock()
     {
-        $this->markTestSkipped('Can course PHP to hang');
+        $this->markTestSkipped('Can cause PHP to hang');
 
         // Sleep doesn't work as it will allow the process to handle signals and close
         // file handles from the other end.
@@ -561,7 +635,14 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         }
         $duration = microtime(true) - $start;
 
-        $this->assertLessThan($timeout + Process::TIMEOUT_PRECISION, $duration);
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            // Windows is a bit slower as it read file handles, then allow twice the precision
+            $maxDuration = $timeout + 2 * Process::TIMEOUT_PRECISION;
+        } else {
+            $maxDuration = $timeout + Process::TIMEOUT_PRECISION;
+        }
+
+        $this->assertLessThan($maxDuration, $duration);
     }
 
     public function testCheckTimeoutOnNonStartedProcess()
@@ -870,4 +951,16 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
      * @return Process
      */
     abstract protected function getProcess($commandline, $cwd = null, array $env = null, $stdin = null, $timeout = 60, array $options = array());
+}
+
+class Stringifiable
+{
+    public function __toString()
+    {
+        return 'stringifiable';
+    }
+}
+
+class NonStringifiable
+{
 }
