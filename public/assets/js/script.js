@@ -133,6 +133,7 @@ jQuery(document).ready(function($){
          $("#fecha_cita").change(function(){
             var riesgo_pantalla = $("#riesgo_pantalla");
             var valor = $("#riesgo");
+            var edadtexto = $("#edad");
             riesgo_pantalla.empty();
             
             var fecha = $("#fecha_cita").val();
@@ -153,7 +154,9 @@ jQuery(document).ready(function($){
                 agno--;
             }
             edad = parseFloat(agno) + parseFloat(mes.toFixed(2));
-         
+            
+            edadtexto.val(edad);
+			
             var correccion = '1/100';
             var probabilidad = parseFloat(0.000627) + parseFloat(Math.exp(parseFloat(-16.2395) + parseFloat((0.286 * (edad - 0.5)))));
             var riesgo = (1/(1-probabilidad))/probabilidad;
@@ -201,10 +204,13 @@ jQuery(document).ready(function($){
 					}
 				}
 			}
+			var riesgo_fap = $("#riesgo_fap");
 			if(date1 == ''){
 				riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
 			}else{
 				riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1/"+correccion.toFixed(2)+"");
+				riesgo_fap.val(correccion.toFixed(2));
+				valor.val(riesgo.toFixed(2));
 			}
             
         });
@@ -213,58 +219,60 @@ jQuery(document).ready(function($){
 			var riesgo_pantalla = $("#riesgo_pantalla");
 			
             var riesgo = $("#riesgo").val();
-            var riesgo_afp = $("#riesgo_afp");
+            var riesgo_fap = $("#riesgo_fap");
             
             var date1 = $("#fur").val();
             var date2 = $("#fecha_cita").val();
 		    var semana = $("#semana");
- 
-            //Sentencias para el calculo de los dias entre dos fechas
-            if (date1.indexOf("-") != -1) { date1 = date1.split("-"); } else if (date1.indexOf("/") != -1) { date1 = date1.split("/"); } else { return 0; } 
-            if (date2.indexOf("-") != -1) { date2 = date2.split("-"); } else if (date2.indexOf("/") != -1) { date2 = date2.split("/"); } else { return 0; } 
-            if (parseInt(date1[0], 10) >= 1000) { 
-               var sDate = new Date(date1[0]+"/"+date1[1]+"/"+date1[2]);
-            } else if (parseInt(date1[2], 10) >= 1000) { 
-               var sDate = new Date(date1[2]+"/"+date1[0]+"/"+date1[1]);
-            } else { 
-               return 0; 
-            } 
-            if (parseInt(date2[0], 10) >= 1000) { 
-               var eDate = new Date(date2[0]+"/"+date2[1]+"/"+date2[2]);
-            } else if (parseInt(date2[2], 10) >= 1000) { 
-               var eDate = new Date(date2[2]+"/"+date2[0]+"/"+date2[1]);
-            } else { 
-               return 0; 
-            } 
-            var one_day = 1000*60*60*24; 
-            var daysApart = Math.abs(Math.ceil((sDate.getTime()-eDate.getTime())/one_day));
-             
-            //Sentencia para el calculo de la semanas obteniendo los dias
-            var semanas = Math.round(daysApart/7);
-            semana.val(semanas);
-            //alert(semanas);
+			if(date2 != ''){
+				//Sentencias para el calculo de los dias entre dos fechas
+				if (date1.indexOf("-") != -1) { date1 = date1.split("-"); } else if (date1.indexOf("/") != -1) { date1 = date1.split("/"); } else { return 0; } 
+				if (date2.indexOf("-") != -1) { date2 = date2.split("-"); } else if (date2.indexOf("/") != -1) { date2 = date2.split("/"); } else { return 0; } 
+				if (parseInt(date1[0], 10) >= 1000) { 
+				   var sDate = new Date(date1[0]+"/"+date1[1]+"/"+date1[2]);
+				} else if (parseInt(date1[2], 10) >= 1000) { 
+				   var sDate = new Date(date1[2]+"/"+date1[0]+"/"+date1[1]);
+				} else { 
+				   return 0; 
+				} 
+				if (parseInt(date2[0], 10) >= 1000) { 
+				   var eDate = new Date(date2[0]+"/"+date2[1]+"/"+date2[2]);
+				} else if (parseInt(date2[2], 10) >= 1000) { 
+				   var eDate = new Date(date2[2]+"/"+date2[0]+"/"+date2[1]);
+				} else { 
+				   return 0; 
+				} 
+				var one_day = 1000*60*60*24; 
+				var daysApart = Math.abs(Math.ceil((sDate.getTime()-eDate.getTime())/one_day));
+				 
+				//Sentencia para el calculo de la semanas obteniendo los dias
+				var semanas = Math.round(daysApart/7);
+				semana.val(semanas);
+				
+				//alert(semanas);
             
-            var correccion = 100;
-             if($("#caso_anterior").val() == 1){
-				if(semanas > 12 && semanas < 14){
-						correccion = riesgo*1.0075;
-				}else{
-					if(semanas < 18 && semanas > 14){
-						correccion = riesgo*1.0054;
-					}
-					else{
-						correccion = riesgo*1.0042;
+				var correccion = 100;
+				 if($("#caso_anterior").val() == 1){
+					if(semanas > 12 && semanas < 14){
+							correccion = riesgo*1.0075;
+					}else{
+						if(semanas < 18 && semanas > 14){
+							correccion = riesgo*1.0054;
+						}
+						else{
+							correccion = riesgo*1.0042;
+						}
 					}
 				}
-			}
-			if(riesgo != ''){
 				riesgo_pantalla.empty();
 				riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1/"+correccion.toFixed(2)+"");
-				riesgo_afp.val(correccion.toFixed(2));
+				riesgo_fap.val(correccion.toFixed(2));
 			}else{
 				riesgo_pantalla.empty();
 				riesgo_pantalla.append("Por Calcular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Por Calcular");
 			}
+
+
         });
         
         $("#sigin").submit(function() {
@@ -316,17 +324,18 @@ function Division(id, idraza){
         function(data){
             var campo = $('#mom_'+id+'');
             var pantalla = $('#pantalla_mom_'+id+'');
+            var resultado = 0.0000;
             pantalla.empty();
             $.each(data, function(index,element) {
                 var valor = $('#valor_'+id+'').val();
                 var mediana = element.mediana_marcador;
-                var resultado = (valor/mediana).toFixed(2);
-                campo.val(resultado);
-                pantalla.append(resultado);
-                //Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso
-                Correccion_lineal(id, resultado);
-                Correccion_exponencial(id, idraza, resultado);
+                resultado = (valor/mediana).toFixed(2);                
             });
+            campo.val(resultado);
+			pantalla.append(resultado);
+			//Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso
+			Correccion_lineal(id, resultado);
+			Correccion_exponencial(id, idraza, resultado);
     });
 }
 //Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Lineal
@@ -336,17 +345,18 @@ function Correccion_lineal(id, mom){
         function(data){
             var campo = $('#corr_lineal_'+id+'');
             var pantalla = $('#pantalla_lineal_'+id+'');
+            var lineal = 0.0000;
             pantalla.empty();
             $.each(data, function(index,element) {
                 var valor = $('#valor_'+id+'').val();
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();
-                var lineal = mom/(parseFloat(a)+parseFloat(b/peso));
+                lineal = mom/(parseFloat(a)+parseFloat(b/peso));
                 //alert(b*peso);
-                campo.val(lineal.toFixed(5));
-                pantalla.append(lineal.toFixed(5));
             });
+            campo.val(lineal.toFixed(5));
+			pantalla.append(lineal.toFixed(5));
     });
 }
 //Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Exponencial
@@ -356,16 +366,17 @@ function Correccion_exponencial(id, idraza, mom){
         function(data){
             var campo = $('#corr_exp_'+id+'');
             var pantalla = $('#pantalla_exponencial_'+id+'');
+            var exponencial = 0.0000;
             pantalla.empty();
             $.each(data, function(index,element) {
                 var valor = $('#valor_'+id+'').val();
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();
-                var exponencial = mom/(Math.pow(10,(parseFloat(a)+parseFloat(b*peso))));
+                exponencial = mom/(Math.pow(10,(parseFloat(a)+parseFloat(b*peso))));
                 //alert(b*peso);
-                campo.val(exponencial.toFixed(5));
-                pantalla.append(exponencial.toFixed(5));
             });
+			campo.val(exponencial.toFixed(5));
+			pantalla.append(exponencial.toFixed(5));
     });
 }
