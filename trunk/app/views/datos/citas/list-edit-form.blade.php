@@ -142,11 +142,11 @@
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fecha_flebotomia', 'Fecha de Flebotomia:') }}
-      					{{ Form::date('fecha_flebotomia', $form['citas']->fecha_flebotomia, array('class' => 'form-control', 'min' => '2010-01-01', 'max' => '2099-12-31', 'required' => 'required')) }}
+      					{{ Form::date('fecha_flebotomia', $form['citas']->fecha_flebotomia, array('id' => 'fecha_flebotomia','class' => 'form-control', 'min' => '2010-01-01', 'max' => '2099-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('id_medico', 'Médico:') }}
-      					{{ Form::select('id_medico', array('0' => 'SELECCION EL  MÉDICO') + Medico::select('id', DB::raw('concat(primer_nombre," ",segundo_nombre," ",apellido_paterno," ",apellido_materno) AS nombre_completo'))->lists('nombre_completo','id'), $form['citas']->id_medico, array('class' => 'form-control', 'required' => 'required')) }}
+      					{{ Form::select('id_medico', array('0' => 'SELECCION EL  MÉDICO') + Medico::select('id', DB::raw('concat(apellido_paterno," ",apellido_materno,", ",primer_nombre," ",segundo_nombre) AS nombre_completo'))->orderBy('apellido_paterno', 'ASC')->lists('nombre_completo','id'), $form['citas']->id_medico, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('peso', 'Peso(kg):') }}
