@@ -134,6 +134,8 @@ jQuery(document).ready(function($){
             var riesgo_pantalla = $("#riesgo_pantalla");
             var valor = $("#riesgo");
             var edadtexto = $("#edad");
+            var semanas = $("#semana").val();
+            var riesgo = $("#riesgo").val();
             riesgo_pantalla.empty();
             
             var fecha = $("#fecha_cita").val();
@@ -161,10 +163,36 @@ jQuery(document).ready(function($){
             var probabilidad = parseFloat(0.000627) + parseFloat(Math.exp(parseFloat(-16.2395) + parseFloat((0.286 * (edad - 0.5)))));
             var riesgo = (1/(1-probabilidad))/probabilidad;
             valor.val(riesgo.toFixed(2));
-            
-            var date1 = $("#fur").val();
-            var date2 = $("#fecha_cita").val();
+         
+            if($("#caso_anterior").val() == 1){
+				if(semanas > 12 && semanas < 14){
+						correccion = riesgo*1.0075;
+				}else{
+					if(semanas < 18 && semanas > 14){
+						correccion = riesgo*1.0054;
+					}
+					else{
+						correccion = riesgo*1.0042;
+					}
+				}
+			}
+			var riesgo_fap = $("#riesgo_fap");
+			if($("#fur").val() != '' && $("#fecha_flebotomia").val() != ''){
+				riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1/"+correccion.toFixed(2)+"");
+				riesgo_fap.val(correccion.toFixed(2));
+			}else{
+				riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
+			}
+        });
+        //Funcion para el calculo de las semanas de gestacion
+        $("#fecha_flebotomia").change(function(){
+			var riesgo_pantalla = $("#riesgo_pantalla");
+		    var date1 = $("#fur").val();
+            var date2 = $("#fecha_flebotomia").val();
+            var date3 = $("#fecha_cita").val();
 		    var semana = $("#semana");
+		    var riesgo = $("#riesgo").val();
+		    riesgo_pantalla.empty();
 			if(date1 != ''){
 					//Sentencias para el calculo de los dias entre dos fechas
 				if (date1.indexOf("-") != -1) { date1 = date1.split("-"); } else if (date1.indexOf("/") != -1) { date1 = date1.split("/"); } else { return 0; } 
@@ -205,15 +233,17 @@ jQuery(document).ready(function($){
 				}
 			}
 			var riesgo_fap = $("#riesgo_fap");
-			if(date1 == ''){
-				riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
-			}else{
-				riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1/"+correccion.toFixed(2)+"");
+			if(date1 != '' &&  date3 != ''){
+				riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1/"+correccion.toFixed(2)+"");
 				riesgo_fap.val(correccion.toFixed(2));
-				valor.val(riesgo.toFixed(2));
+			}else{
+				if(date3 != ''){
+					riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
+				}else{
+					riesgo_pantalla.append("Por Calcular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
+				}				
 			}
-            
-        });
+		});
         //Funcion para el calculo de las semanas de gestacion
         $("#fur").change(function(){
 			var riesgo_pantalla = $("#riesgo_pantalla");
@@ -222,7 +252,8 @@ jQuery(document).ready(function($){
             var riesgo_fap = $("#riesgo_fap");
             
             var date1 = $("#fur").val();
-            var date2 = $("#fecha_cita").val();
+            var date2 = $("#fecha_flebotomia").val();
+            var date3 = $("#fecha_cita").val();
 		    var semana = $("#semana");
 			if(date2 != ''){
 				//Sentencias para el calculo de los dias entre dos fechas
@@ -251,28 +282,35 @@ jQuery(document).ready(function($){
 				
 				//alert(semanas);
             
-				var correccion = 100;
-				 if($("#caso_anterior").val() == 1){
-					if(semanas > 12 && semanas < 14){
-							correccion = riesgo*1.0075;
-					}else{
-						if(semanas < 18 && semanas > 14){
-							correccion = riesgo*1.0054;
-						}
-						else{
-							correccion = riesgo*1.0042;
-						}
+				
+			}
+			
+			
+			var correccion = 100;
+			 if($("#caso_anterior").val() == 1){
+				if(semanas >= 12 && semanas <= 14){
+						correccion = riesgo*1.0075;
+				}else{
+					if(semanas > 14 && semanas <= 18){
+						correccion = riesgo*1.0054;
+					}
+					else{
+						correccion = riesgo*1.0042;
 					}
 				}
-				riesgo_pantalla.empty();
-				riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1/"+correccion.toFixed(2)+"");
-				riesgo_fap.val(correccion.toFixed(2));
-			}else{
-				riesgo_pantalla.empty();
-				riesgo_pantalla.append("Por Calcular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Por Calcular");
 			}
-
-
+			riesgo_pantalla.empty();
+			if(date2 != '' && date3 != ''){
+				riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1/"+correccion.toFixed(2)+"");
+				riesgo_fap.val(correccion.toFixed(2));			
+			}else{
+				if(date3 != ''){
+					riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
+				}else{
+					riesgo_pantalla.append("Por Calcular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
+				}
+				
+			}
         });
         
         $("#sigin").submit(function() {
