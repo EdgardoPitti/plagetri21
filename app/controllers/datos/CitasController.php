@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class Datos_CitasController extends BaseController {
 
