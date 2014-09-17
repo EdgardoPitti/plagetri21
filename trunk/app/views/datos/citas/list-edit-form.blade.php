@@ -16,17 +16,17 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12">
 		    	<div class="panel panel-primary">
-		      		<div class="panel-heading">
+		      	<div class="panel-heading">
 		        		<h3 class="panel-title">Lista de Pacientes</h3>
 	        			<div class="pull-right">
 		          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Paciente" data-container="body">
 			            		<i class="glyphicon glyphicon-filter"></i>
 		          			</span>
 		        		</div>
-		      		</div>
+		      	</div>
 			    	<div class="panel-body">
-				        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" /><br>
-					    <div class="overthrow" style="overflow:auto;width:100%;height:100%;max-height:240px;">
+				       <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" /><br>
+					    <div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
 					        <table class="table table-bordered table-hover" id="dev-table">
 							  	<thead>
 							  		<tr class="info">
@@ -69,7 +69,7 @@
 		
 		@if(!empty($datos))
 			<h3>Datos Generales del Paciente</h3>
-			<div class="overthrow" style="overflow:auto;width:100%;">
+			<div class="table-responsive overthrow" id="scrollbar2" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
 				<table class="table table-bordered">
 					<tr  class="info">
 						<th style="width:100px">Cédula</th>
@@ -99,7 +99,7 @@
 			</div>
 			<hr>
 			<h3>Datos de Contacto del Paciente</h3>
-			<div class="overthrow" style="overflow:auto;width:100%;">
+			<div class="table-responsive overthrow" id="scrollbar3" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
 				<table class="table table-bordered">
 					<tr class="info">
 						<th>Provincia</th>
@@ -278,7 +278,7 @@
 				      		</div>
 					    	<div class="panel-body">
 						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_citas" placeholder="Filtrar Citas"/><br>
-							    <div class="overthrow" style="overflow:auto;width:100%;height:100%;max-height:240px;">
+							    <div class="table-responsive overthrow" id="scrollbar4" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
 							        <table class="table table-bordered table-hover" id="tabla_citas">
 									  	<thead>
 									  		<tr class="info">

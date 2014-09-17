@@ -24,20 +24,20 @@
           </div>
           <div class="panel-body" style="display:block;">
             <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" /><br>
-            <div class="overthrow"  style="overflow:auto;width:100%;height:100%;max-height:240px;">
+	           <div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
               <table class="table table-bordered table-hover" id="dev-table">
                 <thead>
-                <tr class="info">
-                    <th>#</th>
-                    <th>Nombre Completo</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Celular</th>
-                    <th>Telefono</th>
-                    <th>E-Mail</th>
-                    <th></th>
-                </tr>
-              </thead>
-              <tbody>
+	                <tr class="info">
+	                    <th>#</th>
+	                    <th>Nombre Completo</th>
+	                    <th>Fecha Nacimiento</th>
+	                    <th>Celular</th>
+	                    <th>Telefono</th>
+	                    <th>E-Mail</th>
+	                    <th></th>
+	                </tr>
+	             </thead>
+	             <tbody>
                 {{--*/ $x = 1; /*--}}
                 @foreach (Paciente::all() as $paciente)
                   <tr>

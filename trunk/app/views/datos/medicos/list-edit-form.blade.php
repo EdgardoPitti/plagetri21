@@ -22,9 +22,8 @@
 					</div>
 				</div>
 				<div class="panel-body" style="display:block;">
-					<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar M&eacute;dicos" /><br>
-				
-					<div class="overthrow" style="overflow:auto;width:100%;height:100%;max-height:240px;">
+					<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar M&eacute;dicos" /><br>				
+					<div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
 						<table class="table table-hover table-bordered" id="dev-table">
 							<thead>
 								<tr class="info">

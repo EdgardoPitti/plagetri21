@@ -36,7 +36,7 @@
     			</div>
     			<center>{{ Form::button('Salvar Marcador', array('type' => 'submit', 'class' => 'btn btn-primary')) }}</center>
 			{{ Form::close() }}<hr>
-		<div class="overthrow" style="overflow:auto;width:100%;">
+		<div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:260px;">
 	        <table class="table table-bordered" id="tabla_citas">
 			  	<thead>
 			  		<tr class="info">

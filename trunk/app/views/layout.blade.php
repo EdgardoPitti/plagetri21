@@ -10,6 +10,7 @@
     {{ HTML::style('assets/css/bootstrap.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/estilo.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/font-awesome.min.css', array('media' => 'screen')) }}
+    {{ HTML::style('assets/css/perfect-scrollbar.min.css', array('media' => 'screen')) }}
     {{-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --}}
     <!--[if lt IE 9]>
         {{ HTML::script('assets/js/html5shiv.js') }}
@@ -19,7 +20,7 @@
   </head>
   <body>    
     {{-- Wrap all page content here --}}
-    <div id="wrap">
+    <div id="wrap" >
       {{-- Begin page content --}}          
       <div class="container">    
         @if(Auth::check())
@@ -65,10 +66,15 @@
     {{ HTML::script('assets/js/jquery.js') }}
     {{ HTML::script('assets/js/admin.js') }}
     {{-- Include all compiled plugins (below), or include individual files as needed --}}
+    {{ HTML::script('assets/js/perfect-scrollbar.min.js') }} 
+    <script type="text/javascript">
+    	
+    </script>
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/filtro.js') }}
     {{ HTML::script('assets/js/script.js') }}
     {{ HTML::script('assets/js/script_foto.js') }}
     {{ HTML::script('assets/js/script_maps.js') }}        
+    
   </body>
 </html>
