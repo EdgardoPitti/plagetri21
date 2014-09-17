@@ -93,7 +93,7 @@ jQuery(document).ready(function($){
         //Funcion que al cambiar la semana este carga el valor automatico de la mediana del marcador correspondiente
         $("#semana").change(function(){
             $.get("http://localhost/plagetri21/public/obtenermediana", 
-            { semana: $("#semana").find(':selected').val(), marcador: $("#marcador").find(':selected').val() }, 
+            { semana: $("#semana").find(':selected').val(), marcador: $("#marcador").find(':selected').val(), unidad: $("#id_unidad").find(':selected').val()}, 
             function(data){
                 var campo = $('#mediana');
                 var valor = 0;
