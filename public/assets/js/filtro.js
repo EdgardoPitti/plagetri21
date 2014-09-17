@@ -27,6 +27,13 @@
 	$('[data-action="filter"]').filterTable();
 })(jQuery);
 
+jQuery(document).ready(function ($) {        
+  $('#scrollbar').perfectScrollbar();
+  $('#scrollbar2').perfectScrollbar();
+  $('#scrollbar3').perfectScrollbar();
+  $('#scrollbar4').perfectScrollbar();
+});
+
 $(function(){
     // attach table filter plugin to inputs
 	$('[data-action="filter"]').filterTable();
@@ -37,7 +44,7 @@ $(function(){
 		
 		$panel.find('.panel-body').slideToggle();
 		if($this.css('display') != 'none') {
-			$panel.find('.panel-body input').focus();
+			$panel.find('.panel-body').show();
 		}
 	});
 	$('[data-toggle="tooltip"]').tooltip();
