@@ -1,8 +1,10 @@
 jQuery(document).ready(function($){	
+		var host = window.location.host;
+		
         //Funcion que carga al cambiar el id_provincia
         $("#id_provincia").change(function(){
             //Funcion GET como primer parametro recibe el url que queremos ejecutar.
-            $.get("http://localhost/plagetri21/public/distrito", 
+            $.get("http://"+host+"/plagetri21/public/distrito", 
             //Segundo parametro le mandamos una variable que enviaremos al controlador que es el id de la provincia seleccionada.
             { provincia: $(this).val() }, 
         	function(data){
@@ -24,7 +26,7 @@ jQuery(document).ready(function($){
         });     
         //Funcion que percibe cuando se cambia un distrito para poder cargar los corregimientos pertenecientes a ese distrito
      	$("#id_distrito").change(function(){
-            $.get("http://localhost/plagetri21/public/corregimiento", 
+            $.get("http://"+host+"/plagetri21/public/corregimiento", 
             { distrito: $(this).val() }, 
         	function(data){
                 var campo = $('#id_corregimiento');
@@ -37,7 +39,7 @@ jQuery(document).ready(function($){
         });
         //Funcion que percibe cuando se cambia una provincia de residencia para poder cargar los distritos pertenecientes a esa provincia
         $("#id_provincia_residencia").change(function(){
-            $.get("http://localhost/plagetri21/public/distrito", 
+            $.get("http://"+host+"/plagetri21/public/distrito", 
             { provincia: $(this).val() }, 
             function(data){
                 var campo = $('#id_distrito_residencia');
@@ -66,7 +68,7 @@ jQuery(document).ready(function($){
         });
         //Funcion que al clickear en el tipo de institucion carga las instituciones pertenecientes a ese tipo
         $("#id_tipo_institucion").click(function(){
-            $.get("http://localhost/plagetri21/public/institucion", 
+            $.get("http://"+host+"/plagetri21/public/institucion", 
             { tipo: $(this).val(), provincia: $("#id_provincia_institucion").find(':selected').val() },
             function(data){
                 var campo = $('#id_institucion');
@@ -79,7 +81,7 @@ jQuery(document).ready(function($){
         });
         //Funcion que al clickear en la provincia de la institucion carga las instituciones pertenecientes a esa provincia
         $("#id_provincia_institucion").click(function(){
-            $.get("http://localhost/plagetri21/public/institucionprovincia", 
+            $.get("http://"+host+"/plagetri21/public/institucionprovincia", 
             { provincia: $(this).val(), tipo: $("#id_tipo_institucion").find(':selected').val() }, 
             function(data){
                 var campo = $('#id_institucion');
@@ -105,7 +107,7 @@ jQuery(document).ready(function($){
         });
         //Funcion que al cambiar el marcador este carga el valor automatico de la mediana del marcador correspondiente
          $("#marcador").change(function(){
-            $.get("http://localhost/plagetri21/public/obtenermediana", 
+            $.get("http://"+host+"/plagetri21/public/obtenermediana", 
             { marcador: $("#marcador").find(':selected').val(), semana: $("#semana").find(':selected').val(), unidad: $("#id_unidad").find(':selected').val() }, 
             function(data){
                 var campo = $('#mediana');
@@ -118,7 +120,7 @@ jQuery(document).ready(function($){
         });
         //Funcion que al cambiar la unidad este carga el valor automatico de la mediana del marcador correspondiente
          $("#id_unidad").change(function(){
-            $.get("http://localhost/plagetri21/public/obtenermediana", 
+            $.get("http://"+host+"/plagetri21/public/obtenermediana", 
             { marcador: $("#marcador").find(':selected').val(), semana: $("#semana").find(':selected').val(), unidad: $("#id_unidad").find(':selected').val() }, 
             function(data){
                 var campo = $('#mediana');
@@ -322,7 +324,7 @@ jQuery(document).ready(function($){
 
 });    
 function Comparar(id){
-    $.get("http://localhost/plagetri21/public/comparar", 
+    $.get("http://"+host+"/plagetri21/public/comparar", 
         { idmarcador: id , semana: $("#semana").val() }, 
         function(data){
 			var valor = $('#valor_'+id+'').val();
@@ -357,7 +359,7 @@ function Disable(){
 }
 //Funcion que recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
 function Division(id, idraza){
-    $.get("http://localhost/plagetri21/public/calculo", 
+    $.get("http://"+host+"/plagetri21/public/calculo", 
         { idmarcador: id , semana: $("#semana").val() }, 
         function(data){
             var campo = $('#mom_'+id+'');
@@ -378,7 +380,7 @@ function Division(id, idraza){
 }
 //Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Lineal
 function Correccion_lineal(id, mom){
-    $.get("http://localhost/plagetri21/public/correccion_lineal", 
+    $.get("http://"+host+"/plagetri21/public/correccion_lineal", 
         { idmarcador: id }, 
         function(data){
             var campo = $('#corr_lineal_'+id+'');
@@ -399,7 +401,7 @@ function Correccion_lineal(id, mom){
 }
 //Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Exponencial
 function Correccion_exponencial(id, idraza, mom){
-    $.get("http://localhost/plagetri21/public/correccion_exponencial", 
+    $.get("http://"+host+"/plagetri21/public/correccion_exponencial", 
         { idmarcador: id , idraza: idraza}, 
         function(data){
             var campo = $('#corr_exp_'+id+'');
