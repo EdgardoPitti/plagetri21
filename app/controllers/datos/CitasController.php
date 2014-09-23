@@ -108,7 +108,8 @@ class Datos_CitasController extends BaseController {
 		$form['label'] = 'Crear';
 		$form['citas'] = new Cita;
 		$form['citas']->riesgo = 100;
-		$form['citas']->riesgo_fap = 100;
+		$form['citas']->riesgo_fap = 100;		
+		$form['citas']->fecha_cita = date("20y-m-d");
 		$marcadorcita = new MarcadorCita;
 		foreach (Marcador::all() as $marcador){
 			$form['marcador_'.$marcador->id.''] = new MarcadorCita;
