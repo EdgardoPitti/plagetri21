@@ -13,8 +13,9 @@ class Datos_PacientesController extends BaseController {
 	public function index()
 	{
 		$datos['form'] = array('route' => 'datos.pacientes.store', 'method' => 'POST');
-      $datos['label'] = 'Crear';
+		$datos['label'] = 'Crear';
 		$datos['paciente'][0] = new Paciente;
+		$datos['paciente'][0]->id_nacionalidad = 62;
 		$datos['paciente'][0]->fuma = 0;
 		$datos['paciente'][0]->diabetes = 0;
 		$datos['paciente'][0]->embarazo_trisomia = 0;

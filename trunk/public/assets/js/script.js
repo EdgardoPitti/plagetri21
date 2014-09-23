@@ -94,7 +94,7 @@ jQuery(document).ready(function($){
         });
         //Funcion que al cambiar la semana este carga el valor automatico de la mediana del marcador correspondiente
         $("#semana").change(function(){
-            $.get("http://localhost/plagetri21/public/obtenermediana", 
+            $.get("http://"+host+"/plagetri21/public/obtenermediana", 
             { semana: $("#semana").find(':selected').val(), marcador: $("#marcador").find(':selected').val(), unidad: $("#id_unidad").find(':selected').val()}, 
             function(data){
                 var campo = $('#mediana');
@@ -131,24 +131,24 @@ jQuery(document).ready(function($){
                 campo.val(valor);
             });
         });
-         //Funcion calcular la edad exacta con respecto a la cita
-         $("#fecha_cita").change(function(){
-            var riesgo_pantalla = $("#riesgo_pantalla");
+        //Funcion para el calculo de las semanas de gestacion
+        $("#fecha_flebotomia").change(function(){
+			var riesgo_pantalla = $("#riesgo_pantalla");
             var valor = $("#riesgo");
             var edadtexto = $("#edad");
-            var semanas = $("#semana").val();
-            var riesgo = $("#riesgo").val();
+         
             riesgo_pantalla.empty();
             
-            var fecha = $("#fecha_cita").val();
+            var fecha = $("#fecha_flebotomia").val();
             var fecha_cita = fecha.split('-');
+            
             fecha = $("#fecha_nacimiento").val();
-            
-            
             var fecha_nac = fecha.split('-');
+            
             var edad = 0;
             var agno = 0;
             var mes = 0;
+            
             agno = fecha_cita[0] - fecha_nac[0];
             
             if(fecha_nac[1] < fecha_cita[1]){
@@ -165,35 +165,12 @@ jQuery(document).ready(function($){
             var probabilidad = parseFloat(0.000627) + parseFloat(Math.exp(parseFloat(-16.2395) + parseFloat((0.286 * (edad - 0.5)))));
             var riesgo = (1/(1-probabilidad))/probabilidad;
             valor.val(riesgo.toFixed(2));
-         
-            if($("#caso_anterior").val() == 1){
-				if(semanas > 12 && semanas < 14){
-						correccion = riesgo*1.0075;
-				}else{
-					if(semanas < 18 && semanas > 14){
-						correccion = riesgo*1.0054;
-					}
-					else{
-						correccion = riesgo*1.0042;
-					}
-				}
-			}
-			var riesgo_fap = $("#riesgo_fap");
-			if($("#fur").val() != '' && $("#fecha_flebotomia").val() != ''){
-				riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1/"+correccion.toFixed(2)+"");
-				riesgo_fap.val(correccion.toFixed(2));
-			}else{
-				riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
-			}
-        });
-        //Funcion para el calculo de las semanas de gestacion
-        $("#fecha_flebotomia").change(function(){
-			var riesgo_pantalla = $("#riesgo_pantalla");
+
 		    var date1 = $("#fur").val();
             var date2 = $("#fecha_flebotomia").val();
-            var date3 = $("#fecha_cita").val();
+            
 		    var semana = $("#semana");
-		    var riesgo = $("#riesgo").val();
+
 		    riesgo_pantalla.empty();
 			if(date1 != ''){
 					//Sentencias para el calculo de los dias entre dos fechas
@@ -235,14 +212,14 @@ jQuery(document).ready(function($){
 				}
 			}
 			var riesgo_fap = $("#riesgo_fap");
-			if(date1 != '' &&  date3 != ''){
-				riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1/"+correccion.toFixed(2)+"");
-				riesgo_fap.val(correccion.toFixed(2));
+			if(date1 == ''){
+				riesgo_pantalla.append("Por Calcular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
 			}else{
-				if(date3 != ''){
-					riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
+				if($("#caso_anterior").val() == 1){
+					riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1/"+correccion.toFixed(2)+"");
+					riesgo_fap.val(correccion.toFixed(2));	
 				}else{
-					riesgo_pantalla.append("Por Calcular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
+					riesgo_pantalla.append("1/"+riesgo.toFixed(2)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No tiene");					
 				}				
 			}
 		});
@@ -255,8 +232,8 @@ jQuery(document).ready(function($){
             
             var date1 = $("#fur").val();
             var date2 = $("#fecha_flebotomia").val();
-            var date3 = $("#fecha_cita").val();
 		    var semana = $("#semana");
+		    
 			if(date2 != ''){
 				//Sentencias para el calculo de los dias entre dos fechas
 				if (date1.indexOf("-") != -1) { date1 = date1.split("-"); } else if (date1.indexOf("/") != -1) { date1 = date1.split("/"); } else { return 0; } 
@@ -282,14 +259,12 @@ jQuery(document).ready(function($){
 				var semanas = Math.round(daysApart/7);
 				semana.val(semanas);
 				
-				//alert(semanas);
-            
-				
+				//alert(semanas);	
 			}
 			
 			
 			var correccion = 100;
-			 if($("#caso_anterior").val() == 1){
+			if($("#caso_anterior").val() == 1){
 				if(semanas >= 12 && semanas <= 14){
 						correccion = riesgo*1.0075;
 				}else{
@@ -302,16 +277,15 @@ jQuery(document).ready(function($){
 				}
 			}
 			riesgo_pantalla.empty();
-			if(date2 != '' && date3 != ''){
-				riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1/"+correccion.toFixed(2)+"");
-				riesgo_fap.val(correccion.toFixed(2));			
+			if(date2 == ''){
+				riesgo_pantalla.append("Por Calcular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
 			}else{
-				if(date3 != ''){
-					riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
+				if($("#caso_anterior").val() != 1){
+					riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No tiene");
 				}else{
-					riesgo_pantalla.append("Por Calcular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por Calcular");
-				}
-				
+					riesgo_pantalla.append("1/"+riesgo+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1/"+correccion.toFixed(2)+"");
+					riesgo_fap.val(correccion.toFixed(2));	
+				}		
 			}
         });
         
@@ -324,6 +298,7 @@ jQuery(document).ready(function($){
 
 });    
 function Comparar(id){
+	var host = window.location.host;
     $.get("http://"+host+"/plagetri21/public/comparar", 
         { idmarcador: id , semana: $("#semana").val() }, 
         function(data){
@@ -334,7 +309,7 @@ function Comparar(id){
 			var etiqueta = '<span class="label label-default">PorDefecto</span>';
             $.each(data, function(index,element) {
                 if(parseFloat(valor) < element.lim_inferior){
-					etiqueta = '<span class="label label-danger">Inferior</span>';           
+					etiqueta = '<span class="label label-danger">Inferior</span>';      
 					positivo.val(-1);
 				}else{
 					if(parseFloat(valor) > element.lim_superior){
@@ -343,6 +318,7 @@ function Comparar(id){
 					}else{
 						etiqueta = '<span class="label label-success">Normal</span>';
 						positivo.val(0);
+		
 					}
 				}
             });
@@ -359,20 +335,21 @@ function Disable(){
 }
 //Funcion que recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
 function Division(id, idraza){
+	var host = window.location.host;
     $.get("http://"+host+"/plagetri21/public/calculo", 
         { idmarcador: id , semana: $("#semana").val() }, 
         function(data){
             var campo = $('#mom_'+id+'');
             var pantalla = $('#pantalla_mom_'+id+'');
-            var resultado = 0.0000;
-            pantalla.empty();
+			var resultado = 0;
+			pantalla.empty();
             $.each(data, function(index,element) {
                 var valor = $('#valor_'+id+'').val();
                 var mediana = element.mediana_marcador;
-                resultado = (valor/mediana).toFixed(2);                
+                resultado = (valor/mediana);                
             });
-            campo.val(resultado);
-			pantalla.append(resultado);
+            campo.val(resultado.toFixed(5));
+			pantalla.append(resultado.toFixed(5));
 			//Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso
 			Correccion_lineal(id, resultado);
 			Correccion_exponencial(id, idraza, resultado);
@@ -380,6 +357,7 @@ function Division(id, idraza){
 }
 //Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Lineal
 function Correccion_lineal(id, mom){
+	var host = window.location.host;
     $.get("http://"+host+"/plagetri21/public/correccion_lineal", 
         { idmarcador: id }, 
         function(data){
@@ -401,6 +379,7 @@ function Correccion_lineal(id, mom){
 }
 //Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Exponencial
 function Correccion_exponencial(id, idraza, mom){
+	var host = window.location.host;
     $.get("http://"+host+"/plagetri21/public/correccion_exponencial", 
         { idmarcador: id , idraza: idraza}, 
         function(data){
