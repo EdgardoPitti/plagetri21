@@ -13,9 +13,68 @@
 		 </div>
 		  <center>Agenda Telefónica</center>
 		</h1>
+		
+
+
 		<hr>
 
-	{{ Form::model($datos['agenda'], $datos['form'], array('role' => 'form')) }}
+
+	<div class="row">
+      <div class="col-md-12 col-sm-12 col-lg-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Lista de Agendas Telefónicas</h3>
+            <div class="pull-right">
+              <span class="clickable filter" data-toggle="tooltip" title="Buscar Agenda" data-container="body">
+                <i class="glyphicon glyphicon-filter"></i>
+              </span>
+            </div>
+          </div>
+          <div class="panel-body" style="display:block;">
+            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Datos" /><br>
+            <div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
+	            <table class="table table-bordered table-hover" id="dev-table">
+	                <thead>
+		                <tr class="info">
+		                    <th>#</th>
+		                    <th>Nombre Completo</th>
+		                    <th>Profesión</th>
+		                    <th>Teléfono</th>
+		                    <th>Celular</th>
+		                    <th>Extensión</th>
+		                    <th></th>
+		                </tr>
+	              	</thead>
+	              	<tbody>
+	              	{{--*/ $x=1; /*--}}
+					@foreach (Agenda::all() as $agenda)
+						<tr>
+							<td>{{ $x++ }}.</td>
+							<td>{{ $agenda->nombre_completo }}</td>
+							<td>{{ $agenda->profesion }}</td>
+							<td>{{ $agenda->telefono }}</td>
+							<td>{{ $agenda->celular }}</td>
+							<td>{{ $agenda->extension }}</td>
+							<td align="center"><a href="{{ route('datos.agenda.edit', $agenda->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar Agenda"><span class="glyphicon glyphicon-list-alt"></span></a>                         </td>
+						</tr>
+					@endforeach
+					</tbody>
+				</table>
+			</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    {{ Form::model($datos['agenda'], $datos['form'], array('role' => 'form')) }}
 		<div class="row">
 			<div class="form-group col-sm-4 col-md-4 col-lg-4">
 		      {{ Form::label('nombre_completo', 'Nombre Completo:') }}
@@ -51,53 +110,6 @@
 	      <a href="{{ route('datos.agenda.index') }}" class="btn btn-info">Limpiar Campos</a>
 		</center>
 	{{ Form::close() }}
-
-	<div class="row">
-      <div class="col-md-12 col-sm-12 col-lg-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Lista de Agendas Telefónicas</h3>
-            <div class="pull-right">
-              <span class="clickable filter" data-toggle="tooltip" title="Buscar Agenda" data-container="body">
-                <i class="glyphicon glyphicon-filter"></i>
-              </span>
-            </div>
-          </div>
-          <div class="panel-body">
-            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Datos" /><br>
-            <div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
-	            <table class="table table-bordered table-hover" id="dev-table">
-	                <thead>
-		                <tr class="info">
-		                    <th>#</th>
-		                    <th>Nombre Completo</th>
-		                    <th>Profesión</th>
-		                    <th>Teléfono</th>
-		                    <th>Celular</th>
-		                    <th>Extensión</th>
-		                    <th></th>
-		                </tr>
-	              	</thead>
-	              	<tbody>
-	              	{{--*/ $x=1; /*--}}
-					@foreach (Agenda::all() as $agenda)
-						<tr>
-							<td>{{ $x++ }}.</td>
-							<td>{{ $agenda->nombre_completo }}</td>
-							<td>{{ $agenda->profesion }}</td>
-							<td>{{ $agenda->telefono }}</td>
-							<td>{{ $agenda->celular }}</td>
-							<td>{{ $agenda->extension }}</td>
-							<td align="center"><a href="{{ route('datos.agenda.edit', $agenda->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar Agenda"><span class="glyphicon glyphicon-list-alt"></span></a>                         </td>
-						</tr>
-					@endforeach
-					</tbody>
-				</table>
-			</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
 	{{ HTML::script('assets/js/overthrow/overthrow-detect.js') }}
     {{ HTML::script('assets/js/overthrow/overthrow-init.js') }}
