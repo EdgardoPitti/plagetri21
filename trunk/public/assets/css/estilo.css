@@ -257,3 +257,14 @@ input.cmn-toggle-round-flat:checked + label:after {
   font-size: 24pt;
   padding-bottom:20px;
 }
+.show{
+	display: none;
+}
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
