@@ -36,8 +36,8 @@
     			</div>
     			<center>{{ Form::button('Salvar Marcador', array('type' => 'submit', 'class' => 'btn btn-primary')) }}</center>
 			{{ Form::close() }}<hr>
-		<div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:260px;">
-	        <table class="table table-bordered" id="tabla_citas">
+		  <div class="overthrow" style="height:250px;">
+	        <table class="table table-bordered table-hover table-fixed-header" id="mediana-marcadores">
 			  	<thead>
 			  		<tr class="info">
 			  			<th>Semana</th>
@@ -64,4 +64,5 @@
 			  	</tbody>
 			</table>
 		</div>
+		<div class="clear"></div>
 @stop

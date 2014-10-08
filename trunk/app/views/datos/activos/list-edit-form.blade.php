@@ -16,7 +16,7 @@
 		
 		<div class="row">
 	      <div class="col-md-12 col-sm-12 col-lg-12">
-	        <div class="panel panel-primary">
+	        <div class="panel panel-primary" style="max-height:300px;">
 	          <div class="panel-heading">
 	            <h3 class="panel-title">Lista de Activos</h3>
 	            <div class="pull-right">
@@ -27,9 +27,10 @@
 	          </div>
 	          <div class="panel-body" style="display:block;">
 	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Activo" /><br>
-	            <div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
-	              <table class="table table-bordered table-hover" id="dev-table">
-	                <thead>
+	            
+	            <div class="overthrow" style="height:170px;">
+	              <table class="table table-hover table-bordered table-fixed-header" cellpadding="0" cellspacing="0" id="dev-table">
+	               <thead>
 	                <tr class="info">
 	                    <th>#</th>
 	                    <th>Código</th>
@@ -80,6 +81,7 @@
 	                </tbody> 
 	              </table>
 	            </div>
+	            <div class="clear"></div>
 	          </div>
 	        </div>
 	      </div>

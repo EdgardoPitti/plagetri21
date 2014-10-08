@@ -15,19 +15,19 @@
 		</h1>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12">
-		    	<div class="panel panel-primary">
-		      		<div class="panel-heading">
+		    	<div class="panel panel-primary" style="max-height:300px;">
+		      	<div class="panel-heading">
 		        		<h3 class="panel-title">Grupos de Usuarios</h3>
 	        			<div class="pull-right">
 		          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Grupo" data-container="body">
 			            		<i class="glyphicon glyphicon-filter"></i>
 		          			</span>
 		        		</div>
-		      		</div>
-			    	<div class="panel-body">
+		      	</div>
+			    	<div class="panel-body" style="display:block;">
 				        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Grupos" /><br>
-					    <div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
-					        <table class="table table-bordered table-hover" id="dev-table">
+					    <div class="overthrow" style="height:170px;">
+					        <table class="table table-bordered table-hover table-fixed-header" id="dev-table">
 							  	<thead>
 							  		<tr class="info">
 							  			<th>#</th>

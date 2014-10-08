@@ -15,7 +15,7 @@
 		</h1>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12">
-		    	<div class="panel panel-primary">
+		    	<div class="panel panel-primary" style="max-height:300px;">
 		      	<div class="panel-heading">
 		        		<h3 class="panel-title">Lista de Pacientes</h3>
 	        			<div class="pull-right">
@@ -24,11 +24,11 @@
 		          			</span>
 		        		</div>
 		      	</div>
-			    	<div class="panel-body">
-				       <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" /><br>
-					    <div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
-					        <table class="table table-bordered table-hover" id="dev-table">
-							  	<thead>
+			    	<div class="panel-body" style="display:block">
+				       <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#citas" placeholder="Filtrar Pacientes" /><br>
+					    <div class="overthrow" style="height:170px;">
+							<table class="table table-bordered table-hover table-fixed-header" cellpadding="0" cellspacing="0" id="citas">
+								<thead>
 							  		<tr class="info">
 							  			<th>#</th>
 							  			<th>Cédula</th>
@@ -62,6 +62,7 @@
 							  	</tbody>
 							</table>
 						</div>
+						<div class="clear"></div>
 			        </div>
 		        </div>
 		    </div>
@@ -69,7 +70,7 @@
 		
 		@if(!empty($datos))
 			<h3>Datos Generales del Paciente</h3>
-			<div class="table-responsive overthrow" id="scrollbar2" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
+			<div class="table-responsive overthrow" id="scrollbar2" style=" position:relative;overflow:hidden;width:100%;max-height:80px;">
 				<table class="table table-bordered">
 					<tr  class="info">
 						<th style="width:100px">Cédula</th>
@@ -99,7 +100,7 @@
 			</div>
 			<hr>
 			<h3>Datos de Contacto del Paciente</h3>
-			<div class="table-responsive overthrow" id="scrollbar3" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
+			<div class="table-responsive overthrow" id="scrollbar3" style=" position:relative;overflow:hidden;width:100%;max-height:80px;">
 				<table class="table table-bordered">
 					<tr class="info">
 						<th>Provincia</th>
@@ -267,19 +268,19 @@
 			@if (!empty(Cita::where('id_paciente', $datos[0]->id)->first()->id))
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-lg-12">
-				    	<div class="panel panel-primary">
-				      		<div class="panel-heading">
+				    	<div class="panel panel-primary" style="max-height:300px;">
+				      	<div class="panel-heading">
 				        		<h3 class="panel-title">Citas Anteriores</h3>
 			        			<div class="pull-right">
 				          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Citas" data-container="body">
 					            		<i class="glyphicon glyphicon-filter"></i>
 				          			</span>
 				        		</div>
-				      		</div>
-					    	<div class="panel-body">
-						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_citas" placeholder="Filtrar Citas"/><br>
-							    <div class="table-responsive overthrow" id="scrollbar4" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
-							        <table class="table table-bordered table-hover" id="tabla_citas">
+				      	</div>
+					    	<div class="panel-body" style="display:block">
+						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla-citas" placeholder="Filtrar Citas"/><br>
+							    <div class="overthrow" style="height:170px;">
+							        <table class="table table-hover table-bordered table-fixed-header" cellpadding="0" cellspacing="0" id="tabla-citas">
 									  	<thead>
 									  		<tr class="info">
 									  			<th>#</th>
@@ -318,6 +319,7 @@
 									  	</tbody>
 									</table>
 								</div>
+								<div class="clear"></div>
 					        </div>
 				        </div>
 				    </div>

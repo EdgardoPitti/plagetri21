@@ -15,7 +15,7 @@
 		</h1>
 		<div class="row">
 	      <div class="col-md-12 col-sm-12 col-lg-12">
-	        <div class="panel panel-primary">
+	        <div class="panel panel-primary" style="max-height:300px;">
 	          <div class="panel-heading">
 	            <h3 class="panel-title">Lista de Activos</h3>
 	            <div class="pull-right">
@@ -25,23 +25,24 @@
 	            </div>
 	          </div>
 	          <div class="panel-body">
-	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Activo" /><br>
-	            <div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
-	              <table class="table table-bordered table-hover" id="dev-table">
+	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#list-act" placeholder="Filtrar Activo" /><br>
+	          </div>
+	            <div class="table-responsive overthrow" style="padding:5px 10px;height:170px;">
+	              <table class="table table-bordered table-hover table-fixed-header" id="list-act">
 	                <thead>
-	                <tr class="info">
-	                    <th>#</th>
-	                    <th>Código</th>
-	                    <th>Nombre</th>
-	                    <th>Tipo</th>
-	                    <th>Proveedor</th>
-	                    <th>Nivel</th>
-	                    <th>Ubicación</th>
-	                    <th>Costo</th>
-	                    <th></th>
-	                </tr>
-	              </thead>
-	              <tbody>
+		                <tr class="info">
+		                    <th>#</th>
+		                    <th>Código</th>
+		                    <th>Nombre</th>
+		                    <th>Tipo</th>
+		                    <th>Proveedor</th>
+		                    <th>Nivel</th>
+		                    <th>Ubicación</th>
+		                    <th>Costo</th>
+		                    <th></th>
+		                </tr>
+		             </thead>
+		             <tbody>
 	                {{--*/ $x = 1; /*--}}
 	                @foreach (Activo::all() as $activo)
 	                  <tr>
@@ -78,11 +79,10 @@
 	                </tbody> 
 	              </table>
 	            </div>
-	          </div>
 	        </div>
 	      </div>
 	      <div class="col-md-12 col-sm-12 col-lg-12">
-	        <div class="panel panel-primary">
+	        <div class="panel panel-primary" style="max-height:300px;">
 	          <div class="panel-heading">
 	            <h3 class="panel-title">Lista de Mantenimientos por hacer de este Mes</h3>
 	            <div class="pull-right">
@@ -93,8 +93,8 @@
 	          </div>
 	          <div class="panel-body">
 	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_mantenimientos" placeholder="Filtrar Mantenimientos" /><br>
-	            <div class="table-responsive overthrow" id="scrollbar2" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
-	              <table class="table table-bordered table-hover" id="tabla_mantenimientos">
+	            <div class="table-responsive overthrow"  style="height:170px;">
+	              <table class="table table-bordered table-hover table-fixed-header" id="tabla_mantenimientos">
 	                <thead>
 	                <tr class="info">
 	                    <th>#</th>
