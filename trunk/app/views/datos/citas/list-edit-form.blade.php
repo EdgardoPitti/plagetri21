@@ -311,6 +311,7 @@
 										  			@endforeach
 										  			<td align="center">
 										  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span></a>
+										  				<a href="{{ route('print.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Imprimir"><span class="glyphicon glyphicon-pencil"></span></a>
 										  			</td>
 										  		</tr>
 									  		@endforeach
