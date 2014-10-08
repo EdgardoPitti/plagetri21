@@ -107,7 +107,7 @@
 	    </div>	   
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('sexo', 'Sexo:') }}	     
-	      {{ Form::select('sexo', array('null' => '', '0' => 'Femenino', '1' => 'Masculino'), null, array('class' => 'form-control', 'required' => 'required')); }}
+	      {{ Form::select('sexo', array('0' => 'FEMENINO', '1' => 'MASCULINO'), null, array('class' => 'form-control', 'required' => 'required')); }}
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('id_especialidades_medicas', 'Especialidad M&eacute;dica:') }}

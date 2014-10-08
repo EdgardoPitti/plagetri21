@@ -52,7 +52,7 @@ class Datos_PacientesController extends BaseController {
         $paciente->segundo_nombre = $data['segundo_nombre'];
         $paciente->apellido_paterno = $data['apellido_paterno'];
         $paciente->apellido_materno = $data['apellido_materno'];
-        $paciente->sexo = '0';
+        $paciente->sexo = $data['sexo'];
         $paciente->fecha_nacimiento = $data['fecha_nacimiento'];
         $paciente->lugar_nacimiento = $data['lugar_nacimiento'];
         $paciente->id_provincia_nacimiento = $data['id_provincia'];
@@ -151,7 +151,7 @@ class Datos_PacientesController extends BaseController {
         $paciente->segundo_nombre = $data['segundo_nombre'];
         $paciente->apellido_paterno = $data['apellido_paterno'];
         $paciente->apellido_materno = $data['apellido_materno'];
-        $paciente->sexo = '0';
+        $paciente->sexo = $data['sexo'];
         $paciente->fecha_nacimiento = $data['fecha_nacimiento'];
         $paciente->lugar_nacimiento = $data['lugar_nacimiento'];
         $paciente->id_provincia_nacimiento = $data['id_provincia'];
