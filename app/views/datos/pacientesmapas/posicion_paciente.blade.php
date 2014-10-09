@@ -35,4 +35,5 @@
       <a href="marcadores" class="btn btn-primary">Actualizar Mapa</a>
   	  <div id="map-canvas" style="margin-top:4px;"></div>
   	</center>
+
 @stop
