@@ -23,7 +23,18 @@ class Medico extends Eloquent {
 				$foto = $datos[$x]->foto;
 			}
 			$datos[$x]->foto = $foto;
-			$datos[$x]->especialidad = EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion;			
+			$datos[$x]->especialidad = EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion;	
+			if(!empty($medico->id_nivel)){
+				$datos[$x]->nivel =  Nivel::where('id', $medico->id_nivel)->first()->nivel;
+			}else{
+				$datos[$x]->nivel =  'POR DEFINIR';
+			}
+			if(!empty($medico->id_ubicacion)){
+				$datos[$x]->ubicacion = Ubicacion::where('id', $medico->id_ubicacion)->first()->ubicacion;
+			}else{
+				$datos[$x]->ubicacion = 'POR DEFINIR';			
+			}
+			
 		}
 		return $datos;
 	}
