@@ -5,7 +5,7 @@
     <meta charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	  <link rel="shortcut icon" href='/plagetri21/public/imgs/favicon.ico' type="image/x-icon">    
+    <link rel="shortcut icon" href='/plagetri21/public/imgs/favicon.ico' type="image/x-icon">    
     {{-- Bootstrap --}}
     {{ HTML::style('assets/css/bootstrap.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/estilo.css', array('media' => 'screen')) }}
@@ -16,14 +16,14 @@
     <!--[if lt IE 9]>
         {{ HTML::script('assets/js/html5shiv.js') }}
         {{ HTML::script('assets/js/respond.min.js') }}
-    <![endif]-->      
+    <![endif]-->
     @yield('scripts')  
   </head>
   <body>    
     {{-- Wrap all page content here --}}
     <div id="wrap" >
       {{-- Begin page content --}}          
-      <div class="container">    
+      <div class="container" id="container">    
         @if(Auth::check())
           <div class="row">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,16 +63,21 @@
         @yield('content')  
       </div>
     </div>
+    <div id="footer">
+      <footer>
+        Derechos Reservados &copy; 2014
+      </footer>
+    </div>
     {{-- jQuery (necessary for Bootstrap's JavaScript plugins) --}}
     {{ HTML::script('assets/js/jquery.js') }}
+    {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/admin.js') }}
     {{-- Include all compiled plugins (below), or include individual files as needed --}}
     {{ HTML::script('assets/js/perfect-scrollbar.min.js') }} 
     {{ HTML::script('assets/js/jquery.fixedheadertable.js') }}
-    {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/filtro.js') }}
     {{ HTML::script('assets/js/script.js') }}
     {{ HTML::script('assets/js/script_foto.js') }}
-    {{ HTML::script('assets/js/script_maps.js') }}       
+    {{ HTML::script('assets/js/script_maps.js') }}
   </body>
 </html>
