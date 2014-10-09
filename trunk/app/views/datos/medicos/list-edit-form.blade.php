@@ -25,7 +25,7 @@
 	      	<div class="row showDatos">      			
                 <div class="col-md-3 col-lg-3" id="foto" align="center"> 
                 	<!-- Img del medico-->
-               	</div>
+                </div>
                
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
@@ -35,16 +35,16 @@
                         <td><label id="ext"></label></td>
                       </tr>
                       <tr>
-                        <td>Tel&eacute;fono:</td>
-                        <td><label id="tel"></label></td>
-                      </tr>
-                      <tr>
-                        <td>Celular:</td>
-                        <td><label id="cel"></label></td>
-                      </tr>
-                      <tr>
                         <td>Especialidad:</td>
                         <td><label id="esp"></label></td>
+                      </tr>
+                      <tr>
+                        <td>Nivel:</td>
+                        <td><label id="lvl"></label></td>
+                      </tr>
+                      <tr>
+                        <td>Ubicación:</td>
+                        <td><label id="loc"></label></td>
                       </tr>
                     </tbody>
                   </table>                  

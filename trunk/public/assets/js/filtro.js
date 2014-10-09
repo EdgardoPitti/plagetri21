@@ -53,10 +53,10 @@ function obtener(id){
 
 	    foto.append('<img alt="Medico" src="http://'+host+'/plagetri21/public/imgs/'+data.foto+'" class="img-rounded" style="width:80px;"> ');
 	    $('#medico').html(data.first_name+' '+data.second_name+' '+data.last_name+' '+data.last_sec_name);
-	    $('#ext').html(data.extension);
-	    $('#tel').html(data.phone);
-	    $('#cel').html(data.cel);
-	    $('#esp').html(data.especialidad);
+	    $('#ext').html(data.extension);	    
+	    $('#esp').html(data.especiality);
+	    $('#lvl').html(data.level);
+	    $('#loc').html(data.ubicaciono);
   	});
 }
 
