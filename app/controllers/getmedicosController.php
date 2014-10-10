@@ -18,7 +18,8 @@ class getmedicosController extends BaseController {
 			'extension' => $datos[0]->extension,
 			'especiality' => $datos[0]->especialidad,
 			'level' => $datos[0]->nivel,
-			'ubicacion' => $datos[0]->ubicacion
+			'ubicacion' => $datos[0]->ubicacion,
+			'observacion' => $datos[0]->observacion
 				
 		);
 		
