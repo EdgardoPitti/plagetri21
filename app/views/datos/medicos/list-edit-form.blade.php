@@ -31,7 +31,7 @@
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>Extenci&oacute;n:</td>
+                        <td>Extensi&oacute;n:</td>
                         <td><label id="ext"></label></td>
                       </tr>
                       <tr>
@@ -45,6 +45,10 @@
                       <tr>
                         <td>Ubicación:</td>
                         <td><label id="loc"></label></td>
+                      </tr>
+                       <tr>
+                        <td>Observación:</td>
+                        <td><label id="obs"></label></td>
                       </tr>
                     </tbody>
                   </table>                  
