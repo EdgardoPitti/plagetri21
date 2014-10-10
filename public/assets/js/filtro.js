@@ -56,7 +56,8 @@ function obtener(id){
 	    $('#ext').html(data.extension);	    
 	    $('#esp').html(data.especiality);
 	    $('#lvl').html(data.level);
-	    $('#loc').html(data.ubicaciono);
+	    $('#loc').html(data.ubicacion);
+	     $('#obs').html(data.observacion);
   	});
 }
 
