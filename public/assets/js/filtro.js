@@ -74,4 +74,5 @@ $(document).ready(function() {
  $('#mediana-marcadores').fixedHeaderTable();
  $('#list-act').fixedHeaderTable();
  $('#tabla-mantenimientos').fixedHeaderTable();
+ $('#config').fixedHeaderTable();
 });
