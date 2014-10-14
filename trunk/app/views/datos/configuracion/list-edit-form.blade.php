@@ -13,8 +13,8 @@
 		 </div>
 		 <center>Configuración del Sistema</center>
 		</h1>
-		<div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;">
-			<table class="table table-bordered table-hover" >
+		<div class="overthrow" style="height:250px;">
+	     <table class="table table-bordered table-hover table-fixed-header" id="config">
 				<thead>
 					<tr class="info">
 						<th>#</th>
