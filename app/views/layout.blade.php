@@ -17,9 +17,18 @@
         {{ HTML::script('assets/js/html5shiv.js') }}
         {{ HTML::script('assets/js/respond.min.js') }}
     <![endif]-->
-    @yield('scripts')  
+    @yield('scripts')
+    @if(!Auth::check())  
+    	<script type="text/javascript">
+	     function nobackbutton(){
+				window.location.hash="no-back-button";	
+	   		window.location.hash="Again-No-back-button" //chrome	
+	   		window.onhashchange=function(){window.location.hash="logout";}
+			}
+		</script>        
+	@endif
   </head>
-  <body>    
+  <body  onload="nobackbutton();">    
     {{-- Wrap all page content here --}}
     <div id="wrap" >
       {{-- Begin page content --}}          
@@ -78,6 +87,6 @@
     {{ HTML::script('assets/js/filtro.js') }}
     {{ HTML::script('assets/js/script.js') }}
     {{ HTML::script('assets/js/script_foto.js') }}
-    {{ HTML::script('assets/js/script_maps.js') }}
+    {{ HTML::script('assets/js/script_maps.js') }}    
   </body>
 </html>
