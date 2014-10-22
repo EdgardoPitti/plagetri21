@@ -11,8 +11,11 @@ class PrintController extends \BaseController
 		$parameter['datos'] = $paciente->datos_pacientes($parameter['cita']->id_paciente);
 		$parameter['institucion'] = Institucion::find($parameter['cita']->id_institucion);
 		$parameter['medico'] = Medico::find($parameter['cita']->id_medico);
-		$parameter['marcadores'] = MarcadorCita::where('id_cita', $id)->where('id_marcador', '<', '5')->where('id_marcador','<>', '3' )->get();
-		
+		$parameter['marcadores'] = MarcadorCita::where('id_cita', $id)->where('id_marcador', '<', '5')->where('id_marcador','<>', '3')->get();
+		$parameter['sindromedown'] = 'El riesgo del síndrome de Down es MENOR que el del corte de sondeo. El exámen de suero ha indicado
+									  un riesgo sustancialmente REDUCIDO en comparación al de aquel basado en la edad materna solamente.
+									';
+		$parameter['tamizdown'] = '<b>Tamiz Negativo</b>';
 		$pdf = PDF::loadView('datos/citas/Print', $parameter);
 		return $pdf->stream(''.$parameter['datos'][0]->cedula.'.pdf');
     }

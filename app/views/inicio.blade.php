@@ -20,7 +20,9 @@
 				@if($n == 4)
 					</div>
 					<div class="row nav-row menu-margen">
-					{{--*$n=1*--}}
+				@elseif($n == 8)
+					</div>
+					<div class="row nav-row menu-margen">
 				@endif
 				{{--*/$n++;/*--}}
 			@endforeach

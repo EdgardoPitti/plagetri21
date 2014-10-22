@@ -1,5 +1,8 @@
 <?php
-
+/* En esta tabla se almacena los grupos a los que pertenecen los usuarios
+ * 1- id
+ * 2- grupo_usuario
+ */
 class GrupoUsuario extends Eloquent {
 
 	/**

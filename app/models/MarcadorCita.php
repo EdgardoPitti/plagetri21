@@ -1,5 +1,17 @@
 <?php
-
+/* Esta tabla almacena los valores correspondientes a los marcadores respectivos de una paciente
+ * llenado en una cita.
+ * 1- id
+ * 2- id_cita
+ * 3- id_marcador
+ * 4- id_metodologia
+ * 5- id_unidad
+ * 6- valor
+ * 7- mom
+ * 8- corr_peso_exponencial
+ * 9- corr_peso_lineal
+ * 10- positivo
+ */
 class MarcadorCita extends Eloquent {
 
 	/**
