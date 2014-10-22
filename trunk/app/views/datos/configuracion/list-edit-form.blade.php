@@ -74,7 +74,7 @@
 			{{ Form::close() }}
 		@endif
 			{{ Form::open(array('route' => 'datos.configuracion.store', 'method' => 'POST'), array('role' => 'form')) }}
-			<center>
+			<center><br>
 			Modo Actual: 
 			@if(empty(Configuracion::all()->last()->automatico))
 				<b>Manual</b>

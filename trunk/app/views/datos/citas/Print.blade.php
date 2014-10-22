@@ -50,7 +50,17 @@
 		</table>
     <br><b>Evaluación del Riesgo (a término)</b><br>
 		&nbsp;&nbsp;  Edad Solamente  &nbsp;&nbsp; {{ '1:'.$cita->riesgo }}
-	<br><br><b>Interpretación* basado en la información suministrada</b>
+	<br><br><b>Interpretación* basado en la información suministrada:</b><br>
+	<table>
+		<tr>
+			<td><b>SINDROME DE DOWN</b></td>
+			<td>{{ $tamizdown }}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{{ $sindromedown }}</td>
+		</tr>
+	</table>
 		
 
 </body>
