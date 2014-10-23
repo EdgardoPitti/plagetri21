@@ -70,7 +70,7 @@
 		
 		@if(!empty($datos))
 			<h3>Datos Generales del Paciente</h3>
-			<div class="table-responsive overthrow" id="scrollbar2" style=" position:relative;overflow:hidden;width:100%;max-height:80px;">
+			<div class="table-responsive overthrow" id="scrollbar2" style=" position:relative;overflow:hidden;width:100%;">
 				<table class="table table-bordered">
 					<tr  class="info">
 						<th style="width:100px">Cédula</th>
@@ -100,7 +100,7 @@
 			</div>
 			<hr>
 			<h3>Datos de Contacto del Paciente</h3>
-			<div class="table-responsive overthrow" id="scrollbar3" style=" position:relative;overflow:hidden;width:100%;max-height:80px;">
+			<div class="table-responsive overthrow" id="scrollbar3" style=" position:relative;overflow:hidden;width:100%;">
 				<table class="table table-bordered">
 					<tr class="info">
 						<th>Provincia</th>
@@ -312,7 +312,7 @@
 										  			@endforeach
 										  			<td align="center">
 										  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span></a>
-										  				<a href="{{ route('print.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Imprimir"><span class="glyphicon glyphicon-pencil"></span></a>
+										  				<a href="{{ route('print.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Imprimir"><span class="glyphicon glyphicon-print"></span></a>
 										  			</td>
 										  		</tr>
 									  		@endforeach
