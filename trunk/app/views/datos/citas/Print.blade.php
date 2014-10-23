@@ -52,14 +52,20 @@
 		&nbsp;&nbsp;  Edad Solamente  &nbsp;&nbsp; {{ '1:'.$cita->riesgo }}
 	<br><br><b>Interpretación* basado en la información suministrada:</b><br>
 	<table>
-		<tr>
-			<td><b>SINDROME DE DOWN</b></td>
-			<td>{{ $tamizdown }}</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>{{ $sindromedown }}</td>
-		</tr>
+		@foreach($resultados as $resultado)
+			<tr>
+					<td><b>{{ $resultado->enfermedad }}</b></td>
+					<td>{{ $resultado->resultado }}</td>
+			</tr>
+			<tr>
+					<td></td>
+					<td align="justify">{{ $resultado->mensaje }}</td>
+			</tr>
+			<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+			</tr>
+		@endforeach
 	</table>
 		
 
