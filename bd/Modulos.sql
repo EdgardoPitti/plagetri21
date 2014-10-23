@@ -67,7 +67,7 @@ CREATE TABLE `modulos` (
 
 LOCK TABLES `modulos` WRITE;
 /*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
-INSERT INTO `modulos` VALUES (1,'Citas de Tamizaje','datos.citas.index','citas.png'),(2,'Pacientes','datos.pacientes.index','woman.png'),(3,'Médicos','datos.medicos.index','medico.png'),(4,'Mediana de Marcadores','datos.mediana.index','marcadores.png'),(5,'Activos','datos.activos.index','activo.png'),(6,'Mantenimiento','datos.mantenimientos.index','mantenimiento.png'),(7,'Agenda Telefónica','datos.agenda.index','agenda.png'),(8,'Localizar','datos.pacientesmapas.index','mapa.png'),(9,'Enfermedades','datos.condiciones.index','mapa.png');
+INSERT INTO `modulos` VALUES (1,'Citas de Tamizaje','datos.citas.index','citas.png'),(2,'Pacientes','datos.pacientes.index','woman.png'),(3,'Médicos','datos.medicos.index','medico.png'),(4,'Mediana de Marcadores','datos.mediana.index','marcadores.png'),(5,'Activos','datos.activos.index','activo.png'),(6,'Mantenimiento','datos.mantenimientos.index','mantenimiento.png'),(7,'Agenda Telefónica','datos.agenda.index','agenda.png'),(8,'Localizar','datos.pacientesmapas.index','mapa.png'),(9,'Enfermedades','datos.condiciones.index','enfermedad.png');
 /*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
