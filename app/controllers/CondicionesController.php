@@ -107,8 +107,7 @@ class CondicionesController extends BaseController {
 	{		
 		$data = Input::all();
 		$enfermedad = Enfermedad::find($id);
-		
-		
+	
 		$enfermedad->descripcion = $data['descripcion'];
 		$enfermedad->mensaje_positivo = $data['mensaje_positivo'];
 		$enfermedad->mensaje_negativo = $data['mensaje_negativo'];
@@ -127,8 +126,7 @@ class CondicionesController extends BaseController {
 				$condiciones->save();
 			}
 		}
-		return Redirect::route('datos.condiciones.index');
-		
+		return Redirect::route('datos.condiciones.index');	
 		
 	}
 

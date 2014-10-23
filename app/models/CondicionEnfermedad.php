@@ -9,6 +9,55 @@ class CondicionEnfermedad extends Eloquent {
 	*/
 	protected $table = 'condiciones_enfermedades';
 
+	//Funcion que recibe el ID de la cita para luego buscar sus respectivos marcadores y realizar las comparaciones
+	//para devolver los resultados de las enfermedades si son positivos o negativos.
+	function obtenerEnfermedades($id){
+		//Variable donde se almacena los marcadores pertenecientes a esa cita.
+		$marcadores = MarcadorCita::where('id_cita', $id)->get();
+		//Ciclo para recorrer todos los marcadores
+		foreach($marcadores as $marcador){
+			//Variables donde se almacena cada valor de cada marcador
+			//usando como indice el id del marcador para facilitar
+			//su comparacion.
+			$data[$marcador->id_marcador] = new MarcadorCita;
+			$data[$marcador->id_marcador]->valor = $marcador->positivo;
+		}
+		//Ciclo que recorre todas las enfermedades
+		foreach(Enfermedad::all() as $enfermedad){
+			//Variable usada como switch para detectar enfermedades.
+			$sw = 0;
+			//Se crea un objeto para poder almacenar la informacion de los resultados.
+			$resultado[$enfermedad->id] = new Enfermedad;
+			//Almaceno el nombre de la enfermedad en el resultado usando como indice el ID de la enfermedad
+			$resultado[$enfermedad->id]->enfermedad = $enfermedad->descripcion;
+			//Sentencia para buscar todas las condiciones pertenecientes a una enfermedad especifica
+			$condiciones = CondicionEnfermedad::where('id_enfermedad', $enfermedad->id)->get();
+			//Ciclo que recorre todas las condiciones
+			foreach($condiciones as $condicion){
+				//Decision donde se compara el valor obtenido del marcador de la cita
+				//con la condicion para ver si son diferentes.
+				if($data[$condicion->id_marcador]->valor <> $condicion->valor_condicion){
+					//De ser diferentes la variable como switch cambia de valor.
+					$sw = 1;
+				}
+			}
+			//Decision que determina el mensaje a imprimir
+			//Si la variable Switch es igual a 0 quiere decir que nunca entro en la decision anterior
+			//y que los resultados de la cita son iguales a las condiciones y por ende arroja un resultado positivo
+			if($sw == 0){
+				$resultado[$enfermedad->id]->resultado = 'Tamiz Positivo';				
+				$resultado[$enfermedad->id]->mensaje = $enfermedad->mensaje_positivo;
+			//De ser falso la condicion osea que el switch tomo el valor de 1 quiere decir que no fueron
+			//exactamente los valores de la cita con las condiciones y arroja un resultado negativo
+			}else{
+				$resultado[$enfermedad->id]->resultado = 'Tamiz Negativo';				
+				$resultado[$enfermedad->id]->mensaje = $enfermedad->mensaje_negativo;
+			}
+		}
+		//Devuelve un arreglo con tdas las enfermedades usando como indice el ID de cada enfermedad
+		//Con sus respectivo nombe, resulta si fue positivo o negativo y el mensaje correspondiente.
+		return $resultado;
+	}
 }
 
 ?>
