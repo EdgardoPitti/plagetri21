@@ -40,7 +40,7 @@
 							  <tbody>
 								  {{--*/$x=1;/*--}}
 								 @foreach(Enfermedad::all() as $enfermedad)
-									<tr align="center">
+									<tr align="justify">
 										<td>{{ $x++ }}.</td>
 										<td>{{ $enfermedad->descripcion }}</td>
 										<td>{{ $enfermedad->mensaje_positivo }}</td>
@@ -76,7 +76,7 @@
 				@foreach(Marcador::all() as $marcador)
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 						{{ Form::label('marcador_'.$marcador->id.'', $marcador->marcador.':') }}
-						{{ Form::select('marcador_'.$marcador->id.'',array('-1' => 'Menor', '0' => 'Normal', '1' => 'Mayor') ,$datos['marcador_'.$marcador->id.''], array('placeholder' => 'Mensaje Positivo', 'class' => 'form-control', 'size' => '1x1')) }}        
+						{{ Form::select('marcador_'.$marcador->id.'',array('-1' => 'Bajo', '0' => 'Normal', '1' => 'Alto') ,$datos['marcador_'.$marcador->id.''], array('placeholder' => 'Mensaje Positivo', 'class' => 'form-control', 'size' => '1x1')) }}        
 					</div>
 				@endforeach
 			</div>

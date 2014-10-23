@@ -50,11 +50,13 @@ class CondicionesController extends BaseController {
 		$id = Enfermedad::all()->last()->id;
 		
 		foreach(Marcador::all() as $marcador){
-			$condiciones = new CondicionEnfermedad;
-			$condiciones->id_enfermedad = $id;
-			$condiciones->id_marcador = $marcador->id;
-			$condiciones->valor_condicion = $data['marcador_'.$marcador->id.''];
-			$condiciones->save();
+			if($data['marcador_'.$marcador->id.''] <> 0){
+				$condiciones = new CondicionEnfermedad;
+				$condiciones->id_enfermedad = $id;
+				$condiciones->id_marcador = $marcador->id;
+				$condiciones->valor_condicion = $data['marcador_'.$marcador->id.''];
+				$condiciones->save();
+			}
 		}
 		return Redirect::route('datos.condiciones.index');
 
@@ -113,15 +115,17 @@ class CondicionesController extends BaseController {
 		$enfermedad->save();
 		
 		foreach(Marcador::all() as $marcador){
-			if(empty(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first())){
-				$condiciones = new CondicionEnfermedad;
-			}else{
-				$condiciones = CondicionEnfermedad::find(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first()->id);
+			if($data['marcador_'.$marcador->id.''] <> 0){
+				if(empty(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first())){
+					$condiciones = new CondicionEnfermedad;
+				}else{
+					$condiciones = CondicionEnfermedad::find(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first()->id);
+				}
+				$condiciones->id_enfermedad = $id;
+				$condiciones->id_marcador = $marcador->id;
+				$condiciones->valor_condicion = $data['marcador_'.$marcador->id.''];
+				$condiciones->save();
 			}
-			$condiciones->id_enfermedad = $id;
-			$condiciones->id_marcador = $marcador->id;
-			$condiciones->valor_condicion = $data['marcador_'.$marcador->id.''];
-			$condiciones->save();
 		}
 		return Redirect::route('datos.condiciones.index');
 		
