@@ -19,14 +19,4 @@ class PrintController extends \BaseController
 		$pdf = PDF::loadView('datos/citas/Print', $parameter);
 		return $pdf->stream(''.$parameter['datos'][0]->cedula.'.pdf');
     }
-   	public function show($id)
-	{
-		$paciente = new Paciente;
-		$pdf = App::make('dompdf');
-		$pacientes = $paciente->datos_pacientes(0);
-		$pdf = PDF::loadView('datos/citas/Print', $pacientes);
-		return $pdf->stream();
-		
-	}
-
 }
