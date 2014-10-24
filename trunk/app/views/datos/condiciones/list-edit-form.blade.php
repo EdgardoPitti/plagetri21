@@ -60,9 +60,12 @@
 			<div class="row" style="margin-top:0px;">
 				<h3>Datos de la Enfermedad</h3>
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
-				{{--<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4 col-sm-offset-4">--}}
 					{{ Form::label('descripcion', 'Nombre de la Enfermedad:') }}
 					{{ Form::text('descripcion', null, array('placeholder' => 'Nombre de Grupo', 'class' => 'form-control', 'required' => 'required')) }}
+				</div>
+				<div class="form-group col-sm-4 col-md-4 col-lg-4">
+					{{ Form::label('status', 'Mostrar en Impresión:') }}
+					{{ Form::select('status', null, array('placeholder' => 'Nombre de Grupo', 'class' => 'form-control', 'required' => 'required')) }}
 				</div>
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 					{{ Form::label('mensaje_positivo', 'Mensaje Positivo:') }}
@@ -72,6 +75,8 @@
 					{{ Form::label('mensaje_negativo', 'Mensaje Negativo:') }}
 					{{ Form::textarea('mensaje_negativo', null, array('placeholder' => 'Mensaje Positivo', 'class' => 'form-control', 'size' => '3x3')) }}        
 				</div>
+			</div>
+			<div class="row" style="margin-top:0px;">
 				<h3>Condiciones de la Enfermedad</h3>
 				@foreach(Marcador::all() as $marcador)
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
