@@ -12,18 +12,8 @@ class CondicionEnfermedad extends Eloquent {
 	//Funcion que recibe el ID de la cita para luego buscar sus respectivos marcadores y realizar las comparaciones
 	//para devolver los resultados de las enfermedades si son positivos o negativos.
 	function obtenerEnfermedades($id){
-		//Variable donde se almacena los marcadores pertenecientes a esa cita.
-		$marcadores = MarcadorCita::where('id_cita', $id)->get();
-		//Ciclo para recorrer todos los marcadores
-		foreach($marcadores as $marcador){
-			//Variables donde se almacena cada valor de cada marcador
-			//usando como indice el id del marcador para facilitar
-			//su comparacion.
-			$data[$marcador->id_marcador] = new MarcadorCita;
-			$data[$marcador->id_marcador]->valor = $marcador->positivo;
-		}
 		//Ciclo que recorre todas las enfermedades
-		foreach(Enfermedad::all() as $enfermedad){
+		foreach(Enfermedad::where('status', 1)->get() as $enfermedad){
 			//Variable usada como switch para detectar enfermedades.
 			$sw = 0;
 			//Se crea un objeto para poder almacenar la informacion de los resultados.
@@ -36,7 +26,7 @@ class CondicionEnfermedad extends Eloquent {
 			foreach($condiciones as $condicion){
 				//Decision donde se compara el valor obtenido del marcador de la cita
 				//con la condicion para ver si son diferentes.
-				if($data[$condicion->id_marcador]->valor <> $condicion->valor_condicion){
+				if(MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->positivo <> $condicion->valor_condicion){
 					//De ser diferentes la variable como switch cambia de valor.
 					$sw = 1;
 				}
