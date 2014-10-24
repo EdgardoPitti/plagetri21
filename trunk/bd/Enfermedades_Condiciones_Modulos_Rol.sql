@@ -46,6 +46,63 @@ INSERT INTO `modulos_usuarios` VALUES (1,1,1,'aaaa-mm-dd','aaaa-mm-dd',0),(19,2,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `condiciones_enfermedades`
+--
+
+DROP TABLE IF EXISTS `condiciones_enfermedades`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `condiciones_enfermedades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_enfermedad` int(11) DEFAULT NULL,
+  `id_marcador` int(11) DEFAULT NULL,
+  `valor_condicion` tinyint(4) DEFAULT NULL,
+  `created_at` varchar(45) DEFAULT NULL,
+  `updated_at` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `condiciones_enfermedades`
+--
+
+LOCK TABLES `condiciones_enfermedades` WRITE;
+/*!40000 ALTER TABLE `condiciones_enfermedades` DISABLE KEYS */;
+INSERT INTO `condiciones_enfermedades` VALUES (1,1,1,-1,'2014-10-23 15:22:00','2014-10-23 15:22:00'),(2,1,2,-1,'2014-10-23 15:22:00','2014-10-23 15:22:00'),(3,1,3,1,'2014-10-23 15:22:00','2014-10-23 15:22:00'),(4,2,1,-1,'2014-10-23 15:23:06','2014-10-23 15:23:06'),(5,2,2,-1,'2014-10-23 15:23:06','2014-10-23 15:23:06'),(6,3,2,-1,'2014-10-23 15:23:44','2014-10-23 15:23:44'),(7,3,3,1,'2014-10-23 15:23:44','2014-10-23 15:23:44'),(8,4,1,1,'2014-10-23 15:24:13','2014-10-23 15:24:13'),(9,5,1,1,'2014-10-23 15:24:32','2014-10-23 15:24:32');
+/*!40000 ALTER TABLE `condiciones_enfermedades` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `enfermedades`
+--
+
+DROP TABLE IF EXISTS `enfermedades`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `enfermedades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(45) DEFAULT NULL,
+  `mensaje_positivo` text,
+  `mensaje_negativo` text,
+  `status` tinyint(4) DEFAULT '1',
+  `created_at` varchar(45) DEFAULT NULL,
+  `updated_at` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `enfermedades`
+--
+
+LOCK TABLES `enfermedades` WRITE;
+/*!40000 ALTER TABLE `enfermedades` DISABLE KEYS */;
+INSERT INTO `enfermedades` VALUES (1,'Síndrome de Down','El riesgo de síndrome de Down es elevado.','El riesgo del síndrome de Down es MENOR que el del corte de sondeo. El exámen de suero ha indicado un riesgo sustancialmente REDUCIDO en comparación al de aquel basado en la edad materna solamente.',1,NULL,'2014-10-23 15:25:40'),(2,'Trisomia 18','Estos niveles de marcadores séricos son consistentes con el patrón visto en embarazos con Trisomía 18.','Estos niveles de marcadores séricos no son consistentes con el patrón visto en embarazos con Trisomía 18. El tamizaje maternal será detectado en aproximadamente 60% de los embarazos con Trisomia 18.',1,'2014-10-22 15:25:39','2014-10-23 15:26:22'),(3,'Trisomia 13','Si tienes Trisomía 13.','No tienes Trisomía 13.',0,'2014-10-23 13:36:18','2014-10-23 16:08:40'),(4,'Espina Bifida Abierta','El resultado del suero materno AFP es ALTO para un embarazo de esta edad gestacional, indicando un riesgo incrementado sustancialmente del defecto de tubo neural abierto. Si la edad gestacional es confirmada, debería considerarse un ultrasonido de NIVEL II combinando con anmiocentesis, seguidos por los exámenes definitivos de la concentración de fluido amniótico AFP y del complejo acetilcolinaesteres [AChE].','El resultado del suero materno AFP No es elevado para un embarazo de esta edad gestacional. El riesgo del defecto de tubo neural es menor que el del corte de sondeo.',1,'2014-10-23 13:54:07','2014-10-23 13:54:07'),(5,'Malformación Fetal','Posee un alto riesgo de Malformación Fetal.','Posee un bajo riesgo de Malformación Fetal.',0,'2014-10-23 15:24:32','2014-10-23 15:27:05');
+/*!40000 ALTER TABLE `enfermedades` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `modulos`
 --
 
@@ -80,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-23 10:15:15
+-- Dump completed on 2014-10-24 10:49:50
