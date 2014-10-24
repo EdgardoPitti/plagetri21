@@ -45,6 +45,7 @@ class CondicionesController extends BaseController {
 		$enfermedad->descripcion = $data['descripcion'];
 		$enfermedad->mensaje_positivo = $data['mensaje_positivo'];
 		$enfermedad->mensaje_negativo = $data['mensaje_negativo'];
+		$enfermedad->status = $data['status'];
 		$enfermedad->save();
 		
 		$id = Enfermedad::all()->last()->id;
@@ -111,6 +112,7 @@ class CondicionesController extends BaseController {
 		$enfermedad->descripcion = $data['descripcion'];
 		$enfermedad->mensaje_positivo = $data['mensaje_positivo'];
 		$enfermedad->mensaje_negativo = $data['mensaje_negativo'];
+		$enfermedad->status = $data['status'];
 		$enfermedad->save();
 		
 		foreach(Marcador::all() as $marcador){
