@@ -43,7 +43,7 @@
 			@foreach($marcadores as $marcador)
 			<tr align="center">
 				<td>{{ Marcador::where('id', $marcador->id_marcador)->first()->marcador }}</td>
-				<td>{{ $marcador->valor }} {{ Unidad::where('id', $marcador->id_unidad)->first()->unidad }}</td>
+				<td>{{ $marcador->valor }} @if(!empty(Unidad::where('id', $marcador->id_unidad)->first()->unidad)){{ Unidad::where('id', $marcador->id_unidad)->first()->unidad }}@endif</td>
 				<td>{{ $marcador->mom}}</td>
 			</tr>
 			@endforeach
