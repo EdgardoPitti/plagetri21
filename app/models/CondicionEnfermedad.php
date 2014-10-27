@@ -26,7 +26,11 @@ class CondicionEnfermedad extends Eloquent {
 			foreach($condiciones as $condicion){
 				//Decision donde se compara el valor obtenido del marcador de la cita
 				//con la condicion para ver si son diferentes.
-				if(MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->positivo <> $condicion->valor_condicion){
+				$positivo = 0;
+				if(!empty(MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->positivo)){
+					$positivo = MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->positivo;
+				}
+				if($positivo <> $condicion->valor_condicion){
 					//De ser diferentes la variable como switch cambia de valor.
 					$sw = 1;
 				}

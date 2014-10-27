@@ -15,9 +15,7 @@
 		FN: {{ $datos[0]->fecha_nacimiento }}.<br>
 		FUR: {{ $cita->fur }}.<br>
 		Lugar: {{ $institucion->denominacion }}.<br>
-		@if(!empty($medico))
-			Doctor: {{ $medico->primer_nombre.' '.$medico->apellido_paterno }}.
-		@endif
+		Doctor: {{ $medico->primer_nombre.' '.$medico->apellido_paterno }}.
 		
 		<br><br><br>
 		<b>LA INFORMACIÓN CLÍNICA</b><br>
