@@ -65,7 +65,7 @@
 				</div>
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 					{{ Form::label('status', 'Mostrar en Impresión:') }}
-					{{ Form::select('status', null, array('placeholder' => 'Nombre de Grupo', 'class' => 'form-control', 'required' => 'required')) }}
+					{{ Form::select('status', Array('0' => 'NO', '1' => 'SI'), null, array('class' => 'form-control', 'required' => 'required')) }}
 				</div>
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 					{{ Form::label('mensaje_positivo', 'Mensaje Positivo:') }}
