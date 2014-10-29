@@ -18,7 +18,7 @@ class PrintController extends \BaseController
 		//Se busca la institucion respectiva del ID almacenado en la cita.
 		if($parameter['cita']->id_institucion == 0){
 			$parameter['institucion'] = new Institucion;
-			$parameter['institucion']->denominacion = 'No Definida';
+			$parameter['institucion']->denominacion = 'No Definido';
 		}else{
 			$parameter['institucion'] = Institucion::find($parameter['cita']->id_institucion);
 		}
