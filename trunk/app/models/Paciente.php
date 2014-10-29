@@ -129,6 +129,7 @@ class Paciente extends Eloquent {
 		}
 		return $datos;
     }
+    //Funcion que calcula el riesgo de una persona recibiendo la edad
     function riesgo($edad){
 		//Sentencias del calculo de la probablidad por edad
 		$probabilidad = number_format(0.000627 + exp(-16.2395 + (0.286 * ($edad - 0.5))), 6, '.', '');
