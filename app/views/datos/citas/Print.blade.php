@@ -101,7 +101,7 @@
 	<table style="width:100%;">
 		@foreach($resultados as $resultado)
 			<tr>
-					<td><b>{{ $resultado->enfermedad }}</b></td>
+					<td width="25%"><b>{{ $resultado->enfermedad }}</b></td>
 					<td align="justify">
 						<b>{{ $resultado->resultado }}</b><br>
 						{{ $resultado->mensaje }}
