@@ -13,7 +13,7 @@
 			border:1px solid #000;
 			border-radius:6px;    	
     	}    	
-    	h1, h2,h4{
+    	h1, h2,h3,h4,h5,h6,p{
 			margin: 0px;    	
     	}
     	h4{
@@ -21,8 +21,8 @@
     	}
     	div .texto{
     		position:absolute;
-    		top:25%;
-    		left:15%;
+    		top:28%;
+    		left:10%;
     		font-size:16px;
     		font-weight:bold;    	
     	}
@@ -32,14 +32,27 @@
     </style>    
 </head>
 <body>
-	<center>
-		<h1>HOSPITAL CHIRIQUÍ</h1>
-		<h2>LABORAORIO</h2>
-    </center>
+	<div>
+		<div style="position:absolute;top:20px;left:20px;right:0px;">
+			<img src="imgs/logoch.png">		
+		</div>	
+		<div sty le="position:relative;">
+			<center>
+				<h1>HOSPITAL CHIRIQUÍ</h1>
+				<h2>LABORAORIO</h2>
+				<h3 style="font-style:italic;">Atención 24 horas</h3>
+		    </center>
+		</div>
+	    <div style="position:absolute; top:80px;le ft:400px;font-size:14px;">
+	    	APDO. 0426-01141 DAVID - CHIRIQUI<br>
+	    	e-mail: laboratorio@hospitalchiriqui.com<br>
+	      www.hospitalchiriqui.com
+	    </div>
+	</div>
     <br>
     <div>
     	<div class="texto">
-    		Triple Marcador Maternal
+    		<h3>Triple Marcador Maternal</h3>
     	</div>
     	<div style="position:absolute;right:20px;">
 			<b>INFORMACIÓN DE LA PACIENTE</b><br>
