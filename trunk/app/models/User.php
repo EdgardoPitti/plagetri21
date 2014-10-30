@@ -1,5 +1,10 @@
 <?php
-
+/*	Esta tabla se encarga de administrar los usuarios del sistema.
+* 1- id
+* 2- user
+* 3- password
+* 4- id_grupo_usuario
+*/
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 

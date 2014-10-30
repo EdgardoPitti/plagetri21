@@ -2,16 +2,19 @@
 <html>
   <head>
     <title>@yield('title', 'Datos de Pacientes')</title>
-    <meta charset="UTF-8" >
+    <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="shortcut icon" href='/plagetri21/public/imgs/favicon.ico' type="image/x-icon">    
+    <link rel="shortcut icon" href="{{URL::to('imgs/favicon.ico')}}" type="image/x-icon">    
     {{-- Bootstrap --}}
     {{ HTML::style('assets/css/bootstrap.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/estilo.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/font-awesome.min.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/perfect-scrollbar.min.css', array('media' => 'screen')) }}  
-    {{ HTML::style('assets/css/defaultTheme.css') }}  
+    {{ HTML::style('assets/css/defaultTheme.css') }}
+    <!-- Use the files with *.min.* for the minified versions. -->
+	 {{HTML::style('assets/css/jquery.nouislider.pips.css')}}	
+	
     {{-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --}}
     <!--[if lt IE 9]>
         {{ HTML::script('assets/js/html5shiv.js') }}
@@ -19,6 +22,7 @@
     <![endif]-->
     @yield('scripts')
     @if(!Auth::check())  
+    	{{--*/ $onload =  'onload="nobackbutton();"'; /*--}}
     	<script type="text/javascript">
 	     function nobackbutton(){
 				window.location.hash="no-back-button";	
@@ -26,9 +30,11 @@
 	   		window.onhashchange=function(){window.location.hash="logout";}
 			}
 		</script>        
-	@endif
+	@else
+		{{--*/ $onload =  '';/*--}}
+	@endif	
   </head>
-  <body  onload="nobackbutton();">    
+  <body {{$onload}}>    
     {{-- Wrap all page content here --}}
     <div id="wrap" >
       {{-- Begin page content --}}          
@@ -45,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>                      
                   </button>
-                  <a class="navbar-brand" href="/plagetri21/public"><img src="/plagetri21/public/imgs/logo.png"/><b>Plagetri21</b></a>
+                  <a class="navbar-brand" href="{{URL::to('/')}}"><img src="{{URL::to('imgs/logo.png')}}"/><b>Plagetri21</b></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">          
@@ -54,13 +60,11 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-weight:bold;"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->user }} <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         @if(Auth::user()->id_grupo_usuario == 1)
-                          <li><a href="/plagetri21/public/registro"><i class="fa fa-user fa-lg"></i>&nbsp; Registrar Usuario</a></li>                       
-                          <li><a href="/plagetri21/public/datos/modulos"><i class="fa fa-users fa-lg"></i> Grupos - Módulos</a></li>
-                          <!--li>{{ HTML::link('datos/modulos', ' Grupos - Módulos', array('class' => 'fa fa-users')) }}</li-->
+                          <li><a href="{{URL::to('registro')}}"><i class="fa fa-user fa-lg"></i>&nbsp; Registrar Usuario</a></li>                       
+                          <li><a href="{{URL::to('datos/modulos')}}"><i class="fa fa-users fa-lg"></i> Grupos - Módulos</a></li>
                           <li><a href="{{ route('datos.configuracion.index') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Configuración</a></li>
                         @endif
-                        <li><a href="/plagetri21/public/logout"><i class="fa fa-sign-out fa-lg"></i> Cerrar Sesión</a></li>                       
-                        <!--li>{{ HTML::link('logout', ' Cerrar Sesión', array('class' => 'fa fa-sign-out')) }}</li-->
+                        <li><a href="{{URL::to('logout')}}"><i class="fa fa-sign-out fa-lg"></i> Cerrar Sesión</a></li>      
                       </ul>
                     </li>
                   </ul>
@@ -69,6 +73,7 @@
             </nav>   
           </div>
         @endif
+        <div id="slider"></div>
         @yield('content')  
       </div>
     </div>

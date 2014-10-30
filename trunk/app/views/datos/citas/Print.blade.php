@@ -2,41 +2,71 @@
 <html>
 <head>
     <title>Citas Médicas</title>
+    <meta charset="UTF8">
+    <style type="text/css">
+    	html, body{
+			height:100%;    	
+    	}
+    	body{
+			margin:-20px;			
+			padding: 20px;
+			border:1px solid #000;
+			border-radius:6px;    	
+    	}    	
+    	h1, h2,h4{
+			margin: 0px;    	
+    	}
+    	h4{
+    		padding-left: 23px;
+    	}
+    	div .texto{
+    		position:absolute;
+    		top:25%;
+    		left:15%;
+    		font-size:16px;
+    		font-weight:bold;    	
+    	}
+    	.resultados{
+		   width:40%;	    
+    	}
+    </style>    
 </head>
 <body>
 	<center>
-		<h1>PLATAFORMA DE GESTIÓN DE TRISOMÍA 21</h1>
+		<h1>HOSPITAL CHIRIQUÍ</h1>
+		<h2>LABORAORIO</h2>
     </center>
     <br>
     <div>
-		<b>INFORMACIÓN DE LA PACIENTE</b><br>
-		Nombre: {{ $datos[0]->apellido_paterno.' '.$datos[0]->apellido_materno.', '.$datos[0]->primer_nombre.' '.$datos[0]->segundo_nombre }}.<br>
-		ID de Paciente: {{ $datos[0]->cedula }}.<br>
-		FN: {{ $datos[0]->fecha_nacimiento }}.<br>
-		FUR: {{ $cita->fur }}.<br>
-		Lugar: {{ $institucion->denominacion }}.<br>
-		Doctor: {{ $medico->primer_nombre.' '.$medico->apellido_paterno }}.
-		
-		<br><br><br>
-		<b>LA INFORMACIÓN CLÍNICA</b><br>
-		Edad Gestacional: {{ $cita->edad_gestacional_fur }} semanas usando FUR {{ $cita->fur }}.<br>
-		Edad Materna: {{ $cita->edad_materna }} años.<br>
-		Peso Materno: {{ $cita->peso }} kg.<br>
-		Raza Materna: {{ $datos[0]->raza }}.<br>
-		Etnia Materna: {{ $datos[0]->etnia }}.<br>
-		Gestación: {{ $cita->hijos_embarazo }}.<br> 
+    	<div class="texto">
+    		Triple Marcador Maternal
+    	</div>
+    	<div style="position:absolute;right:20px;">
+			<b>INFORMACIÓN DE LA PACIENTE</b><br>
+			Nombre: {{ $datos[0]->apellido_paterno.' '.$datos[0]->apellido_materno.', '.$datos[0]->primer_nombre.' '.$datos[0]->segundo_nombre }}.<br>
+			ID de Paciente: {{ $datos[0]->cedula }}.<br>
+			FN: {{ $datos[0]->fecha_nacimiento }}.<br>
+			FUR: {{ $cita->fur }}.<br>
+			Lugar: {{ $institucion->denominacion }}.<br>
+			Doctor: {{ $medico->primer_nombre.' '.$medico->apellido_paterno }}.
+			
+			<br><br><br>
+			<b>LA INFORMACIÓN CLÍNICA</b><br>
+			Edad Gestacional: {{ $cita->edad_gestacional_fur }} semanas usando FUR {{ $cita->fur }}.<br>
+			Edad Materna: {{ $cita->edad_materna }} años.<br>
+			Peso Materno: {{ $cita->peso }} kg.<br>
+			Raza Materna: {{ $datos[0]->raza }}.<br>
+			Etnia Materna: {{ $datos[0]->etnia }}.<br>
+			Gestación: {{ $cita->hijos_embarazo }}.<br>
+		</div> 
     </div>
-    <br><br>
-		<table>
+    <div style="position:absolute;bottom:190px;">
+	 	<h4>RESULTADOS DE LA PRUEBA</h4>
+		<table class="resultados" cellspacing="0px">			
 			<tr>
-				<td></td>	
-				<td><b>RESULTADOS DE LA PRUEBA</b></td>
-				<td></td>	
-			</tr>
-			<tr align="center">
-				<td>Ensayo</td>
-				<td>Resultados</td>
-				<td>MoM</td>
+				<th>Ensayo</th>
+				<th>Resultados</th>
+				<th>MoM</th>
 			</tr>
 			@foreach($marcadores as $marcador)
 			<tr align="center">
@@ -46,26 +76,30 @@
 			</tr>
 			@endforeach
 		</table>
-    <br><b>Evaluación del Riesgo (a término)</b><br>
-		&nbsp;&nbsp;  Edad Solamente  &nbsp;&nbsp; {{ '1:'.$cita->riesgo }}
-	<br><br><b>Interpretación* basado en la información suministrada:</b><br>
-	<table>
+      <h4 style="padding:8px 0px 0px 8px;">Evaluación del Riesgo (a término)</h4>
+		<table style="padding-left:10px;width:40%;">
+			<tr>
+				<td>Edad Solamente</td>
+				<td>{{ '1:'.$cita->riesgo }}</td>			
+			</tr>		
+		</table><br>		
+	
+	<b>Interpretación* basado en la información suministrada:</b><br>
+	<table style="width:100%;">
 		@foreach($resultados as $resultado)
 			<tr>
 					<td><b>{{ $resultado->enfermedad }}</b></td>
-					<td>{{ $resultado->resultado }}</td>
+					<td align="justify">
+						<b>{{ $resultado->resultado }}</b><br>
+						{{ $resultado->mensaje }}
+					</td>
 			</tr>
-			<tr>
-					<td></td>
-					<td align="justify">{{ $resultado->mensaje }}</td>
-			</tr>
-			<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
+			<tr>	
+				<td colspan="2"></td>
 			</tr>
 		@endforeach
 	</table>
-		
+	</div>
 
 </body>
 </html>
