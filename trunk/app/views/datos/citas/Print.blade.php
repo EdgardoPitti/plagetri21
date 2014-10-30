@@ -73,7 +73,7 @@
 			Gestación: {{ $cita->hijos_embarazo }}.<br>
 		</div> 
     </div>
-    <div style="position:absolute;bottom:190px;">
+    <div style="position:absolute;bottom:150px;">
 	 	<h4>RESULTADOS DE LA PRUEBA</h4>
 		<table class="resultados" cellspacing="0px">			
 			<tr>
