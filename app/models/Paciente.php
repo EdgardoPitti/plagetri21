@@ -1,5 +1,32 @@
 <?php
-
+/* En esta tabla se almacenan todos los datos del paciente
+* 1- id
+* 2- cedula
+* 3- primer_nombre
+* 4- segundo_nombre
+* 5- apellido_paterno
+* 6- apellido_materno
+* 7- sexo
+* 8- fecha_nacimiento
+* 9- celular
+* 10- telefono
+* 11- email
+* 12- id_provincia_nacimiento
+* 13- id_distrito_nacimiento
+* 14- id_corregimiento_nacimiento
+* 15- id_nacionalidad
+* 16- id_etnia
+* 17- id_tipo_sangre
+* 18- diabetes 
+* 19- id_raza
+* 20- id_provincia_residencia
+* 21- id_distrito_residencia
+* 22- id_corregimiento_residencia
+* 23- lugar_residencia
+* 24- fuma
+* 25- embarazo_trisomia
+* 26- foto
+*/
 class Paciente extends Eloquent {
 
 	/**

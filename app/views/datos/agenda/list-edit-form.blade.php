@@ -32,8 +32,9 @@
           </div>
           <div class="panel-body" style="display:block;">
             <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Datos" /><br>
-            <div class="table-responsive overthrow" id="scrollbar" style=" position:relative; margin:0px auto; padding:0px;overflow:hidden;width:100%;height:100%;max-height:240px;">
-	            <table class="table table-bordered table-hover" id="dev-table">
+            
+            <div class="overthrow" style="height:170px;">
+					<table class="table table-bordered table-hover table-fixed-header" cellpadding="0" cellspacing="0" id="dev-table">
 	                <thead>
 		                <tr class="info">
 		                    <th>#</th>
@@ -60,7 +61,7 @@
 					@endforeach
 					</tbody>
 				</table>
-			</div>
+			 </div>
           </div>
         </div>
       </div>

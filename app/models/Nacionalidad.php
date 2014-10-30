@@ -1,5 +1,8 @@
 <?php
-
+/* En esta tabla se almacenan todas las nacionalidades existentes
+* 1- id_nacionalidad
+* 2- nacionalidad
+*/
 class Nacionalidad extends Eloquent {
 
 	/**

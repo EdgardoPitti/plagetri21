@@ -1,5 +1,8 @@
 <?php
-
+/* En esta tabla esta almacenado en que edificio se encuentra un medico
+* 1- id
+* 2- ubicacion
+*/
 class Ubicacion extends Eloquent {
 
 	/**
