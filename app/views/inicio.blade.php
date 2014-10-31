@@ -22,7 +22,7 @@
 					<div class="row nav-row menu-margen">
 				@elseif($n == 8)
 					</div>
-					<div class="row nav-row menu-margen">
+					<div class="row nav-row menu-margen" style="padding-bottom:15px;">
 				@endif
 				{{--*/$n++;/*--}}
 			@endforeach

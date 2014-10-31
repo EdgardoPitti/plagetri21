@@ -4,30 +4,24 @@
   font-weight: 400;
   src: local('Open Sans'), local('OpenSans'), url('../fonts/opensans.woff') format('woff');
 }
-html,body{
-  height: 100%;
-}
 body{
    background-color: #f2f2f2;
    font-family: 'Open Sans';
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
-#container{
-  margin-bottom: 20px;
+/*CSS PARA EL FOOTER*/
+html,body, #wrap{
+  height: 100%; /*permite que tome el 100% de la pantalla*/
 }
-#wrap {
-  min-height: 100%;
-  margin-bottom: -50px;
-}
-#wrap:after {
-  content: "";
-  display: block;
-}
-#footer, #wrap:after {
-  height: 50px; 
-}
-#footer {
+body > #wrap{height: auto; min-height: 100%;} /*mantiene como minimo el 100% de alto de la pantalla*/
+#main{padding-bottom:50px; } /*Este padding sera el margen negativo y la altura del footer*/
+#footer{
+  position: relative;
+  margin-top: -50px; /*tomando valor negativo del padding del main*/
+  height: 50px; /*altura igual que el padding para el footer*/
+  clear:both;
+  /*colores y diseno al footer*/
   background: #d2d2d2;
   -webkit-box-shadow: 0 0 5px 0 #5a5a5a;
   -moz-box-shadow: 0 0 5px 0 #5a5a5a;
@@ -38,6 +32,17 @@ body{
   padding-top: 15px;
   text-align: center;
 }
+/*clase que elimina elementos flotantes*/
+.clearf{
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+.clearf{display: inline-block;}
+html .clearf{height: 1%;}
+.clearf{display: block;}
+/*Fin de la clase para el FOOTER*/
 /*Mapa*/
  #map-canvas {
   height: 400px;
@@ -78,9 +83,6 @@ body{
   }
 }
 /*CSS para la vista previa de las imagenes*/
-.container{
-    margin-top:20px;
-}
 .image-preview-input {
     position: relative;
   overflow: hidden;
@@ -117,22 +119,16 @@ body{
 .nav-row .col-md-3:hover {
   color: #3276b1;
   font-weight: bold;  
-    cursor: pointer;    
-    border-color: #3276b1;
-  /*-webkit-box-shadow: 0 0 10px 1px #D4D4D4;
-  -moz-box-shadow: 0 0 10px 1px #D4D4D4;
-  box-shadow: 0 0 10px 1px #D4D4D4;*/
-  -webkit-box-shadow: 0 0 11px 0 #7AAEC4;
-box-shadow: 0 0 11px 0 #7AAEC4;
-}
-.nav-row .glyphicon {
-  padding-top: 15px;
-  font-size: 40px;
+  cursor: pointer;    
+  border-color: #3276b1;
+  -moz-box-shadow: 0 0 10px 0px #7AAEC4;
+  -webkit-box-shadow: 0 0 10px 0px #7AAEC4;
+  box-shadow: 0 0 11px 0px #7AAEC4;
+  text-decoration: none;
 }
 @media(max-width: 768px){
   .menu-margen{
-    margin-top: 0px;
-    margin-bottom: 10px
+    margin-top: 0px;    
   }
 }
 /*para imagen de plagetri21*/

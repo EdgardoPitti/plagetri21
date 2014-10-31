@@ -12,9 +12,7 @@
     {{ HTML::style('assets/css/font-awesome.min.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/perfect-scrollbar.min.css', array('media' => 'screen')) }}  
     {{ HTML::style('assets/css/defaultTheme.css') }}
-    <!-- Use the files with *.min.* for the minified versions. -->
-	 {{HTML::style('assets/css/jquery.nouislider.pips.css')}}	
-	
+   	
     {{-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --}}
     <!--[if lt IE 9]>
         {{ HTML::script('assets/js/html5shiv.js') }}
@@ -38,7 +36,7 @@
     {{-- Wrap all page content here --}}
     <div id="wrap" >
       {{-- Begin page content --}}          
-      <div class="container" id="container">    
+      <div class="container clearf" id="main">    
         @if(Auth::check())
           <div class="row">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,7 +71,6 @@
             </nav>   
           </div>
         @endif
-        <div id="slider"></div>
         @yield('content')  
       </div>
     </div>

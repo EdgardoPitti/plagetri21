@@ -39,7 +39,7 @@ Route::resource('datos/modulos', 'Datos_ModulosController');
 Route::resource('datos/configuracion', 'ConfiguracionController');
 Route::resource('print', 'PrintController');
 Route::post('almacenargrupo', 'Datos_ModulosController@almacenargrupo');
-Route::get('medicos/getmedicos', 'getmedicosController@postData');
+Route::post('medicos/getmedicos', 'getmedicosController@postData');
 
 //Ruta para el control del mapa
 Route::resource('datos/pacientesmapas', 'MapasController');

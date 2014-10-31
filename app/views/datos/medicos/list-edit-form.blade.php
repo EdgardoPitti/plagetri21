@@ -102,7 +102,7 @@
 									<td>{{ EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion }}</td>
 									<td align="center">
 										<a href="{{ route('datos.medicos.edit', $medico->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar M&eacute;dico"><span class="glyphicon glyphicon-pencil"></span></a>
-					            		<a href="#Show" onclick="obtener({{ $medico->id }})" id="{{ $medico->id }}"  class="btn btn-success btn-sm ver" data-toggle="modal"  title="Ver Médico" style="margin:3px 0px;"><span class="glyphicon glyphicon-eye-open"></span></a>
+					            		<a href="#Show" id="{{ $medico->id }}"  class="btn btn-success btn-sm ver" data-toggle="modal"  title="Ver Médico" style="margin:3px 0px;"><span class="glyphicon glyphicon-eye-open"></span></a>
 									</td>					
 								</tr>
 								@endforeach

@@ -85,7 +85,7 @@
 					</div>
 				@endforeach
 			</div>
-			<center>
+			<center style="padding-bottom:15px;">
 				{{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
 			</center>
 			

@@ -5,7 +5,7 @@
 @stop
 @section ('content')
  
-    <div class="row" style="margin-top:0px">
+    <div class="row" style="margin-top:20px">
         <div class="col-sm-6 col-md-6 col-lg-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
           <div class="contenedor">
               <div id="carousel-login" class="carousel slide cont-img" data-ride="carousel">
