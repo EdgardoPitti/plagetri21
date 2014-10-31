@@ -43,23 +43,22 @@ $(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 });
 
-function obtener(id){
+$('.ver').click(function(){
+	var id = $(this).attr("id");
     var host = window.location.host;      
-	$.get("http://"+host+"/plagetri21/public/medicos/getmedicos",            
+	$.post("http://"+host+"/plagetri21/public/medicos/getmedicos",            
 	  { medico: id }, 
 	  function(data){
-	    var foto = $('#foto');
-	    foto.empty();
-
-	    foto.append('<img alt="Medico" src="http://'+host+'/plagetri21/public/imgs/'+data.foto+'" class="img-rounded" style="width:80px;"> ');
+	    $('#foto').html('<img alt="Medico" src="http://'+host+'/plagetri21/public/imgs/'+data.foto+'" class="img-rounded" style="width:80px;"> ');
 	    $('#medico').html(data.first_name+' '+data.second_name+' '+data.last_name+' '+data.last_sec_name);
 	    $('#ext').html(data.extension);	    
 	    $('#esp').html(data.especiality);
 	    $('#lvl').html(data.level);
 	    $('#loc').html(data.ubicacion);
-	     $('#obs').html(data.observacion);
-  	});
-}
+	    $('#obs').html(data.observacion);
+	});
+
+});
 
 jQuery(document).ready(function ($) {
   $('#scrollbar').perfectScrollbar();

@@ -76,7 +76,7 @@
 
 
     {{ Form::model($datos['agenda'], $datos['form'], array('role' => 'form')) }}
-		<div class="row">
+		<div class="row" >
 			<div class="form-group col-sm-4 col-md-4 col-lg-4">
 		      {{ Form::label('nombre_completo', 'Nombre Completo:') }}
 		      {{ Form::text('nombre_completo', null, array('placeholder' => 'Nombre Completo', 'class' => 'form-control', 'required' => 'required')) }}
@@ -106,7 +106,7 @@
 		      {{ Form::text('extension', null, array('placeholder' => 'Extensión', 'class' => 'form-control')) }}
 		    </div>
 		</div>
-		<center>
+		<center style="padding-bottom:15px;">
 			{{ Form::button($datos['label'].' Agenda', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
 	      <a href="{{ route('datos.agenda.index') }}" class="btn btn-info">Limpiar Campos</a>
 		</center>
