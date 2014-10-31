@@ -17,6 +17,7 @@ class Datos_ModulosController extends BaseController {
 		$form['grupo'] = $grupo;
 		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
 	}
+	
 	 public function almacenargrupo()
 	{
 		$data = Input::all();
@@ -83,7 +84,7 @@ class Datos_ModulosController extends BaseController {
 	public function show($id)
 	{	
 		$grupo = GrupoUsuario::find($id);
-		$form['datos'] = array('route' => 'datos.modulos.create', 'method' => 'POST');
+		$form['datos'] = array('route' => array('datos.modulos.update', $id), 'method' => 'PATCH');
 		$form['grupo'] = $grupo;
 		return View::make('datos/modulos/list-edit-form')->with('tipousuario', $grupo)->with('form', $form);
 	}
