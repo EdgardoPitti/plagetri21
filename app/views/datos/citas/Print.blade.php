@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Citas Médicas</title>
-    <meta charset="UTF8">
+    <meta charset="UTF-8">
     <style type="text/css">
     	html, body{
 			height:100%;    	
@@ -39,7 +39,7 @@
 		<div sty le="position:relative;">
 			<center>
 				<h1>HOSPITAL CHIRIQUÍ</h1>
-				<h2>LABORAORIO</h2>
+				<h2>LABORATORIO</h2>
 				<h3 style="font-style:italic;">Atención 24 horas</h3>
 		    </center>
 		</div>
