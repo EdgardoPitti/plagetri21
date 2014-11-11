@@ -39,7 +39,7 @@
 							  </thead>
 							  <tbody>
 								  {{--*/$x=1;/*--}}
-								 @foreach(Enfermedad::all() as $enfermedad)
+								 {{--@foreach(Enfermedad::all() as $enfermedad)
 									<tr align="justify">
 										<td>{{ $x++ }}.</td>
 										<td>{{ $enfermedad->descripcion }}</td>
@@ -47,7 +47,7 @@
 										<td>{{ $enfermedad->mensaje_negativo }}</td>
 										<td><a href="{{ route('datos.condiciones.edit', $enfermedad->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Enfermedad"><span class="glyphicon glyphicon-pencil"></span></a></td>
 									</tr>
-								 @endforeach
+								 @endforeach--}}
 							  </tbody>
 						  </table>
 						</div>
