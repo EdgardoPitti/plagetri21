@@ -38,7 +38,7 @@ class CondicionesController extends BaseController {
 	 */
 	public function store()
 	{
-		$data = Input::all();
+	/*	$data = Input::all();
 		$enfermedad = new Enfermedad;
 		
 		
@@ -59,7 +59,7 @@ class CondicionesController extends BaseController {
 				$condiciones->save();
 			}
 		}
-		return Redirect::route('datos.condiciones.index');
+		return Redirect::route('datos.condiciones.index');*/
 
 	}
 
@@ -85,7 +85,7 @@ class CondicionesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$datos['enfermedad'] = Enfermedad::find($id);
+		/*$datos['enfermedad'] = Enfermedad::find($id);
 		$datos['form'] = array('route' => array('datos.condiciones.update', $id), 'method' => 'PATCH');
 		foreach(Marcador::all() as $marcador){
 				if(empty(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first())){
@@ -94,7 +94,7 @@ class CondicionesController extends BaseController {
 					$datos['marcador_'.$marcador->id.''] = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first()->valor_condicion;		
 				}
 		}
-		return View::make('datos/condiciones/list-edit-form')->with('datos', $datos);
+		return View::make('datos/condiciones/list-edit-form')->with('datos', $datos);*/
 	}
 
 
@@ -106,7 +106,7 @@ class CondicionesController extends BaseController {
 	 */
 	public function update($id)
 	{		
-		$data = Input::all();
+		/*$data = Input::all();
 		$enfermedad = Enfermedad::find($id);
 	
 		$enfermedad->descripcion = $data['descripcion'];
@@ -129,7 +129,7 @@ class CondicionesController extends BaseController {
 			}
 		}
 		return Redirect::route('datos.condiciones.index');	
-		
+		*/
 	}
 
 
