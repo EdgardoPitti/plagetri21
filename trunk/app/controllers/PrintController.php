@@ -16,7 +16,7 @@ class PrintController extends \BaseController
 		//Se almacena los datos pertenecientes al pacientes.
 		$parameter['datos'] = $paciente->datos_pacientes($parameter['cita']->id_paciente);
 		//Se busca la institucion respectiva del ID almacenado en la cita.
-		$institucion = Institucion::find($parameter['cita']->id_institucion)->first();
+		$institucion = Institucion::find($parameter['cita']->id_institucion);
 		if(empty($institucion)){
 			$parameter['institucion'] = new Institucion;
 			$parameter['institucion']->denominacion = 'No Definido';
@@ -24,7 +24,7 @@ class PrintController extends \BaseController
 			$parameter['institucion'] = Institucion::find($parameter['cita']->id_institucion);
 		}
 		//Se busca y se almacena al medico perteneciente al ID que se almaceno en la cita.
-		$medico = Medico::find($parameter['cita']->id_medico)->first();
+		$medico = Medico::find($parameter['cita']->id_medico);
 		if(empty($medico)){
 			$parameter['medico'] = new Medico;
 			$parameter['medico']->primer_nombre = 'No';
