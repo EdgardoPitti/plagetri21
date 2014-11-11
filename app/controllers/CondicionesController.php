@@ -16,7 +16,7 @@ class CondicionesController extends BaseController {
 		foreach(Marcador::all() as $marcador){
 			$datos['marcador_'.$marcador->id.''] = 0;
 		}
-		$datos['form'] = array('route' => 'datos.condiciones.store', 'method' => 'post');
+		$datos['form'] = array('route' => 'datos.condiciones.store', 'method' => 'POST');
 		return View::make('datos/condiciones/list-edit-form')->with('datos', $datos);
 	}
 
