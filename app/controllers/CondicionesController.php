@@ -48,12 +48,12 @@ class CondicionesController extends BaseController {
 		
 		$id = Enfermedad::all()->last()->id;
 		
-		/*foreach(Marcador::all() as $marcador){
-			if($data['marcador_'.$marcador->id.''] <> 0){
+		for($x=1;$x<=Marcador::where('id','>', '0')->count();$x++){
+			if($data['marcador_'.$x.''] <> 0){
 				$condiciones = new CondicionEnfermedad;
 				$condiciones->id_enfermedad = $id;
-				$condiciones->id_marcador = $marcador->id;
-				$condiciones->valor_condicion = $data['marcador_'.$marcador->id.''];
+				$condiciones->id_marcador = $x;
+				$condiciones->valor_condicion = $data['marcador_'.$x.''];
 				$condiciones->save();
 			}
 		}*/
