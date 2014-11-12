@@ -38,7 +38,7 @@ class CondicionesController extends BaseController {
 	 */
 	public function store()
 	{
-		/*$data = Input::all();
+		$data = Input::all();
 		$enfermedad = new Enfermedad;
 		$enfermedad->descripcion = $data['descripcion'];
 		$enfermedad->mensaje_positivo = $data['mensaje_positivo'];
@@ -48,7 +48,7 @@ class CondicionesController extends BaseController {
 		
 		$id = Enfermedad::all()->last()->id;
 		
-		foreach(Marcador::all() as $marcador){
+		/*foreach(Marcador::all() as $marcador){
 			if($data['marcador_'.$marcador->id.''] <> 0){
 				$condiciones = new CondicionEnfermedad;
 				$condiciones->id_enfermedad = $id;
@@ -56,9 +56,9 @@ class CondicionesController extends BaseController {
 				$condiciones->valor_condicion = $data['marcador_'.$marcador->id.''];
 				$condiciones->save();
 			}
-		}
+		}*/
 		return Redirect::route('datos.condiciones.index');
-		*/
+		
 	}
 
 
@@ -85,13 +85,13 @@ class CondicionesController extends BaseController {
 	{
 		$datos['enfermedad'] = Enfermedad::find($id);
 		$datos['form'] = array('route' => array('datos.condiciones.update', $id), 'method' => 'PATCH');
-		foreach(Marcador::all() as $marcador){
+		/*foreach(Marcador::all() as $marcador){
 				if(empty(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first())){
 					$datos['marcador_'.$marcador->id.''] = 0;
 				}else{
 					$datos['marcador_'.$marcador->id.''] = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first()->valor_condicion;		
 				}
-		}
+		}*/
 		return View::make('datos/condiciones/list-edit-form')->with('datos', $datos);
 	}
 
@@ -113,7 +113,7 @@ class CondicionesController extends BaseController {
 		$enfermedad->status = $data['status'];
 		$enfermedad->save();
 		
-		foreach(Marcador::all() as $marcador){
+		/*foreach(Marcador::all() as $marcador){
 			if($data['marcador_'.$marcador->id.''] <> 0){
 				if(empty(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first())){
 					$condiciones = new CondicionEnfermedad;
@@ -125,7 +125,7 @@ class CondicionesController extends BaseController {
 				$condiciones->valor_condicion = $data['marcador_'.$marcador->id.''];
 				$condiciones->save();
 			}
-		}
+		}*/
 		return Redirect::route('datos.condiciones.index');	
 		
 	}
