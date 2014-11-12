@@ -56,7 +56,7 @@ class CondicionesController extends BaseController {
 				$condiciones->valor_condicion = $data['marcador_'.$x.''];
 				$condiciones->save();
 			}
-		}*/
+		}
 		return Redirect::route('datos.condiciones.index');
 		
 	}
