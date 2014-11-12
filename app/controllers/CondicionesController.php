@@ -85,13 +85,13 @@ class CondicionesController extends BaseController {
 	{
 		$datos['enfermedad'] = Enfermedad::find($id);
 		$datos['form'] = array('route' => array('datos.condiciones.update', $id), 'method' => 'PATCH');
-		/*foreach(Marcador::all() as $marcador){
-				if(empty(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first())){
-					$datos['marcador_'.$marcador->id.''] = 0;
+		for($x=1;$x<=Marcador::where('id','>', '0')->count();$x++){
+				if(empty(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first())){
+					$datos['marcador_'.$x.''] = 0;
 				}else{
-					$datos['marcador_'.$marcador->id.''] = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first()->valor_condicion;		
+					$datos['marcador_'.$x.''] = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first()->valor_condicion;		
 				}
-		}*/
+		}
 		return View::make('datos/condiciones/list-edit-form')->with('datos', $datos);
 	}
 
@@ -113,19 +113,19 @@ class CondicionesController extends BaseController {
 		$enfermedad->status = $data['status'];
 		$enfermedad->save();
 		
-		/*foreach(Marcador::all() as $marcador){
-			if($data['marcador_'.$marcador->id.''] <> 0){
-				if(empty(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first())){
+		for($x=1;$x<=Marcador::where('id','>', '0')->count();$x++){
+			if($data['marcador_'.$x.''] <> 0){
+				if(empty(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first())){
 					$condiciones = new CondicionEnfermedad;
 				}else{
-					$condiciones = CondicionEnfermedad::find(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->first()->id);
+					$condiciones = CondicionEnfermedad::find(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first()->id);
 				}
 				$condiciones->id_enfermedad = $id;
-				$condiciones->id_marcador = $marcador->id;
-				$condiciones->valor_condicion = $data['marcador_'.$marcador->id.''];
+				$condiciones->id_marcador = $x;
+				$condiciones->valor_condicion = $data['marcador_'.$x.''];
 				$condiciones->save();
 			}
-		}*/
+		}
 		return Redirect::route('datos.condiciones.index');	
 		
 	}
