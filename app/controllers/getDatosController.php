@@ -48,7 +48,8 @@ class getDatosController extends BaseController {
 			$c = DB::select("SELECT count(id) as cantidad FROM medicos WHERE concat(`primer_nombre`,' ',`segundo_nombre`,' ',`apellido_paterno`,' ',`apellido_materno`) LIKE '%".$search."%'");
 			$cantidad = $c[0]->cantidad;			
 		}
-		$host = $_SERVER['SERVER_ADDR'];
+		$host = $_SERVER['HTTP_HOST'];		
+		
 		$comilla = "'";
 		
 		//variable que retorna en formato json	
@@ -98,7 +99,8 @@ class getDatosController extends BaseController {
 			$c = DB::select("SELECT count(id) as cantidad FROM pacientes WHERE concat(`primer_nombre`,' ',`segundo_nombre`,' ',`apellido_paterno`,' ',`apellido_materno`) LIKE '%".$search."%'");
 			$cantidad = $c[0]->cantidad;
 		}	
-		$host = $_SERVER['SERVER_ADDR'];
+		$host = $_SERVER['HTTP_HOST'];
+		
 		$comilla = "'";
 		$n = 1;
 		
