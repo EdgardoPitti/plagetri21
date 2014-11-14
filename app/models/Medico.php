@@ -27,14 +27,21 @@ class Medico extends Eloquent {
 	protected $table = 'medicos';
 
 	/* Esta funcion busca los datos de los medicos
+	*  Si recibe como sw = 0 (variable search del getDatosController), obtiene todos los medicos, sino realiza la busqueda de los médicos. 
    *  Si recibe como id = 0 entonces devolvera todos los medicos con sus respectivos datos en un arreglo
    *  si recibe un numero distinto de 0 entonces devolvera los datos de ese medico a quien pertenece ese id.
 	*/
-	function datos_medico($id){
-		if($id == 0){
-			$datos = Medico::all();
+	function datos_medico($id,$sw=0, $limit=10, $offset=0){
+		if($sw == 0){
+			if($id == 0){
+				//obtiene todos los medicos
+				$datos = DB::select("SELECT * FROM medicos WHERE id > 0 LIMIT ".$offset.",".$limit.";");
+			}else{
+				$datos[0] = Medico::find($id);
+			}
 		}else{
-			$datos[0] = Medico::find($id);
+			//Realiza la busqueda de los médicos por su nombre completo.
+			$datos = DB::select("SELECT * FROM medicos WHERE concat(`primer_nombre`,' ',`segundo_nombre`,' ',`apellido_paterno`,' ',`apellido_materno`) LIKE '%".$id."%' LIMIT ".$offset.",".$limit.";");
 		}
 		$x = 0;
 		foreach($datos as $medico){			
@@ -57,7 +64,7 @@ class Medico extends Eloquent {
 			}else{
 				$datos[$x]->ubicacion = 'POR DEFINIR';			
 			}
-			
+			$x++;
 		}
 		return $datos;
 	}

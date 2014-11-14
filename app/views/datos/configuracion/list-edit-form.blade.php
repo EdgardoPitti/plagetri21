@@ -14,7 +14,7 @@
 		 <center>Configuración del Sistema</center>
 		</h1>
 		<div class="overthrow" style="height:250px;">
-	     <table class="table table-bordered table-hover table-fixed-header" id="config">
+	     <table class="table table-bordered table-hover " id="config">
 				<thead>
 					<tr class="info">
 						<th>#</th>
@@ -28,7 +28,7 @@
 				<tbody>
 					{{--*/ $n=1; /*--}}
 					@foreach(Marcador::all() as $marcadores)
-						<tr class="white" align="center">
+						<tr align="center">
 							<td>{{ $n++ }}.</td>
 							<td>{{ $marcadores->marcador }}</td>
 							@if(empty(UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id))

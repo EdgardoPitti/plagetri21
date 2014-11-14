@@ -15,7 +15,7 @@
 		</h1>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12">
-		    	<div class="panel panel-primary" style="max-height:300px;">
+		    	<div class="panel panel-primary">
 		      	<div class="panel-heading">
 		        		<h3 class="panel-title">Grupos de Usuarios</h3>
 	        			<div class="pull-right">
@@ -25,9 +25,9 @@
 		        		</div>
 		      	</div>
 			    	<div class="panel-body" style="display:block;">
-				        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Grupos" /><br>
-					    <div class="overthrow" style="height:170px;">
-					        <table class="table table-bordered table-hover table-fixed-header" id="dev-table">
+				       <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Grupos" /><br>
+					    <div class="overthrow" style="height:200px;">
+					        <table class="table table-bordered table-hover modulo" id="dev-table">
 							  	<thead>
 							  		<tr class="info">
 							  			<th>#</th>
