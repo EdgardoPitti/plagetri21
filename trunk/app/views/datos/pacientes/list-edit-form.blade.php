@@ -22,41 +22,21 @@
               </span>
             </div>
           </div>
-          <div class="panel-body" style="display:block;">
-            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Pacientes" /><br>
-	        	
-        	  <div class="overthrow" style="height:250px;">
-              <table class="table table-bordered table-hover table-fixed-header" cellpadding="0" cellspacing="0" id="dev-table">
-                <thead>
-	                <tr class="info">
-	                    <th>#</th>
-	                    <th>Nombre Completo</th>
-	                    <th>Fecha Nacimiento</th>
-	                    <th>Celular</th>
-	                    <th>Telefono</th>
-	                    <th>E-Mail</th>
-	                    <th></th>
-	                </tr>
-	             </thead>
-	             <tbody>
-                {{--*/ $x = 1; /*--}}
-                @foreach (Paciente::all() as $paciente)
-                  <tr>
-                      <td>{{ $x++ }}.</td>
-                      <td>{{ $paciente->primer_nombre.' '.$paciente->segundo_nombre.' '.$paciente->apellido_paterno.' '.$paciente->apellido_materno }}</td>
-                      <td>{{ $paciente->fecha_nacimiento }}</td>
-                      <td>{{ $paciente->celular }}</td>
-                      <td>{{ $paciente->telefono }}</td>
-                      <td>{{ $paciente->email }}</td>
-                      <td align="center">
-                          <a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Cita"><span class="glyphicon glyphicon-list-alt"></span></a>                         
-                          <a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary btn-sm" style="margin:3px 0px;" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>                         
-                          <a href="#" data-id="{{ $paciente->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>                                            
-                      </td>
-                  </tr>
-                @endforeach
-                </tbody> 
-              </table>
+          <div class="panel-body" style="display:block;">            
+        	  <div class="overthrow" style="height:250px;">        
+					<table id="table-paciente">
+					    <thead>
+						    <tr class="info">
+						        <th data-field="num" data-align="center">#</th>
+						        <th data-field="name" data-align="center">Nombre Completo</th>
+						        <th data-field="date" data-align="center">Fecha Nacimiento</th>
+						        <th data-field="cel" data-align="center">Celular</th>
+						        <th data-field="tel" data-align="center">Teléfono</th>
+						        <th data-field="email" data-align="center">E-mail</th>
+						        <th data-field="url" data-align="center"></th>
+						    </tr>
+					    </thead>
+					</table>	        
             </div>
             <div class="clear"></div>
         </div>

@@ -12,7 +12,7 @@
     {{ HTML::style('assets/css/font-awesome.min.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/perfect-scrollbar.min.css', array('media' => 'screen')) }}  
     {{ HTML::style('assets/css/defaultTheme.css') }}
-   	
+    {{ HTML::style('assets/css/bootstrap-table.css') }}	
     {{-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --}}
     <!--[if lt IE 9]>
         {{ HTML::script('assets/js/html5shiv.js') }}
@@ -73,6 +73,7 @@
         @endif
         @yield('content')  
       </div>
+      
     </div>
     <div id="footer">
       <footer>
@@ -83,6 +84,44 @@
     {{ HTML::script('assets/js/jquery.js') }}
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/admin.js') }}
+    {{ HTML::script('assets/js/bootstrap-table.js') }}
+    {{ HTML::script('assets/js/bootstrap-table-es.js') }}
+    <script type="text/javascript">
+    	$(function () {
+    		var host = window.location.host; 
+			
+			$("#table-medico").bootstrapTable({
+				height: 415,
+				url: 'http://'+host+'/plagetri21/public/medicos',
+				search: true,
+				sidePagination: 'server',
+				pagination: true
+			});
+			$("#table-paciente").bootstrapTable({
+				height: 380,
+				url: 'http://'+host+'/plagetri21/public/pacientes/0',
+				search: true,
+				sidePagination: 'server',
+				pagination: true
+			});	
+			$("#table-cita").bootstrapTable({
+				height: 380,
+				url: 'http://'+host+'/plagetri21/public/pacientes/1',
+				search: true,
+				sidePagination: 'server',
+				pagination: true
+			});	
+			$("#mediana-marcadores").bootstrapTable({
+				height: 250
+			});
+			$(".modulo").bootstrapTable({
+				height: 195
+			});			
+			$("#config").bootstrapTable({
+				height: 250
+			});			
+    	});
+    </script>
     {{-- Include all compiled plugins (below), or include individual files as needed --}}
     {{ HTML::script('assets/js/perfect-scrollbar.min.js') }} 
     {{ HTML::script('assets/js/jquery.fixedheadertable.js') }}

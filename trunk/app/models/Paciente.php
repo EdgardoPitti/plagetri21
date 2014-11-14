@@ -60,13 +60,17 @@ class Paciente extends Eloquent {
     //Funcion que busca los datos de los pacientes
     //Si recibe como id = 0 entonces devolvera todos los pacientes con sus respectivos datos en un arreglo
     //si recibe un numero distinto de 0 entonces devolvera los datos de ese paciente a quien pertenece ese id.
-    function datos_pacientes($id)
+    function datos_pacientes($id, $sw=0, $limit=10, $offset=0)
     {
-		if($id == 0){
-			$datos = Paciente::all();
-		}else{
-			$datos[0] = Paciente::find($id);
-		}
+    	if($sw == 0){
+			if($id == 0){
+				$datos = DB::select("SELECT * FROM pacientes WHERE id > 0 LIMIT ".$offset.",".$limit.";");
+			}else{
+				$datos[0] = Paciente::find($id);
+			}
+    	}else {
+			$datos = DB::select("SELECT * FROM pacientes WHERE concat(`primer_nombre`,' ',`segundo_nombre`,' ',`apellido_paterno`,' ',`apellido_materno`) LIKE '%".$id."%'");    	
+    	}
 		$x = 0;
 		//Ciclo que recorre todos los pacientes o un paciente en especifico.
 		foreach ($datos as $paciente){

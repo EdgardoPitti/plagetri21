@@ -73,43 +73,23 @@
 						</span>
 					</div>
 				</div>
-				<div class="panel-body" style="display:block;">
-					<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar M&eacute;dicos" /><br>		
+				<div class="panel-body" style="display:block;">	
 					<div class="overthrow" style="height:250px;">
-						<table class="table table-hover table-bordered table-fixed-header" cellpadding="0" cellspacing="0"  id="dev-table">
-							<thead>
-								<tr class="info">
-									<th>#</th>
-									<th>Foto</th>
-									<th>Nombre</th>
-									<th>Extensi&oacute;n</th>
-									<th>Tel&eacute;fono</th>
-									<th>Celular</th>									
-									<th>Especialidad M&eacute;dica</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody style="margin-top:25px">
-								{{--*/ $n = 1; /*--}}
-								@foreach (Medico::all() as $medico) 
-								<tr>
-									<td>{{ $n++ }}</td>
-									<td>{{ HTML::image('imgs/'.$medico->datos_medico($medico->id)[0]->foto,null ,array('style' => 'width:50px;height:50px;')); }}</td>									
-									<td>{{ $medico->primer_nombre.' '.$medico->segundo_nombre.' '.$medico->apellido_paterno.' '.$medico->apellido_materno }} </td>
-									<td>{{ $medico->extension }}</td>
-									<td>{{ $medico->telefono }}</td>
-									<td>{{ $medico->celular }} </td>
-									<td>{{ EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion }}</td>
-									<td align="center">
-										<a href="{{ route('datos.medicos.edit', $medico->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar M&eacute;dico"><span class="glyphicon glyphicon-pencil"></span></a>
-					            		<a href="#Show" id="{{ $medico->id }}"  class="btn btn-success btn-sm ver" data-toggle="modal"  title="Ver Médico" style="margin:3px 0px;"><span class="glyphicon glyphicon-eye-open"></span></a>
-									</td>					
-								</tr>
-								@endforeach
-							</tbody>
+						<table id="table-medico">
+						    <thead>
+							    <tr class="info">
+							        <th data-field="num" data-align="center">#</th>
+							        <th data-field="foto" data-align="center">Foto</th>
+							        <th data-field="name" data-align="center">Nombre</th>
+							        <th data-field="ext" data-align="center">Extensión</th>
+							        <th data-field="tel" data-align="center">Teléfono</th>
+							        <th data-field="cel" data-align="center">Celular</th>
+							        <th data-field="esp" data-align="center">Especialidad Médica</th>
+							        <th data-field="url"></th>
+							    </tr>
+						    </thead>
 						</table>					
 					</div>
-					<div class="clear"></div>
 				</div>
 			</div>
 		</div>

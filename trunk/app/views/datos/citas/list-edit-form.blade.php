@@ -15,7 +15,7 @@
 		</h1>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12">
-		    	<div class="panel panel-primary" style="max-height:300px;">
+		    	<div class="panel panel-primary">
 		      	<div class="panel-heading">
 		        		<h3 class="panel-title">Lista de Pacientes</h3>
 	        			<div class="pull-right">
@@ -25,9 +25,9 @@
 		        		</div>
 		      	</div>
 			    	<div class="panel-body" style="display:block">
-				       <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#citas" placeholder="Filtrar Pacientes" /><br>
-					    <div class="overthrow" style="height:170px;">
-							<table class="table table-bordered table-hover table-fixed-header" cellpadding="0" cellspacing="0" id="citas">
+				       <!--input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#citas" placeholder="Filtrar Pacientes" /><br-->
+					    <div class="overthrow" style="height:250px;">
+							<!--table class="table table-bordered table-hover table-fixed-header" cellpadding="0" cellspacing="0" id="citas">
 								<thead>
 							  		<tr class="info">
 							  			<th>#</th>
@@ -60,7 +60,21 @@
 							  		</tr>
 							  		@endforeach
 							  	</tbody>
-							</table>
+							</table-->
+							
+							<table id="table-cita">
+							    <thead>
+								    <tr class="info">
+								        <th data-field="num" data-align="center">#</th>
+								        <th data-field="name" data-align="center">Nombre Completo</th>
+								        <th data-field="date" data-align="center">Fecha Nacimiento</th>
+								        <th data-field="cel" data-align="center">Celular</th>
+								        <th data-field="tel" data-align="center">Teléfono</th>
+								        <th data-field="email" data-align="center">E-mail</th>
+								        <th data-field="url" data-align="center"></th>
+								    </tr>
+							    </thead>
+							</table>	 
 						</div>
 						<div class="clear"></div>
 			        </div>

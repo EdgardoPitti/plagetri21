@@ -39,7 +39,9 @@ Route::resource('datos/modulos', 'Datos_ModulosController');
 Route::resource('datos/configuracion', 'ConfiguracionController');
 Route::resource('print', 'PrintController');
 Route::post('almacenargrupo', 'Datos_ModulosController@almacenargrupo');
-Route::post('medicos/getmedicos', 'getmedicosController@postData');
+Route::post('medicos/getmedicos', 'getDatosController@postData'); //ruta para cargar datos al modal
+Route::get('medicos', 'getDatosController@postMedicos'); //ruta para obtener todos los médicos y filtrar
+Route::get('pacientes/{cita}', 'getDatosController@postPacientes'); //ruta para obtener todos los pacientes y filtrarlos
 
 //Ruta para el control del mapa
 Route::resource('datos/pacientesmapas', 'MapasController');
