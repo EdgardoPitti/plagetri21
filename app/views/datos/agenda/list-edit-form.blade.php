@@ -105,6 +105,10 @@
 		      {{ Form::label('extension', 'Extensión:') }}
 		      {{ Form::text('extension', null, array('placeholder' => 'Extensión', 'class' => 'form-control')) }}
 		    </div>
+		    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+		    	{{ Form::label('detalle', 'Detalle:') }}
+	    		{{ Form::textarea('detalle', null, array('placeholder' => 'Detalle', 'class' => 'form-control', 'size' => '1x1')) }}        
+			</div>
 		</div>
 		<center style="padding-bottom:15px;">
 			{{ Form::button($datos['label'].' Agenda', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
