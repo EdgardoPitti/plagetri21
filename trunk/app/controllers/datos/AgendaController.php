@@ -45,6 +45,7 @@ class Datos_AgendaController extends BaseController {
 		$agenda->extension = $data['extension'];
 		$agenda->correo = $data['correo'];
 		$agenda->ruc = $data['ruc'];
+		$agenda->detalle = $data['detalle'];
 		$agenda->save();
 
 		return Redirect::route('datos.agenda.index');
@@ -98,6 +99,7 @@ class Datos_AgendaController extends BaseController {
 		$agenda->extension = $data['extension'];
 		$agenda->correo = $data['correo'];
 		$agenda->ruc = $data['ruc'];
+		$agenda->detalle = $data['detalle'];
 		$agenda->save();
 
 		return Redirect::route('datos.agenda.index');
