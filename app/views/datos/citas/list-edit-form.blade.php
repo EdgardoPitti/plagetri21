@@ -282,19 +282,19 @@
 			@if (!empty(Cita::where('id_paciente', $datos[0]->id)->first()->id))
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-lg-12">
-				    	<div class="panel panel-primary" style="max-height:300px;">
+				    	<div class="panel panel-primary">
 				      	<div class="panel-heading">
-				        		<h3 class="panel-title">Citas Anteriores</h3>
-			        			<div class="pull-right">
-				          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Citas" data-container="body">
-					            		<i class="glyphicon glyphicon-filter"></i>
-				          			</span>
-				        		</div>
+			        		<h3 class="panel-title">Citas Anteriores</h3>
+		        			<div class="pull-right">
+			          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Citas" data-container="body">
+				            		<i class="glyphicon glyphicon-filter"></i>
+			          			</span>
+			        		</div>
 				      	</div>
 					    	<div class="panel-body" style="display:block">
 						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla-citas" placeholder="Filtrar Citas"/><br>
-							    <div class="overthrow" style="height:170px;">
-							        <table class="table table-hover table-bordered table-fixed-header" cellpadding="0" cellspacing="0" id="tabla-citas">
+							    <div class="overthrow" style="height:150px;">
+							        <table class="table table-hover table-bordered cita-anterior" cellpadding="0" cellspacing="0" id="tabla-citas">
 									  	<thead>
 									  		<tr class="info">
 									  			<th>#</th>
