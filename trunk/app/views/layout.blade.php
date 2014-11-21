@@ -120,6 +120,9 @@
 			$("#config").bootstrapTable({
 				height: 250
 			});			
+      $('.agenda').bootstrapTable({
+        height: 180
+      });
     	});
     </script>
     {{-- Include all compiled plugins (below), or include individual files as needed --}}

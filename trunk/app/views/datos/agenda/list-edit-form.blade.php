@@ -33,8 +33,8 @@
           <div class="panel-body" style="display:block;">
             <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Datos" /><br>
             
-            <div class="overthrow" style="height:170px;">
-					<table class="table table-bordered table-hover table-fixed-header" cellpadding="0" cellspacing="0" id="dev-table">
+            <div class="overthrow" style="height:190px;">
+					<table class="table table-bordered table-hover table-fixed-header agenda" cellpadding="0" cellspacing="0" id="dev-table">
 	                <thead>
 		                <tr class="info">
 		                    <th>#</th>
