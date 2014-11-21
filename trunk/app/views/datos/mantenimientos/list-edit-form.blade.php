@@ -15,7 +15,7 @@
 		</h1>
 		<div class="row">
 	      <div class="col-md-12 col-sm-12 col-lg-12">
-	        <div class="panel panel-primary" style="max-height:300px;">
+	        <div class="panel panel-primary">
 	          <div class="panel-heading">
 	            <h3 class="panel-title">Lista de Activos</h3>
 	            <div class="pull-right">
@@ -25,10 +25,10 @@
 	            </div>
 	          </div>
 	          <div class="panel-body">
-	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#list-act" placeholder="Filtrar Activo" /><br>
+	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#list-act" placeholder="Filtrar Activo" />
 	          </div>
-	            <div class="table-responsive overthrow" style="padding:5px 10px;height:170px;">
-	              <table class="table table-bordered table-hover table-fixed-header" id="list-act">
+	            <div class="table-responsive overthrow" style="padding:10px 10px;height:170px;">
+	              <table class="table table-bordered table-hover list-act" id="list-act">
 	                <thead>
 		                <tr class="info">
 		                    <th>#</th>
@@ -82,7 +82,7 @@
 	        </div>
 	      </div>
 	      <div class="col-md-12 col-sm-12 col-lg-12">
-	        <div class="panel panel-primary" style="max-height:300px;">
+	        <div class="panel panel-primary" s tyle="max-height:300px;">
 	          <div class="panel-heading">
 	            <h3 class="panel-title">Lista de Mantenimientos por hacer de este Mes</h3>
 	            <div class="pull-right">
@@ -94,7 +94,7 @@
 	          <div class="panel-body">
 	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_mantenimientos" placeholder="Filtrar Mantenimientos" /><br>
 	            <div class="table-responsive overthrow"  style="height:170px;">
-	              <table class="table table-bordered table-hover table-fixed-header" id="tabla_mantenimientos">
+	              <table class="table table-bordered table-hover mantenimientos" id="tabla_mantenimientos">
 	                <thead>
 	                <tr class="info">
 	                    <th>#</th>

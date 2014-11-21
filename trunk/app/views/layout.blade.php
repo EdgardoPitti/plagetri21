@@ -90,46 +90,58 @@
     	$(function () {
     		var host = window.location.host; 
 			
-			$("#table-medico").bootstrapTable({
-				height: 415,
-				url: 'http://'+host+'/plagetri21/public/medicos',
-				search: true,
-				sidePagination: 'server',
-				pagination: true
-			});
-			$("#table-paciente").bootstrapTable({
-				height: 380,
-				url: 'http://'+host+'/plagetri21/public/pacientes/0',
-				search: true,
-				sidePagination: 'server',
-				pagination: true
-			});	
-			$("#table-cita").bootstrapTable({
-				height: 380,
-				url: 'http://'+host+'/plagetri21/public/pacientes/1',
-				search: true,
-				sidePagination: 'server',
-				pagination: true
-			});	
-			$("#mediana-marcadores").bootstrapTable({
-				height: 250
-			});
-			$(".modulo").bootstrapTable({
-				height: 195
-			});			
-			$("#config").bootstrapTable({
-				height: 250
-			});			
-      $('.agenda').bootstrapTable({
-        height: 180
-      });
+  			$("#table-medico").bootstrapTable({
+  				height: 415,
+  				url: 'http://'+host+'/plagetri21/public/medicos',
+  				search: true,
+  				sidePagination: 'server',
+  				pagination: true
+  			});
+  			$("#table-paciente").bootstrapTable({
+  				height: 380,
+  				url: 'http://'+host+'/plagetri21/public/pacientes/0',
+  				search: true,
+  				sidePagination: 'server',
+  				pagination: true
+  			});	
+  			$("#table-cita").bootstrapTable({
+  				height: 380,
+  				url: 'http://'+host+'/plagetri21/public/pacientes/1',
+  				search: true,
+  				sidePagination: 'server',
+  				pagination: true
+  			});	
+        $('.cita-anterior').bootstrapTable({
+          height: 150
+        });
+  			$("#mediana-marcadores").bootstrapTable({
+  				height: 250
+  			});
+  			$(".modulo").bootstrapTable({
+  				height: 195
+  			});			
+  			$("#config").bootstrapTable({
+  				height: 250
+  			});			
+        $('.agenda').bootstrapTable({
+          height: 180
+        });
+        $('.activos').bootstrapTable({
+          height: 180
+        });
+        $('.list-act').bootstrapTable({
+          height: 150
+        });
+        $('.mantenimientos').bootstrapTable({
+          height: 180
+        });
     	});
     </script>
     {{-- Include all compiled plugins (below), or include individual files as needed --}}
     {{ HTML::script('assets/js/perfect-scrollbar.min.js') }} 
-    {{ HTML::script('assets/js/jquery.fixedheadertable.js') }}
     {{ HTML::script('assets/js/filtro.js') }}
     {{ HTML::script('assets/js/script.js') }}
+    {{ HTML::script('assets/js/jquery.fixedheadertable.js') }}
     {{ HTML::script('assets/js/script_foto.js') }}
     {{ HTML::script('assets/js/script_maps.js') }}    
   </body>

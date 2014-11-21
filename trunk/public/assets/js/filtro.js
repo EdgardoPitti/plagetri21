@@ -65,11 +65,5 @@ jQuery(document).ready(function ($) {
   $('#scrollbar4').perfectScrollbar();	  
 });
 $(document).ready(function() {
- //$('#dev-table').fixedHeaderTable();
- $('#citas').fixedHeaderTable();
- $('#tabla-citas').fixedHeaderTable();
- //$('#mediana-marcadores').fixedHeaderTable();
- $('#list-act').fixedHeaderTable();
- $('#tabla-mantenimientos').fixedHeaderTable();
- //$('#config').fixedHeaderTable();
+ $('#condiciones').fixedHeaderTable();
 });

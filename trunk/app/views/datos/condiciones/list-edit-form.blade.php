@@ -15,25 +15,25 @@
 		 </h1>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12">
-		    	<div class="panel panel-primary" style="max-height:300px;">
-		      	<div class="panel-heading">
+		    	<div class="panel panel-primary">
+		      		<div class="panel-heading">
 		        		<h3 class="panel-title">Lista de Enfermedades</h3>
 	        			<div class="pull-right">
 		          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Enfermedad" data-container="body">
 			            		<i class="glyphicon glyphicon-filter"></i>
 		          			</span>
 		        		</div>
-		      	</div>
+		      		</div>
 			    	<div class="panel-body" style="display:block">
-				       <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#citas" placeholder="Filtrar Enfermedades" /><br>
-					    <div class="overthrow" style="height:170px;">
-						  <table class="table table-bordered table-hover table-fixed-header" cellpadding="0" cellspacing="0" id="citas">
+				       <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#condiciones" placeholder="Filtrar Enfermedades" /><br>
+					    <div class="overthrow" style="height:180px;">
+						  <table class="table table-bordered table-hover table-fixed-header" cellpadding="0" cellspacing="0" id="condiciones" width="100%">
 							  <thead>
-								<tr  class="info">
-									<td>#</td>
-									<td>Enfermedad</td>
-									<td>Mensaje Positivo</td>
-									<td>Mensaje Negativo</td>
+								<tr class="info">
+									<td width="3%">#</td>
+									<td width="15%">Enfermedad</td>
+									<td width="40%">Mensaje Positivo</td>
+									<td width="40%">Mensaje Negativo</td>
 									<td></td>
 								</tr>
 							  </thead>
