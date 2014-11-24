@@ -52,6 +52,8 @@ class CondicionEnfermedad extends Eloquent {
 		//Con sus respectivo nombe, resulta si fue positivo o negativo y el mensaje correspondiente.
 		return $resultado;
 	}
+	
+	
 }
 
 ?>
