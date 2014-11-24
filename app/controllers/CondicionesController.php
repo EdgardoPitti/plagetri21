@@ -120,13 +120,19 @@ class CondicionesController extends BaseController {
 				$condiciones = new CondicionEnfermedad;
 			}else{
 				$condiciones = CondicionEnfermedad::find(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first()->id);
-			}
-			if(!empty($condicion)){
+			} 
+			if($data['marcador_'.$x.''] == 0 && !empty($condicion)){
 				$condiciones->id_enfermedad = $id;
 				$condiciones->id_marcador = $x;
 				$condiciones->valor_condicion = $data['marcador_'.$x.''];
-				$condiciones->save();
-			
+				$condiciones->save();	
+			}else{
+				if($data['marcador_'.$x.''] <> 0){
+					$condiciones->id_enfermedad = $id;
+					$condiciones->id_marcador = $x;
+					$condiciones->valor_condicion = $data['marcador_'.$x.''];
+					$condiciones->save();	
+				}
 			}
 			
 		}
