@@ -55,7 +55,7 @@ jQuery(document).ready(function($){
         }); 
         //Funcion que percibe cuando se cambia un distrito de residencia para poder cargar los corregimientos pertenecientes a ese distrito
         $("#id_distrito_residencia").change(function(){
-            $.get("http://localhost/plagetri21/public/corregimiento", 
+            $.get("http://"+host+"/plagetri21/public/corregimiento", 
             { distrito: $(this).val() }, 
             function(data){
                 var campo = $('#id_corregimiento_residencia');
