@@ -77,15 +77,17 @@
 	 	<h4>RESULTADOS DE LA PRUEBA</h4>
 		<table class="resultados" cellspacing="0px">			
 			<tr>
-				<th>Ensayo</th>
-				<th>Resultados</th>
-				<th>MoM</th>
+				<th width="125px">Ensayo</th>
+				<th width="125px">Resultados</th>
+				<th width="125px">MoM</th>
+				<th width="125px">Limite</th>
 			</tr>
 			@foreach($marcadores as $marcador)
 			<tr align="center">
 				<td>{{ Marcador::where('id', $marcador->id_marcador)->first()->marcador }}</td>
 				<td>{{ $marcador->valor }} @if(!empty(Unidad::where('id', $marcador->id_unidad)->first()->unidad)){{ Unidad::where('id', $marcador->id_unidad)->first()->unidad }}@endif</td>
-				<td>{{ $marcador->mom}}</td>
+				<td>{{ $marcador->mom }}</td>
+				<td>@if($marcador->positivo == 0) Normal @elseif($marcador->positivo == -1)	Bajo @else Alto	@endif</td>
 			</tr>
 			@endforeach
 		</table>

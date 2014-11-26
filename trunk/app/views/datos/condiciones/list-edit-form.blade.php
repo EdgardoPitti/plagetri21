@@ -81,7 +81,7 @@
 				@foreach(Marcador::all() as $marcador)
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 						{{ Form::label('marcador_'.$marcador->id.'', $marcador->marcador.':') }}
-						{{ Form::select('marcador_'.$marcador->id.'',array('-1' => 'Bajo', '0' => 'Normal', '1' => 'Alto') ,$datos['marcador_'.$marcador->id.''], array('placeholder' => 'Mensaje Positivo', 'class' => 'form-control', 'size' => '1x1')) }}        
+						{{ Form::select('marcador_'.$marcador->id.'',array('' => 'SELECCIONE EL VALOR', '-1' => 'Bajo', '0' => 'Normal', '1' => 'Alto') ,$datos['marcador_'.$marcador->id.''], array('placeholder' => 'Mensaje Positivo', 'class' => 'form-control', 'size' => '1x1')) }}        
 					</div>
 				@endforeach
 			</div>
