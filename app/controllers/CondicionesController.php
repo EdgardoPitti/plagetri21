@@ -14,7 +14,7 @@ class CondicionesController extends BaseController {
 	{
 		$datos['enfermedad'] = new Enfermedad;
 		foreach(Marcador::all() as $marcador){
-			$datos['marcador_'.$marcador->id.''] = 0;
+			$datos['marcador_'.$marcador->id.''] = '';
 		}
 		$datos['form'] = array('route' => 'datos.condiciones.store', 'method' => 'POST');
 		return View::make('datos/condiciones/list-edit-form')->with('datos', $datos);
@@ -49,7 +49,7 @@ class CondicionesController extends BaseController {
 		$id = Enfermedad::all()->last()->id;
 		
 		for($x=1;$x<Marcador::where('id','>', '0')->count()+1;$x++){
-			if($data['marcador_'.$x.''] <> 0){
+			if($data['marcador_'.$x.''] <> ''){
 				$condiciones = new CondicionEnfermedad;
 				$condiciones->id_enfermedad = $id;
 				$condiciones->id_marcador = $x;
@@ -58,7 +58,6 @@ class CondicionesController extends BaseController {
 			}
 		}
 		return Redirect::route('datos.condiciones.index');
-		
 	}
 
 
@@ -88,7 +87,7 @@ class CondicionesController extends BaseController {
 		for($x=1;$x<Marcador::where('id','>', '0')->count()+1;$x++){
 				$condicion = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first();
 				if(empty($condicion)){
-					$datos['marcador_'.$x.''] = 0;
+					$datos['marcador_'.$x.''] = '';
 				}else{
 					$datos['marcador_'.$x.''] = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first()->valor_condicion;		
 				}
@@ -121,13 +120,13 @@ class CondicionesController extends BaseController {
 			}else{
 				$condiciones = CondicionEnfermedad::find(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first()->id);
 			} 
-			if($data['marcador_'.$x.''] == 0 && !empty($condicion)){
+			if(empty($data['marcador_'.$x.'']) && !empty($condicion)){
 				$condiciones->id_enfermedad = $id;
 				$condiciones->id_marcador = $x;
 				$condiciones->valor_condicion = $data['marcador_'.$x.''];
 				$condiciones->save();	
 			}else{
-				if($data['marcador_'.$x.''] <> 0){
+				if(!empty($data['marcador_'.$x.''])){
 					$condiciones->id_enfermedad = $id;
 					$condiciones->id_marcador = $x;
 					$condiciones->valor_condicion = $data['marcador_'.$x.''];

@@ -34,7 +34,7 @@ class PrintController extends \BaseController
 		}
 		
 		//Se busca y se almacenan los datos pertenecientes a los marcadores de la cita.
-		$parameter['marcadores'] = MarcadorCita::where('id_cita', $id)->where('id_marcador', '<', '5')->where('id_marcador','<>', '3')->get();
+		$parameter['marcadores'] = MarcadorCita::where('id_cita', $id)->where('valor','<>','0')->get();
 		//Se llama a la funcion obtenerEnfermedades que me devuelve un arreglo con las enfermedades que dieron positivo y negativo de la cita
 		//correspondiente al ID que le envio.
 		$parameter['resultados'] = $condiciones->obtenerEnfermedades($id);

@@ -21,16 +21,16 @@ class CondicionEnfermedad extends Eloquent {
 			//Almaceno el nombre de la enfermedad en el resultado usando como indice el ID de la enfermedad
 			$resultado[$enfermedad->id]->enfermedad = $enfermedad->descripcion;
 			//Sentencia para buscar todas las condiciones pertenecientes a una enfermedad especifica
-			$condiciones = CondicionEnfermedad::where('id_enfermedad', $enfermedad->id)->get();
+			$condiciones = CondicionEnfermedad::where('id_enfermedad', $enfermedad->id)->where('valor_condicion', '<>', '')->get();
 			//Ciclo que recorre todas las condiciones
 			foreach($condiciones as $condicion){
 				//Decision donde se compara el valor obtenido del marcador de la cita
 				//con la condicion para ver si son diferentes.
-				$positivo = 0;
+				$positivo = '';
 				if(!empty(MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->positivo)){
 					$positivo = MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->positivo;
 				}
-				if($positivo <> $condicion->valor_condicion){
+				if($positivo == $condicion->valor_condicion){
 					//De ser diferentes la variable como switch cambia de valor.
 					$sw = 1;
 				}
@@ -38,7 +38,7 @@ class CondicionEnfermedad extends Eloquent {
 			//Decision que determina el mensaje a imprimir
 			//Si la variable Switch es igual a 0 quiere decir que nunca entro en la decision anterior
 			//y que los resultados de la cita son iguales a las condiciones y por ende arroja un resultado positivo
-			if($sw == 0){
+			if($sw == 1){
 				$resultado[$enfermedad->id]->resultado = 'Tamiz Positivo';				
 				$resultado[$enfermedad->id]->mensaje = $enfermedad->mensaje_positivo;
 			//De ser falso la condicion osea que el switch tomo el valor de 1 quiere decir que no fueron
