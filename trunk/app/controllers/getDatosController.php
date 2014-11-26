@@ -63,6 +63,7 @@ class getDatosController extends BaseController {
 				if($n > 1){
 					$data.= ',';
 				}
+				
 				$n++;
 				$data.='{
 				

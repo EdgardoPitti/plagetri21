@@ -25,43 +25,7 @@
 		        		</div>
 		      	</div>
 			    	<div class="panel-body" style="display:block">
-				       <!--input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#citas" placeholder="Filtrar Pacientes" /><br-->
-					    <div class="overthrow" style="height:250px;">
-							<!--table class="table table-bordered table-hover table-fixed-header" cellpadding="0" cellspacing="0" id="citas">
-								<thead>
-							  		<tr class="info">
-							  			<th>#</th>
-							  			<th>Cédula</th>
-							  			<th>Nombre Completo</th>
-							  			<th>Edad</th>
-							  			<th>Etnia</th>
-							  			<th>Raza</th>
-							  			<th>Diabetes</th>
-							  			<th>Fuma</th>
-							  			<th>Accesos</th>
-							  		</tr>
-							  	</thead>
-							  	<tbody>
-							  		{{--*/ $n=1; /*--}}
-							  		@foreach ($pacientes as $paciente)
-							  		<tr align="center">
-							  			<td>{{ $n++ }}.</td>
-							  			<td>{{ $paciente->cedula }}</td>
-							  			<td>{{ $paciente->primer_nombre.' '.$paciente->segundo_nombre.' '.$paciente->apellido_paterno.' '.$paciente->apellido_materno }}</td>
-							  			<td>{{ $paciente->edad }}</td>
-							  			<td>{{ $paciente->etnia }}</td>
-							  			<td>{{ $paciente->raza }}</td>
-							  			<td>{{ $paciente->diabetes }}</td>
-							  			<td>{{ $paciente->fuma }}</td>
-							  			<td align="center">
-							  				<a href="{{ route('datos.citas.show', $paciente->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Crear Cita"><span class="glyphicon glyphicon-list-alt"></span></a>
-							  				<a href="{{ route('datos.pacientes.edit', $paciente->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Paciente"><span class="glyphicon glyphicon-pencil"></span></a>
-							  			</td>
-							  		</tr>
-							  		@endforeach
-							  	</tbody>
-							</table-->
-							
+					    <div class="overthrow" style="height:250px;">							
 							<table id="table-cita">
 							    <thead>
 								    <tr class="info">
@@ -209,72 +173,139 @@
     				</div>
 				</div>
 				<h3>Marcadores</h3>
-				<center>
-					<div class="row">
-						<div class="col-sm-12 col-md-12 col-lg-12">
-							<table style="width:100%">
-								<tr align="center">
-									<td>			
-										<div class="col-md-offset-2 col-sm-10 col-md-10 col-lg-10">
-						    				{{ Form::label('met_general', 'Métodología en General:') }}
-						    			</div>
-						    		</td>
-						    		<td>
-						    			<div class="col-md-offset-2 col-sm-10 col-md-10 col-lg-10">
-						    				{{ Form::select('met_general', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), null, array('class' => 'form-control')) }}
-						    			</div>
-						    		</td>
-						    		<td>MOM del Marcador</td>
-						    		<td>Correccion por Peso</td>
-						    		<td>Correccion por Peso</td>
-						    		
-						    	</tr>
-						    @foreach (Marcador::all() as $marcadores)
-								<tr>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-											{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}"><span class="label label-default">PorDefecto</span></div>
-						    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')', 'onKeyPress' =>'Comparar('.$marcadores->id.')')) }}
-						    				@if($form['marcador_'.$marcadores->id.'']->id_unidad != 0)
-												{{ Unidad::where('id', $form['marcador_'.$marcadores->id.'']->id_unidad)->first()->unidad }}
-						    				@else
-												{{ Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }}
-						    				@endif
+				<div class="row">
+					<div class="col-md-12 col-lg-12">
+						<div class="tabbable-panel">
+							<div class="tabbable-line">
+								<ul class="nav nav-tabs ">
+									<li class="active">
+										<a href="#tab1" data-toggle="tab">
+										2do Trim. </a>
+									</li>
+									<li>
+										<a href="#tab2" data-toggle="tab">
+										1er Trim. </a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active" id="tab1">
+										<div class="table-responsive overthrow">
+											<table class="table table-striped" style="width:100%">
+												<thead>
+													<tr class="info">
+														<th style="text-align:center;padding:6px;">			
+											    				{{ Form::label('met_general', 'Métodología en General:') }}
+											    		</th>
+											    		<th style="text-align:center;padding:6px;">
+											    				{{ Form::select('met_general', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), null, array('class' => 'form-control')) }}
+											    		</th>
+											    		<th style="text-align:center;padding:6px 6px 10px 6px;">MOM del Marcador</th>
+											    		<th style="text-align:center;padding:6px 6px 10px 6px;">Correccion por Peso</th>
+											    		<th style="text-align:center;padding:6px 6px 10px 6px;">Correccion por Peso</th>
+											    	</tr>
+												</thead>
+												<tbody>
+											    @foreach (Marcador::all() as $marcadores)
+											    	@if(!($marcadores->id == 3) && !($marcadores->id == 5))
+													<tr>
+														<td>
+																{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}"><span class="label label-default">PorDefecto</span></div>
+											    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')', 'onKeyPress' =>'Comparar('.$marcadores->id.')')) }}
+											    				@if($form['marcador_'.$marcadores->id.'']->id_unidad != 0)
+																	{{ Unidad::where('id', $form['marcador_'.$marcadores->id.'']->id_unidad)->first()->unidad }}
+											    				@else
+																	{{ Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }}
+											    				@endif
+														</td>
+														<td style="padding-top:28px;">
+							      							{{ Form::label('metodo_'.$marcadores->id, 'Métodología para '.$marcadores->marcador.':') }}
+							      							{{ Form::select('metodo_'.$marcadores->id, array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['marcador_'.$marcadores->id.'']->id_metodologia, array('class' => 'form-control')) }}															
+														</td>
+														<td style="padding-top:28px;">
+							      							{{ Form::label('mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
+							      								<div id="pantalla_mom_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->mom }}</div>
+											    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}	
+											    				{{ Form::text('positivo_'.$marcadores->id, null, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
+														</td>
+														<td style="padding-top:28px;">
+							      							{{ Form::label('corr_lineal_'.$marcadores->id, 'Lineal:') }}
+							      								<div id="pantalla_lineal_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_lineal }}</div>
+											    				{{ Form::text('corr_lineal_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
+														</td>
+														<td style="padding-top:28px;">
+							      							{{ Form::label('corr_exp_'.$marcadores->id, 'Exponencial:') }}
+							      								<div id="pantalla_exponencial_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial }}</div>
+											    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
+														</td>
+													</tr>
+													@endif
+											    @endforeach
+												</tbody>
+											</table>
 										</div>
-									</td>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('metodo_'.$marcadores->id, 'Métodología para '.$marcadores->marcador.':') }}
-		      								{{ Form::select('metodo_'.$marcadores->id, array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['marcador_'.$marcadores->id.'']->id_metodologia, array('class' => 'form-control')) }}
+									</div>
+									<div class="tab-pane" id="tab2">
+										<div class="table-responsive overthrow">
+											<table class="table table-striped" style="width:100%">
+												<thead>
+													<tr class="info">
+														<th style="text-align:center;padding:6px;">			
+											    				{{ Form::label('met_general', 'Métodología en General:') }}
+											    		</th>
+											    		<th style="text-align:center;padding:6px;">
+											    				{{ Form::select('met_general', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), null, array('class' => 'form-control')) }}
+											    		</th>
+											    		<th style="text-align:center;padding:6px 6px 10px 6px;">MOM del Marcador</th>
+											    		<th style="text-align:center;padding:6px 6px 10px 6px;">Correccion por Peso</th>
+											    		<th style="text-align:center;padding:6px 6px 10px 6px;">Correccion por Peso</th>
+											    	</tr>
+												</thead>
+												<tbody>
+											    @foreach (Marcador::all() as $marcadores)
+											    	@if($marcadores->id == 3 || $marcadores->id == 5)
+													<tr>
+														<td>
+																{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}"><span class="label label-default">PorDefecto</span></div>
+											    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')', 'onKeyPress' =>'Comparar('.$marcadores->id.')')) }}
+											    				@if($form['marcador_'.$marcadores->id.'']->id_unidad != 0)
+																	{{ Unidad::where('id', $form['marcador_'.$marcadores->id.'']->id_unidad)->first()->unidad }}
+											    				@else
+																	{{ Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }}
+											    				@endif
+														</td>
+														<td style="padding-top:28px;">
+							      							{{ Form::label('metodo_'.$marcadores->id, 'Métodología para '.$marcadores->marcador.':') }}
+							      							{{ Form::select('metodo_'.$marcadores->id, array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['marcador_'.$marcadores->id.'']->id_metodologia, array('class' => 'form-control')) }}															
+														</td>
+														<td style="padding-top:28px;">
+							      							{{ Form::label('mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
+							      								<div id="pantalla_mom_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->mom }}</div>
+											    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}	
+											    				{{ Form::text('positivo_'.$marcadores->id, null, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
+														</td>
+														<td style="padding-top:28px;">
+							      							{{ Form::label('corr_lineal_'.$marcadores->id, 'Lineal:') }}
+							      								<div id="pantalla_lineal_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_lineal }}</div>
+											    				{{ Form::text('corr_lineal_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
+														</td>
+														<td style="padding-top:28px;">
+							      							{{ Form::label('corr_exp_'.$marcadores->id, 'Exponencial:') }}
+							      								<div id="pantalla_exponencial_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial }}</div>
+											    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
+														</td>
+													</tr>
+													@endif
+											    @endforeach
+												</tbody>
+											</table>
 										</div>
-									</td>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
-		      								<div id="pantalla_mom_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->mom }}</div>
-						    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}	
-						    				{{ Form::text('positivo_'.$marcadores->id, null, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
-						    			</div>
-									</td>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('corr_lineal_'.$marcadores->id, 'Lineal:') }}
-		      								<div id="pantalla_lineal_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_lineal }}</div>
-						    				{{ Form::text('corr_lineal_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}	
-						    			</div>
-									</td>
-									<td>
-										<div class="form-group col-md-offset-2  col-sm-10 col-md-10 col-lg-10">
-		      								{{ Form::label('corr_exp_'.$marcadores->id, 'Exponencial:') }}
-		      								<div id="pantalla_exponencial_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial }}</div>
-						    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}	
-						    			</div>
-									</td>
-								</tr>
-						    @endforeach
-							</table>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
+				</div>	
+				<center>
 					{{ Form::button($form['label'].' Cita', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
 					<a href="{{ route('datos.citas.show', $datos[0]->id) }}" class="btn btn-info"> Limpiar Campos</a>
 				</center>
