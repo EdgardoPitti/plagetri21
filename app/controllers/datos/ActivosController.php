@@ -13,9 +13,13 @@ class Datos_ActivosController extends BaseController {
 	 */
 	public function index()
 	{
+		//Variable que almacena los datos correspondientes para el formulario
 		$datos['form'] = array('route' => 'datos.activos.store', 'method' => 'POST');
+		//Variable que almacena la etiqueta del boton 
 		$datos['label'] = 'Crear';
+		//Se crea el objeto para mandar los valores a la vista sobre los activos
 		$datos['activo'] = new Activo; 
+		//Se retorna a la vista con los valores correspondientes
 		return View::make('datos/activos/list-edit-form')->with('datos', $datos);
 	}
 
@@ -37,8 +41,11 @@ class Datos_ActivosController extends BaseController {
 	 */
 	public function store()
 	{
+		//Se almacena en la variable data los campos recibidos del formulario
 		$data = Input::all();
+		//Se crea el objeto
 		$activo = new Activo;
+		//Se almacena en cada campo del objeto los valores traidos del formulario
 		$activo->codigo = $data['codigo'];
 		$activo->nombre = $data['nombre'];
 		$activo->descripcion = $data['descripcion'];
@@ -51,6 +58,7 @@ class Datos_ActivosController extends BaseController {
 		$activo->id_proveedor = $data['proveedor'];
 		$activo->costo = $data['costo'];
 		$activo->save();
+		//Se retorna a la vista
 		return Redirect::route('datos.activos.index');
 	}
 
@@ -77,9 +85,13 @@ class Datos_ActivosController extends BaseController {
 	 */
 	public function edit($id)
 	{
+		//Se crea el objeto del activo perteneciente al id que se recibio
 		$datos['activo'] = Activo::find($id);
+		//Se cargan los datos pertenecientes al formulario para editar el activo
 		$datos['form'] = array('route' => array('datos.activos.update', $id), 'method' => 'PATCH');
+		//se cambia la etiqueta del boton para que sepa que se esta es editando
 		$datos['label'] = 'Editar';
+		//Se retorna a la vista
 		return View::make('datos/activos/list-edit-form')->with('datos', $datos);
 	}
 
@@ -92,8 +104,11 @@ class Datos_ActivosController extends BaseController {
 	 */
 	public function update($id)
 	{
+		//Se cargan los datos que se traen del formulario
 		$data = Input::all();
+		//Se crea el objeto perteneciente al id que se recibio del activo
 		$activo = Activo::find($id);
+		//Se cargan los datos en los campos correspondientes
 		$activo->codigo = $data['codigo'];
 		$activo->nombre = $data['nombre'];
 		$activo->descripcion = $data['descripcion'];
@@ -106,6 +121,7 @@ class Datos_ActivosController extends BaseController {
 		$activo->id_proveedor = $data['proveedor'];
 		$activo->costo = $data['costo'];
 		$activo->save();
+		//Se retorna a la vista
 		return Redirect::route('datos.activos.index');
 	}
 
@@ -118,13 +134,12 @@ class Datos_ActivosController extends BaseController {
 	 */
 	public function destroy($id)
 	{
+		//Se busca el activo perteneciente al id que se recibio
 		$activo =  Activo::find($id);
+		//Se elimina ese activo
 		$activo->delete();
-		
-		$datos['form'] = array('route' => 'datos.activos.store', 'method' => 'POST');
-		$datos['label'] = 'Crear';
-		$datos['activo'] = new Activo; 
-		return View::make('datos/activos/list-edit-form')->with('datos', $datos);
+		//Se retorna al a vista 
+		return Redirect::route('datos.activos.index');
 	}
 
 
