@@ -56,6 +56,7 @@ class Datos_CitasController extends BaseController {
 		$citas->riesgo_fap = $data['riesgo_fap'];
 		$citas->id_institucion = $data['id_institucion'];
 		$citas->save();
+		//Se obtiene el ultimo id de las citas que fue la que se almaceno previamente
 		$id_cita = Cita::all()->last()->id;
 		//Decisiones para almacenar las metodologias de cada marcador
 		$met_general = $data['met_general'];
@@ -72,6 +73,7 @@ class Datos_CitasController extends BaseController {
 				$marcadorcita->id_metodologia = $data['metodo_'.$marcador->id.''];
 				$valormarcador->id_metodologia = $data['metodo_'.$marcador->id.''];
 			}
+			//Se busca el id de la unidad del marcador en la que esta configurada el sistema actualmente
 			$marcadorcita->id_unidad = UnidadMarcador::where('id_marcador', $marcador->id)->get()->last()->id_unidad;
 			$marcadorcita->valor = $data['valor_'.$marcador->id.''];
 			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
@@ -80,6 +82,7 @@ class Datos_CitasController extends BaseController {
 			$marcadorcita->positivo = $data['positivo_'.$marcador->id.''];
 			$marcadorcita->save();
 			
+			//Sentencias para almacenar los mismos valores de los marcadores en otra tabla para posterior analisis
 			$valormarcador->id_marcador = $marcador->id;
 			$valormarcador->semana = $data['semana'];
 			$valormarcador->id_metodologia = $met_general;
@@ -112,6 +115,7 @@ class Datos_CitasController extends BaseController {
 		$form['citas']->riesgo_fap = 100;		
 		$form['citas']->fecha_cita = date("20y-m-d");
 		$marcadorcita = new MarcadorCita;
+		//Ciclo que recorre todos los marcadores
 		foreach (Marcador::all() as $marcador){
 			$form['marcador_'.$marcador->id.''] = new MarcadorCita;
 			$form['marcador_cita'] = $marcadorcita;
@@ -136,7 +140,8 @@ class Datos_CitasController extends BaseController {
 		$paciente = new Paciente;
 		$cita = Cita::find($id);
 		$institucion = Institucion::find($cita->id_institucion);
-		if(! empty($institucion)){
+		//Decision para saber si se encontro la institucion perteneciente a la citas
+		if(!empty($institucion)){
 			$cita->id_provincia = $institucion->id_provincia;
 			$cita->id_tipo = $institucion->id_tipo_institucion;
 		}else{

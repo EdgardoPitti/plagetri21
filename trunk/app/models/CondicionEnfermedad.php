@@ -31,13 +31,13 @@ class CondicionEnfermedad extends Eloquent {
 					$positivo = MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->positivo;
 				}
 				if($positivo == $condicion->valor_condicion){
-					//De ser diferentes la variable como switch cambia de valor.
+					//De ser iguales la variable como switch cambia de valor.
 					$sw = 1;
 				}
 			}
 			//Decision que determina el mensaje a imprimir
 			//Si la variable Switch es igual a 0 quiere decir que nunca entro en la decision anterior
-			//y que los resultados de la cita son iguales a las condiciones y por ende arroja un resultado positivo
+			//en caso contrario quiere decir que la variable tiene el valor de 1 y por lo tanto una condicion se cumple y la enfermedad es positiva
 			if($sw == 1){
 				$resultado[$enfermedad->id]->resultado = 'Tamiz Positivo';				
 				$resultado[$enfermedad->id]->mensaje = $enfermedad->mensaje_positivo;
@@ -49,7 +49,7 @@ class CondicionEnfermedad extends Eloquent {
 			}
 		}
 		//Devuelve un arreglo con tdas las enfermedades usando como indice el ID de cada enfermedad
-		//Con sus respectivo nombe, resulta si fue positivo o negativo y el mensaje correspondiente.
+		//Con sus respectivo nombre, resultado si fue positivo o negativo y el mensaje correspondiente.
 		return $resultado;
 	}
 	

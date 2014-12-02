@@ -56,6 +56,7 @@ class DropdownController extends BaseController
         }
         return ($institucion->get(['id','denominacion']));
     }
+    //Funcion que recibe el id del marcador y la semana para proceder a buscar los valores correspondientes superior e inferior de ese marcador
     public function getLimites()
     {
         $id = Input::get('idmarcador');
@@ -71,13 +72,14 @@ class DropdownController extends BaseController
         $mediana = MedianaMarcador::where('id_marcador', $id)->where('semana', $semana)->where('id_unidad', UnidadMarcador::where('id_marcador', $id)->get()->last()->id_unidad);
         return ($mediana->get(['mediana_marcador']));
     }
-    //Funcion que recibe el id de la raza y del marcador y devuelve los coeficientes correspondientes 
+    //Funcion que recibe el id de la raza y del marcador y devuelve los coeficientes correspondientes a la funcion lineal
     public function getCoeficienteLineal()
     {
         $idmarcador = Input::get('idmarcador');
         $coeficiente = CoeficienteLineal::where('id_marcador', $idmarcador);
         return ($coeficiente->get(['a', 'b']));
     }
+    //Funcion que recibe el id de la raza y del marcador y devuelve los coeficientes correspondientes a la funcion exponencial
     public function getCoeficienteExponencial()
     {
         $idmarcador = Input::get('idmarcador');
