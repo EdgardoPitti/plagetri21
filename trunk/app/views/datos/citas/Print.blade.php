@@ -50,7 +50,7 @@
 	    </div>
 	</div>
     <br>
-    <div>
+    <div style="height: 325px;">
     	<div class="texto">
     		<h3>Triple Marcador Maternal</h3>
     	</div>
@@ -73,7 +73,7 @@
 			Gestación: {{ $cita->hijos_embarazo }}.<br>
 		</div> 
     </div>
-    <div style="position:absolute;bottom:150px;">
+    <div style="position:relative;bottom:150px;">
 	 	<h4>RESULTADOS DE LA PRUEBA</h4>
 		<table class="resultados" cellspacing="0px">			
 			<tr>
