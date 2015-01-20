@@ -160,6 +160,9 @@ class Paciente extends Eloquent {
 		}
 		return $datos;
     }
+	public function getFullNameAttribute() {
+			return ucfirst($this->primer_nombre) . ' ' . ucfirst($this->segundo_nombre) . ' ' . ucfirst($this->apellido_paterno) . ' ' . ucfirst($this->apellido_materno);
+	}
     //Funcion que calcula el riesgo de una persona recibiendo la edad
     function riesgo($edad){
 		//Sentencias del calculo de la probablidad por edad
