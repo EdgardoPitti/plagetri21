@@ -11,6 +11,18 @@ class MedianaMarcadorAuto extends Eloquent {
 	 * @var string
 	*/
 	protected $table = 'mediana_marcadores_automaticos';
+	
+	
+	function AlmacenarData($data){
+			foreach($data as $datos){		
+					$medianamarcador = new MedianaMarcadorAuto;
+					$medianamarcador->semana = $datos['semana'];
+					$medianamarcador->id_marcador = $datos['marcador'];
+					$medianamarcador->id_unidad = $datos['unidad'];
+					$medianamarcador->mediana_marcador = $datos['mediana'];
+					$medianamarcador->save();
+			}
+	}
 
 }
 
