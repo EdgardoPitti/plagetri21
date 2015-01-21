@@ -73,7 +73,7 @@
 					<br>
 			{{ Form::close() }}
 		@endif
-			{{ Form::open(array('route' => 'datos.configuracion.store', 'method' => 'POST'), array('role' => 'form')) }}
+			{{ Form::open(array('route' => 'datos.configuracion.store', 'method' => 'POST', 'id' => 'form-load'), array('role' => 'form')) }}
 			<center><br>
 			Modo Actual: 
 			@if(empty(Configuracion::all()->last()->automatico))
@@ -102,8 +102,23 @@
 					<center>{{ Form::button('Salvar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}</center>
 				</div>
 			{{ Form::close() }}
+		<!-- Static Modal -->
+		<div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-body">
+		                <div class="text-center">
+		                    <img src="http://www.travislayne.com/images/loading.gif" class="icon" />
+		                    <h4 style="margin-top:0px;">Procesando... <button type="button" class="close" style="float: none;" data-dismiss="modal" aria-hidden="true">
+		                    		<span class="fa fa-times fa-1x"></span></button>
+		                    </h4>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>	
 	{{ HTML::script('assets/js/overthrow/overthrow-detect.js') }}
     {{ HTML::script('assets/js/overthrow/overthrow-init.js') }}
     {{ HTML::script('assets/js/overthrow/overthrow-polyfill.js') }}
-    {{ HTML::script('assets/js/overthrow/overthrow-toss.js') }}
+    {{ HTML::script('assets/js/overthrow/overthrow-toss.js') }}    
 @stop
