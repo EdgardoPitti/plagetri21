@@ -80,5 +80,36 @@
 			  	</tbody>
 			</table>
 		</div>
+		<br><br>
+		@if(!empty(Configuracion::all()->last()->automatico) AND Configuracion::all()->last()->automatico == 1)
+			<h1><center>Historial de Marcadores Automáticos</center></h1>
+			<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4 col-sm-offset-2">
+				{{ Form::label('marcadorauto', 'Marcador:') }}
+				{{ Form::select('marcadorauto', Marcador::lists('marcador', 'id'), null , array('class' => 'form-control')) }}
+				{{ Form::label('semanasauto', 'Semanas:') }}
+				{{ Form::selectRange('semanasauto', 1, 37, null, array('class' => 'form-control')) }}
+			</div>
+			<div class="overthrow" style="height:250px;">
+				<table class="table table-bordered" id="">
+					<thead>
+						<tr class="info">
+							<th>#</th>
+							@foreach (Unidad::all() as $unidades)
+								<th>{{ $unidades->unidad }}</th>
+							@endforeach
+						</tr>
+					</thead>
+					<tbody id="data_mediana">
+							<tr>
+								<td>0</td>
+								@foreach (Unidad::all() as $unidades)
+									<td>{{ 0 }}</td>
+								@endforeach
+							</tr>
+						</div>
+					</tbody>
+				</table>
+			</div>
+		@endif
 		<div class="clear" style="padding:20px 0px;"></div>
 @stop

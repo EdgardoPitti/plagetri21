@@ -91,4 +91,10 @@ class DropdownController extends BaseController
         $coeficiente = CoeficienteExponencial::where('id_marcador', $idmarcador);
         return ($coeficiente->get(['a', 'b']));
     }
+    public function getAutoMediana(){
+		$idmarcador = Input::get('marcador');
+		$semana = Input::get('semana');
+		$medianas = MedianaMarcadorAuto::where('id_marcador', $idmarcador)->where('semana', $semana);
+		return ($medianas->get(['mediana_marcador', 'id_unidad']));
+	}
 }
