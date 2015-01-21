@@ -57,7 +57,13 @@ function show(id) {
 	    $('#obs').html(data.observacion);
 	});
 }
-
+//Mostrar loading al hacer submit en configuracion
+jQuery(document).ready(function ($) {
+	$("#form-load").submit(function () {					
+		$("#processing-modal").modal('show');
+		return true;				
+	});    			
+});
 jQuery(document).ready(function ($) {
   $('#scrollbar').perfectScrollbar();
   $('#scrollbar2').perfectScrollbar();
