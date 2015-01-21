@@ -289,6 +289,62 @@ jQuery(document).ready(function($){
 			}
         });
         
+        $("#marcadorauto").change(function(){
+			$.get("http://"+host+"/plagetri21/public/obtenerautomediana", 
+				{ marcador: $("#marcadorauto").find(':selected').val(), semana: $("#semanasauto").find(':selected').val()}, 
+				function(data){
+					var campo = $("#data_mediana");
+					campo.empty();
+					var x = 1;
+					var unidad = 0;
+					var texto = '';
+					$.each(data, function(index,element) {
+						unidad = element.id_unidad;
+						if(unidad == 1 && x == 1){
+							texto = "<tr><td>"+ x +".</td><td>"+ element.mediana_marcador +"</td>";
+							x++;
+						}else{
+							if(unidad == 1){
+								texto += "</tr><tr><td>"+ x +".</td><td>"+ element.mediana_marcador +"</td>";
+								x++;
+							}else{
+								texto += "<td>"+ element.mediana_marcador +"</td>";
+							}
+						}
+						
+					});
+					texto +="</tr>";
+					campo.append(texto)
+			});
+		});
+        $("#semanasauto").change(function(){
+			$.get("http://"+host+"/plagetri21/public/obtenerautomediana", 
+				{ marcador: $("#marcadorauto").find(':selected').val(), semana: $("#semanasauto").find(':selected').val()}, 
+				function(data){
+					var campo = $("#data_mediana");
+					campo.empty();
+					var x = 1;
+					var unidad = 0;
+					var texto = '';
+					$.each(data, function(index,element) {
+						unidad = element.id_unidad;
+						if(unidad == 1 && x == 1){
+							texto = "<tr><td>"+ x +".</td><td>"+ element.mediana_marcador +"</td>";
+							x++;
+						}else{
+							if(unidad == 1){
+								texto += "</tr><tr><td>"+ x +".</td><td>"+ element.mediana_marcador +"</td>";
+								x++;
+							}else{
+								texto += "<td>"+ element.mediana_marcador +"</td>";
+							}
+						}
+						
+					});
+					texto +="</tr>";
+					campo.append(texto)
+			});
+		});
         $("#sigin").submit(function() {
             $('#loading').show(); 
             $('#boton').hide();

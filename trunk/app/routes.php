@@ -54,6 +54,7 @@ Route::get('institucion', 'DropdownController@getInstitucion');
 Route::get('institucionprovincia', 'DropdownController@getInstitucionprovincia');
 Route::get('comparar', 'DropdownController@getLimites');
 Route::get('calculo', 'DropdownController@getMomMarcador');
+Route::get('obtenerautomediana', 'DropdownController@getAutoMediana');
 Route::get('correccion_lineal', 'DropdownController@getCoeficienteLineal');
 Route::get('correccion_exponencial', 'DropdownController@getCoeficienteExponencial');
 Route::get('obtenermediana', 'Datos_MedianaController@getObtenerMediana');
