@@ -57,7 +57,7 @@ class CondicionesController extends BaseController {
 		//Se obtiene el id de la ultima enfermedad almacenada
 		$id = Enfermedad::all()->last()->id;
 		
-		//Ciclo que recorre todo lso marcadores		
+		//Ciclo que recorre todo los marcadores		
 		for($x=1;$x<Marcador::where('id','>', '0')->count()+1;$x++){
 			//Se pregunta si el marcador que viene del formulario no esta en blanco para poder almacenarlo
 			if($data['marcador_'.$x.''] <> ''){

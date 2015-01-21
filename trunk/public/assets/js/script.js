@@ -347,7 +347,7 @@ function Division(id, idraza){
                 var valor = $('#valor_'+id+'').val();
                 var mediana = element.mediana_marcador;
                 resultado = (valor/mediana);                
-            });
+            }); 
             campo.val(resultado.toFixed(5));
 			pantalla.append(resultado.toFixed(5));
 			//Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso

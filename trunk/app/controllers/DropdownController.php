@@ -69,7 +69,11 @@ class DropdownController extends BaseController
     {
         $id = Input::get('idmarcador');
         $semana = Input::get('semana');
-        $mediana = MedianaMarcador::where('id_marcador', $id)->where('semana', $semana)->where('id_unidad', UnidadMarcador::where('id_marcador', $id)->get()->last()->id_unidad);
+        if(empty(Configuracion::all()->last()->automatico) OR Configuracion::all()->last()->automatico == 0){
+			$mediana = MedianaMarcador::where('id_marcador', $id)->where('semana', $semana)->where('id_unidad', UnidadMarcador::where('id_marcador', $id)->get()->last()->id_unidad);
+		}else{
+			$mediana = MedianaMarcadorAuto::where('id_marcador', $id)->where('semana', $semana)->where('id_unidad', UnidadMarcador::where('id_marcador', $id)->get()->last()->id_unidad);
+		}
         return ($mediana->get(['mediana_marcador']));
     }
     //Funcion que recibe el id de la raza y del marcador y devuelve los coeficientes correspondientes a la funcion lineal
