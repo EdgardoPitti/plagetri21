@@ -388,3 +388,24 @@ input.cmn-toggle-round-flat:checked + label:after {
   box-shadow: 0 1px 1px 1px rgba(150,150,150,0.1);
   padding: 15px 20px;
 }
+
+/*CSS LOADING CONFIGURACION*/
+.modal-static { 
+    position: fixed;
+    top: 50% !important; 
+    left: 50% !important; 
+    margin-top: -100px;  
+    margin-left: -100px; 
+    overflow: visible !important;
+}
+.modal-static,
+.modal-static .modal-dialog,
+.modal-static .modal-content {
+    width: 200px; 
+    height: 200px; 
+}
+.modal-static .modal-dialog,
+.modal-static .modal-content {
+    padding: 0 !important; 
+    margin: 0 !important;
+}
