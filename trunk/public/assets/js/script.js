@@ -339,7 +339,6 @@ jQuery(document).ready(function($){
 								texto += "<td>"+ element.mediana_marcador +"</td>";
 							}
 						}
-						
 					});
 					texto +="</tr>";
 					campo.append(texto)
