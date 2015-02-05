@@ -36,8 +36,10 @@ Route::resource('datos/mantenimientos', 'Datos_MantenimientosController');
 Route::resource('datos/mediana', 'Datos_MedianaController');
 Route::resource('datos/condiciones', 'CondicionesController');
 Route::resource('datos/modulos', 'Datos_ModulosController');
+Route::resource('datos/empresas', 'EmpresasController');
 Route::resource('datos/configuracion', 'ConfiguracionController');
 Route::resource('print', 'PrintController');
+
 Route::post('almacenargrupo', 'Datos_ModulosController@almacenargrupo');
 Route::post('medicos/getmedicos', 'getDatosController@postData'); //ruta para cargar datos al modal
 Route::get('medicos', 'getDatosController@postMedicos'); //ruta para obtener todos los médicos y filtrar
