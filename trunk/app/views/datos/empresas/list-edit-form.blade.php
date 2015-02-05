@@ -58,6 +58,7 @@
 	            </div>
 	        </div>
 	      </div>
+	    </div>
 			{{ Form::model($datos['empresa'], $datos['form'], array('role' => 'form')) }}
 				<div class="row">
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
