@@ -401,7 +401,7 @@ function Division(id, idraza){
             $.each(data, function(index,element) {
                 var valor = $('#valor_'+id+'').val();
                 var mediana = element.mediana_marcador;
-                resultado = (valor/mediana);                
+                resultado = (valor/mediana);
             }); 
             campo.val(resultado.toFixed(5));
 			pantalla.append(resultado.toFixed(5));
