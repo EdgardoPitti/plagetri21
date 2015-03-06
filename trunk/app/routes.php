@@ -21,12 +21,9 @@ Route::get('/', function(){
 //Rutas de Logueo y Registro de Usuarios
 Route::post('sigin', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');
-Route::get('registro', 'AuthController@getRegistro')->before('auth');
-Route::post('registrar', 'AuthController@register')->before('auth');
-
 
 //Rutas para controladores
-//Route::resource('usuario', 'AuthController');
+Route::resource('usuario', 'UsuarioController');
 Route::resource('datos/pacientes', 'Datos_PacientesController');
 Route::resource('datos/medicos', 'Datos_MedicosController');
 Route::resource('datos/citas', 'Datos_CitasController');

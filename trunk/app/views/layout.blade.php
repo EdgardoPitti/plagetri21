@@ -58,7 +58,7 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-weight:bold;"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->user }} <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         @if(Auth::user()->id_grupo_usuario == 1)
-                          <li><a href="{{URL::to('registro')}}"><i class="fa fa-user fa-lg"></i>&nbsp; Registrar Usuario</a></li>                       
+                          <li><a href="{{ route('usuario.index') }}"><i class="fa fa-user fa-lg"></i>&nbsp; Registrar Usuario</a></li>                       
                           <li><a href="{{URL::to('datos/modulos')}}"><i class="fa fa-users fa-lg"></i> Grupos - Módulos</a></li>
                           <li><a href="{{ route('datos.configuracion.index') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Configuración</a></li>
                         @endif
