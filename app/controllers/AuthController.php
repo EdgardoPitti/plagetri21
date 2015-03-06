@@ -44,8 +44,8 @@
 	    //Función para registrar usuario
 	    public function register(){
 	    	$rules = array(
-	    		'usuario' => 'required|max:30', 
-	    		'pass' => "required|alpha_num|min:6|max:20"
+	    		'user' => 'required|max:30', 
+	    		'password' => "required|alpha_num|min:6|max:20"
 	    	);
 	    	
 	    	$datos = Input::all();
@@ -56,9 +56,9 @@
 	    	}else{
 	    		
 	    		$user = new User;
-	    		$user->user = $datos['usuario'];
-	    		$user->password = Hash::make($datos['pass']);
-	    		$user->id_grupo_usuario = $datos['grupo_usuario'];
+	    		$user->user = $datos['user'];
+	    		$user->password = Hash::make($datos['password']);
+	    		$user->id_grupo_usuario = $datos['id_grupo_usuario'];
 	    		$user->save();
 	    		return View::make('datos/usuarios/registrar')->with('user_save', 'Usuario Agregado Correctamente');
 	    	}
