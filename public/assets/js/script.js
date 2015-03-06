@@ -160,6 +160,7 @@ jQuery(document).ready(function($){
             edad = parseFloat(agno) + parseFloat(mes.toFixed(2));
             
             edadtexto.val(edad);
+            alert(edad);
 			
             var correccion = '1/100';
             var probabilidad = parseFloat(0.000627) + parseFloat(Math.exp(parseFloat(-16.2395) + parseFloat((0.286 * (edad - 0.5)))));
@@ -200,10 +201,10 @@ jQuery(document).ready(function($){
 			}
             
              if($("#caso_anterior").val() == 1){
-				if(semanas > 12 && semanas < 14){
+				if(semanas >= 12 && semanas <= 14){
 						correccion = riesgo*1.0075;
 				}else{
-					if(semanas < 18 && semanas > 14){
+					if(semanas > 14 && semanas < 18 ){
 						correccion = riesgo*1.0054;
 					}
 					else{

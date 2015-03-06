@@ -27,7 +27,7 @@
 	          <div class="panel-body">
 	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#list-act" placeholder="Filtrar Activo" />
 	          </div>
-	            <div class="table-responsive overthrow" style="padding:10px 10px;height:170px;">
+	          <div class="table-responsive overthrow" style="padding:10px 10px;height:170px;">
 	              <table class="table table-bordered table-hover list-act" id="list-act">
 	                <thead>
 		                <tr class="info">
@@ -55,7 +55,7 @@
 	                @endforeach
 	                </tbody> 
 	              </table>
-	            </div>
+	          </div>
 	        </div>
 	      </div>
 	    </div>

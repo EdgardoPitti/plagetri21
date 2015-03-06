@@ -4,7 +4,7 @@
   Registrar Usuario
 @stop
 @section ('content')
-  
+
   <div class="row">
       <div class="col-sm-6 col-md-6 col-lg-6 col-md-offset-3">          
           {{ Form::open(array('url' => 'registrar', 'method' => 'POST')) }} 
@@ -26,7 +26,7 @@
               @endif
               <div class="form-group">
                 {{ Form::label('grupo_usuario', 'Grupo de Usuario:')}}
-                {{ Form::select('grupo_usuario', array('0' => 'GRUPO DE USUARIO') + GrupoUsuario::lists('grupo_usuario', 'id'), null,array('class' => 'form-control')) }}                 
+                {{ Form::select('grupo_usuario',GrupoUsuario::lists('grupo_usuario', 'id'), null,array('class' => 'form-control')) }}                 
               </div>
               <div class="form-group">
                 {{ Form::submit('Guardar', array('class' => 'btn btn-success btn-block')) }} 
@@ -36,6 +36,46 @@
               @endif
             </fieldset>
           {{ Form::close() }}
+          
+          
+			<div class="col-md-12 col-sm-12 col-lg-12">
+		    	<div class="panel panel-primary">
+		      	<div class="panel-heading">
+		        		<h3 class="panel-title">Usuarios</h3>
+	        			<div class="pull-right">
+		          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Usuarios" data-container="body">
+			            		<i class="glyphicon glyphicon-filter"></i>
+		          			</span>
+		        		</div>
+		      	</div>
+			    	<div class="panel-body" style="display:block;">
+				       <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Usuarios" /><br>
+					    <div class="overthrow" style="height:200px;">
+					        <table class="table table-bordered table-hover modulo" id="dev-table">
+							  	<thead>
+							  		<tr class="info">
+							  			<th>#</th>
+							  			<th>Usuario</th>
+							  			<th>Rol</th>
+							  			
+							  		</tr>
+							  	</thead>
+							  	<tbody>
+							  		{{--*/ $n=1; /*--}}
+							  		@foreach (User::all() as $usuario)
+										<tr align="center">
+											<td>{{ $n++ }}.</td>
+											<td>{{ $usuario->user }}</td>
+											<td>{{ GrupoUsuario::where('id', $usuario->id_grupo_usuario)->first()->grupo_usuario }}</td>
+
+										</tr>
+							  		@endforeach
+							  	</tbody>
+							</table>
+						</div>
+			        </div>
+		        </div>
+		    </div>
       </div>
   </div>  
 @stop
