@@ -80,7 +80,9 @@ class UsuarioController extends \BaseController {
     	$datos = Input::all();    		
 		$user = User::find($id);
 		$user->user = $datos['user'];
-		$user->password = Hash::make($datos['password']);
+		if(!empty($datos['password'])){
+			$user->password = Hash::make($datos['password']);
+		}
 		$user->id_grupo_usuario = $datos['id_grupo_usuario'];
 		$user->save();
 		return Redirect::route('usuario.index');

@@ -14,16 +14,10 @@
                 {{ Form::label('user', 'Nombre de Usuario:')}}      
                 {{ Form::text('user', null, array('class' => 'form-control', 'placeholder' => 'Usuario', 'required' => 'required')) }}                  
               </div>
-              @if($errors->has())
-                <p style="color:#f00;text-align:center;"> {{ $errors->first('usuario') }}</p>                  
-              @endif
               <div class="form-group">
                 {{ Form::label('password', 'Contraseña:')}}
                 {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Contraseña')) }}                 
               </div>
-              @if($errors->has())
-                <p style="color:#f00;text-align:center;">{{ $errors->first('pass') }}</p>                  
-              @endif
               <div class="form-group">
                 {{ Form::label('id_grupo_usuario', 'Grupo de Usuario:')}}
                 {{ Form::select('id_grupo_usuario',GrupoUsuario::lists('grupo_usuario', 'id'), null,array('class' => 'form-control')) }}                 
