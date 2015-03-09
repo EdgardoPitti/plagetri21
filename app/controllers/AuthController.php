@@ -34,35 +34,6 @@
 	         Auth::logout();	         
 	      }
 	      return Redirect::to('/');
-	    }
-
-	    //Función para mostrar formulario de registro
-	    public function getRegistro(){
-	    	return View::make('datos/usuarios/registrar');
-	    }
-
-	    //Función para registrar usuario
-	    public function register(){
-	    	$rules = array(
-	    		'user' => 'required|max:30', 
-	    		'password' => "required|alpha_num|min:6|max:20"
-	    	);
-	    	
-	    	$datos = Input::all();
-	    	$validar = Validator::make($datos, $rules);
-
-	    	if($validar->fails()){
-	    		return Redirect::to('registro')->withErrors($validar)->withInput();
-	    	}else{
-	    		
-	    		$user = new User;
-	    		$user->user = $datos['user'];
-	    		$user->password = Hash::make($datos['password']);
-	    		$user->id_grupo_usuario = $datos['id_grupo_usuario'];
-	    		$user->save();
-	    		return View::make('datos/usuarios/registrar')->with('user_save', 'Usuario Agregado Correctamente');
-	    	}
-	    }
-	    
+	    }	    
 	}
 ?>
