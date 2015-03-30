@@ -35,7 +35,7 @@
 								        <th data-field="cel" data-align="center">Celular</th>
 								        <th data-field="tel" data-align="center">Teléfono</th>
 								        <th data-field="email" data-align="center">E-mail</th>
-								        <th data-field="url" data-align="center"></th>
+								        <th data-field="url" data-align="center"> Acciones</th>
 								    </tr>
 							    </thead>
 							</table>	 
