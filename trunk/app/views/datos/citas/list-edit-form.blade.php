@@ -206,7 +206,7 @@
 												</thead>
 												<tbody>
 											    @foreach (Marcador::all() as $marcadores)
-											    	@if(!($marcadores->id == 3) && !($marcadores->id == 5))
+											    	@if(!($marcadores->id > 3 && $marcadores->id <= 7 && $marcadores->id != 4))
 													<tr>
 														<td>
 																{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}"><span class="label label-default">PorDefecto</span></div>
@@ -262,7 +262,7 @@
 												</thead>
 												<tbody>
 											    @foreach (Marcador::all() as $marcadores)
-											    	@if($marcadores->id == 3 || $marcadores->id == 5)
+											    	@if($marcadores->id > 3 && $marcadores->id <= 7 && $marcadores->id != 4)
 													<tr>
 														<td>
 																{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}"><span class="label label-default">PorDefecto</span></div>
@@ -307,7 +307,7 @@
 				</div>	
 				<center>
 					{{ Form::button($form['label'].' Cita', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-					<a href="{{ route('datos.citas.show', $datos[0]->id) }}" class="btn btn-info"> Limpiar Campos</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ route('datos.citas.show', $datos[0]->id) }}" class="btn btn-info"> Nueva Cita</a>
 				</center>
 			{{ Form::close() }}		
 			@if (!empty(Cita::where('id_paciente', $datos[0]->id)->first()->id))
