@@ -307,7 +307,9 @@
 				</div>	
 				<center>
 					{{ Form::button($form['label'].' Cita', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ route('datos.citas.show', $datos[0]->id) }}" class="btn btn-info"> Nueva Cita</a>
+					@if($form['label'] == 'Editar')
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ route('datos.citas.show', $datos[0]->id) }}" class="btn btn-info"> Nueva Cita</a>
+					@endif
 				</center>
 			{{ Form::close() }}		
 			@if (!empty(Cita::where('id_paciente', $datos[0]->id)->first()->id))
