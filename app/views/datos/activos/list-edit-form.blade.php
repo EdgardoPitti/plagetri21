@@ -99,7 +99,7 @@
 			    </div>
 		        <div class="form-group col-sm-4 col-md-4 col-lg-4">
  				    {{ Form::label('fecha_compra', 'Fecha de Compra:') }}
-    				{{ Form::date('fecha_compra', $datos['activo']->fecha_compra, array('class' => 'form-control', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
+    				{{ Form::text('fecha_compra', $datos['activo']->fecha_compra, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
     			</div>
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			      {{ Form::label('num_factura', 'Número de Factura:') }}

@@ -117,11 +117,11 @@
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fecha_cita', 'Fecha de Cita:') }}
-      					{{ Form::date('fecha_cita', $form['citas']->fecha_cita, array('id' => 'fecha_cita','class' => 'form-control', 'min' => '2010-01-01', 'max' => '2099-12-31', 'required' => 'required')) }}
+      					{{ Form::text('fecha_cita', $form['citas']->fecha_cita, array('id' => 'fecha_cita','class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2010-01-01', 'max' => '2099-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fecha_flebotomia', 'Fecha de Flebotomia:') }}
-      					{{ Form::date('fecha_flebotomia', $form['citas']->fecha_flebotomia, array('id' => 'fecha_flebotomia','class' => 'form-control', 'min' => '2010-01-01', 'max' => '2099-12-31', 'required' => 'required')) }}
+      					{{ Form::text('fecha_flebotomia', $form['citas']->fecha_flebotomia, array('id' => 'fecha_flebotomia','class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2010-01-01', 'max' => '2099-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('id_medico', 'Médico:') }}
@@ -137,11 +137,11 @@
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fur', 'Fecha de Ultima Menstruación:') }}
-      					{{ Form::date('fur', $form['citas']->fur, array('id' =>'fur','class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+      					{{ Form::text('fur', $form['citas']->fur, array('id' =>'fur','class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2000-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fpp', 'Fecha Probable de Parto:') }}
-      					{{ Form::date('fpp', $form['citas']->fpp, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31')) }}
+      					{{ Form::text('fpp', $form['citas']->fpp, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2014-01-01', 'max' => '2050-12-31')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('edad_gestacional', 'Edad Gestacional por Ultrasonido:') }}
@@ -153,7 +153,7 @@
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('fecha_ultrasonido', 'Fecha del Ultrasonido:') }}
-      					{{ Form::date('fecha_ultrasonido', $form['citas']->fecha_ultrasonido, array('class' => 'form-control', 'min' => '2000-01-01', 'max' => '2050-12-31')) }}
+      					{{ Form::text('fecha_ultrasonido', $form['citas']->fecha_ultrasonido, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2000-01-01', 'max' => '2050-12-31')) }}
     				</div>
     			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('observaciones', 'Observaciones:') }}

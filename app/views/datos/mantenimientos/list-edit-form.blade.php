@@ -191,7 +191,7 @@
 				<div class="row">
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	  					{{ Form::label('fecha', 'Fecha de Realización:') }}
-	  					{{ Form::date('fecha', $datos['mantenimiento']->fecha_realizacion, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
+	  					{{ Form::text('fecha', $datos['mantenimiento']->fecha_realizacion, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
 					</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 				      {{ Form::label('realizado_por', 'Realizado por:') }}
@@ -207,7 +207,7 @@
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	  					{{ Form::label('proximo', 'Próximo Mantenimiento:') }}
-	  					{{ Form::date('proximo', $datos['mantenimiento']->proximo_mant, array('class' => 'form-control', 'min' => '2014-01-01', 'max' => '2050-12-31')) }}
+	  					{{ Form::text('proximo', $datos['mantenimiento']->proximo_mant, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2014-01-01', 'max' => '2050-12-31')) }}
 					</div>
 				</div>
 				<div class="form-group col-sm-12 col-md-12 col-lg-12">
