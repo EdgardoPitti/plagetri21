@@ -363,6 +363,7 @@ function Comparar(id){
             var positivo = $('#positivo_'+id+'');
 			campo.empty();
 			var etiqueta = '<span class="label label-default">PorDefecto</span>';
+			positivo.val(-2);
             $.each(data, function(index,element) {
                 if(parseFloat(valor) < element.lim_inferior){
 					etiqueta = '<span class="label label-danger">Inferior</span>';      

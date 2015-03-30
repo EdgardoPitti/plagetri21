@@ -79,7 +79,7 @@ class Datos_CitasController extends BaseController {
 			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
 			$marcadorcita->corr_peso_lineal = $data['corr_lineal_'.$marcador->id.''];
 			$marcadorcita->corr_peso_exponencial = $data['corr_exp_'.$marcador->id.''];
-			$marcadorcita->positivo = $data['positivo_'.$marcador->id.''];
+			$marcadorcita->positivo = '';//$data['positivo_'.$marcador->id.''];
 			$marcadorcita->save();
 			
 			//Sentencias para almacenar los mismos valores de los marcadores en otra tabla para posterior analisis
