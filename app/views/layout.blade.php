@@ -19,21 +19,9 @@
         {{ HTML::script('assets/js/html5shiv.js') }}
         {{ HTML::script('assets/js/respond.min.js') }}
     <![endif]-->
-    @yield('scripts')
-    @if(!Auth::check())  
-    	{{--*/ $onload =  'onload="nobackbutton();"'; /*--}}
-    	<script type="text/javascript">
-	     function nobackbutton(){
-				window.location.hash="no-back-button";	
-	   		window.location.hash="Again-No-back-button" //chrome	
-	   		window.onhashchange=function(){window.location.hash="logout";}
-			}
-		</script>        
-	@else
-		{{--*/ $onload =  '';/*--}}
-	@endif	
+    @yield('scripts')    
   </head>
-  <body {{$onload}}>    
+  <body>    
     {{-- Wrap all page content here --}}
     <div id="wrap" >
       {{-- Begin page content --}}          

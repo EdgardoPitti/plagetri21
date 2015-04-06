@@ -21,7 +21,7 @@
 		      );
 
 		      if(Auth::attempt($user_data)){
-		        return View::make('inicio');
+		        return Redirect::to('/');
 		      }else{
 		      	return View::make('login')->with('error_login', 'Usuario o Contraseña Incorrectos');	      	
 		      }		  	
