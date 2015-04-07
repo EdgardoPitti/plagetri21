@@ -210,7 +210,7 @@
 													<tr>
 														<td>
 																{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}"><span class="label label-default">PorDefecto</span></div>
-											    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')', 'onKeyPress' =>'Comparar('.$marcadores->id.')')) }}
+											    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.'), Comparar('.$marcadores->id.')')) }}
 											    				@if($form['marcador_'.$marcadores->id.'']->id_unidad != 0)
 																	{{ Unidad::where('id', $form['marcador_'.$marcadores->id.'']->id_unidad)->first()->unidad }}
 											    				@else
@@ -266,7 +266,7 @@
 													<tr>
 														<td>
 																{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}"><span class="label label-default">PorDefecto</span></div>
-											    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')', 'onKeyPress' =>'Comparar('.$marcadores->id.')')) }}
+											    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.'), Comparar('.$marcadores->id.')')) }}
 											    				@if($form['marcador_'.$marcadores->id.'']->id_unidad != 0)
 																	{{ Unidad::where('id', $form['marcador_'.$marcadores->id.'']->id_unidad)->first()->unidad }}
 											    				@else

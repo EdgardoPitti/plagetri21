@@ -76,11 +76,6 @@
     {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
 	 {{ HTML::script('assets/js/locales/bootstrap-datepicker.es.js') }}
 	 <script type="text/javascript">
-		 $("form").keypress(function(e) {//Para deshabilitar el uso de la tecla "Enter"
-				if (e.which == 13) {
-					return false;
-				}
-			});
 		$(document).ready(function () {
 			$('.datepicker').datepicker({
 			    language: "es",
