@@ -363,20 +363,19 @@ function Comparar(id){
             var positivo = $('#positivo_'+id+'');
 			campo.empty();
 			var etiqueta = '<span class="label label-default">PorDefecto</span>';
-			positivo.val(-2);
+			positivo.val('-2');
             $.each(data, function(index,element) {
                 if(parseFloat(valor) < element.lim_inferior){
 					etiqueta = '<span class="label label-danger">Inferior</span>';      
-					positivo.val(-1);
-				}else{
-					if(parseFloat(valor) > element.lim_superior){
+					positivo.val('-1');
+				}
+				if(parseFloat(valor) > element.lim_superior){
 						etiqueta = '<span class="label label-warning">Superior</span>';
-						positivo.val(1);
-					}else{
+						positivo.val('1');
+				}	
+				if(parseFloat(valor) < element.lim_superior && parseFloat(valor) > element.lim_inferior){
 						etiqueta = '<span class="label label-success">Normal</span>';
-						positivo.val(0);
-		
-					}
+						positivo.val('0');
 				}
             });
             campo.append(etiqueta);
