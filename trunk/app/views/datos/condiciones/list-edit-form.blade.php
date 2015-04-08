@@ -45,7 +45,7 @@
 										<td>{{ $enfermedad->descripcion }}</td>
 										<td>{{ $enfermedad->mensaje_positivo }}</td>
 										<td>{{ $enfermedad->mensaje_negativo }}</td>
-										<td><a href="{{ route('datos.condiciones.edit', $enfermedad->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Enfermedad"><span class="glyphicon glyphicon-pencil"></span></a></td>
+										<td><a href="{{ route('datos.condiciones.edit', $enfermedad->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" title="Editar Enfermedad"><span class="glyphicon glyphicon-pencil"></span> Editar Enfermedad</a></td>
 									</tr>
 								 @endforeach
 							  </tbody>

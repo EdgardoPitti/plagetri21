@@ -108,7 +108,7 @@
     </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('id_etnia', 'Etnia:') }}
-      {{ Form::select('id_etnia',  array('0' => 'SELECCIONE LA ENTIA') + Etnia::lists('etnia', 'id_etnia'), $datos['paciente'][0]->id_etnia, array('class' => 'form-control')); }}    
+      {{ Form::select('id_etnia',  array('0' => 'SELECCIONE LA ETNIA') + Etnia::lists('etnia', 'id_etnia'), $datos['paciente'][0]->id_etnia, array('class' => 'form-control')); }}    
     </div>  
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('diabetes', 'Diabetes:') }}<br>
