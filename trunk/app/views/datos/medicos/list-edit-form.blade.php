@@ -182,6 +182,8 @@
 		</center>
 	  </div>
 	{{ Form::close() }}
+	{{ Form::open(array('route' => array('datos.medicos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
+  {{ Form::close() }}
 	<br>
   	{{ HTML::script('assets/js/overthrow/overthrow-detect.js') }}
     {{ HTML::script('assets/js/overthrow/overthrow-init.js') }}

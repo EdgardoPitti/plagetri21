@@ -150,12 +150,9 @@ class Datos_MedicosController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$medico = Medico::find($id);
-		$medico->delete();
-		$medico = new Medico;
-
-		$datos['medico'] = $medico;
-		return View::make('datos/medicos/list-edit-form')->with('datos', $datos);
+		Medico::destroy($id);
+		
+      return Response::json(['success'=> true]);
 	}
 
 
