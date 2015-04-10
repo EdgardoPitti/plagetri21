@@ -184,12 +184,9 @@ class Datos_PacientesController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$paciente = Paciente::find($id);
-		$paciente->delete();
-		
-		$paciente = new Paciente;
-		$datos['paciente'] = $paciente;
-       return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
+		Paciente::destroy($id);
+			
+      return Response::json(['success'=> true]);
 	}
 
 

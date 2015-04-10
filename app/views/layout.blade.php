@@ -72,7 +72,6 @@
     {{-- jQuery (necessary for Bootstrap's JavaScript plugins) --}}
     {{ HTML::script('assets/js/jquery.js') }}
     {{ HTML::script('assets/js/bootstrap.min.js') }}
-    {{ HTML::script('assets/js/admin.js') }}
     {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
 	 {{ HTML::script('assets/js/locales/bootstrap-datepicker.es.js') }}
 	 <script type="text/javascript">
@@ -84,11 +83,15 @@
 			    todayHighlight: true,
 			    autoclose: false
 			});
+			function eliminar() {
+				alert(1);
+			}
 		});
 	 </script> 
     {{ HTML::script('assets/js/bootstrap-table.js') }}
     {{ HTML::script('assets/js/bootstrap-table-es.js') }}
     {{ HTML::script('assets/js/dataTable.js') }}
+    {{ HTML::script('assets/js/admin.js') }}
     {{-- Include all compiled plugins (below), or include individual files as needed --}}
     {{ HTML::script('assets/js/perfect-scrollbar.min.js') }} 
     {{ HTML::script('assets/js/filtro.js') }}
