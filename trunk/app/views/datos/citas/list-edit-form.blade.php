@@ -161,15 +161,15 @@
 				    </div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('id_provincia_institucion', 'Provincia:') }}
-      					{{ Form::select('id_provincia_institucion', array('0' => 'SELECCIONE LA PROVINCIA') + Provincia::lists('provincia', 'id_provincia'), $form['citas']->id_provincia , array('class' => 'form-control')) }}
+      					{{ Form::select('id_provincia_institucion', array('0' => 'SELECCIONE LA PROVINCIA') + Provincia::lists('provincia', 'id_provincia'), $form['institucion']->id_provincia, array('class' => 'form-control')) }}
     				</div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('id_tipo_institucion', 'Tipo de Institución:') }}
-      					{{ Form::select('id_tipo_institucion', array('0' => 'SELECCIONE EL TIPO DE INSTITUCION') + Tipoinstitucion::lists('tipo_institucion', 'id'), $form['citas']->id_tipo, array('class' => 'form-control')) }}
+      					{{ Form::select('id_tipo_institucion', array('0' => 'SELECCIONE EL TIPO DE INSTITUCION') + Tipoinstitucion::lists('tipo_institucion', 'id'), $form['institucion']->id_tipo_institucion, array('class' => 'form-control')) }}
     				</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
       					{{ Form::label('id_institucion', 'Institución:') }}
-      					{{ Form::select('id_institucion', array('0' => 'SELECCIONE LA INSTITUCIÓN') + Institucion::where('id_provincia', $form['citas']->id_provincia)->where('id_tipo_institucion', $form['citas']->id_tipo)->lists('denominacion', 'id'), $form['citas']->id_institucion, array('class' => 'form-control', 'required' => 'required')) }}
+      					{{ Form::select('id_institucion', array('0' => 'SELECCIONE LA INSTITUCIÓN') + Institucion::where('id_provincia', $form['institucion']->id_provincia)->where('id_tipo_institucion', $form['institucion']->id_tipo_institucion)->lists('denominacion', 'id'), $form['citas']->id_institucion, array('class' => 'form-control', 'required' => 'required')) }}
     				</div>
 				</div>
 				<h3>Marcadores</h3>

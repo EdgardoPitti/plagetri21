@@ -112,7 +112,9 @@ class Datos_CitasController extends BaseController {
 		$form['label'] = 'Crear';
 		$form['citas'] = new Cita;
 		$form['citas']->riesgo = 100;
-		$form['citas']->riesgo_fap = 100;		
+		$form['citas']->riesgo_fap = 100;	
+		$form['citas']->id_institucion = 1;
+		$form['institucion'] = Institucion::find(1);	
 		$form['citas']->fecha_cita = date("20y-m-d");
 		$marcadorcita = new MarcadorCita;
 		//Ciclo que recorre todos los marcadores
@@ -141,12 +143,10 @@ class Datos_CitasController extends BaseController {
 		$cita = Cita::find($id);
 		$institucion = Institucion::find($cita->id_institucion);
 		//Decision para saber si se encontro la institucion perteneciente a la citas
-		if(!empty($institucion)){
-			$cita->id_provincia = $institucion->id_provincia;
-			$cita->id_tipo = $institucion->id_tipo_institucion;
+		if(empty($institucion)){
+			$form['institucion'] = new Institucion;
 		}else{
-			$cita->id_provincia = '0';
-			$cita->id_tipo = '0';
+			$form['institucion'] = $institucion;	
 		}
 		$datos = $paciente->datos_pacientes(0);
 		$dato_paciente = $paciente->datos_pacientes($cita->id_paciente);
