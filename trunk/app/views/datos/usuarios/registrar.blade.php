@@ -23,7 +23,7 @@
                 {{ Form::select('id_grupo_usuario',GrupoUsuario::lists('grupo_usuario', 'id'), null,array('class' => 'form-control')) }}                 
               </div>
               <div class="form-group">
-                {{ Form::submit('Guardar', array('class' => 'btn btn-success btn-block')) }} 
+                {{ Form::submit('Guardar', array('class' => 'btn btn-primary btn-block')) }} 
               </div>
               @if(isset($user_save))
                 <h4 style="color:#4cae4c;text-align:center;">{{ $user_save }}</h4>              
@@ -63,7 +63,7 @@
 											<td>{{ $usuario->user }}</td>
 											<td>{{ GrupoUsuario::where('id', $usuario->id_grupo_usuario)->first()->grupo_usuario }}</td>
 											<td>
-												<a href="{{ route('usuario.edit', $usuario->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar Usuario"><span class="glyphicon glyphicon-pencil"></span></a>  
+												<a href="{{ route('usuario.edit', $usuario->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip"  title="Editar Usuario"><span class="glyphicon glyphicon-pencil"></span> Editar</a>  
 											</td>
 
 										</tr>
