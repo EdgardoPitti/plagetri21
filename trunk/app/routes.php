@@ -17,7 +17,7 @@ Route::get('/', function(){
 		return View::make('login');		
 	}
 });
-Route::group(array('after' => 'no-cache'), function () {
+
 	Route::post('sigin', 'AuthController@postLogin');
 	//Rutas de Logueo y Registro de Usuarios
 	Route::get('logout', 'AuthController@getLogout');
@@ -58,4 +58,3 @@ Route::group(array('after' => 'no-cache'), function () {
 	Route::get('correccion_lineal', 'DropdownController@getCoeficienteLineal');
 	Route::get('correccion_exponencial', 'DropdownController@getCoeficienteExponencial');
 	Route::get('obtenermediana', 'Datos_MedianaController@getObtenerMediana');
-});
