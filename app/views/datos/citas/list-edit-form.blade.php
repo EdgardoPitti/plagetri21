@@ -306,9 +306,11 @@
 					</div>
 				</div>	
 				<center>
-					{{ Form::button($form['label'].' Cita', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
 					@if($form['label'] == 'Editar')
+						{{ Form::button($form['label'].' Cita', array('type' => 'submit', 'class' => 'btn btn-success')) }}
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ route('datos.citas.show', $datos[0]->id) }}" class="btn btn-info"> Nueva Cita</a>
+					@else
+						{{ Form::button($form['label'].' Cita', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
 					@endif
 				</center>
 			{{ Form::close() }}		
@@ -358,8 +360,8 @@
 										  				 	<td>{{ $form['marcador_cita']->obtenerMarcador($marcador->id, $citas->id)->valor }}</td> 
 										  			@endforeach
 										  			<td align="center">
-										  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span> Editar </a>
-										  				<a href="{{ route('print.edit', $citas->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Imprimir"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+										  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span> Editar </a>
+										  				<a href="{{ route('print.edit', $citas->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
 										  			</td>
 										  		</tr>
 									  		@endforeach
