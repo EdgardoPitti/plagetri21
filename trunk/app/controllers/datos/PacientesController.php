@@ -14,6 +14,7 @@ class Datos_PacientesController extends BaseController {
 	{
 		$datos['form'] = array('route' => 'datos.pacientes.store', 'method' => 'POST');
 		$datos['label'] = 'Crear';
+		$datos['button'] = 'primary';
 		$datos['paciente'][0] = new Paciente;
 		$datos['paciente'][0]->id_nacionalidad = 62;
 		$datos['paciente'][0]->fuma = 0;
@@ -110,6 +111,7 @@ class Datos_PacientesController extends BaseController {
 		$paciente = new Paciente;
 		$datos['form'] =  array('route' => array('datos.pacientes.update', $id), 'method' => 'PATCH');
       	$datos['label']= 'Editar';
+      	$datos['button'] = 'success';
 		$datos['paciente'] = $paciente->datos_pacientes($id);
 		return View::make('datos/pacientes/list-edit-form')->with('datos', $datos);
 	}

@@ -175,7 +175,7 @@
 
   <div class="form-group col-sm-12 col-md-12 col-lg-12">
     <center>
-      {{ Form::button($datos['label'].' Paciente', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+      {{ Form::button($datos['label'].' Paciente', array('type' => 'submit', 'class' => 'btn btn-'.$datos['button'].'')) }}
       <a href="{{ route('datos.pacientes.index') }}" class="btn btn-info">Limpiar Campos</a>
     </center>
   </div>
