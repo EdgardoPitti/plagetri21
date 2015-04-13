@@ -44,9 +44,9 @@
 							  			<td>{{ $grupo->grupo_usuario }}</td>
 							  			<td>{{ User::where('id_grupo_usuario', $grupo->id)->count() }}</td>
 							  			<td align="center">
-											<a href="{{ route('datos.modulos.edit', $grupo->id) }}" class="btn btn-primary btn-sm" style="margin:3px 0px;" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>								  				
-							  				<a href="{{ route('datos.modulos.show', $grupo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Cargar Módulos"><span class="glyphicon glyphicon-list-alt"></span></a>
-							  				<a href="#" data-id="{{ $grupo->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>                                            
+											<a href="{{ route('datos.modulos.edit', $grupo->id) }}" class="btn btn-success btn-sm" style="margin:3px 0px;" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-pencil"></span> Editar</a>								  				
+							  				<a href="{{ route('datos.modulos.show', $grupo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Cargar Módulos"><span class="glyphicon glyphicon-list-alt"></span> Cargar</a>
+							  				{{--<a href="#" data-id="{{ $grupo->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span> Eliminar</a> --}}
 							  			</td>
 							  		</tr>
 							  		@endforeach
