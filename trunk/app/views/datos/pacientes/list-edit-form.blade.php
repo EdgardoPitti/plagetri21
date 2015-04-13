@@ -6,7 +6,7 @@
 <h1>
  <div style="position:relative;">
     <div style="position:absolute;left:0px;">
-      <a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span><span class="return"> Inicio</span></a>
+      <a href="{{URL::to('/')}}" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span><span class="return"> Inicio</span></a>
     </div>
   </div>
   <center>{{ $datos['label'] }} Pacientes</center>
