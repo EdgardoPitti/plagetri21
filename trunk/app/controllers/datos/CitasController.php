@@ -1,5 +1,4 @@
- <?php
-
+<?php
 class Datos_CitasController extends BaseController {
 
 	public function __construct(){
@@ -79,7 +78,7 @@ class Datos_CitasController extends BaseController {
 			$marcadorcita->mom = $data['mom_'.$marcador->id.''];
 			$marcadorcita->corr_peso_lineal = $data['corr_lineal_'.$marcador->id.''];
 			$marcadorcita->corr_peso_exponencial = $data['corr_exp_'.$marcador->id.''];
-			$marcadorcita->positivo = '';//$data['positivo_'.$marcador->id.''];
+			$marcadorcita->positivo = $data['positivo_'.$marcador->id.''];
 			$marcadorcita->save();
 			
 			//Sentencias para almacenar los mismos valores de los marcadores en otra tabla para posterior analisis
@@ -105,7 +104,7 @@ class Datos_CitasController extends BaseController {
 
 	public function show($id)
 	{
-		$paciente = neW Paciente;
+		$paciente = new Paciente;
 		$datos = $paciente->datos_pacientes(0);
 		$dato_paciente = $paciente->datos_pacientes($id);
 		$form['datos'] = array('route' => 'datos.citas.store', 'method' => 'POST');
@@ -123,8 +122,8 @@ class Datos_CitasController extends BaseController {
 			$form['marcador_cita'] = $marcadorcita;
 			$form['marcador_'.$marcador->id.'']->mom = '0.00000';
 			$form['marcador_'.$marcador->id.'']->corr_peso_lineal = '0.00000';
-			$form['marcador_'.$marcador->id.'']->corr_peso_exponencial = '0.00000';
-			
+			$form['marcador_'.$marcador->id.'']->corr_peso_exponencial = '0.00000';	
+			$form['marcador_'.$marcador->id.'']->etiqueta = '<span class="label label-default">PorDefecto</span>';
 		}
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 
@@ -157,8 +156,17 @@ class Datos_CitasController extends BaseController {
 		//Ciclo que recorre todos los marcadores y los busca para devolver los datos correspondientes
 		foreach(Marcador::all() as $marcador){
 			$form['marcador_'.$marcador->id.''] = $marcadorcita->obtenerMarcador($marcador->id, $id);
-			$form['marcador_cita'] = $marcadorcita;
+			if($form['marcador_'.$marcador->id.'']->positivo == '-1'){
+				$form['marcador_'.$marcador->id.'']->etiqueta = '<span class="label label-danger">Inferior</span>';
+			}elseif($form['marcador_'.$marcador->id.'']->positivo == '0'){
+				$form['marcador_'.$marcador->id.'']->etiqueta = '<span class="label label-success">Normal</span>';
+			}elseif($form['marcador_'.$marcador->id.'']->positivo == '1'){
+				$form['marcador_'.$marcador->id.'']->etiqueta = '<span class="label label-warning">Superior</span>';
+			}else{
+				$form['marcador_'.$marcador->id.'']->etiqueta = '<span class="label label-default">PorDefecto</span>';
+			}
 		}
+		$form['marcador_cita'] = $marcadorcita;
 		return View::make('datos/citas/list-edit-form')->with('pacientes', $datos)->with('datos', $dato_paciente)->with('form', $form);
 	}
 
