@@ -26,12 +26,12 @@
 							{{ Form::select('marcador', array('0' => 'MARCADOR') + Marcador::all()->lists('marcador', 'id'), null, array('class' => 'form-control', 'required' => 'required')) }}
 						</div>
 						<div class="form-group col-sm-4 col-md-4 col-lg-4">
-							{{ Form::label('mediana', 'Mediana del Marcador:') }}
-							{{ Form::text('mediana', null, array('placeholder' => 'MEDIANA MARCADOR', 'class' => 'form-control', 'required' => 'required')) }}
-						</div>
-						<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4">
 							{{ Form::label('id_unidad', 'Unidad del Marcador:') }}
 							{{ Form::select('id_unidad', Unidad::lists('unidad', 'id'), null , array('class' => 'form-control')) }}
+						</div>
+						<div class="form-group col-sm-4 col-md-4 col-lg-4 col-md-offset-4">
+							{{ Form::label('mediana', 'Mediana del Marcador:') }}
+							{{ Form::text('mediana', null, array('placeholder' => 'MEDIANA MARCADOR', 'class' => 'form-control', 'required' => 'required')) }}
 						</div>
 					</div>
 					<center>{{ Form::button('Salvar Marcador', array('type' => 'submit', 'class' => 'btn btn-primary')) }}</center>

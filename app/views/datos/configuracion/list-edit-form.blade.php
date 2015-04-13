@@ -44,7 +44,7 @@
 								@endif
 								<td>{{ UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->created_at }}</td>
 							@endif
-							<td><a href="{{ route('datos.configuracion.edit', $marcadores->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Unidad"><span class="glyphicon glyphicon-pencil"></span></a></td>
+							<td><a href="{{ route('datos.configuracion.edit', $marcadores->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" title="Editar Unidad"><span class="glyphicon glyphicon-pencil"></span> Editar Unidad</a></td>
 						</tr> 
 						
 					@endforeach
