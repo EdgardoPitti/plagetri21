@@ -41,7 +41,7 @@ class Medico extends Eloquent {
 			}
 		}else{
 			//Realiza la busqueda de los médicos por su nombre completo.
-			$datos = DB::select("SELECT * FROM medicos WHERE concat(`primer_nombre`,' ',`segundo_nombre`,' ',`apellido_paterno`,' ',`apellido_materno`) LIKE '%".$id."%' LIMIT ".$offset.",".$limit.";");
+			$datos = DB::select("SELECT * FROM medicos WHERE concat(`primer_nombre`,' ',`apellido_paterno`) LIKE '%".$id."%' LIMIT ".$offset.",".$limit.";");
 		}
 		$x = 0;
 		foreach($datos as $medico){			
@@ -51,7 +51,11 @@ class Medico extends Eloquent {
 				$foto = $datos[$x]->foto;
 			}
 			$datos[$x]->foto = $foto;
-			$datos[$x]->especialidad = EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion;	
+			if(!empty($medico->id_especialidades_medicas)) {
+				$datos[$x]->especialidad = EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion;	
+			}else {
+				$datos[$x]->especialidad = 'POR DEFINIR';
+			}
 			
 			//Funciones para detectar si no esta vacio el campo retorna el valor de la busqueda al modal.			
 			if(!empty($medico->id_nivel)){
