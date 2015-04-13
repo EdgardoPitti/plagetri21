@@ -6,7 +6,7 @@
 		public function postLogin() {
 		  $reglas = array(
 	  			'user' => 'required', 
-	  			'password' => 'required|alpha_num'
+	  			'password' => 'required'
 		  ); 	
 		  
 		  $validator = Validator::make(Input::all(), $reglas);
