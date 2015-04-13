@@ -87,7 +87,7 @@
 				<td>{{ Marcador::where('id', $marcador->id_marcador)->first()->marcador }}</td>
 				<td>{{ $marcador->valor }} @if(!empty(Unidad::where('id', $marcador->id_unidad)->first()->unidad)){{ Unidad::where('id', $marcador->id_unidad)->first()->unidad }}@endif</td>
 				<td>{{ $marcador->mom }}</td>
-				<td>@if($marcador->positivo == 0) Normal @elseif($marcador->positivo == -1)	Bajo @else Alto	@endif</td>
+				<td>@if($marcador->positivo == 0) Normal @elseif($marcador->positivo == -1)	Bajo @elseif($marcador->positivo == -2) No Definido @else Alto	@endif</td>
 			</tr>
 			@endforeach
 		</table>
