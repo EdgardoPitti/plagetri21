@@ -33,25 +33,24 @@
                   @else
                     <h3 class="font-login">Iniciar Sesión</h3>
                   @endif
-                  <div class="form-group input-group">
+                  <div class="form-group input-group @if ($errors->has('user')) has-error @endif">
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-user"></i>
                     </span>        
                     {{ Form::text('user', null, array('class' => 'form-control', 'placeholder' => 'Usuario', 'required' => 'required')) }}                  
                   </div>
-                  @if($errors->has())
-                    <p style="color:#f00;text-align:center;"> {{ $errors->first('user') }}</p>                  
-                  @endif
-                  <div class="form-group input-group">
+                    {{ $errors->first("user", "<p style='color:#f00;text-align:center;'>:message </p>") }}                  
+                  
+                  <div class="form-group input-group @if ($errors->has('password')) has-error @endif">
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-lock">
                       </i>
                     </span>
                     {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Contraseña', 'required' => 'required')) }}                 
                   </div>
-                  @if($errors->has())
-                    <p style="color:#f00;text-align:center;">{{ $errors->first('password') }}</p>                  
-                  @endif
+                  
+                    {{ $errors->first("password", "<p style='color:#f00;text-align:center;'>:message</p>") }}                  
+                  
                   <div class="form-group">
                     <center><i class="fa fa-spinner fa-spin fa-3x" id="loading" style="color:#428bca;margin-bottom:10px;display:none;"></i></center>
                     {{ Form::submit('Ingresar', array('class' => 'btn btn-primary btn-block', 'id' => 'boton')) }} 
