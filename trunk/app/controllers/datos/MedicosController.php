@@ -43,32 +43,38 @@ class Datos_MedicosController extends BaseController {
 		$medico = new Medico;
         $data = Input::all();
         $foto = Input::file("foto");
- 		$medico->cedula = $data['cedula'];
-        $medico->primer_nombre = $data['primer_nombre'];
-        $medico->segundo_nombre = $data['segundo_nombre'];
-        $medico->apellido_paterno = $data['apellido_paterno'];
-        $medico->apellido_materno = $data['apellido_materno'];
-        $medico->sexo = $data['sexo'];
-        $medico->id_especialidades_medicas = $data['id_especialidades_medicas'];
-        $medico->celular = $data['celular'];
-        $medico->telefono = $data['telefono'];
-        $medico->extension = $data['extension'];
-        $medico->email = $data['email'];
-        $medico->id_nivel = $data['id_nivel'];
-        $medico->id_ubicacion = $data['id_ubicacion'];
-        $medico->observacion = $data['observaciones'];
-        $medico->save(); 
-        //Almacenamiento de la foto
-        if(!is_null($foto)){
-        	$id = Medico::all()->last()->id; //Se obtiene el id del ultimo medico registrado
-        	$extension = $foto->getClientOriginalExtension(); //se obtiene la extension de la foto
-        	$name_foto = 'm_'.$id.'.'.$extension; //Se guarda el nombre del medico con prefijo m_ y el id del medico
-        	$medico = Medico::find($id); //Buscamos el medico guardado anteriormente
-        	$medico->foto = $name_foto;
-        	$medico->save();  			//Guardamos el nombre de la foto en la base de datos
-        	$foto->move("imgs", $name_foto); //Movemos la foto a la carpeta imgs
-        }
-        return Redirect::route('datos.medicos.index');
+        $rules = array('cedula' => 'unique:medicos,cedula');
+        $validator = Validator::make(array('cedula' => $data['cedula']), $rules);
+        if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}else{			
+			$medico->cedula = $data['cedula'];
+			$medico->primer_nombre = $data['primer_nombre'];
+			$medico->segundo_nombre = $data['segundo_nombre'];
+			$medico->apellido_paterno = $data['apellido_paterno'];
+			$medico->apellido_materno = $data['apellido_materno'];
+			$medico->sexo = $data['sexo'];
+			$medico->id_especialidades_medicas = $data['id_especialidades_medicas'];
+			$medico->celular = $data['celular'];
+			$medico->telefono = $data['telefono'];
+			$medico->extension = $data['extension'];
+			$medico->email = $data['email'];
+			$medico->id_nivel = $data['id_nivel'];
+			$medico->id_ubicacion = $data['id_ubicacion'];
+			$medico->observacion = $data['observaciones'];
+			$medico->save(); 
+			//Almacenamiento de la foto
+			if(!is_null($foto)){
+				$id = Medico::all()->last()->id; //Se obtiene el id del ultimo medico registrado
+				$extension = $foto->getClientOriginalExtension(); //se obtiene la extension de la foto
+				$name_foto = 'm_'.$id.'.'.$extension; //Se guarda el nombre del medico con prefijo m_ y el id del medico
+				$medico = Medico::find($id); //Buscamos el medico guardado anteriormente
+				$medico->foto = $name_foto;
+				$medico->save();  			//Guardamos el nombre de la foto en la base de datos
+				$foto->move("imgs", $name_foto); //Movemos la foto a la carpeta imgs
+			}
+			return Redirect::route('datos.medicos.index');
+		}
 	}
 
 
