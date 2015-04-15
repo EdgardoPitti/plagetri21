@@ -17,6 +17,55 @@
 
 
 		<hr>
+	<div class="modal fade" id="Show" tabindex="-1" role="dialog" aria-labelledby="showMedico" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header fondo-hd">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title"><i class="fa fa-plus-square"></i> M&eacute;dico &nbsp;
+	      	</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<h4><label id="medico"></label></h4>
+	      	<div class="row showDatos">      			
+                <div class="col-md-3 col-lg-3" id="foto" align="center"> 
+                	<!-- Img del medico-->
+                </div>
+               
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Extensi&oacute;n:</td>
+                        <td><label id="ext"></label></td>
+                      </tr>
+                      <tr>
+                        <td>Especialidad:</td>
+                        <td><label id="esp"></label></td>
+                      </tr>
+                      <tr>
+                        <td>Nivel:</td>
+                        <td><label id="lvl"></label></td>
+                      </tr>
+                      <tr>
+                        <td>Ubicación:</td>
+                        <td><label id="loc"></label></td>
+                      </tr>
+                       <tr>
+                        <td>Observación:</td>
+                        <td><label id="obs"></label></td>
+                      </tr>
+                    </tbody>
+                  </table>                  
+                </div>
+              </div>
+	      </div>
+	      <div class="modal-footer fondo-ft">	        
+	        <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+	       </div>
+	    </div>
+	  </div>
+	</div>
 
 
 	<div class="row">
@@ -59,6 +108,25 @@
 							<td align="center"><a href="{{ route('datos.agenda.edit', $agenda->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar Agenda"><span class="glyphicon glyphicon-list-alt"></span></a>                         </td>
 						</tr>
 					@endforeach
+					
+					
+					{{--*/ $x=1; /*--}}
+					@foreach (Medico::all() as $medico)
+						<tr>
+							<td>{{ $x++ }}.</td>
+							<td>{{ $medico->primer_nombre.' '.$medico->apellido_paterno }}</td>
+							@if(empty(EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion))
+								<td> Doctor </td>
+							@else
+								<td>{{ EspecialidadMedica::where('id_especialidades_medicas', $medico->id_especialidades_medicas)->first()->descripcion }}</td>
+							@endif
+							<td>{{ $medico->telefono }}</td>
+							<td>{{ $medico->celular }}</td>
+							<td>{{ $medico->extension }}</td>
+							<td><a href='#Show' onclick='show({{$medico->id}})'  class='btn btn-info btn-sm ver' data-toggle='modal'  title='Ver Médico' style='margin:3px 0px;'><span class='glyphicon glyphicon-eye-open'></span> Ver </a></td>
+						</tr>
+					@endforeach
+					
 					</tbody>
 				</table>
 			 </div>
