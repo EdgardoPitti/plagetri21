@@ -73,7 +73,7 @@
     </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4 @if($errors->has('cedula')) has-error @endif">
       {{ Form::label('cedula', 'N&uacute;mero de C&eacute;dula') }}
-      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required', '' => 'validarced(1)')) }}
+      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required', 'onkeyup' => 'validarced(1)')) }}
     </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('primer_nombre', 'Primer Nombre') }}
