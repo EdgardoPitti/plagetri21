@@ -41,9 +41,16 @@
             <div class="clear"></div>
         </div>
       </div>
-    </div>   
+     </div>   
+    </div>
 {{ Form::model($datos['paciente'][0], $datos['form'] + array('files' => 'true') , array('role' => 'form')) }}
   <div class="row">
+	 @if($errors->has('cedula'))
+	    <div class="alert alert-danger">
+	    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+			<p style="text-align:center;font-weight:bold;">{{ $errors->first("cedula") }}</p>	    
+	    </div>	    
+    @endif
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       <center>
         {{ Form::label('foto', 'Foto de Perfil') }}<br>
@@ -64,10 +71,9 @@
             </span>
         </div>   
     </div>
-    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+    <div class="form-group col-sm-4 col-md-4 col-lg-4 @if($errors->has('cedula')) has-error @endif">
       {{ Form::label('cedula', 'N&uacute;mero de C&eacute;dula') }}
       {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required', 'onkeyup' => 'validarced(1)')) }}
-      {{ $errors->first("cedula", "<p style='color:#f00;text-align:center;'>:message</p>") }}
     </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('primer_nombre', 'Primer Nombre') }}
