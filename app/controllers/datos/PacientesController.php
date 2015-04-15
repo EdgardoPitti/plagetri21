@@ -46,45 +46,52 @@ class Datos_PacientesController extends BaseController {
 	public function store()
 	{
 		$data = Input::all();  
+		$rules = array('cedula' => 'unique:pacientes,cedula');
 		$foto = Input::file("foto");
         $paciente = new Paciente;
-        $paciente->cedula = $data['cedula'];
-        $paciente->primer_nombre = $data['primer_nombre'];
-        $paciente->segundo_nombre = $data['segundo_nombre'];
-        $paciente->apellido_paterno = $data['apellido_paterno'];
-        $paciente->apellido_materno = $data['apellido_materno'];
-        $paciente->sexo = $data['sexo'];
-        $paciente->fecha_nacimiento = $data['fecha_nacimiento'];
-        $paciente->lugar_nacimiento = $data['lugar_nacimiento'];
-        $paciente->id_provincia_nacimiento = $data['id_provincia'];
-        $paciente->id_distrito_nacimiento = $data['id_distrito'];
-        $paciente->id_corregimiento_nacimiento = $data['id_corregimiento'];
-        $paciente->telefono = $data['telefono'];
-        $paciente->celular = $data['celular'];
-        $paciente->email = $data['email'];
-        $paciente->id_nacionalidad = $data['id_nacionalidad'];
-        $paciente->id_tipo_sangre = $data['id_tipo_sanguineo'];
-        $paciente->id_provincia_residencia = $data['id_provincia_residencia'];
-        $paciente->id_distrito_residencia = $data['id_distrito_residencia'];
-        $paciente->id_corregimiento_residencia = $data['id_corregimiento_residencia'];
-        $paciente->lugar_residencia = $data['lugar_residencia'];
-        $paciente->id_raza = $data['id_raza'];
-        $paciente->id_etnia = $data['id_etnia'];
-        $paciente->diabetes = $data['diabetes'];
-        $paciente->embarazo_trisomia = $data['embarazo_trisomia'];
-        $paciente->fuma = $data['fuma'];
-        $paciente->save();
-        //Almacenamiento de Foto
-        if(!is_null($foto)){
-	        $id = Paciente::all()->last()->id;
-	        $extension = $foto->getClientOriginalExtension();
-	        $nombre_foto = 'p_'.$id.'.'.$extension;
-	        $paciente = Paciente::find($id);
-	        $paciente->foto = $nombre_foto;
-	        $paciente->save();
-	        $foto->move("imgs",$nombre_foto);
-		}
-        return Redirect::route('datos.pacientes.index');	
+        
+        $validator = Validator::make(array('cedula' => $data['cedula']), $rules);
+        if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}else{			
+			$paciente->cedula = $data['cedula'];
+			$paciente->primer_nombre = $data['primer_nombre'];
+			$paciente->segundo_nombre = $data['segundo_nombre'];
+			$paciente->apellido_paterno = $data['apellido_paterno'];
+			$paciente->apellido_materno = $data['apellido_materno'];
+			$paciente->sexo = $data['sexo'];
+			$paciente->fecha_nacimiento = $data['fecha_nacimiento'];
+			$paciente->lugar_nacimiento = $data['lugar_nacimiento'];
+			$paciente->id_provincia_nacimiento = $data['id_provincia'];
+			$paciente->id_distrito_nacimiento = $data['id_distrito'];
+			$paciente->id_corregimiento_nacimiento = $data['id_corregimiento'];
+			$paciente->telefono = $data['telefono'];
+			$paciente->celular = $data['celular'];
+			$paciente->email = $data['email'];
+			$paciente->id_nacionalidad = $data['id_nacionalidad'];
+			$paciente->id_tipo_sangre = $data['id_tipo_sanguineo'];
+			$paciente->id_provincia_residencia = $data['id_provincia_residencia'];
+			$paciente->id_distrito_residencia = $data['id_distrito_residencia'];
+			$paciente->id_corregimiento_residencia = $data['id_corregimiento_residencia'];
+			$paciente->lugar_residencia = $data['lugar_residencia'];
+			$paciente->id_raza = $data['id_raza'];
+			$paciente->id_etnia = $data['id_etnia'];
+			$paciente->diabetes = $data['diabetes'];
+			$paciente->embarazo_trisomia = $data['embarazo_trisomia'];
+			$paciente->fuma = $data['fuma'];
+			$paciente->save();
+			//Almacenamiento de Foto
+			if(!is_null($foto)){
+				$id = Paciente::all()->last()->id;
+				$extension = $foto->getClientOriginalExtension();
+				$nombre_foto = 'p_'.$id.'.'.$extension;
+				$paciente = Paciente::find($id);
+				$paciente->foto = $nombre_foto;
+				$paciente->save();
+				$foto->move("imgs",$nombre_foto);
+			}
+			return Redirect::route('datos.pacientes.index');
+        }
 	}
 
 

@@ -97,4 +97,14 @@ class DropdownController extends BaseController
 		$medianas = MedianaMarcadorAuto::where('id_marcador', $idmarcador)->where('semana', $semana);
 		return ($medianas->get(['mediana_marcador', 'id_unidad']));
 	}
+	public function getValidarCed(){
+		$data = Input::all();
+		$paciente = Paciente::where('cedula', $data['ced']);
+		return ($paciente->get(['cedula']));
+	}
+	public function getValidarCedM(){
+		$data = Input::all();
+		$medico = Medico::where('cedula', $data['ced']);
+		return ($medico->get(['cedula']));
+	}
 }

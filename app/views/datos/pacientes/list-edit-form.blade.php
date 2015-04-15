@@ -66,7 +66,8 @@
     </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('cedula', 'N&uacute;mero de C&eacute;dula') }}
-      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required')) }}
+      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required', 'onkeyup' => 'validarced(1)')) }}
+      {{ $errors->first("cedula", "<p style='color:#f00;text-align:center;'>:message</p>") }}
     </div>
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('primer_nombre', 'Primer Nombre') }}
