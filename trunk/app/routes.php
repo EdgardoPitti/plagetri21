@@ -58,3 +58,5 @@ Route::get('/', function(){
 	Route::get('correccion_lineal', 'DropdownController@getCoeficienteLineal');
 	Route::get('correccion_exponencial', 'DropdownController@getCoeficienteExponencial');
 	Route::get('obtenermediana', 'Datos_MedianaController@getObtenerMediana');
+	Route::post('validarced', 'DropdownController@getValidarCed');
+	Route::post('validarcedm', 'DropdownController@getValidarCedM');

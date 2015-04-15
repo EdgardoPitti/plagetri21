@@ -12,6 +12,7 @@
     {{ HTML::style('assets/css/font-awesome.min.css', array('media' => 'screen')) }}
     {{ HTML::style('assets/css/perfect-scrollbar.min.css', array('media' => 'screen')) }}  
     {{ HTML::style('assets/css/defaultTheme.css') }}
+    {{ HTML::style('assets/css/sweet-alert.css') }}
     {{ HTML::style('assets/css/bootstrap-table.css') }}
     {{ HTML::style('assets/css/datepicker3.css') }}		
     {{-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --}}
@@ -92,6 +93,7 @@
     {{ HTML::script('assets/js/bootstrap-table-es.js') }}
     {{ HTML::script('assets/js/dataTable.js') }}
     {{ HTML::script('assets/js/admin.js') }}
+    {{ HTML::script('assets/js/sweet-alert.js') }}
     {{-- Include all compiled plugins (below), or include individual files as needed --}}
     {{ HTML::script('assets/js/perfect-scrollbar.min.js') }} 
     {{ HTML::script('assets/js/filtro.js') }}

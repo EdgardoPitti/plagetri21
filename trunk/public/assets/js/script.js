@@ -352,7 +352,39 @@ jQuery(document).ready(function($){
         });
 
 
-});    
+});  
+
+function validarced(sw){
+		var host = window.location.host;
+		var ruta;
+		var msj;
+		var c = 0;
+		if(sw == 1){
+			ruta = 'validarced';
+			msj = '¡Este paciente ya existe!';
+		}else{
+			ruta = 'validarcedm';
+			msj = '¡Este médico ya existe!';
+		}
+	    $.post("http://"+host+"/plagetri21/public/"+ruta+"", 
+            { ced: $('#cedula').val() }, 
+            function(data){
+                $.each(data, function(index,element) {
+					if(c == 0){
+						c = 1;
+						//alert(msj);
+						swal({
+						  title: "¡Alerta!",
+						  text: ""+msj+"",
+						  type: "warning",
+						  confirmButtonClass: "btn-warning",
+						  confirmButtonText: "Aceptar",
+						});
+					}
+
+                });
+            });
+}  
 function Comparar(id){
 	var host = window.location.host;
     $.get("http://"+host+"/plagetri21/public/comparar", 
