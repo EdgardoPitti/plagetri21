@@ -357,34 +357,40 @@ jQuery(document).ready(function($){
 function validarced(sw){
 		var host = window.location.host;
 		var ruta;
-		var msj;
 		var c = 0;
 		if(sw == 1){
 			ruta = 'validarced';
-			msj = '¡Este paciente ya existe!';
 		}else{
 			ruta = 'validarcedm';
-			msj = '¡Este médico ya existe!';
 		}
-	    $.post("http://"+host+"/plagetri21/public/"+ruta+"", 
+		var divParent = $('#errorCedula'); //obtiene el div padre del input
+	    $.post("http://"+host+"/plagetri21/public/"+ruta, 
             { ced: $('#cedula').val() }, 
             function(data){
-                $.each(data, function(index,element) {
+                $.each(data, function(index,element) {                	
 					if(c == 0){
 						c = 1;
-						//alert(msj);
-						swal({
-						  title: "¡Alerta!",
-						  text: ""+msj+"",
-						  type: "warning",
-						  confirmButtonClass: "btn-warning",
-						  confirmButtonText: "Aceptar",
-						});
+						divParent.addClass('has-error has-feedback');
+						divParent.append("<span class='glyphicon glyphicon-remove form-control-feedback remove' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Cédula duplicada' onclick='clearInput();'></span> <span id='inputError' class='sr-only remove'>(error)</span>");
+						$('.remove').tooltip();					
 					}
 
-                });
             });
+        });
+        if (c == 0) {
+				divParent.removeClass('has-error has-feedback');
+				$('span.remove').remove(); 
+        }
+            
 }  
+function clearInput() {
+	var divParent = $('#errorCedula');
+ 	$('#cedula').val('');
+ 	divParent.removeClass('has-error has-feedback');
+	divParent.find('span.remove').remove();
+	divParent.find('.tooltip').remove();
+						
+}
 function Comparar(id){
 	var host = window.location.host;
     $.get("http://"+host+"/plagetri21/public/comparar", 

@@ -71,10 +71,14 @@
             </span>
         </div>   
     </div>
-    <div class="form-group col-sm-4 col-md-4 col-lg-4 @if($errors->has('cedula')) has-error @endif">
-      {{ Form::label('cedula', 'N&uacute;mero de C&eacute;dula') }}
-      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required', 'onkeyup' => 'validarced(1)')) }}
-    </div>
+    <div class="form-group col-sm-4 col-md-4 col-lg-4 @if($errors->has('cedula')) has-error has-feedback @endif" id="errorCedula">
+      {{ Form::label('cedula', 'N&uacute;mero de C&eacute;dula:', ['class' => 'control-label']) }}
+      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required', 'aria-describedby' => 'inputError', 'onkeyup' => 'validarced(1)')) }}
+		@if($errors->has('cedula'))		
+	      <span class='glyphicon glyphicon-remove form-control-feedback remove' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Cédula duplicada'></span> 
+	      <span id='inputError' class='sr-only remove'>(error)</span>
+	   @endif	      
+	  </div>	  
     <div class="form-group col-sm-4 col-md-4 col-lg-4">
       {{ Form::label('primer_nombre', 'Primer Nombre') }}
       {{ Form::text('primer_nombre', null, array('placeholder' => 'Primer Nombre', 'class' => 'form-control', 'required' => 'required')) }}        
