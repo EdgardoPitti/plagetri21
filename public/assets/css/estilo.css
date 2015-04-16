@@ -409,3 +409,10 @@ input.cmn-toggle-round-flat:checked + label:after {
     padding: 0 !important; 
     margin: 0 !important;
 }
+.has-feedback > span.remove{
+	position: absolute;
+	right: 12px;
+}
+.remove:hover{
+	cursor: pointer;
+}
