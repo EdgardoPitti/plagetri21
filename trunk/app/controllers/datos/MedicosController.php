@@ -160,7 +160,7 @@ class Datos_MedicosController extends BaseController {
 	{
 		Medico::destroy($id);
 		
-      return Response::json(['success'=> true]);
+      return Response::json(['success'=> true, 'route' => 'datos/medicos']);
 	}
 
 
