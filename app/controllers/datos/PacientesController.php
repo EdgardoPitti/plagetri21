@@ -194,8 +194,8 @@ class Datos_PacientesController extends BaseController {
 	public function destroy($id)
 	{
 		Paciente::destroy($id);
-			
-      return Response::json(['success'=> true]);
+		
+      return Response::json(['success'=> true, 'route' => 'datos/pacientes']);
 	}
 
 
