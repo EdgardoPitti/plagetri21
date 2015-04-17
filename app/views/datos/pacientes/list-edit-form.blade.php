@@ -75,7 +75,7 @@
       {{ Form::label('cedula', 'N&uacute;mero de C&eacute;dula:', ['class' => 'control-label']) }}
       {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required', 'aria-describedby' => 'inputError', 'onkeyup' => 'validarced(1)')) }}
 		@if($errors->has('cedula'))		
-	      <span class='glyphicon glyphicon-remove form-control-feedback remove' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Cédula duplicada'></span> 
+	      <span class='glyphicon glyphicon-remove form-control-feedback remove' aria-hidden='true' onclick='clearInput();' data-toggle='tooltip' data-placement='top' title='Cédula duplicada'></span> 
 	      <span id='inputError' class='sr-only remove'>(error)</span>
 	   @endif	      
 	  </div>	  
