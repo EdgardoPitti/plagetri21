@@ -105,12 +105,10 @@
 							<td>{{ $agenda->telefono }}</td>
 							<td>{{ $agenda->celular }}</td>
 							<td>{{ $agenda->extension }}</td>
-							<td align="center"><a href="{{ route('datos.agenda.edit', $agenda->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar Agenda"><span class="glyphicon glyphicon-list-alt"></span></a>                         </td>
+							<td align="center"><a href="{{ route('datos.agenda.edit', $agenda->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Editar Agenda"><span class="glyphicon glyphicon-list-alt"></span> Editar </a></td>
 						</tr>
 					@endforeach
-					
-					
-					{{--*/ $x=1; /*--}}
+					{{-- Médicos --}}
 					@foreach (Medico::all() as $medico)
 						<tr>
 							<td>{{ $x++ }}.</td>
