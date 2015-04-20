@@ -48,14 +48,23 @@ function show(id) {
 	$.post("http://"+host+"/plagetri21/public/medicos/getmedicos",            
 	  { medico: id }, 
 	  function(data){	    
-	    $('#foto').html('<img alt="Medico" src="http://'+host+'/plagetri21/public/imgs/'+data.foto+'" class="img-rounded" style="width:80px;"> ');
-	    $('#medico').html(data.first_name+' '+data.second_name+' '+data.last_name+' '+data.last_sec_name);
-	    $('#ext').html(data.extension);	    
-	    $('#esp').html(data.especiality);
-	    $('#lvl').html(data.level);
-	    $('#loc').html(data.ubicacion);
-	    $('#obs').html(data.observacion);
-	});
+       $("#loading").fadeIn().html('<img alt="Medico" src="http://'+host+'/plagetri21/public/imgs/loading.gif" style="width:20px;">');
+		 var datos = "<h4><label>"+data.first_name+" "+data.second_name+" "+data.last_name+" "+data.last_sec_name+"</label></h4><div class='row showDatos'>";	  	 
+	  	 datos += "<div class='col-md-3 col-lg-3' align='center'> <img alt='Medico' src='http://"+host+"/plagetri21/public/imgs/"+data.foto+"' class='img-rounded' style='width:80px;'> </div>";
+       datos += "<div class=' col-md-9 col-lg-9 '>";
+       datos += "<table class='table table-user-information'><tbody>"; 
+       datos += "<tr><td>Extensi&oacute;n:</td><td><label></label>"+data.extension+"</td></tr>";  
+       datos += "<tr><td>Especialidad:</td><td><label>"+data.especiality+"</label></td></tr>";    
+       datos += "<tr><td>Nivel:</td><td><label>"+data.level+"</label></td></tr>";
+       datos += "<tr><td>Ubicación:</td><td><label>"+data.ubicacion+"</label></td></tr>";      
+       datos += "<tr><td>Observación:</td><td><label>"+data.observacion+"</label></td></tr></tbody></table></div></div>";      
+       
+       setTimeout(function() {
+			$("#loading").fadeOut();        
+		 }, 2500);
+       $("#showdatos").html(datos);      
+		            
+	}, 'json');
 }
 //Mostrar loading al hacer submit en configuracion
 jQuery(document).ready(function ($) {
