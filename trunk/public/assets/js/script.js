@@ -411,7 +411,7 @@ function Comparar(id){
 						etiqueta = '<span class="label label-warning">Superior</span>';
 						positivo.val('1');
 				}	
-				if(parseFloat(valor) < element.lim_superior && parseFloat(valor) > element.lim_inferior){
+				if(parseFloat(valor) <= element.lim_superior && parseFloat(valor) >= element.lim_inferior){
 						etiqueta = '<span class="label label-success">Normal</span>';
 						positivo.val('0');
 				}
