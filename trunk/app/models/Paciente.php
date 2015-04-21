@@ -69,7 +69,7 @@ class Paciente extends Eloquent {
 				$datos[0] = Paciente::find($id);
 			}
     	}else {
-			$datos = DB::select("SELECT * FROM pacientes WHERE concat(`primer_nombre`,' ',`segundo_nombre`,' ',`apellido_paterno`,' ',`apellido_materno`) LIKE '%".$id."%'");    	
+			$datos = DB::select("SELECT * FROM pacientes WHERE concat(`cedula`,' ',`primer_nombre`,' ',`apellido_paterno`) LIKE '%".$id."%'");    	
     	}
 		$x = 0;
 		//Ciclo que recorre todos los pacientes o un paciente en especifico.

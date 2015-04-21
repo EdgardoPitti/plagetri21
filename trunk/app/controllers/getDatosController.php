@@ -50,7 +50,7 @@ class getDatosController extends BaseController {
 				//Obtiene todos los datos de los médicos que se buscan en la función "datos_medico" del modelo "medico"
 				$datos = $medico->datos_medico($search, 1, $limit, $offset);				
 				//Funcion que recibe cuantos registros se obtienen al realizar la búsqueda.
-				$c = DB::select("SELECT count(id) as cantidad FROM medicos WHERE concat(`primer_nombre`,' ',`apellido_paterno`) LIKE '%".$search."%'");
+				$c = DB::select("SELECT count(id) as cantidad FROM medicos WHERE concat(`cedula`,' ',`primer_nombre`,' ',`apellido_paterno`) LIKE '%".$search."%'");
 				$cantidad = $c[0]->cantidad;			
 			}
 			$comilla = "'";
@@ -104,7 +104,7 @@ class getDatosController extends BaseController {
 				$cantidad = Paciente::all()->count();				
 			}else {
 				$datos = $paciente->datos_pacientes($search, 1, $limit, $offset);
-				$c = DB::select("SELECT count(id) as cantidad FROM pacientes WHERE concat(`primer_nombre`,' ',`segundo_nombre`,' ',`apellido_paterno`,' ',`apellido_materno`) LIKE '%".$search."%'");
+				$c = DB::select("SELECT count(id) as cantidad FROM pacientes WHERE concat(`cedula`,' ',`primer_nombre`,' ',`apellido_paterno`) LIKE '%".$search."%'");
 				$cantidad = $c[0]->cantidad;
 			}	
 			
