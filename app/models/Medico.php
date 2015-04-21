@@ -41,7 +41,7 @@ class Medico extends Eloquent {
 			}
 		}else{
 			//Realiza la busqueda de los médicos por su nombre completo.
-			$datos = DB::select("SELECT * FROM medicos WHERE concat(`primer_nombre`,' ',`apellido_paterno`) LIKE '%".$id."%' LIMIT ".$offset.",".$limit.";");
+			$datos = DB::select("SELECT * FROM medicos WHERE concat(`cedula`,' ',`primer_nombre`,' ',`apellido_paterno`) LIKE '%".$id."%' LIMIT ".$offset.",".$limit.";");
 		}
 		$x = 0;
 		foreach($datos as $medico){			
