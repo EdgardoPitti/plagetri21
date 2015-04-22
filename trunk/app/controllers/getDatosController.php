@@ -72,6 +72,7 @@ class getDatosController extends BaseController {
 					
 						"num": '.$num.',
 						"foto": "<img src='.$comilla.URL::to('imgs/'.$datos_medicos[0]->foto).$comilla.' style='.$comilla.'width:50px;height:50px;'.$comilla.'>",
+						"cedula": "'.$datos_medicos[0]->cedula.'",						
 						"name": "'.$datos_medicos[0]->primer_nombre.' '.$datos_medicos[0]->segundo_nombre.' '.$datos_medicos[0]->apellido_paterno.' '.$datos_medicos[0]->apellido_materno.'",
 						"ext": "'.$datos_medicos[0]->extension.'",
 						"tel": "'.$datos_medicos[0]->telefono.'",
@@ -122,14 +123,17 @@ class getDatosController extends BaseController {
 						$data.= ',';
 					}
 					$n++;
+					$cant_citas = Cita::where('id_paciente', $datos_pacientes[0]->id)->count();
 					$data.='{
 					
 						"num": '.$num.',
 						"name": "'.$datos_pacientes[0]->primer_nombre.' '.$datos_pacientes[0]->segundo_nombre.' '.$datos_pacientes[0]->apellido_paterno.' '.$datos_pacientes[0]->apellido_materno.'",
+						"cedula": "'.$datos_pacientes[0]->cedula.'",
 						"date": "'.$datos_pacientes[0]->fecha_nacimiento.'",
 						"cel": "'.$datos_pacientes[0]->celular.'",
 						"tel": "'.$datos_pacientes[0]->telefono.'",
-						"email": "'.$datos_pacientes[0]->email.'",';
+						"email": "'.$datos_pacientes[0]->email.'",
+						"cita": "'.$cant_citas.'",';
 						if($cita == 0) {
 							$data .=	'"url": "<a href='.$comilla.URL::to('datos/citas/'.$datos_pacientes[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Cita'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span> Crear Cita </a>  <a href='.$comilla.route('datos.pacientes.edit', $datos_pacientes[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar Paciente'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar </a> <a href='.$comilla.'#'.$comilla.' data-id='.$comilla.''.$datos_pacientes[0]->id.''.$comilla.' onclick='.$comilla.'eliminar('.$datos_pacientes[0]->id.');'.$comilla.' class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span> Eliminar </a>"';
 						}else{

@@ -28,11 +28,13 @@
 					    <thead>
 						    <tr class="info">
 						        <th data-field="num" data-align="center">#</th>
+						        <th data-field="cedula" data-align="center">Cédula</th>
 						        <th data-field="name" data-align="center">Nombre Completo</th>
 						        <th data-field="date" data-align="center">Fecha Nacimiento</th>
 						        <th data-field="cel" data-align="center">Celular</th>
 						        <th data-field="tel" data-align="center">Teléfono</th>
 						        <th data-field="email" data-align="center">E-mail</th>
+						        <th data-field="cita" data-align="center">Citas</th>
 						        <th data-field="url" data-align="center"></th>
 						    </tr>
 					    </thead>
