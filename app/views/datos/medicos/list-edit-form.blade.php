@@ -47,6 +47,7 @@
 							    <tr class="info">
 							        <th data-field="num" data-align="center">#</th>
 							        <th data-field="foto" data-align="center">Foto</th>
+							        <th data-field="cedula" data-align="center">Cédula</th>
 							        <th data-field="name" data-align="center">Nombre</th>
 							        <th data-field="ext" data-align="center">Extensión</th>
 							        <th data-field="tel" data-align="center">Teléfono</th>
