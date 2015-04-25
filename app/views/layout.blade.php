@@ -67,7 +67,7 @@
     </div>
     <div id="footer">
       <footer>
-        Derechos Reservados &copy; 2014
+        Derechos Reservados &copy; 2015
       </footer>
     </div>
     {{-- jQuery (necessary for Bootstrap's JavaScript plugins) --}}
