@@ -22,43 +22,10 @@
 	    <div class="modal-content">
 	      <div class="modal-header fondo-hd">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title"><i class="fa fa-plus-square"></i> M&eacute;dico &nbsp;
-	      	</h4>
+	        <h4 class="modal-title"><i class="fa fa-plus-square"></i> M&eacute;dico &nbsp;<div id="loading" style="position:absolute;top:13px;left:100px;"></div></h4>
 	      </div>
-	      <div class="modal-body">
-	      	<h4><label id="medico"></label></h4>
-	      	<div class="row showDatos">      			
-                <div class="col-md-3 col-lg-3" id="foto" align="center"> 
-                	<!-- Img del medico-->
-                </div>
-               
-                <div class=" col-md-9 col-lg-9 "> 
-                  <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>Extensi&oacute;n:</td>
-                        <td><label id="ext"></label></td>
-                      </tr>
-                      <tr>
-                        <td>Especialidad:</td>
-                        <td><label id="esp"></label></td>
-                      </tr>
-                      <tr>
-                        <td>Nivel:</td>
-                        <td><label id="lvl"></label></td>
-                      </tr>
-                      <tr>
-                        <td>Ubicación:</td>
-                        <td><label id="loc"></label></td>
-                      </tr>
-                       <tr>
-                        <td>Observación:</td>
-                        <td><label id="obs"></label></td>
-                      </tr>
-                    </tbody>
-                  </table>                  
-                </div>
-              </div>
+	      <div class="modal-body" id="showdatos">
+	      	{{-- Datos obtenidos del archivo filtro.js --}}
 	      </div>
 	      <div class="modal-footer fondo-ft">	        
 	        <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
