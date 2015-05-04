@@ -100,14 +100,6 @@
       </div>
     </div>
 
-
-
-
-
-
-
-
-
     {{ Form::model($datos['agenda'], $datos['form'], array('role' => 'form')) }}
 		<div class="row" >
 			<div class="form-group col-sm-4 col-md-4 col-lg-4">
