@@ -50,7 +50,7 @@ class ConfiguracionController extends BaseController {
 			$configuracion = new Configuracion;
 			$configuracion->id_usuario = Auth::user()->id;
 			$configuracion->automatico = $data['automatico'];
-			$configuracion->cantidad_registros = $data['registros'];
+			$configuracion->cantidad_registros = '0';//$data['registros'];
 			$configuracion->save();
 			$id = Configuracion::all()->last()->id;
 			if($data['automatico'] == 1){
