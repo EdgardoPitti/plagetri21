@@ -34,7 +34,7 @@
 							{{ Form::text('mediana', null, array('placeholder' => 'MEDIANA MARCADOR', 'class' => 'form-control', 'required' => 'required')) }}
 						</div>
 					</div>
-					<center>{{ Form::button('Salvar Marcador', array('type' => 'submit', 'class' => 'btn btn-primary')) }}</center>
+					<center>{{ Form::button('Salvar Mediana de Marcador', array('type' => 'submit', 'class' => 'btn btn-primary')) }}</center>
 				{{ Form::close() }}<hr>
 		@endif
 		  <div class="overthrow" style="height:250px;">

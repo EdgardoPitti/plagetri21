@@ -87,17 +87,19 @@
 			@endif
 			<br><br>
 			</center>
-			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+			    <div class="form-group col-sm-6 col-md-6 col-lg-6">
+			    	<center>
 					{{ Form::text('control', 2, array('class' => 'form-control', 'style' => 'display:none')) }}
 					{{ Form::label('automatico', 'Automatico:') }}
 					{{ Form::checkbox('automatico', 1, null,  array('class' => 'form-control cmn-toggle cmn-toggle-round-flat', 'id' => 'cmn-toggle-1', 'onClick' => 'Disable()')) }}
 					<label for="cmn-toggle-1"></label>
+					</center>
 				</div>
-				<div class="form-group col-sm-4 col-md-4 col-lg-4">
+				{{--<div class="form-group col-sm-4 col-md-4 col-lg-4">
 				   	{{ Form::label('registros', 'Cantidad de Registros:') }}
 				   	{{ Form::input('number', 'registros', null, array('class' => 'form-control','min' => '0' ,'max'=>'1000','step' => '5','id' => 'registros','placeholder' => 'Registros 0 - 1000', 'disabled' => 'true', 'required' => 'required')) }}        
-				</div>
-				<div class="form-group col-sm-4 col-md-4 col-lg-4">
+				</div>--}}
+				<div class="form-group col-sm-6 col-md-6 col-lg-6">
 					 	{{ Form::label('', '') }}
 					<center>{{ Form::button('Salvar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}</center>
 				</div>

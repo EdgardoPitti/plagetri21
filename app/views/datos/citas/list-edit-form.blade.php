@@ -66,8 +66,8 @@
 						<td>{{ $datos[0]->cedula }}</td>
 						<td>{{ $datos[0]->primer_nombre.' '.$datos[0]->segundo_nombre.' '.$datos[0]->apellido_paterno.' '.$datos[0]->apellido_materno }}</td>
 						<td>{{ $datos[0]->edad }}</td>
-						<td>{{ $datos[0]->fuma }}</td>
-						<td>{{ $datos[0]->diabetes }}</td>
+						<td>{{ $datos[0]->fumadora }}</td>
+						<td>{{ $datos[0]->diabetico }}</td>
 						<td>{{ $datos[0]->nacionalidad }}</td>
 						<td>{{ $datos[0]->etnia }}</td>
 						<td>{{ $datos[0]->raza }}</td>

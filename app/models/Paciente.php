@@ -76,15 +76,15 @@ class Paciente extends Eloquent {
 		foreach ($datos as $paciente){
 			//Decision que reemplaza el booleano de diabetes por palabras.
 			if($paciente->diabetes == 1){
-				$datos[$x]->diabetes = 'Si';	
+				$datos[$x]->diabetico = 'Si';	
 			}else{
-				$datos[$x]->diabetes = 'No';
+				$datos[$x]->diabetico = 'No';
 			}
 			//Decision que reemplaza el booleano de fuma por palabras.
 			if($paciente->fuma == 1){
-				$datos[$x]->fuma = 'Si';
+				$datos[$x]->fumadora = 'Si';
 			}else{
-				$datos[$x]->fuma = 'No';
+				$datos[$x]->fumadora = 'No';
 			}
 			//Decision que reemplaza el booleano de embarazos anteriores con trisomia por palabras.
 			if($paciente->embarazo_trisomia == 1){
