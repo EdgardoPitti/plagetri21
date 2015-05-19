@@ -425,7 +425,11 @@ function Comparar(id, resultado){
             
             //Cambio para trabajar en base a las mom y no para comparar con los limites almacenados en la base de datos.
            if(x == 0){
-				if(mom <=  0.55){
+				if(mom == 0){
+					etiqueta = '<span class="label label-default">PorDefecto</span>';
+					positivo.val('-2');
+				}
+				if(mom <=  0.55 && mom != 0){
 					etiqueta = '<span class="label label-danger">Inferior</span>';      
 					positivo.val('-1');
 				}
