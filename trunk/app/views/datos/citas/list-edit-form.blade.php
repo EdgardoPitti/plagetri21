@@ -225,7 +225,7 @@
 							      							{{ Form::label('mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
 							      								<div id="pantalla_mom_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->mom }}</div>
 											    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}	
-											    				{{ Form::text('positivo_'.$marcadores->id, -2, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
+											    				{{ Form::text('positivo_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->positivo, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
 														</td>
 														<td style="padding-top:28px;">
 							      							{{ Form::label('corr_lineal_'.$marcadores->id, 'Lineal:') }}
@@ -281,7 +281,7 @@
 							      							{{ Form::label('mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
 							      								<div id="pantalla_mom_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->mom }}</div>
 											    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}	
-											    				{{ Form::text('positivo_'.$marcadores->id, -2, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
+											    				{{ Form::text('positivo_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->positivo, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
 														</td>
 														<td style="padding-top:28px;">
 							      							{{ Form::label('corr_lineal_'.$marcadores->id, 'Lineal:') }}
@@ -373,6 +373,7 @@
 				        </div>
 				    </div>
 				</div>
+				<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 			@endif
 		@endif
 		<br>

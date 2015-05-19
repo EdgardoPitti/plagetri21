@@ -29,7 +29,7 @@
     	.resultados{
 		   width:40%;	    
     	}
-    </style>    
+    </style>
 </head>
 <body>
 	<div>
@@ -75,22 +75,29 @@
     </div>
     <div style="position:relative;bottom:150px;">
 	 	<h4>RESULTADOS DE LA PRUEBA</h4>
-		<table class="resultados" cellspacing="0px">			
+		<table class="resultados" cellspacing="0px" style="font-size:14px;">			
 			<tr>
-				<th width="125px">Ensayo</th>
-				<th width="125px">Resultados</th>
-				<th width="125px">MoM</th>
-				<th width="125px">Limite</th>
+				<th width="50px">Ensayo</th>
+				<th width="80px">Resultados</th>
+				<th width="50px">MoM</th>
+				<th width="80px">Corr. Lineal</th>
+				<th width="80px">Corr. Exp.</th>
+				<th width="50px">Limite</th>
+				
 			</tr>
 			@foreach($marcadores as $marcador)
-			<tr align="center">
+			@if($marcador->positivo == 0) {{--*/$color = '#5cb85c';/*--}} @elseif($marcador->positivo == -1){{--*/$color = '#d9534f';/*--}} @elseif($marcador->positivo == -2) {{--*/$color = 'white';/*--}} @else {{--*/$color = '#f0ad4e';/*--}}	@endif
+			<tr align="center" style="background:{{$color}};">
 				<td>{{ Marcador::where('id', $marcador->id_marcador)->first()->marcador }}</td>
-				<td>{{ $marcador->valor }} @if(!empty(Unidad::where('id', $marcador->id_unidad)->first()->unidad)){{ Unidad::where('id', $marcador->id_unidad)->first()->unidad }}@endif</td>
+				<td>{{ $marcador->valor }} @if(!empty(Unidad::where('id', $marcador->id_unidad)->first()->unidad))<p style="font-size:10px;font-style:italic;">{{  Unidad::where('id', $marcador->id_unidad)->first()->unidad }}</p>@endif</td>
 				<td>{{ $marcador->mom }}</td>
+				<td>{{ $marcador->corr_peso_lineal }}</td>
+				<td>{{ $marcador->corr_peso_exponencial }}</td>
 				<td>@if($marcador->positivo == 0) Normal @elseif($marcador->positivo == -1)	Bajo @elseif($marcador->positivo == -2) No Definido @else Alto	@endif</td>
 			</tr>
 			@endforeach
 		</table>
+				
       <h4 style="padding:8px 0px 0px 8px;">Evaluación del Riesgo (a término)</h4>
 		<table style="padding-left:10px;width:40%;">
 			<tr>
@@ -105,7 +112,7 @@
 			<tr>
 					<td width="25%"><b>{{ $resultado->enfermedad }}</b></td>
 					<td align="justify">
-						<b>{{ $resultado->resultado }}</b><br>
+						{{ $resultado->resultado }}<br>
 						{{ $resultado->mensaje }}
 					</td>
 			</tr>
@@ -115,6 +122,5 @@
 		@endforeach
 	</table>
 	</div>
-
 </body>
 </html>
