@@ -164,6 +164,7 @@ class Datos_CitasController extends BaseController {
 				$form['marcador_'.$marcador->id.'']->etiqueta = '<span class="label label-warning">Superior</span>';
 			}else{
 				$form['marcador_'.$marcador->id.'']->etiqueta = '<span class="label label-default">PorDefecto</span>';
+				$form['marcador_'.$marcador->id.'']->positivo = -2;
 			}
 		}
 		$form['marcador_cita'] = $marcadorcita;
