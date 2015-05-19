@@ -391,18 +391,24 @@ function clearInput() {
 	divParent.find('.tooltip').remove();
 						
 }
-function Comparar(id){
+function Comparar(id, resultado){
 	var host = window.location.host;
+	var mom = resultado;
     $.get("http://"+host+"/plagetri21/public/comparar", 
         { idmarcador: id , semana: $("#semana").val() }, 
         function(data){
 			var valor = $('#valor_'+id+'').val();
             var campo = $('#alerta_'+id+'');
             var positivo = $('#positivo_'+id+'');
+            var resultado = $('#pantalla_mom_'+id+'');
+            var x = 0;
+            //alert(resultado);
 			campo.empty();
 			var etiqueta = '<span class="label label-default">PorDefecto</span>';
 			positivo.val('-2');
             $.each(data, function(index,element) {
+				//Codigo para comparar en base a los limites almacenados en la base de datos
+				//var x = 1;
                 if(parseFloat(valor) < element.lim_inferior){
 					etiqueta = '<span class="label label-danger">Inferior</span>';      
 					positivo.val('-1');
@@ -416,6 +422,22 @@ function Comparar(id){
 						positivo.val('0');
 				}
             });
+            
+            //Cambio para trabajar en base a las mom y no para comparar con los limites almacenados en la base de datos.
+           if(x == 0){
+				if(mom <=  0.55){
+					etiqueta = '<span class="label label-danger">Inferior</span>';      
+					positivo.val('-1');
+				}
+				if(mom >= 2.5){
+						etiqueta = '<span class="label label-warning">Superior</span>';
+						positivo.val('1');
+				}	
+				if(mom > 0.55 && mom < 2.5){
+						etiqueta = '<span class="label label-success">Normal</span>';
+						positivo.val('0');
+				}
+			}
             campo.append(etiqueta);
     });
 }
@@ -444,9 +466,11 @@ function Division(id, idraza){
             }); 
             campo.val(resultado.toFixed(5));
 			pantalla.append(resultado.toFixed(5));
+			Comparar(id, resultado);
 			//Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso
 			Correccion_lineal(id, resultado);
 			Correccion_exponencial(id, idraza, resultado);
+			
     });
 }
 //Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Lineal
