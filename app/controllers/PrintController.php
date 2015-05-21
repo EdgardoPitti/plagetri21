@@ -33,6 +33,53 @@ class PrintController extends \BaseController
 			$parameter['medico'] = Medico::find($parameter['cita']->id_medico);
 		}
 		
+		$chart = new GoogChart();
+		$riesgoedad = 1/($parameter['cita']->riesgo)*10000;
+		if($riesgoedad > 52){
+			$coloredad = '#bb0000';
+		}elseif($riesgoedad > 40){
+			$coloredad = '#d9534f';
+		}else{	
+			$coloredad = '#00bb00';
+		}
+		
+		$riesgosuero = 53;
+		if($riesgosuero > 52){
+			$colorsuero = '#bb0000';
+		}elseif($riesgosuero > 40){
+			$colorsuero = '#f0ad4e';
+		}else{	
+			$colorsuero = '#00bb00';
+		}
+		
+		
+		$dataMultiple = array( 
+			'Suero Tamiz' => array(
+				' ' => '0',
+				'Riesgos' => $riesgosuero,
+				'' => '0',
+			),
+			'Edad (1:'.number_format($parameter['cita']->riesgo, 0, '', '').')' => array(
+				' ' => '0',
+				'Riesgos' => $riesgoedad,
+				'' => '0',
+			),
+		);
+		$color = array(
+			$colorsuero,
+			$coloredad,
+			'#999999',
+		);
+		$chart->setChartAttrs( array(
+			'type' => 'bar-vertical',
+			'title' => 'El Síndrome de Down',
+			'data' => $dataMultiple,
+			'size' => array( 300, 150 ),
+			'color' => $color,
+			'labelsXY' => false,
+			));
+			
+		$parameter['chart'] = $chart;
 		//Se busca y se almacenan los datos pertenecientes a los marcadores de la cita.
 		$parameter['marcadores'] = MarcadorCita::where('id_cita', $id)->where('valor','<>','0')->get();
 		//Se llama a la funcion obtenerEnfermedades que me devuelve un arreglo con las enfermedades que dieron positivo y negativo de la cita
@@ -41,6 +88,6 @@ class PrintController extends \BaseController
 		//Cargo la vista mandandole los respectivos datos correspondientes almacenados en el arreglo $parameter.
 		$pdf = PDF::loadView('datos/citas/Print', $parameter);
 		//Creo el archivo pdf y lo almaceno utilizando la cedula como el nombre del archivo.
-		return $pdf->stream(''.$parameter['datos'][0]->cedula.'.pdf');
+		return $pdf->stream(''.$parameter['datos'][0]->cedula.'.pdf', array("Attachment" => false));
     }
 }

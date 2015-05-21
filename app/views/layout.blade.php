@@ -20,7 +20,7 @@
         {{ HTML::script('assets/js/html5shiv.js') }}
         {{ HTML::script('assets/js/respond.min.js') }}
     <![endif]-->
-    @yield('scripts')    
+    @yield('scripts')   
   </head>
   <body>    
     {{-- Wrap all page content here --}}

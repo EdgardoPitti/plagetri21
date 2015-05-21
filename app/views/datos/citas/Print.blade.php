@@ -97,15 +97,16 @@
 			</tr>
 			@endforeach
 		</table>
+		<div style="position:absolute; top:0px; right:-10px;"> {{$chart}} </div>
+		
 				
       <h4 style="padding:8px 0px 0px 8px;">Evaluación del Riesgo (a término)</h4>
 		<table style="padding-left:10px;width:40%;">
 			<tr>
 				<td>Edad Solamente</td>
-				<td>{{ '1:'.$cita->riesgo }}</td>			
+				<td>{{ '1:'.number_format($cita->riesgo, 0, '', '') }}</td>			
 			</tr>		
 		</table><br>		
-	
 	<b>Interpretación* basado en la información suministrada:</b><br>
 	<table style="width:100%;">
 		@foreach($resultados as $resultado)
@@ -124,3 +125,4 @@
 	</div>
 </body>
 </html>
+
