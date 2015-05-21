@@ -17,7 +17,6 @@ Route::get('/', function(){
 		return View::make('login');		
 	}
 });
-
 	Route::post('sigin', 'AuthController@postLogin');
 	//Rutas de Logueo y Registro de Usuarios
 	Route::get('logout', 'AuthController@getLogout');
