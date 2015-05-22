@@ -34,7 +34,7 @@ class PrintController extends \BaseController
 		}
 		
 		$chart = new GoogChart();
-		$riesgoedad = 1/($parameter['cita']->riesgo)*10000;
+		$riesgoedad = 1/(number_format($parameter['cita']->riesgo, 0, '', ''))*20000;
 		if($riesgoedad > 52){
 			$coloredad = '#bb0000';
 		}elseif($riesgoedad > 40){
@@ -54,21 +54,37 @@ class PrintController extends \BaseController
 		
 		
 		$dataMultiple = array( 
+			'' => array(
+				'Riesgos' => 0,
+			),
+			' ' => array(
+				'Riesgos' => 0,
+			),
+			'1:383' => array(
+				'Riesgos' => 52.22,
+			),
 			'Suero Tamiz' => array(
-				' ' => '0',
 				'Riesgos' => $riesgosuero,
-				'' => '0',
 			),
 			'Edad (1:'.number_format($parameter['cita']->riesgo, 0, '', '').')' => array(
-				' ' => '0',
 				'Riesgos' => $riesgoedad,
-				'' => '0',
+			),
+			'  ' => array(
+				'Riesgos' => 0,
+			),
+			'   ' => array(
+				'Riesgos' => 0,
 			),
 		);
 		$color = array(
+			'#ffffff',
+			'#ffffff',
+			'#428bca',
 			$colorsuero,
 			$coloredad,
-			'#999999',
+			'#ffffff',
+			'#ffffff',
+			
 		);
 		$chart->setChartAttrs( array(
 			'type' => 'bar-vertical',
