@@ -97,7 +97,7 @@
 			</tr>
 			@endforeach
 		</table>
-		<div style="position:absolute; top:0px; right:-10px;"> <img src="{{URL::to('grafica')}}" alt=""> </div>
+		<div style="position:absolute; top:0px; right:-10px;"> <img src="{{URL::to('grafica/'.$cita->riesgo)}}" alt=""> </div>
 		
 				
       <h4 style="padding:8px 0px 0px 8px;">Evaluación del Riesgo (a término)</h4>
