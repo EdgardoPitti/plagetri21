@@ -142,24 +142,20 @@ class CondicionesController extends BaseController {
 			$condicion = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first();
 			//En caso de que este en blanco la variable quiere decir que la condicion no existe y se crea un nuevo objeto para almacenarla
 			if(empty($condicion)){
-				$condiciones = new CondicionEnfermedad;
-			}else{
-				//En caso de que no este en blanco se procede a buscar esa condicion para crear el objeto y editar la condicion
-				$condiciones = CondicionEnfermedad::find(CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first()->id);
-			} 
+				$condicion = new CondicionEnfermedad;
+			}
 			//Si el valor recibido del formulario viene en blanco y la condicion exista en la base de datos se procede a editar el valor
 			if(empty($data['marcador_'.$x.'']) && !empty($condicion)){
-				CondicionEnfermedad::destroy($condicion->id);
-					
+				CondicionEnfermedad::destroy($condicion->id);		
 			}else{
 				//En caso de que no cumpla con una de las condiciones anteriores se procede a preguntar si el valor que viene
 				//del formulario no esta en blanco para poder editarlo o almacenarlo
 				if(!empty($data['marcador_'.$x.''])){
 					//Se procede a colocar los datos correspondientes en cada campo
-					$condiciones->id_enfermedad = $id;
-					$condiciones->id_marcador = $x;
-					$condiciones->valor_condicion = $data['marcador_'.$x.''];
-					$condiciones->save();	
+					$condicion->id_enfermedad = $id;
+					$condicion->id_marcador = $x;
+					$condicion->valor_condicion = $data['marcador_'.$x.''];
+					$condicion->save();	
 				}
 			}
 			
