@@ -21,7 +21,7 @@ class CondicionEnfermedad extends Eloquent {
 			//Almaceno el nombre de la enfermedad en el resultado usando como indice el ID de la enfermedad
 			$resultado[$enfermedad->id]->enfermedad = $enfermedad->descripcion;
 			//Sentencia para buscar todas las condiciones pertenecientes a una enfermedad especifica
-			$condiciones = CondicionEnfermedad::where('id_enfermedad', $enfermedad->id)->where('valor_condicion', '<>', '')->get();
+			$condiciones = CondicionEnfermedad::where('id_enfermedad', $enfermedad->id)->where('valor_condicion', '<>', '0')->get();
 			//Ciclo que recorre todas las condiciones
 			foreach($condiciones as $condicion){
 				//Decision donde se compara el valor obtenido del marcador de la cita

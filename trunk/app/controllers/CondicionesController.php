@@ -149,11 +149,8 @@ class CondicionesController extends BaseController {
 			} 
 			//Si el valor recibido del formulario viene en blanco y la condicion exista en la base de datos se procede a editar el valor
 			if(empty($data['marcador_'.$x.'']) && !empty($condicion)){
-				//Se colocan los datos correspondientes en cada campo
-				$condiciones->id_enfermedad = $id;
-				$condiciones->id_marcador = $x;
-				$condiciones->valor_condicion = $data['marcador_'.$x.''];
-				$condiciones->save();	
+				CondicionEnfermedad::destroy($condicion->id);
+					
 			}else{
 				//En caso de que no cumpla con una de las condiciones anteriores se procede a preguntar si el valor que viene
 				//del formulario no esta en blanco para poder editarlo o almacenarlo
