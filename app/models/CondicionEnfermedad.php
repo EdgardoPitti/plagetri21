@@ -30,8 +30,8 @@ class CondicionEnfermedad extends Eloquent {
 				if(!empty(MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->positivo)){
 					$positivo = MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->positivo;
 				}
-				if($positivo <> $condicion->valor_condicion){
-					//De ser iguales la variable como switch cambia de valor.
+				if($positivo <> $condicion->valor_condicion && $positivo <> -2){
+					//De ser diferentes la variable como switch cambia de valor.
 					$sw = 1;
 				}
 			}
