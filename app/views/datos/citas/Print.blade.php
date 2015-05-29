@@ -8,7 +8,7 @@
 			height:100%;    	
     	}
     	body{
-			margin:-20px;			
+			margin:-30px;			
 			padding: 20px;
 			border:1px solid #000;
 			border-radius:6px;    	
@@ -21,9 +21,9 @@
     	}
     	div .texto{
     		position:absolute;
-    		top:28%;
+    		top:25%;
     		left:10%;
-    		font-size:16px;
+    		font-size:14px;
     		font-weight:bold;    	
     	}
     	.resultados{
@@ -43,29 +43,31 @@
 				<h3 style="font-style:italic;">Atención 24 horas</h3>
 		    </center>
 		</div>
-	    <div style="position:absolute; top:80px;le ft:400px;font-size:14px;">
+	    <div style="position:absolute; top:80px;le ft:400px;font-size:12px;">
 	    	APDO. 0426-01141 DAVID - CHIRIQUI<br>
 	    	e-mail: laboratorio@hospitalchiriqui.com<br>
 	      www.hospitalchiriqui.com
 	    </div>
 	</div>
     <br>
-    <div style="height: 325px;">
+    {{-- función que permite cambiar el idioma a las fechas--}}
+    {{--*/ setlocale(LC_TIME, 'es_ES.utf8'); /*--}}
+    <div style="height: 250px;">
     	<div class="texto">
     		<h3>Triple Marcador Maternal</h3>
     	</div>
-    	<div style="position:absolute;right:20px;">
+    	<div style="position:absolute;right:20px;font-size:12px;">
 			<b>INFORMACIÓN DE LA PACIENTE</b><br>
 			Nombre: {{ $datos[0]->apellido_paterno.' '.$datos[0]->apellido_materno.', '.$datos[0]->primer_nombre.' '.$datos[0]->segundo_nombre }}.<br>
 			ID de Paciente: {{ $datos[0]->cedula }}.<br>
-			FN: {{ $datos[0]->fecha_nacimiento }}.<br>
-			FUR: {{ $cita->fur }}.<br>
+			FN: {{ Carbon::parse($datos[0]->fecha_nacimiento)->formatLocalized('%d %b %Y') }}.<br>
+			FUR: {{ Carbon::parse($cita->fur)->formatLocalized('%d %b %Y') }}.<br>
 			Lugar: {{ $institucion->denominacion }}.<br>
 			Doctor: {{ $medico->primer_nombre.' '.$medico->apellido_paterno }}.
 			
 			<br><br><br>
 			<b>LA INFORMACIÓN CLÍNICA</b><br>
-			Edad Gestacional: {{ $cita->edad_gestacional_fur }} semanas usando FUR {{ $cita->fur }}.<br>
+			Edad Gestacional: {{ $cita->edad_gestacional_fur }} semanas usando FUR  {{ Carbon::parse($cita->fur)->formatLocalized('%d %b %Y') }}.<br>
 			Edad Materna: {{ $cita->edad_materna }} años.<br>
 			Peso Materno: {{ $cita->peso }} kg.<br>
 			Raza Materna: {{ $datos[0]->raza }}.<br>
@@ -73,17 +75,18 @@
 			Gestación: {{ $cita->hijos_embarazo }}.<br>
 		</div> 
     </div>
-    <div style="position:relative;bottom:150px;">
+    <div style="height:250px;position:relative;">
 	 	<h4>RESULTADOS DE LA PRUEBA</h4>
-		<table class="resultados" cellspacing="0px" style="font-size:14px;">			
+	 	
+		@if(!empty($cantidad))		
+		<table class="resultados" cellspacing="0px" border="1" style="font-size:12px;">			
 			<tr>
 				<th width="50px">Ensayo</th>
 				<th width="80px">Resultados</th>
 				<th width="50px">MoM</th>
 				<th width="80px">Corr. Lineal</th>
 				<th width="80px">Corr. Exp.</th>
-				<th width="50px">Limite</th>
-				
+				<th width="50px">Limite</th>				
 			</tr>
 			@foreach($marcadores as $marcador)
 			@if($marcador->positivo == 0) {{--*/$color = '#5cb85c';/*--}} @elseif($marcador->positivo == -1){{--*/$color = '#d9534f';/*--}} @elseif($marcador->positivo == -2) {{--*/$color = 'white';/*--}} @else {{--*/$color = '#f0ad4e';/*--}}	@endif
@@ -97,9 +100,12 @@
 			</tr>
 			@endforeach
 		</table>
-		<div style="position:absolute; top:0px; right:-10px;"> <img src="{{URL::to('grafica/'.$cita->riesgo)}}" alt=""> </div>
-		
-				
+		@else
+			<p style="color:red;">No tiene marcadores registrados</p>
+		@endif
+		<div style="position:absolute; top:0px; right:-20px;"> <img src="{{URL::to('grafica/'.$cita->riesgo)}}" alt=""> </div>
+	</div>
+	<div style="position:relative;bottom:0px;font-size:12px;">			
       <h4 style="padding:8px 0px 0px 8px;">Evaluación del Riesgo (a término)</h4>
 		<table style="padding-left:10px;width:40%;">
 			<tr>
@@ -107,21 +113,21 @@
 				<td>{{ '1:'.number_format($cita->riesgo, 0, '', '') }}</td>			
 			</tr>		
 		</table><br>		
-	<b>Interpretación* basado en la información suministrada:</b><br>
-	<table style="width:100%;">
-		@foreach($resultados as $resultado)
-			<tr>
-					<td width="25%"><b>{{ $resultado->enfermedad }}</b></td>
-					<td align="justify">
-						{{ $resultado->resultado }}<br>
-						{{ $resultado->mensaje }}
-					</td>
-			</tr>
-			<tr>	
-				<td colspan="2"></td>
-			</tr>
-		@endforeach
-	</table>
+		<b>Interpretación* basado en la información suministrada:</b><br>
+		<table style="width:100%;">
+			@foreach($resultados as $resultado)
+				<tr>
+						<td width="25%"><b>{{ $resultado->enfermedad }}</b></td>
+						<td align="justify">
+							{{ $resultado->resultado }}<br>
+							{{ $resultado->mensaje }}
+						</td>
+				</tr>
+				<tr>	
+					<td colspan="2"></td>
+				</tr>
+			@endforeach
+		</table>
 	</div>
 </body>
 </html>
