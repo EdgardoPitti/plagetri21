@@ -394,7 +394,12 @@ function clearInput() {
 function Comparar(id, resultado){
 	var host = window.location.host;
 	var mom = resultado;
-    $.get("http://"+host+"/plagetri21/public/comparar", 
+	var campo = $('#alerta_'+id+'');
+	campo.empty();
+	var positivo = $('#positivo_'+id+'');
+	var etiqueta = '<span class="label label-default">PorDefecto</span>';
+	positivo.val('-2');
+    /*$.get("http://"+host+"/plagetri21/public/comparar", 
         { idmarcador: id , semana: $("#semana").val() }, 
         function(data){
 			var valor = $('#valor_'+id+'').val();
@@ -421,10 +426,10 @@ function Comparar(id, resultado){
 						etiqueta = '<span class="label label-success">Normal</span>';
 						positivo.val('0');
 				}
-            });
+            });*/
             
             //Cambio para trabajar en base a las mom y no para comparar con los limites almacenados en la base de datos.
-           if(x == 0){
+          // if(x == 0){
 				if(mom == 0){
 					etiqueta = '<span class="label label-default">PorDefecto</span>';
 					positivo.val('-2');
@@ -441,9 +446,9 @@ function Comparar(id, resultado){
 						etiqueta = '<span class="label label-success">Normal</span>';
 						positivo.val('0');
 				}
-			}
+			//}
             campo.append(etiqueta);
-    });
+   //});
 }
 function Disable(){		
 		var registro = document.getElementById('registros');
