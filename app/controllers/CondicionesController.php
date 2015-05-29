@@ -25,7 +25,6 @@ class CondicionesController extends BaseController {
 		return View::make('datos/condiciones/list-edit-form')->with('datos', $datos);
 	}
 
-
 	/**
 	 * Show the form for creating a new resource.
 	 *
