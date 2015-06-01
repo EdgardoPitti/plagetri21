@@ -16,12 +16,17 @@ class CondicionEnfermedad extends Eloquent {
 		foreach(Enfermedad::where('status', 1)->get() as $enfermedad){
 			//Variable usada como switch para detectar enfermedades.
 			$sw = 0;
+			//Variable usada como contador
+			$contador = 0;
 			//Se crea un objeto para poder almacenar la informacion de los resultados.
 			$resultado[$enfermedad->id] = new Enfermedad;
 			//Almaceno el nombre de la enfermedad en el resultado usando como indice el ID de la enfermedad
 			$resultado[$enfermedad->id]->enfermedad = $enfermedad->descripcion;
 			//Sentencia para buscar todas las condiciones pertenecientes a una enfermedad especifica
 			$condiciones = CondicionEnfermedad::where('id_enfermedad', $enfermedad->id)->where('valor_condicion', '<>', '0')->get();
+			$porcentaje = 0;
+			$advertencia = '';
+			$porcentajeTotal = 0;
 			//Ciclo que recorre todas las condiciones
 			foreach($condiciones as $condicion){
 				//Decision donde se compara el valor obtenido del marcador de la cita
@@ -33,7 +38,26 @@ class CondicionEnfermedad extends Eloquent {
 				if($positivo <> $condicion->valor_condicion && $positivo <> -2){
 					//De ser diferentes la variable como switch cambia de valor.
 					$sw = 1;
+						$mom_marcador = MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->mom;
+						if($condicion->valor_condicion == -1){
+							$porcentaje = $porcentaje + (0.55)/($mom_marcador);	
+						}else{
+							$porcentaje = $porcentaje + ($mom_marcador)/(2.5);
+						}
+						$contador = $contador + 1;
+				}else{
+					if($positivo == $condicion->valor_condicion){
+						$contador = $contador + 1;
+						$porcentaje = $porcentaje + 1;
+					}
 				}
+			}
+			if($contador > 0){
+				$porcentajeTotal = ($porcentaje)/($contador);
+			}
+			//Condicion para evaluar el porcentaje de contraer una enfermedad
+			if($porcentajeTotal >= 0.85){
+				$advertencia = '<br><p style="background:orange;">Tamiz Negativo, sin embargo existe un alto riesgo para contraer esta enfermedad</p>';
 			}
 			//Decision que determina el mensaje a imprimir
 			//Si la variable Switch es igual a 0 quiere decir que nunca entro en la decision anterior
@@ -45,7 +69,7 @@ class CondicionEnfermedad extends Eloquent {
 			//exactamente los valores de la cita con las condiciones y arroja un resultado negativo
 			}else{
 				$resultado[$enfermedad->id]->resultado = '<b>Tamiz Negativo</b>';				
-				$resultado[$enfermedad->id]->mensaje = $enfermedad->mensaje_negativo;
+				$resultado[$enfermedad->id]->mensaje = $enfermedad->mensaje_negativo.$advertencia;
 			}
 		}
 		//Devuelve un arreglo con tdas las enfermedades usando como indice el ID de cada enfermedad
