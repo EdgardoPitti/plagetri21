@@ -26,7 +26,6 @@ class CondicionEnfermedad extends Eloquent {
 			$condiciones = CondicionEnfermedad::where('id_enfermedad', $enfermedad->id)->where('valor_condicion', '<>', '0')->get();
 			$porcentaje = 0;
 			$advertencia = '';
-			$var = 0;
 			$porcentajeTotal = 0;
 			//Ciclo que recorre todas las condiciones
 			foreach($condiciones as $condicion){
@@ -39,21 +38,22 @@ class CondicionEnfermedad extends Eloquent {
 				if($positivo <> $condicion->valor_condicion && $positivo <> -2){
 					//De ser diferentes la variable como switch cambia de valor.
 					$sw = 1;
-						$mom_marcador = MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->mom;
-						if($positivo <> ''){
-							if($condicion->valor_condicion == -1){
-								$porcentaje = $porcentaje + (0.55)/($mom_marcador);	
-							}else{
-								$porcentaje = $porcentaje + ($mom_marcador)/(2.5);
-							}
-							$contador = $contador + 1;
+					$mom_marcador = MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->mom;
+					if($mom_marcador <> 0){
+						if($condicion->valor_condicion == -1){
+							$porcentaje = $porcentaje + (0.55)/($mom_marcador);	
+						}else{
+							$porcentaje = $porcentaje + ($mom_marcador)/(2.5);
 						}
+						$contador++;
+					}
 				}else{
 					if($positivo == $condicion->valor_condicion && $positivo <> -2){
-						$contador = $contador + 1;
+						$contador++;
 						$porcentaje = $porcentaje + 1;
 					}
 				}
+				
 			}
 			if($contador > 0){
 				$porcentajeTotal = ($porcentaje)/($contador);
@@ -72,7 +72,7 @@ class CondicionEnfermedad extends Eloquent {
 			//exactamente los valores de la cita con las condiciones y arroja un resultado negativo
 			}else{
 				$resultado[$enfermedad->id]->resultado = '<b>Tamiz Negativo</b>';				
-				$resultado[$enfermedad->id]->mensaje = $enfermedad->mensaje_negativo.' '.$var.' '.$porcentajeTotal.' '.$porcentaje.' '.$contador.'  '.$advertencia;
+				$resultado[$enfermedad->id]->mensaje = $enfermedad->mensaje_negativo.' '.$advertencia;
 			}
 		}
 		//Devuelve un arreglo con tdas las enfermedades usando como indice el ID de cada enfermedad
