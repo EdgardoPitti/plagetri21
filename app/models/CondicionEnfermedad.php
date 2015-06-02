@@ -24,8 +24,11 @@ class CondicionEnfermedad extends Eloquent {
 			$resultado[$enfermedad->id]->enfermedad = $enfermedad->descripcion;
 			//Sentencia para buscar todas las condiciones pertenecientes a una enfermedad especifica
 			$condiciones = CondicionEnfermedad::where('id_enfermedad', $enfermedad->id)->where('valor_condicion', '<>', '0')->get();
+			//Variable que almacena la suma de los porcentajes
 			$porcentaje = 0;
+			//Variabele que almacena el mensaje de advertencia si el porcentaje es alto
 			$advertencia = '';
+			//Variable que almacena la mediana de los porcentajes
 			$porcentajeTotal = 0;
 			//Ciclo que recorre todas las condiciones
 			foreach($condiciones as $condicion){
@@ -38,19 +41,27 @@ class CondicionEnfermedad extends Eloquent {
 				if($positivo <> $condicion->valor_condicion && $positivo <> -2){
 					//De ser diferentes la variable como switch cambia de valor.
 					$sw = 1;
+					//Sentencia para almacenar la mom del marcador
 					$mom_marcador = MarcadorCita::where('id_cita', $id)->where('id_marcador', $condicion->id_marcador)->first()->mom;
+					//Condiciones para compara si el mom no esta en blanco
 					if($mom_marcador <> 0){
+						//Si la condicion es -1 quiere decir que es bajo
 						if($condicion->valor_condicion == -1){
 							$porcentaje = $porcentaje + (0.55)/($mom_marcador);	
 						}else{
+							//Sino es alto
 							$porcentaje = $porcentaje + ($mom_marcador)/(2.5);
 						}
+						//Incrementa el contador para conocer las iteracciones
 						$contador++;
 					}
 				}else{
+					//Decisión para comparar si la condición del marcador de la cita es la misma con la de las enfermedades.
 					if($positivo == $condicion->valor_condicion && $positivo <> -2){
-						$contador++;
+						//Se suma el porcenta a 1 que equivale a 100
 						$porcentaje = $porcentaje + 1;
+						//Se incrementa el contador
+						$contador++;
 					}
 				}
 				
