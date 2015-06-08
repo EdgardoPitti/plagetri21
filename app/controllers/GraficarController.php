@@ -31,38 +31,37 @@ class GraficarController extends \BaseController {
 		}else {
 			$color_tamiz = '#5cb85c';		
 		}
-		$data1 = array($valor_riesgo,$valor_tamiz);
+		
+		$data = array($valor_riesgo,$valor_tamiz);
 
-		// Create the graph. These two calls are always required
-		$graph = new Graph(310,200, 'auto');
+		// Instancia la gráfica recibiendo como parámetros ancho, alto
+		$graph = new Graph(310,210);
 		$graph->SetScale("textlin");
-		
-		$theme_class=new UniversalTheme;
-		$graph->SetTheme($theme_class);
-		
-		//$graph->yaxis->SetTickPositions(array(0,0.2,0.4,0.6), array(0.1,0.3,0.5));
+		//Muestra borde de la gráfica
 		$graph->SetBox(true);
 		
-		$graph->ygrid->SetFill(false);
-		$graph->xaxis->SetTickLabels(array('Edad Solamente (1:'.$riesgo.')', 'Suero Tamíz (1:'.$tamiz.')'));
-		$graph->yaxis->SetTitle('1:385', "center");		
-		$graph->yaxis->HideLabels();
-		$graph->yaxis->HideLine(false);
-		$graph->yaxis->HideTicks(false,false);
+		$labelsX = array("Edad Solamente\n(1:".$riesgo.")", "Suero Tamíz\n(1:".$tamiz.")");
+		$graph->xaxis->SetTickLabels($labelsX);	//muestra los labels de las gráficas de barra
+		$graph->xaxis->SetLabelAlign('center','top','center');	//Centrar los labels	
+		$graph->ygrid->SetFill(false); //oculta el fondo de la gráfica
+		$graph->yaxis->SetTitle('1:385', "middle");	//Titulo de axis Y seteado a la mitad de la gráfica	
+		$graph->yaxis->HideLabels(); //Oculta los valores de la axis Y		
+		$graph->yaxis->HideTicks(false,false); //Oculta las líneas de la axis Y
 		
-		// Create the bar plots
-		$suero = new BarPlot($data1);
+		// Crea la gráfica de barra
+		$suero = new BarPlot($data);
 		
-		// ...and add it to the graPH
+		// Agrega la gráfica de suero
 		$graph->Add($suero);
 		
 		$suero->SetColor("white");
 		$suero->SetFillColor(array($color_riesgo, $color_tamiz));
-		$suero->SetWidth(80);		
+		$suero->SetWidth(0.6);		
 		
+		//línea intermedia de la gráfica
 		$band = new PlotBand(HORIZONTAL,BAND_SOLID,0.2496,0.25,'black');
 		$band->ShowFrame(false);
-		$graph->Add($band);						
+		$graph->Add($band);					
 		$graph->title->Set('El Síndrome de Down');
 		
 		// Display the graph
