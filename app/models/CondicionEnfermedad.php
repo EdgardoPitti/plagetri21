@@ -68,6 +68,8 @@ class CondicionEnfermedad extends Eloquent {
 			}
 			if($contador > 0){
 				$porcentajeTotal = ($porcentaje)/($contador);
+			}else{
+				$sw = 1;
 			}
 			//Condicion para evaluar el porcentaje de contraer una enfermedad
 			if($porcentajeTotal >= 0.85){
