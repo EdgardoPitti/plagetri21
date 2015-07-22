@@ -157,6 +157,7 @@
 						<th>Ubicación</th>
 						<th>Proveedor</th>
 						<th>Costo</th>
+						<th>Tiempo de Mant.</th>
 					</tr>
 					<tr class="white">
 						<td>{{ $datos['activo']->codigo }}</td>
@@ -183,11 +184,27 @@
 							<td>{{ Agenda::where('id', $datos['activo']->id_proveedor)->first()->nombre_completo }}</td>
 						@endif
 						<td>{{ $datos['activo']->costo }}</td>
+						@if($datos['activo']->id_fecha_mantenimiento == 1)
+							<td>7 DÍAS</td>
+						@elseif($datos['activo']->id_fecha_mantenimiento == 2)
+							<td>15 DÍAS</td>
+						@elseif($datos['activo']->id_fecha_mantenimiento == 3)
+							<td>MENSUALES</td>
+						@elseif($datos['activo']->id_fecha_mantenimiento == 4)
+							<td>TRIMESTRALES</td>
+						@elseif($datos['activo']->id_fecha_mantenimiento == 5)
+							<td>SEMESTRALES</td>
+						@elseif($datos['activo']->id_fecha_mantenimiento == 6)
+							<td>Anuales</td>
+						@else
+							<td>NO DEFINIDO</td>
+						@endif
 					</tr>					
 				</table>
 			</div>
 			{{ Form::model($datos['mantenimiento'], $datos['form'] + array('files' => 'true'), array('role' => 'form')) }}
 				{{ Form::text('id_activo', $datos['activo']->id, array('style' => 'display:none')) }}
+				{{ Form::text('id_fecha_mantenimiento', $datos['activo']->id_fecha_mantenimiento, array('style' => 'display:none', 'id' => 'id_fecha_mantenimiento'))}}
 				<div class="row">
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	  					{{ Form::label('fecha', 'Fecha de Realización:') }}
@@ -203,12 +220,16 @@
 				    </div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('observacion', 'Observación:') }}
-				    	{{ Form::textarea('observacion', $datos['mantenimiento']->observacion, array('placeholder' => 'Observación', 'class' => 'form-control', 'size' => '1x1')) }}        
+				    	{{ Form::textarea('observacion', $datos['mantenimiento']->observacion, array('placeholder' => 'Observación', 'class' => 'form-control', 'size' => '1x3')) }}        
 				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	  					{{ Form::label('proximo', 'Próximo Mantenimiento:') }}
 	  					{{ Form::text('proximo', $datos['mantenimiento']->proximo_mant, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2014-01-01', 'max' => '2050-12-31')) }}
 					</div>
+					<div class="form-group col-sm-4 col-md-4 col-lg-4">
+				      {{ Form::label('costo_mantenimiento', 'Costo de Mantenimiento:') }}
+				      {{ Form::text('costo_mantenimiento', null, array('placeholder' => 'Costo de Mantenimiento', 'class' => 'form-control', 'required' => 'required')) }}
+				    </div>
 				</div>
 				<div class="form-group col-sm-12 col-md-12 col-lg-12">
 				    <center>

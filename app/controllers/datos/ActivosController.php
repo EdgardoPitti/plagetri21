@@ -19,6 +19,9 @@ class Datos_ActivosController extends BaseController {
 		$datos['label'] = 'Crear';
 		//Se crea el objeto para mandar los valores a la vista sobre los activos
 		$datos['activo'] = new Activo; 
+		$datos['activo']->id_tipo = 1;
+		$datos['activo']->id_ubicacion = 1;
+		$datos['activo']->id_nivel = 1;
 		//Se retorna a la vista con los valores correspondientes
 		return View::make('datos/activos/list-edit-form')->with('datos', $datos);
 	}
@@ -46,16 +49,26 @@ class Datos_ActivosController extends BaseController {
 		//Se crea el objeto
 		$activo = new Activo;
 		//Se almacena en cada campo del objeto los valores traidos del formulario
-		$activo->codigo = $data['codigo'];
+		$activo->num_activo = $data['num_activo'];
 		$activo->nombre = $data['nombre'];
-		$activo->descripcion = $data['descripcion'];
+		$activo->fecha_compra = $data['fecha_compra'];
 		$activo->id_tipo = $data['tipo'];
 		$activo->marca = $data['marca'];
+		$activo->modelo = $data['modelo'];
+		$activo->serie = $data['serie'];
+		$activo->voltaje = $data['voltaje'];
+		$activo->consumo = $data['consumo'];
+		$activo->alimentacion = $data['alimentacion'];
+		$activo->id_tipo_fuente = $data['id_tipo_fuente'];
+		$activo->id_fecha_mantenimiento = $data['id_fecha_mantenimiento'];
+		$activo->protocolo = $data['protocolo'];
+		$activo->id_estado = $data['id_estado'];
 		$activo->id_nivel = $data['nivel'];
 		$activo->id_ubicacion = $data['ubicacion'];
-		$activo->fecha_compra = $data['fecha_compra'];
-		$activo->num_factura = $data['num_factura'];
 		$activo->id_proveedor = $data['proveedor'];
+		$activo->descripcion = $data['descripcion'];
+		$activo->fecha_garantia = $data['fecha_garantia'];
+		$activo->num_factura = $data['num_factura'];
 		$activo->costo = $data['costo'];
 		$activo->save();
 		//Se retorna a la vista
@@ -109,16 +122,26 @@ class Datos_ActivosController extends BaseController {
 		//Se crea el objeto perteneciente al id que se recibio del activo
 		$activo = Activo::find($id);
 		//Se cargan los datos en los campos correspondientes
-		$activo->codigo = $data['codigo'];
+		$activo->num_activo = $data['num_activo'];
 		$activo->nombre = $data['nombre'];
-		$activo->descripcion = $data['descripcion'];
+		$activo->fecha_compra = $data['fecha_compra'];
 		$activo->id_tipo = $data['tipo'];
 		$activo->marca = $data['marca'];
+		$activo->modelo = $data['modelo'];
+		$activo->serie = $data['serie'];
+		$activo->voltaje = $data['voltaje'];
+		$activo->consumo = $data['consumo'];
+		$activo->alimentacion = $data['alimentacion'];
+		$activo->id_tipo_fuente = $data['id_tipo_fuente'];
+		$activo->id_fecha_mantenimiento = $data['id_fecha_mantenimiento'];
+		$activo->protocolo = $data['protocolo'];
+		$activo->id_estado = $data['id_estado'];
 		$activo->id_nivel = $data['nivel'];
 		$activo->id_ubicacion = $data['ubicacion'];
-		$activo->fecha_compra = $data['fecha_compra'];
-		$activo->num_factura = $data['num_factura'];
 		$activo->id_proveedor = $data['proveedor'];
+		$activo->descripcion = $data['descripcion'];
+		$activo->fecha_garantia = $data['fecha_garantia'];
+		$activo->num_factura = $data['num_factura'];
 		$activo->costo = $data['costo'];
 		$activo->save();
 		//Se retorna a la vista
