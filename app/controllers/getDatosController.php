@@ -150,5 +150,65 @@ class getDatosController extends BaseController {
 			App::abort(403);		
 		}
 	}
+
+	public function getActivos(){
+		if(Request::ajax()){
+			
+			$activos =  new Activo;
+			
+			$search = Input::get('search');
+			$limit = Input::get('limit');
+			$offset = Input::get('offset');
+			$order = Input::get('order');
+
+			if(trim($search) != ""){
+				$search_act = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo
+							FROM activos a, tipos_activos t, ubicacion u, niveles n
+							WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel
+							AND (t.tipo LIKE '%".$search."%' OR u.ubicacion LIKE '%".$search."%' OR a.num_activo LIKE '%".$search."%' OR a.nombre LIKE '%".$search."%') ORDER BY a.costo ".$order." LIMIT ".$offset.",".$limit.";");	
+				$cantidad = count($search_act);
+
+			}else{
+				$search_act = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo
+							FROM activos a, tipos_activos t, ubicacion u, niveles n
+							WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel AND a.id > 0 ORDER BY a.costo ".$order." LIMIT ".$offset.",".$limit.";");
+				$cantidad = count($search_act);		
+			}
+			
+			$comilla = "'";
+			$n = 1;
+
+			$data = '{
+				"total": '.$cantidad.',
+				"rows": [
+				';
+
+					foreach($search_act as $activo[0]){
+						$num = $n + $offset;
+						if($n > 1){
+							$data.= ',';
+						}
+						$n++;
+						$data .= '{
+							"num": '.$num.',
+							"num_activo": "'.$activo[0]->num_activo.'",
+							"nombre": "'.$activo[0]->nombre.'",
+							"tipo": "'.$activo[0]->tipo.'",
+							"nivel": "'.$activo[0]->nivel.'",
+							"ubicacion": "'.$activo[0]->ubicacion.'",
+							"costo": "'.$activo[0]->costo.'",
+							"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> <a href='.$comilla.'#'.$comilla.' data-id='.$activo[0]->id.'  class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span></a>"
+						}';
+					}
+					
+				$data .= '
+				]
+			}';
+
+			return $data;
+
+		}else{
+			App::abort(403);
+		}
+	}
 }
-?>

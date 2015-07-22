@@ -41,6 +41,7 @@ Route::get('/', function(){
 	Route::post('medicos/getmedicos', 'getDatosController@postData'); //ruta para cargar datos al modal
 	Route::get('medicos', 'getDatosController@postMedicos'); //ruta para obtener todos los médicos y filtrar
 	Route::get('pacientes/{cita}', 'getDatosController@postPacientes'); //ruta para obtener todos los pacientes y filtrarlos
+	Route::get('getactivos', 'getDatosController@getActivos');
 	Route::get("grafica/{riesgo}", "GraficarController@pintarGrafica");
 	//Ruta para el control del mapa
 	Route::resource('datos/pacientesmapas', 'MapasController');

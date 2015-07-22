@@ -37,8 +37,12 @@ $(function () {
 		  $('.agenda').bootstrapTable({
 		    height: 180
 		  });
-		  $('.activos').bootstrapTable({
-		    height: 180
+		  $('#table-activo').bootstrapTable({
+		    height: 415,
+        url: 'http://'+host+'/plagetri21/public/getactivos',
+        search: true,
+        sidePagination: 'server',
+        pagination: true
 		  });
 		  $('.list-act').bootstrapTable({
 		    height: 150
