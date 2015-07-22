@@ -34,14 +34,15 @@ class Datos_MantenimientosController extends BaseController {
 	public function store()
 	{
 		$data = Input::all();
-		$mantenimentos = new Mantenimiento;
-		$mantenimentos->fecha_realizacion = $data['fecha'];
-		$mantenimentos->realizado_por = $data['realizado_por'];
-		$mantenimentos->aprobado_por = $data['aprobado_por'];
-		$mantenimentos->id_activo = $data['id_activo'];
-		$mantenimentos->proximo_mant = $data['proximo'];
-		$mantenimentos->observacion = $data['observacion'];
-		$mantenimentos->save();
+		$mantenimientos = new Mantenimiento;
+		$mantenimientos->fecha_realizacion = $data['fecha'];
+		$mantenimientos->realizado_por = $data['realizado_por'];
+		$mantenimientos->aprobado_por = $data['aprobado_por'];
+		$mantenimientos->id_activo = $data['id_activo'];
+		$mantenimientos->proximo_mant = $data['proximo'];
+		$mantenimientos->observacion = $data['observacion'];
+		$mantenimientos->costo_mantenimiento = $data['costo_mantenimiento'];
+		$mantenimientos->save();
 		return Redirect::route('datos.mantenimientos.show', $data['id_activo']);
 	}
 
@@ -88,14 +89,15 @@ class Datos_MantenimientosController extends BaseController {
 	public function update($id)
 	{
 		$data = Input::all();
-		$mantenimentos = Mantenimiento::find($id);
-		$mantenimentos->fecha_realizacion = $data['fecha'];
-		$mantenimentos->realizado_por = $data['realizado_por'];
-		$mantenimentos->aprobado_por = $data['aprobado_por'];
-		$mantenimentos->id_activo = $data['id_activo'];
-		$mantenimentos->proximo_mant = $data['proximo'];
-		$mantenimentos->observacion = $data['observacion'];
-		$mantenimentos->save();
+		$mantenimientos = Mantenimiento::find($id);
+		$mantenimientos->fecha_realizacion = $data['fecha'];
+		$mantenimientos->realizado_por = $data['realizado_por'];
+		$mantenimientos->aprobado_por = $data['aprobado_por'];
+		$mantenimientos->id_activo = $data['id_activo'];
+		$mantenimientos->proximo_mant = $data['proximo'];
+		$mantenimientos->observacion = $data['observacion'];
+		$mantenimientos->costo_mantenimiento = $data['costo_mantenimiento'];
+		$mantenimientos->save();
 		return Redirect::route('datos.mantenimientos.show', $data['id_activo']);
 	}
 
@@ -110,8 +112,6 @@ class Datos_MantenimientosController extends BaseController {
 	{
 		$mantenimiento = Mantenimiento::find($id);
 		$mantenimiento->delete();
-		
-		
 		return Redirect::route('datos.mantenimientos.index');
 	}
 

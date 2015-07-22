@@ -14,7 +14,7 @@ Route::get('/', function(){
 	if(Auth::check()){
 		return View::make('inicio');
 	}else{
-		return View::make('login');		
+		return View::make('login');	
 	}
 });
 	Route::post('sigin', 'AuthController@postLogin');
@@ -57,5 +57,8 @@ Route::get('/', function(){
 	Route::get('correccion_lineal', 'DropdownController@getCoeficienteLineal');
 	Route::get('correccion_exponencial', 'DropdownController@getCoeficienteExponencial');
 	Route::get('obtenermediana', 'Datos_MedianaController@getObtenerMediana');
+	Route::get('obtenerfecha', 'DropdownController@getCalculoFecha');
+	Route::get('obtenergarantias', 'DropdownController@getObtenerGarantias');
 	Route::post('validarced', 'DropdownController@getValidarCed');
+	Route::post('validarcedm', 'DropdownController@getValidarCedM');
 	Route::post('validarcedm', 'DropdownController@getValidarCedM');

@@ -107,4 +107,31 @@ class DropdownController extends BaseController
 		$medico = Medico::where('cedula', $data['ced']);
 		return ($medico->get(['cedula']));
 	}
+    public function getCalculoFecha(){
+        $tipo = Input::get('tipo');
+        $fecha = Input::get('fecha');
+        $tiempo = 0;
+        if($tipo == 1){
+            $tiempo = '+7 days';
+        }elseif($tipo == 2){
+            $tiempo = '+15 days';
+        }elseif($tipo == 3){
+            $tiempo = '+1 month';
+        }elseif($tipo == 4){
+            $tiempo = '+3 month';
+        }elseif($tipo == 5){
+            $tiempo = '+6 month';
+        }elseif($tipo == 6){
+            $tiempo = '+12 month';
+        }else{
+            $tiempo = '';
+        }
+        $proximo = date('Y-m-d', strtotime("".$fecha." ".$tiempo.""));
+        return $proximo;
+    }
+    public function getObtenerGarantias(){
+        $meses = Input::get('meses');
+        $fecha_final = date('Y-m-d', strtotime("+".$meses." month"));
+        
+    }
 }

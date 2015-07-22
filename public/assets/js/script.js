@@ -350,7 +350,23 @@ jQuery(document).ready(function($){
             $('#boton').hide();
             return true; 
         });
-
+       $("#fecha").change(function(){
+			$.get("http://"+host+"/plagetri21/public/obtenerfecha", 
+				{ fecha: $("#fecha").val(), tipo: $("#id_fecha_mantenimiento").val() }, 
+				function(data){
+					var proxima_fecha = $("#proximo");
+					proxima_fecha.val(data);
+			});
+		});	
+		 $("#meses").change(function(){
+			$.get("http://"+host+"/plagetri21/public/obtenergarantias", 
+				{ meses: $("#meses").val() }, 
+				function(data){
+					$.each(data, function(index,element) {
+					
+					});
+			});
+		});		
 
 });  
 
