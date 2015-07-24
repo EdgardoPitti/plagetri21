@@ -70,6 +70,7 @@ function show(id) {
 jQuery(document).ready(function ($) {
 	$("#form-load").submit(function () {					
 		$("#processing-modal").modal('show');
+
 		return true;				
 	});    			
 });
@@ -82,3 +83,13 @@ jQuery(document).ready(function ($) {
 $(document).ready(function() {
  $('#condiciones').fixedHeaderTable();
 });
+
+function baja(id){
+	var host = window.location.host;
+	var name_activo = $('#darbaja'+id)[0].title;
+	var activoClass = $('.activo');
+	activoClass.empty();
+	$('#form_baja').attr("action", 'http://'+host+'/plagetri21/public/datos/activos/' + id );
+	activoClass.append("<i class='fa fa-trash-o'></i> "+name_activo);
+	$('#modalBaja').modal(show);
+}

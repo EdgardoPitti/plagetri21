@@ -78,7 +78,7 @@ class getDatosController extends BaseController {
 						"tel": "'.$datos_medicos[0]->telefono.'",
 						"cel": "'.$datos_medicos[0]->celular.'",
 						"esp": "'.$datos_medicos[0]->especialidad.'",
-						"url": "<a href='.$comilla.route('datos.medicos.edit', $datos_medicos[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar M&eacute;dico'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar </a> <a href='.$comilla.'#Show'.$comilla.' id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'show('.$datos_medicos[0]->id.');'.$comilla.'  class='.$comilla.'btn btn-info btn-sm ver'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.'  title='.$comilla.'Ver Médico'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-eye-open'.$comilla.'></span> Ver </a> <a href='.$comilla.'#'.$comilla.' data-id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'eliminar('.$datos_medicos[0]->id.');'.$comilla.' class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span> Eliminar </a>"
+						"url": "<a href='.$comilla.route('datos.medicos.edit', $datos_medicos[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar M&eacute;dico'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar </a> <a href='.$comilla.'#Show'.$comilla.' id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'show('.$datos_medicos[0]->id.');'.$comilla.'  class='.$comilla.'btn btn-info btn-sm'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.'  title='.$comilla.'Ver Médico'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-eye-open'.$comilla.'></span> Ver </a> <a href='.$comilla.'#'.$comilla.' data-id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'eliminar('.$datos_medicos[0]->id.');'.$comilla.' class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span> Eliminar </a>"
 						}';
 				}				
 				
@@ -176,6 +176,7 @@ class getDatosController extends BaseController {
 			}
 			
 			$comilla = "'";
+			$apostrofe = '"';
 			$n = 1;
 
 			$data = '{
@@ -184,6 +185,7 @@ class getDatosController extends BaseController {
 				';
 
 					foreach($search_act as $activo[0]){
+
 						$num = $n + $offset;
 						if($n > 1){
 							$data.= ',';
@@ -197,7 +199,7 @@ class getDatosController extends BaseController {
 							"nivel": "'.$activo[0]->nivel.'",
 							"ubicacion": "'.$activo[0]->ubicacion.'",
 							"costo": "'.$activo[0]->costo.'",
-							"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> <a href='.$comilla.'#'.$comilla.' data-id='.$activo[0]->id.'  class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span></a>"
+							"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> <button class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' id='.$comilla.'darbaja'.$activo[0]->id.$comilla.' onclick='.$comilla.'baja('.$activo[0]->id.')'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.' data-target='.$comilla.'modalBaja'.$comilla.' title='.$comilla.'Dar de baja a '.$activo[0]->nombre.$comilla.'><span class='.$comilla.'glyphicon glyphicon-trash'.$comilla.'></span></button>"
 						}';
 					}
 					

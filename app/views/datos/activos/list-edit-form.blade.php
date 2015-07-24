@@ -14,6 +14,9 @@
 		  <center>Activos</center>
 		</h1>
 		
+		@if(Session::has('mensaje'))
+			<div class="alert alert-warning">{{ Session::get('mensaje') }}</div>
+		@endif
 		<div class="row">
 	      <div class="col-md-12 col-sm-12 col-lg-12">
 	        <div class="panel panel-primary">
@@ -27,17 +30,17 @@
 	          </div>
 	          <div class="panel-body" style="display:block;">	            
 	            <div class="overthrow" style="height:200px;">
-	              <table id="table-activo">
+	              <table id="table-activo" data-sort-name="costo">
 		            <thead>
 		                <tr class="info">
 		                    <th data-field="num" data-align="center">#</th>
 		                    <th data-field="num_activo" data-align="center">Número Activo</th>
-		                    <th data-field="nombre" data-align="center">Nombre</th>
+		                    <th data-field="nombre" data-align="center" class="nombre">Nombre</th>
 		                    <th data-field="tipo" data-align="center">Tipo</th>
 		                    <th data-field="nivel" data-align="center">Nivel</th>
 		                    <th data-field="ubicacion" data-align="center">Ubicación</th>
 		                    <th data-field="costo" data-align="center" data-sortable="true">Costo</th>
-		                    <th data-field="urls"></th>
+		                    <th data-field="urls" data-align="center">Opciones</th>
 		                </tr>
 		            </thead>	             
 	              </table>
@@ -46,6 +49,29 @@
 	        </div>
 	      </div>
 	    </div>	
+
+	    <div class="modal fade" id="modalBaja" tabindex="-1" role="dialog" aria-labelledby="baja" aria-hidden="true">
+      	 <form id="form_baja" method="POST" accept-charset="UTF-8" action="">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header fondo-hd">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title activo"> </h4>
+		      </div>
+		      <div class="modal-body" id="showdatos">
+		      		<input name="_token" type="hidden" value="{{ csrf_token() }}">		      		
+			        {{ Form::hidden('id_estado', 3) }}
+			        {{ Form::label('fecha_de_baja', 'Fecha de Baja') }}
+			        {{ Form::text('fecha_de_baja', null, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
+		      </div>
+		      <div class="modal-footer fondo-ft">	        
+		        <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+		      	<button type="submit" class="btn btn-success">Dar de Baja</button>
+		       </div>
+		    </div>
+		  </div>
+       	 </form>
+		</div>
 
 		<div class="row">
 	      <div class="col-md-12 col-sm-12 col-lg-12">
@@ -61,7 +87,7 @@
 	          <div class="panel-body" style="display:none;">
 	          	Tiempo en Meses:<input type="number" class="form-control" id="meses"/><br>            
 	            <div class="overthrow" style="height:200px;">
-	              <table class="table table-hover table-bordered activos" cellpadding="0" cellspacing="0" id="dev-table">
+	              <table class="table table-hover table-bordered" cellpadding="0" cellspacing="0" id="dev-table">
 	               <thead>
 	                <tr class="info">
 	                    <th>#</th>
@@ -215,9 +241,8 @@
  			</div>
 		{{ Form::close() }}
 
-  {{-- Form::open(array('route' => array('datos.activos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
-  {{ Form::close() --}}
 
 @stop
 
-
+  {{-- Form::open(array('route' => array('datos.activos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
+  {{ Form::close() --}}

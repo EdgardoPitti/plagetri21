@@ -148,7 +148,6 @@ class Datos_ActivosController extends BaseController {
 		return Redirect::route('datos.activos.index');
 	}
 
-
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -165,5 +164,17 @@ class Datos_ActivosController extends BaseController {
 		return Redirect::route('datos.activos.index');
 	}
 
+	public function bajaActivo($id){
+		$data = Input::all();
 
+		$activo = Activo::find($id);
+
+		$activo->id_estado = $data['id_estado'];
+		$activo->fecha_de_baja = $data['fecha_de_baja'];
+		$activo->save();
+
+		Session::flash('mensaje', 'Se ha dado de baja al activo: '. $activo->nombre);
+
+		return Redirect::route('datos.activos.index'); 
+	}
 }
