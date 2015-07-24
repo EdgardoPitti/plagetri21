@@ -25,63 +25,23 @@
 	              </span>
 	            </div>
 	          </div>
-	          <div class="panel-body" style="display:block;">
-	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtrar Activo" /><br>
-	            
+	          <div class="panel-body" style="display:block;">	            
 	            <div class="overthrow" style="height:200px;">
-	              <table class="table table-hover table-bordered activos" cellpadding="0" cellspacing="0" id="dev-table">
-	               <thead>
-	                <tr class="info">
-	                    <th>#</th>
-	                    <th>Número de Activo</th>
-	                    <th>Nombre</th>
-	                    <th>Tipo</th>
-	                    <th>Proveedor</th>
-	                    <th>Nivel</th>
-	                    <th>Ubicación</th>
-	                    <th>Costo</th>
-	                    <th></th>
-	                </tr>
-	              </thead>
-	              <tbody>
-	                {{--*/ $x = 1; /*--}}
-	                @foreach (Activo::all() as $activo)
-	                  <tr>
-	                      <td>{{ $x++ }}.</td>
-	                      <td>{{ $activo->num_activo }}</td>
-	                      <td>{{ $activo->nombre }}</td>
-	                      @if(empty(TipoActivo::where('id', $activo->id_tipo)->first()->tipo))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ TipoActivo::where('id', $activo->id_tipo)->first()->tipo }}</td>
-	                      @endif
-	                      @if(empty(Agenda::where('id', $activo->id_proveedor)->first()->nombre_completo))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ Agenda::where('id', $activo->id_proveedor)->first()->nombre_completo }}</td>
-	                      @endif
-	                      @if(empty(Nivel::where('id', $activo->id_nivel)->first()->nivel))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ Nivel::where('id', $activo->id_nivel)->first()->nivel }}</td>
-	                      @endif
-	                      @if(empty(Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion }}</td>
-	                      @endif
-	                      <td>{{ $activo->costo }}</td>
-	                      <td align="center">
-							<a href="{{ route('datos.mantenimientos.show', $activo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>                       
-	                        <a href="{{ route('datos.activos.edit', $activo->id) }}" class="btn btn-primary btn-sm" style="margin:3px 0px;" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
-	                        <a href="#" data-id="{{ $activo->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>                                            
-	                      </td>
-	                  </tr>
-	                @endforeach
-	                </tbody> 
+	              <table id="table-activo">
+		            <thead>
+		                <tr class="info">
+		                    <th data-field="num" data-align="center">#</th>
+		                    <th data-field="num_activo" data-align="center">Número Activo</th>
+		                    <th data-field="nombre" data-align="center">Nombre</th>
+		                    <th data-field="tipo" data-align="center">Tipo</th>
+		                    <th data-field="nivel" data-align="center">Nivel</th>
+		                    <th data-field="ubicacion" data-align="center">Ubicación</th>
+		                    <th data-field="costo" data-align="center" data-sortable="true">Costo</th>
+		                    <th data-field="urls"></th>
+		                </tr>
+		            </thead>	             
 	              </table>
 	            </div>
-	            <div class="clear"></div>
 	          </div>
 	        </div>
 	      </div>
@@ -129,16 +89,17 @@
 	                </tbody> 
 	              </table>
 	            </div>
-	            <div class="clear"></div>
 	          </div>
 	        </div>
 	      </div>
 	    </div>	
+
 		{{ Form::model($datos['activo'], $datos['form'] + array('files' => 'true') , array('role' => 'form')) }}
 			<div class="row">
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			      {{ Form::label('num_activo', 'Número de Activo:') }}
 			      {{ Form::text('num_activo', null, array('placeholder' => 'Número de Activo', 'class' => 'form-control', 'required' => 'required')) }}
+
 			    </div>
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			      {{ Form::label('nombre', 'Nombre:') }}
@@ -229,7 +190,9 @@
  			</div>
 		{{ Form::close() }}
 
+  {{-- Form::open(array('route' => array('datos.activos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
+  {{ Form::close() --}}
 
 @stop
-  {{ Form::open(array('route' => array('datos.activos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
-  {{ Form::close() }}
+
+
