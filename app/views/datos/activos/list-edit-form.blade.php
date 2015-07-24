@@ -35,7 +35,7 @@
 		            <thead>
 		                <tr class="info">
 		                    <th data-field="num" data-align="center">#</th>
-		                    <th data-field="num_activo" data-align="center">Número Activo</th>
+		                    <th data-field="num_activo" data-align="center">Número de Activo</th>
 		                    <th data-field="nombre" data-align="center" class="nombre">Nombre</th>
 		                    <th data-field="tipo" data-align="center">Tipo</th>
 		                    <th data-field="nivel" data-align="center">Nivel</th>

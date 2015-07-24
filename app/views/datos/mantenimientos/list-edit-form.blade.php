@@ -32,7 +32,7 @@
 	                <thead>
 		                <tr class="info">
 		                    <th>#</th>
-		                    <th>Código</th>
+		                    <th>Número de Activo</th>
 		                    <th>Nombre</th>
 		                    <th>Tipo</th>
 		                    <th>Proveedor</th>
@@ -47,7 +47,7 @@
 	                @foreach (Activo::all() as $activo)
 	                  <tr>
 	                      <td>{{ $x++ }}.</td>
-	                      <td>{{ $activo->codigo }}</td>
+	                      <td>{{ $activo->num_activo }}</td>
 	                      <td>{{ $activo->nombre }}</td>
 	                      @if(empty(TipoActivo::where('id', $activo->id_tipo)->first()->tipo))
 							<td>No Definido</td>
