@@ -48,7 +48,7 @@
 	                @foreach (Activo::all() as $activo)
 	                  <tr>
 	                      <td>{{ $x++ }}.</td>
-	                      <td>{{ $activo->codigo }}</td>
+	                      <td>{{ $activo->num_activo }}</td>
 	                      <td>{{ $activo->nombre }}</td>
 	                      @if(empty(TipoActivo::where('id', $activo->id_tipo)->first()->tipo))
 							<td>No Definido</td>
@@ -86,7 +86,6 @@
 	        </div>
 	      </div>
 	    </div>	
-
 		<div class="row">
 	      <div class="col-md-12 col-sm-12 col-lg-12">
 	        <div class="panel panel-primary">
@@ -99,7 +98,7 @@
 	            </div>
 	          </div>
 	          <div class="panel-body" style="display:none;">
-	          	Tiempo en Meses:<input type="number" class="form-control" id="meses"/><br>            
+	          	Garantía a vencer en Meses:<input type="number" class="form-control" id="meses" max="12" min="0"><br>            
 	            <div class="overthrow" style="height:200px;">
 	              <table class="table table-hover table-bordered activos" cellpadding="0" cellspacing="0" id="dev-table">
 	               <thead>
@@ -107,36 +106,17 @@
 	                    <th>#</th>
 	                    <th>Número de Activo</th>
 	                    <th>Nombre</th>
-	                    <th>Tipo</th>
-	                    <th>Nivel</th>
-	                    <th>Ubicación</th>
 	                    <th>Fecha de Garantía</th>
 	                    <th>Costo</th>
-	                    <th></th>
 	                </tr>
 	              </thead>
-	              <tbody>
+	              <tbody id="bodytable">
 	                {{--*/ $x = 1; /*--}}
 	                @foreach (Activo::all() as $activo)
 	                  <tr>
 	                      <td>{{ $x++ }}.</td>
-	                      <td>{{ $activo->codigo }}</td>
+	                      <td>{{ $activo->num_activo }}</td>
 	                      <td>{{ $activo->nombre }}</td>
-	                      @if(empty(TipoActivo::where('id', $activo->id_tipo)->first()->tipo))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ TipoActivo::where('id', $activo->id_tipo)->first()->tipo }}</td>
-	                      @endif
-	                      @if(empty(Nivel::where('id', $activo->id_nivel)->first()->nivel))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ Nivel::where('id', $activo->id_nivel)->first()->nivel }}</td>
-	                      @endif
-	                      @if(empty(Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion }}</td>
-	                      @endif
 	                      @if(empty($activo->fecha_garantia))
 	                      	<td>NO DEFINIDO</td>
 	                      @else
@@ -144,11 +124,6 @@
 	                      	<td>{{ $date->format('d-m-Y') }}</td>
 	                      @endif
 	                      <td>{{ $activo->costo }}</td>
-	                      <td align="center">
-							<a href="{{ route('datos.mantenimientos.show', $activo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>                       
-	                        <a href="{{ route('datos.activos.edit', $activo->id) }}" class="btn btn-primary btn-sm" style="margin:3px 0px;" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
-	                        <a href="#" data-id="{{ $activo->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>                                            
-	                      </td>
 	                  </tr>
 	                @endforeach
 	                </tbody> 

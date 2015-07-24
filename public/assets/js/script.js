@@ -359,13 +359,18 @@ jQuery(document).ready(function($){
 			});
 		});	
 		 $("#meses").change(function(){
+		 	var bodytable = $("#bodytable");
 			$.get("http://"+host+"/plagetri21/public/obtenergarantias", 
 				{ meses: $("#meses").val() }, 
 				function(data){
+					bodytable.empty();
+					var x = 1;
 					$.each(data, function(index,element) {
-					
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.fecha_garantia+'</td><td>'+element.costo+'</td></tr>');
+						x++;
 					});
-			});
+					
+			});	
 		});		
 
 });  
