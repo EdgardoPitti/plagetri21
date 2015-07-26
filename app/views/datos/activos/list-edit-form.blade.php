@@ -193,10 +193,6 @@
 			      {{ Form::label('proveedor', 'Proveedor:') }}
 			      {{ Form::select('proveedor',  array('0' => 'SELECCIONE EL PROVEEDOR') + Agenda::lists('nombre_completo', 'id'), $datos['activo']->id_proveedor, array('class' => 'form-control')); }}    
 			    </div>
-			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
-			    	{{ Form::label('descripcion', 'Descripcion:') }}
-			    	{{ Form::textarea('descripcion', $datos['activo']->descripcion, array('placeholder' => 'Desripcion', 'class' => 'form-control', 'size' => '1x4')) }}        
-			    </div>
 			     <div class="form-group col-sm-4 col-md-4 col-lg-4">
  				    {{ Form::label('fecha_garantia', 'Fecha de Garantía:') }}
     				{{ Form::text('fecha_garantia', null, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
@@ -208,6 +204,10 @@
 				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			      {{ Form::label('costo', 'Costo:') }}
 			      {{ Form::text('costo', null, array('placeholder' => 'Costo', 'class' => 'form-control')) }}
+			    </div>
+			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+			    	{{ Form::label('descripcion', 'Descripcion:') }}
+			    	{{ Form::textarea('descripcion', $datos['activo']->descripcion, array('placeholder' => 'Desripcion', 'class' => 'form-control', 'size' => '1x4')) }}        
 			    </div>
 			</div>
 			<div class="form-group col-sm-12 col-md-12 col-lg-12">

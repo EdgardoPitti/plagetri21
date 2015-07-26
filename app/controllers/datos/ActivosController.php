@@ -22,6 +22,8 @@ class Datos_ActivosController extends BaseController {
 		$datos['activo']->id_tipo = 1;
 		$datos['activo']->id_ubicacion = 1;
 		$datos['activo']->id_nivel = 1;
+		$datos['activo']->id_tipo_fuente = 1;
+		$datos['activo']->id_fecha_mantenimiento = 1;
 		//Se retorna a la vista con los valores correspondientes
 		return View::make('datos/activos/list-edit-form')->with('datos', $datos);
 	}
