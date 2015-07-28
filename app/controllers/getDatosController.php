@@ -43,7 +43,7 @@ class getDatosController extends BaseController {
 			$n = 1;
 			//Si recibe la variable "search" vacía, obtiene todos los médicos, sino busca alguno en específico.
 			//variable cantidad: sirve para conocer el total de registros y realizar la paginación de acuerdo al limit y offset.
-			if(empty($search)){
+			if(trim($search) != ""){
 				$datos = $medico->datos_medico(0, 0, $limit, $offset);
 				$cantidad = Medico::all()->count();		
 			}else{
@@ -100,7 +100,7 @@ class getDatosController extends BaseController {
 			$limit = Input::get('limit');
 			$offset = Input::get('offset');
 			
-			if(empty($search)){
+			if(trim($search) != ""){
 				$datos = $paciente->datos_pacientes(0, 0, $limit, $offset);			
 				$cantidad = Paciente::all()->count();				
 			}else {
@@ -162,16 +162,11 @@ class getDatosController extends BaseController {
 			$order = Input::get('order');
 
 			if(trim($search) != ""){
-				$search_act = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo
-							FROM activos a, tipos_activos t, ubicacion u, niveles n
-							WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel
-							AND (t.tipo LIKE '%".$search."%' OR u.ubicacion LIKE '%".$search."%' OR a.num_activo LIKE '%".$search."%' OR a.nombre LIKE '%".$search."%') ORDER BY a.costo ".$order." LIMIT ".$offset.",".$limit.";");	
+				$search_act = DB::select("SELECT * FROM buscar_activos WHERE (tipo LIKE '%".$search."%' OR ubicacion LIKE '%".$search."%' OR num_activo LIKE '%".$search."%' OR nombre LIKE '%".$search."%') ORDER BY costo ".$order." LIMIT ".$offset.",".$limit.";");	
 				$cantidad = count($search_act);
 
 			}else{
-				$search_act = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo
-							FROM activos a, tipos_activos t, ubicacion u, niveles n
-							WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel AND a.id > 0 ORDER BY a.costo ".$order." LIMIT ".$offset.",".$limit.";");
+				$search_act = DB::select("SELECT * FROM obtener_activos ORDER BY costo ".$order." LIMIT ".$offset.",".$limit.";");
 				$cantidad = count($search_act);		
 			}
 			
@@ -199,7 +194,7 @@ class getDatosController extends BaseController {
 							"nivel": "'.$activo[0]->nivel.'",
 							"ubicacion": "'.$activo[0]->ubicacion.'",
 							"costo": "'.$activo[0]->costo.'",
-							"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> <button class='.$comilla.'btn btn-warning btn-sm'.$comilla.' id='.$comilla.'darbaja'.$activo[0]->id.$comilla.' onclick='.$comilla.'baja('.$activo[0]->id.')'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.' data-target='.$comilla.'modalBaja'.$comilla.' title='.$comilla.'Dar de baja a '.$activo[0]->nombre.$comilla.'><span class='.$comilla.'glyphicon glyphicon-trash'.$comilla.'></span></button>"
+							"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> <button class='.$comilla.'btn btn-warning btn-sm'.$comilla.' onclick='.$comilla.'baja(this)'.$comilla.' value='.$comilla.$activo[0]->id.$comilla.' data-toggle='.$comilla.'modal'.$comilla.' data-target='.$comilla.'modalBaja'.$comilla.' title='.$comilla.'Dar de baja a '.$activo[0]->nombre.$comilla.'><span class='.$comilla.'glyphicon glyphicon-trash'.$comilla.'></span></button>"
 						}';
 					}
 					

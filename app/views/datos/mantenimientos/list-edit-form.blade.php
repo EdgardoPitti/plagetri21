@@ -157,7 +157,7 @@
 	    </div>
 
 	    @if (!empty($datos['activo']))
-	    	<div class="overthrow" style="overflow:auto;width:100%;">
+	    	<div class="table-responsive overthrow" style="overflow:auto;width:100%;">
 				<table class="table table-bordered">
 					<tr class="info">
 						<th>Código</th>

@@ -84,12 +84,14 @@ $(document).ready(function() {
  $('#condiciones').fixedHeaderTable();
 });
 
-function baja(id){
+//recibe valores del boton
+function baja(btn){
+	id = btn.value;
+	title = btn.title
 	var host = window.location.host;
-	var name_activo = $('#darbaja'+id)[0].title;
 	var activoClass = $('.activo');
 	activoClass.empty();
 	$('#form_baja').attr("action", 'http://'+host+'/plagetri21/public/datos/activos/' + id );
-	activoClass.append("<i class='fa fa-trash-o'></i> "+name_activo);
+	activoClass.append("<i class='fa fa-trash-o'></i> "+title);
 	$('#modalBaja').modal(show);
 }
