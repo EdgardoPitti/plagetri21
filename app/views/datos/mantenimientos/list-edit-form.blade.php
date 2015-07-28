@@ -81,10 +81,21 @@
 	            </div>
 	        </div>
 	      </div>
+
+	      {{--*/
+	      		$hoy = Carbon::now();
+	      		$lunes = new Carbon('last Monday'); 
+	      		$domingo = new Carbon('next Sunday');
+	      /*--}}
+	      @if($hoy->format('l') == 'Monday')
+				{{--*/$lunes = $hoy;/*--}}	      
+	      @elseif($hoy->format('l') == 'Sunday')
+	      		{{--*/$domingo = $hoy;/*--}}
+	      @endif
 	      <div class="col-md-12 col-sm-12 col-lg-12">
 	        <div class="panel panel-primary" s tyle="max-height:300px;">
 	          <div class="panel-heading">
-	            <h3 class="panel-title">Lista de Mantenimientos por hacer de este Mes</h3>
+	            <h3 class="panel-title">Mantenimientos para esta Semana</h3>
 	            <div class="pull-right">
 	              <span class="clickable filter" data-toggle="tooltip" title="Buscar Activo" data-container="body">
 	                <i class="glyphicon glyphicon-filter"></i>
@@ -110,7 +121,7 @@
 	              </thead>
 	              <tbody>
 	                {{--*/ $x = 1; /*--}}
-	                @foreach (Mantenimiento::whereBetween('proximo_mant', array($objeto->mes(0), $objeto->mes(3)))->get() as $mantenimiento)
+	                @foreach (Mantenimiento::whereBetween('proximo_mant', array($lunes->format('Y-m-d'), $domingo->format('Y-m-d')))->get() as $mantenimiento)
 	                  <tr>
 	                      <td>{{ $x++ }}.</td>
 	                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->codigo }}</td>
@@ -252,7 +263,7 @@
 				      		</div>
 					    	<div class="panel-body">
 						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_citas" placeholder="Filtrar Citas" /><br>
-							    <div class="overthrow" style="overflow:auto;width:100%;height:100%;max-height:240px;">
+							    <div class="overthrow" style="overflow:auto;width:100%;max-height:240px;">
 							        <table class="table table-bordered table-hover" id="tabla_citas">
 									  	<thead>
 									  		<tr class="info">
@@ -292,5 +303,4 @@
 
 	    @endif
 @stop
-  {{ Form::open(array('route' => array('datos.mantenimientos.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
-  {{ Form::close() }}
+
