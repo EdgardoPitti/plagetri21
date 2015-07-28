@@ -263,7 +263,7 @@
 				      		</div>
 					    	<div class="panel-body">
 						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_citas" placeholder="Filtrar Citas" /><br>
-							    <div class="overthrow" style="overflow:auto;width:100%;max-height:240px;">
+							    <div class="table-responsive overthrow" style="overflow:auto;width:100%;max-height:240px;">
 							        <table class="table table-bordered table-hover" id="tabla_citas">
 									  	<thead>
 									  		<tr class="info">
