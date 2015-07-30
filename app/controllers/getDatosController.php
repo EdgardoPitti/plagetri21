@@ -151,7 +151,8 @@ class getDatosController extends BaseController {
 		}
 	}
 
-	public function getActivos(){
+
+	public function getActivos($mantenimiento){
 		if(Request::ajax()){
 			
 			$activos =  new Activo;
@@ -193,8 +194,15 @@ class getDatosController extends BaseController {
 							"tipo": "'.$activo[0]->tipo.'",
 							"nivel": "'.$activo[0]->nivel.'",
 							"ubicacion": "'.$activo[0]->ubicacion.'",
-							"costo": "'.$activo[0]->costo.'",
-							"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> <button class='.$comilla.'btn btn-warning btn-sm'.$comilla.' onclick='.$comilla.'baja(this)'.$comilla.' value='.$comilla.$activo[0]->id.$comilla.' data-toggle='.$comilla.'modal'.$comilla.' data-target='.$comilla.'modalBaja'.$comilla.' title='.$comilla.'Dar de baja a '.$activo[0]->nombre.$comilla.'><span class='.$comilla.'glyphicon glyphicon-trash'.$comilla.'></span></button>"
+							"costo": "'.$activo[0]->costo.'",';
+							//si $mantenimiento es 0, mostrara la ruta para dar de baja a los activos, si es 1 
+							//no procedera a mostrar dicho enlace.
+							if($mantenimiento == 0){
+								$data.='"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> <button class='.$comilla.'btn btn-warning btn-sm'.$comilla.' onclick='.$comilla.'baja(this)'.$comilla.' value='.$comilla.$activo[0]->id.$comilla.' data-toggle='.$comilla.'modal'.$comilla.' data-target='.$comilla.'modalBaja'.$comilla.' title='.$comilla.'Dar de baja a '.$activo[0]->nombre.$comilla.'><span class='.$comilla.'glyphicon glyphicon-trash'.$comilla.'></span></button>"';
+							}else{
+								$data.='"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> "';
+							}
+						$data.='	
 						}';
 					}
 					
