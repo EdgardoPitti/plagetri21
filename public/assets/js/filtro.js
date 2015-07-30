@@ -91,7 +91,7 @@ function baja(btn){
 	var host = window.location.host;
 	var activoClass = $('.activo');
 	activoClass.empty();
-	$('#form_baja').attr("action", 'http://'+host+'/plagetri21/public/datos/activos/' + id );
+	$('#form_baja').attr("action", 'http://'+host+'/plagetri21/public/bajaactivo/' + id );
 	activoClass.append("<i class='fa fa-trash-o'></i> "+title);
 	$('#modalBaja').modal(show);
 }
