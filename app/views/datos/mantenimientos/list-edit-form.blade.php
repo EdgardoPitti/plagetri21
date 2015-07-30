@@ -109,10 +109,9 @@
 	                <thead>
 	                <tr class="info">
 	                    <th>#</th>
-	                    <th>Código</th>
+	                    <th>Número de Activo</th>
 	                    <th>Nombre</th>
 	                    <th>Marca</th>
-	                    <th>Proveedor</th>
 	                    <th>Nivel</th>
 	                    <th>Ubicación</th>
 	                    <th>Próximo Mantenimiento</th>
@@ -122,31 +121,29 @@
 	              <tbody>
 	                {{--*/ $x = 1; /*--}}
 	                @foreach (Mantenimiento::whereBetween('proximo_mant', array($lunes->format('Y-m-d'), $domingo->format('Y-m-d')))->get() as $mantenimiento)
-	                  <tr>
-	                      <td>{{ $x++ }}.</td>
-	                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->codigo }}</td>
-	                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->nombre }}</td>
-	                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->marca }}</td>
-	                      @if(empty(Agenda::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_proveedor)->first()->nombre_completo))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ Agenda::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_proveedor)->first()->nombre_completo }}</td>
-	                      @endif
-	                      @if(empty(Nivel::where('id', $activo->id_nivel)->first()->nivel))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ Nivel::where('id', $activo->id_nivel)->first()->nivel }}</td>
-	                      @endif
-	                      @if(empty(Ubicacion::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id)->first()->ubicacion))
-							<td>No Definido</td>
-	                      @else
-							<td>{{ Ubicacion::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id)->first()->ubicacion }}</td>
-	                      @endif
-	                      <td>{{ $mantenimiento->proximo_mant }}</td>
-	                      <td align="center">
-							<a href="{{ route('datos.mantenimientos.edit', $mantenimiento->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>
-                      </td>
-	                  </tr>
+	                	{{--*/$realizacion = Mantenimiento::where('id_activo', $mantenimiento->id_activo)->orderby('created_at','DESC')->first()->fecha_realizacion;/*--}}
+	                	@if( !($realizacion >= $lunes->format('Y-m-d') AND $realizacion <= $domingo->format('Y-m-d')))
+		                  <tr>
+		                      <td>{{ $x++ }}.</td>
+		                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->num_activo }}</td>
+		                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->nombre }}</td>
+		                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->marca }}</td>
+		                      @if(empty(Nivel::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_nivel)->first()->nivel))
+								<td>NO DEFINIDO</td>
+		                      @else
+								<td>{{ Nivel::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_nivel)->first()->nivel }}</td>
+		                      @endif
+		                      @if(empty(Ubicacion::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_ubicacion)->first()->ubicacion))
+								<td>NO DEFINIDO</td>
+		                      @else
+								<td>{{ Ubicacion::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_ubicacion)->first()->ubicacion }}</td>
+		                      @endif
+		                      <td>{{ $mantenimiento->proximo_mant }}</td>
+		                      <td align="center">
+		                      	<a href="{{ route('datos.mantenimientos.show', $activo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a> 
+	                      	  </td>
+		                  </tr>
+		                @endif
 	                @endforeach
 	                </tbody> 
 	              </table>
@@ -160,18 +157,17 @@
 	    	<div class="table-responsive overthrow" style="overflow:auto;width:100%;">
 				<table class="table table-bordered">
 					<tr class="info">
-						<th>Código</th>
+						<th>Número de Activo</th>
 						<th>Nombre</th>
 						<th>Tipo</th>
 						<th>Marca</th>
 						<th>Nivel</th>
 						<th>Ubicación</th>
-						<th>Proveedor</th>
 						<th>Costo</th>
 						<th>Tiempo de Mant.</th>
 					</tr>
 					<tr class="white">
-						<td>{{ $datos['activo']->codigo }}</td>
+						<td>{{ $datos['activo']->num_activo }}</td>
 						<td>{{ $datos['activo']->nombre }}</td>
 						@if(empty(TipoActivo::where('id', $datos['activo']->id_tipo)->first()->tipo))
 							<td>No Definido</td>
@@ -188,11 +184,6 @@
 							<td>No Definido</td>
 						@else
 							<td>{{ Ubicacion::where('id', $datos['activo']->id_ubicacion)->first()->ubicacion }}</td>
-						@endif
-						@if(empty(Agenda::where('id', $datos['activo']->id_proveedor)->first()->nombre_completo))
-							<td>No Definido</td>
-						@else
-							<td>{{ Agenda::where('id', $datos['activo']->id_proveedor)->first()->nombre_completo }}</td>
 						@endif
 						<td>{{ $datos['activo']->costo }}</td>
 						@if($datos['activo']->id_fecha_mantenimiento == 1)
@@ -239,7 +230,7 @@
 					</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 				      {{ Form::label('costo_mantenimiento', 'Costo de Mantenimiento:') }}
-				      {{ Form::text('costo_mantenimiento', null, array('placeholder' => 'Costo de Mantenimiento', 'class' => 'form-control', 'required' => 'required')) }}
+				      {{ Form::text('costo_mantenimiento', null, array('placeholder' => 'Costo de Mantenimiento', 'class' => 'form-control')) }}
 				    </div>
 				</div>
 				<div class="form-group col-sm-12 col-md-12 col-lg-12">
@@ -288,7 +279,7 @@
 									  				<td>{{ $mantenimiento->observacion }}</td>
 									  				<td align="center">
 									  					<a href="{{ route('datos.mantenimientos.edit', $mantenimiento->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>
-									  					 <a href="#" data-id="{{ $mantenimiento->id }}"  class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>                                            
+									  					
 									  				</td>
 									  			</tr>
 									  		@endforeach
