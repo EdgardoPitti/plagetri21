@@ -103,7 +103,7 @@
 		                      @endif
 		                      <td>{{ $mantenimiento->proximo_mant }}</td>
 		                      <td align="center">
-		                      	<a href="{{ route('datos.mantenimientos.show', $activo->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a> 
+		                      	<a href="{{ route('datos.mantenimientos.show', $mantenimiento->id_activo) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a> 
 	                      	  </td>
 		                  </tr>
 		                @endif
