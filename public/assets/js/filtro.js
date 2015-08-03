@@ -45,12 +45,12 @@ $(function(){
 
 function show(id) {	
     var host = window.location.host; 
-	$.post("http://"+host+"/plagetri21/public/medicos/getmedicos",            
+	$.post(""+baseurl+"/medicos/getmedicos",            
 	  { medico: id }, 
 	  function(data){	    
-       $("#loading").fadeIn().html('<img alt="Medico" src="http://'+host+'/plagetri21/public/imgs/loading.gif" style="width:20px;">');
+       $("#loading").fadeIn().html('<img alt="Medico" src="'+baseurl+'/imgs/loading.gif" style="width:20px;">');
 		 var datos = "<h4><label>"+data.first_name+" "+data.second_name+" "+data.last_name+" "+data.last_sec_name+"</label></h4><div class='row showDatos'>";	  	 
-	  	 datos += "<div class='col-md-3 col-lg-3' align='center'> <img alt='Medico' src='http://"+host+"/plagetri21/public/imgs/"+data.foto+"' class='img-rounded' style='width:80px;'> </div>";
+	  	 datos += "<div class='col-md-3 col-lg-3' align='center'> <img alt='Medico' src='"+baseurl+"/imgs/"+data.foto+"' class='img-rounded' style='width:80px;'> </div>";
        datos += "<div class=' col-md-9 col-lg-9 '>";
        datos += "<table class='table table-user-information'><tbody>"; 
        datos += "<tr><td>Extensi&oacute;n:</td><td><label></label>"+data.extension+"</td></tr>";  
@@ -88,10 +88,9 @@ $(document).ready(function() {
 function baja(btn){
 	id = btn.value;
 	title = btn.title
-	var host = window.location.host;
 	var activoClass = $('.activo');
 	activoClass.empty();
-	$('#form_baja').attr("action", 'http://'+host+'/plagetri21/public/bajaactivo/' + id );
+	$('#form_baja').attr("action", baseurl + '/bajaactivo/' + id );
 	activoClass.append("<i class='fa fa-trash-o'></i> "+title);
 	$('#modalBaja').modal(show);
 }

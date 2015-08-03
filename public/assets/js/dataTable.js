@@ -1,16 +1,15 @@
 $(function () {
- 		var host = window.location.host; 
 	
 		$("#table-medico").bootstrapTable({
 			height: 415,
-			url: 'http://'+host+'/plagetri21/public/medicos',
+			url: baseurl+'/medicos',
 			search: true,
 			sidePagination: 'server',
 			pagination: true
 		});
 		$("#table-paciente").bootstrapTable({
 			height: 380,
-			url: 'http://'+host+'/plagetri21/public/pacientes/'+url(),
+			url: baseurl+'/pacientes/'+url(),
 			search: true,
 			sidePagination: 'server',
 			pagination: true
@@ -31,8 +30,8 @@ $(function () {
 	    height: 180
 	  });
 	  $('#table-activo').bootstrapTable({
-	    height: 415,
-      url: 'http://'+host+'/plagetri21/public/getactivos/'+url(),
+	    height: 300,
+      url: baseurl+'/getactivos/'+url(),
       search: true,
       sidePagination: 'server',
       pagination: true

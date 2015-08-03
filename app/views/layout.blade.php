@@ -72,6 +72,10 @@
     </div>
     {{-- jQuery (necessary for Bootstrap's JavaScript plugins) --}}
     {{ HTML::script('assets/js/jquery.js') }}
+    <script type="text/javascript">
+      // Variable global con la url del directorio public
+      var baseurl = '{{url()}}'; 
+    </script>
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
 	 {{ HTML::script('assets/js/locales/bootstrap-datepicker.es.js') }}
@@ -83,10 +87,7 @@
 			    todayBtn: "linked",	    
 			    todayHighlight: true,
 			    autoclose: false
-			});
-			function eliminar() {
-				alert(1);
-			}
+			});			
 		});
 	 </script> 
     {{ HTML::script('assets/js/bootstrap-table.js') }}

@@ -12,11 +12,10 @@ function eliminar(id) {
 	  var form = $('#form-delete');
       var action = form.attr('action').replace('USER_ID', id);
       var row =  $(this).parents('tr');
-      var host = window.location.host;            	
-      
+       
       $.post(action, form.serialize(), function(result) {
          if (result.success) {
-         	var ruta = "http://"+host+"/plagetri21/public/"+result.route;	            	
+         	var ruta = ""+baseurl+"/"+result.route;	            	
          	window.location.replace(ruta);                         
          } else {
             row.show();

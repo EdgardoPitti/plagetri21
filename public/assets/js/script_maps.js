@@ -2,9 +2,9 @@ jQuery(document).ready(function($){
     var coordenada; //variable utilizada para las coordenadas de las provincias,distritos y corregimientos, manejado como 
     var infowindow = null; //para las ventanas de informacion de google map
     var marker = null; 
-    var host = window.location.host;
+    
     $("#id_prov").change(function(){
-        $.get("http://"+host+"/plagetri21/public/distrito", 
+        $.get(""+baseurl+"/distrito", 
         { provincia: $(this).val() }, 
         function(data){            
             var distrito = $('#id_dist');
@@ -19,7 +19,7 @@ jQuery(document).ready(function($){
                 //Se almacena en un arreglo todos los distritos de la provincia seleccionada
                 posdist[index] = [element.latitud, element.longitud, element.distrito];                
             });       
-            var icono  = new google.maps.MarkerImage("http://"+ host+"/plagetri21/public/imgs/distrito.png");         
+            var icono  = new google.maps.MarkerImage(""+baseurl+"/imgs/distrito.png");         
             setMarkers(map, posdist, icono);//Función que insertara los diferentes marcadores de los distritos de la provincia que se selecciona
         });
         coordenada = $(this).find(':selected').val().split(',');   //obtener datos del distrito seleccionado        
@@ -34,7 +34,7 @@ jQuery(document).ready(function($){
     });      
 
     $("#id_dist").change(function(){
-        $.get("http://"+host+"/plagetri21/public/corregimiento", 
+        $.get(""+baseurl+"/corregimiento", 
         { distrito: $(this).val() }, 
         function(data){
             var corregimiento = $('#id_correg');            
@@ -45,7 +45,7 @@ jQuery(document).ready(function($){
                 corregimiento.append("<option value='"+ element.id_corregimiento +","+ element.latitud +","+ element.longitud +"'>" + element.corregimiento + "</option>");
                 poscor[index] = [element.latitud, element.longitud, element.corregimiento];                
             });
-            var icono  = new google.maps.MarkerImage("http://"+host+"/plagetri21/public/imgs/corregimiento.png"); 
+            var icono  = new google.maps.MarkerImage(""+baseurl+"/imgs/corregimiento.png"); 
             setMarkers(map, poscor, icono);
         });
         coordenada = $("#id_dist").find(':selected').val().split(',');     
@@ -82,7 +82,7 @@ jQuery(document).ready(function($){
         };
         map = new google.maps.Map(document.getElementById("map-canvas"),myOptions);        
         //Obtener todos los marcadores en cada provincia y comarca extraidos del XML
-        $.get("http://"+host+"/plagetri21/public/assets/marcadores.xml",function(data) { 
+        $.get(""+baseurl+"/assets/marcadores.xml",function(data) { 
             //Luego de obtener los datos del XML, busca el nodo hijo con nombre marca dentro del archivo XML
             //Y obtiene todos los atributos dentro del mismo
             $(data).find('marca').each(function(){
@@ -94,7 +94,7 @@ jQuery(document).ready(function($){
                 infowindow = new google.maps.InfoWindow({
                     content: ''
                 })
-                var icono  = new google.maps.MarkerImage("http://"+host+"/plagetri21/public/imgs/provincia.png"); 
+                var icono  = new google.maps.MarkerImage(""+baseurl+"/imgs/provincia.png"); 
                 marker = new google.maps.Marker({
                     position: point,
                     map:map,
