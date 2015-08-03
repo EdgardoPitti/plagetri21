@@ -50,7 +50,7 @@
 	        </div>
 	      </div>
 	    </div>	
-
+	    {{--*/ $fecha_actual = Carbon::now() /*--}}
 	    <div class="modal fade" id="modalBaja" tabindex="-1" role="dialog" aria-labelledby="baja" aria-hidden="true">
       	 <form id="form_baja" method="POST" accept-charset="UTF-8" action="">
 		  <div class="modal-dialog">
@@ -63,7 +63,7 @@
 		      		<input name="_token" type="hidden" value="{{ csrf_token() }}">		      		
 			        {{ Form::hidden('id_estado', 3) }}
 			        {{ Form::label('fecha_de_baja', 'Fecha de Baja') }}
-			        {{ Form::text('fecha_de_baja', null, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
+			        {{ Form::text('fecha_de_baja', $fecha_actual->format('Y-m-d'), array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
 		      </div>
 		      <div class="modal-footer fondo-ft">	        
 		        <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
