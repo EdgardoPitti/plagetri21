@@ -35,7 +35,9 @@ Route::get('/', function(){
 	Route::resource('datos/modulos', 'Datos_ModulosController');
 	Route::resource('datos/empresas', 'EmpresasController');
 	Route::resource('datos/configuracion', 'ConfiguracionController');
+	Route::resource('datos/reportes', 'ReportesController');
 	Route::resource('print', 'PrintController');
+
 	
 	Route::post('almacenargrupo', 'Datos_ModulosController@almacenargrupo');
 	Route::post('medicos/getmedicos', 'getDatosController@postData'); //ruta para cargar datos al modal
