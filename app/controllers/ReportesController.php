@@ -9,7 +9,7 @@ class ReportesController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('datos/reportes/list-edit-form');
 	}
 
 
