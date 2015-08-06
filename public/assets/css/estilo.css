@@ -5,7 +5,7 @@
   src: local('Open Sans'), local('OpenSans'), url('../fonts/opensans.woff') format('woff');
 }
 body{
-   background-color: #f2f2f2;
+   background-color: #f1f1f1;
    font-family: 'Open Sans';
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -329,9 +329,15 @@ input.cmn-toggle-round-flat:checked + label:after {
   height: 0;
 }
 
-/* Tabs panel */
+/***** Tabs panel ******/
+/* Portlet */
+.portlet {
+  background: #fff;
+  border:2px solid #eee;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 .tabbable-panel {
-  border:1px solid #eee;
   padding: 10px;
 }
 
