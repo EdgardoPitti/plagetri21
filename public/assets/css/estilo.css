@@ -337,6 +337,7 @@ input.cmn-toggle-round-flat:checked + label:after {
   padding: 10px;
   margin-bottom: 10px;
 }
+/* Tab */
 .tabbable-panel {
   padding: 10px;
 }
