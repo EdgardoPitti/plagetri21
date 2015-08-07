@@ -36,6 +36,7 @@ class Datos_MantenimientosController extends BaseController {
 		$data = Input::all();
 		$mantenimientos = new Mantenimiento;
 		$mantenimientos->fecha_realizacion = $data['fecha'];
+		$mantenimientos->id_tipo_mantenimiento = $data['id_tipo_mantenimiento'];
 		$mantenimientos->realizado_por = $data['realizado_por'];
 		$mantenimientos->aprobado_por = $data['aprobado_por'];
 		$mantenimientos->id_activo = $data['id_activo'];
@@ -91,6 +92,7 @@ class Datos_MantenimientosController extends BaseController {
 		$data = Input::all();
 		$mantenimientos = Mantenimiento::find($id);
 		$mantenimientos->fecha_realizacion = $data['fecha'];
+		$mantenimientos->id_tipo_mantenimiento = $data['id_tipo_mantenimiento'];
 		$mantenimientos->realizado_por = $data['realizado_por'];
 		$mantenimientos->aprobado_por = $data['aprobado_por'];
 		$mantenimientos->id_activo = $data['id_activo'];

@@ -131,16 +131,9 @@ class DropdownController extends BaseController
     }
     public function getObtenerGarantias(){
         if(Request::ajax()){
-            $meses = Input::get('meses');
-            $fecha_final = date('Y-m-d', strtotime("+".$meses." month"));
-            $date = new DateTime(Carbon::now());
-            $fecha_inicio = $date->format('Y-m-d');
-            if($meses == 0){
-                $activos = Activo::all();
-            }else{
-                $activos = DB::table('activos')->whereBetween('fecha_garantia', array($fecha_inicio, $fecha_final))->get();            
-            }
-                    
+            $fecha_inicio = Input::get('fecha_inicio');
+            $fecha_fin = Input::get('fecha_fin');
+            $activos = DB::table('activos')->whereBetween('fecha_garantia', array($fecha_inicio, $fecha_fin))->get();            
             return $activos;            
         }else{
             App::abort(403);

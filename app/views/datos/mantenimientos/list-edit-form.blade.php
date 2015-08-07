@@ -176,6 +176,10 @@
 	  					{{ Form::text('fecha', $datos['mantenimiento']->fecha_realizacion, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2014-01-01', 'max' => '2050-12-31', 'required' => 'required')) }}
 					</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
+				      {{ Form::label('id_tipo_mantenimiento', 'Tipo de Mantenimiento:') }}
+				      {{ Form::select('id_tipo_mantenimiento',  TipoMantenimiento::lists('tipo_mantenimiento', 'id'), $datos['mantenimiento']->id_tipo_mantenimiento ,array('class' => 'form-control', 'required' => 'required')) }}
+				    </div>
+					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 				      {{ Form::label('realizado_por', 'Realizado por:') }}
 				      {{ Form::text('realizado_por', null, array('placeholder' => 'Realizado Por', 'class' => 'form-control', 'required' => 'required')) }}
 				    </div>
@@ -222,10 +226,11 @@
 									  	<thead>
 									  		<tr class="info">
 									  			<th>#</th>
-									  			<th>Fecha de Mantenimiento</th>
+									  			<th>Fecha de Mant.</th>
+									  			<th>Tipo de Mant.</th>
 									  			<th>Realizado</th>
 									  			<th>Aprobado</th>
-									  			<th>Próximo Mantenimiento</th>
+									  			<th>Próximo Mant.</th>
 									  			<th>Observación</th>
 									  			<th></th>
 									  		</tr>
@@ -236,6 +241,7 @@
 									  			<tr>
 									  				<td>{{ $x++ }}</td>
 									  				<td>{{ $mantenimiento->fecha_realizacion }}</td>
+									  				<td>{{ TipoMantenimiento::find($mantenimiento->id_tipo_mantenimiento)->tipo_mantenimiento }}</td>
 									  				<td>{{ $mantenimiento->realizado_por }}</td>
 									  				<td>{{ $mantenimiento->aprobado_por }}</td>
 									  				<td>{{ $mantenimiento->proximo_mant }}</td>

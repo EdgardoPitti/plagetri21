@@ -358,10 +358,11 @@ jQuery(document).ready(function($){
 					proxima_fecha.val(data);
 			});
 		});	
-		 $("#meses").change(function(){
+		//Script para obtener garantias en un rango de fecha
+		$("#fecha_inicio").change(function(){
 		 	var bodytable = $("#bodytable");
 			$.get(""+baseurl+"/obtenergarantias", 
-				{ meses: $("#meses").val() }, 
+				{ fecha_inicio: $("#fecha_inicio").val(), fecha_fin: $("#fecha_fin").val()  }, 
 				function(data){
 					bodytable.empty();
 					var x = 1;
@@ -371,7 +372,24 @@ jQuery(document).ready(function($){
 					});
 					
 			});	
-		});		
+		});	
+		//Script para obtener garantias en un rango de fecha
+		$("#fecha_fin").change(function(){
+		 	var bodytable = $("#bodytable");
+			$.get(""+baseurl+"/obtenergarantias", 
+				{ fecha_inicio: $("#fecha_inicio").val(), fecha_fin: $("#fecha_fin").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					$.each(data, function(index,element) {
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.fecha_garantia+'</td><td>'+element.costo+'</td></tr>');
+						x++;
+					});
+					
+			});	
+		});	
+
+
 
 });  
 
