@@ -139,4 +139,44 @@ class DropdownController extends BaseController
             App::abort(403);
         }
     }
+    public function getObtenerActivos(){
+        if(Request::ajax()){
+            $fecha_inicio = Input::get('fecha_inicio');
+            $fecha_fin = Input::get('fecha_fin');
+            $activos = DB::table('activos')->whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->orderBy('costo', 'desc')->get();            
+            return $activos;            
+        }else{
+            App::abort(403);
+        }
+    }
+    public function getObtenerFallas(){
+        if(Request::ajax()){
+            $fecha_inicio = Input::get('fecha_inicio');
+            $fecha_fin = Input::get('fecha_fin');
+            $fallas = DB::select("SELECT a.num_activo, a.nombre, a.modelo, a.serie, a.marca, t.tipo_fuente, count(m.id) AS cantidad FROM mantenimientos m, activos a, tipos_fuentes t WHERE id_tipo_mantenimiento = 2 AND m.id_activo = a.id AND a.id_tipo_fuente = t.id AND fecha_realizacion between '".$fecha_inicio."' AND '".$fecha_fin."' GROUP BY id_activo ORDER BY cantidad desc;");
+            return $fallas;            
+        }else{
+            App::abort(403);
+        }
+    }
+    public function getObtenerPreventivos(){
+        if(Request::ajax()){
+            $fecha_inicio = Input::get('fecha_inicio');
+            $fecha_fin = Input::get('fecha_fin');
+            $preventivos = DB::select("SELECT * FROM mantenimiento_preventivo WHERE fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."'");
+            return $preventivos;            
+        }else{
+            App::abort(403);
+        }
+    }
+    public function getObtenerCorrectivos(){
+        if(Request::ajax()){
+            $fecha_inicio = Input::get('fecha_inicio');
+            $fecha_fin = Input::get('fecha_fin');
+            $preventivos = DB::select("SELECT * FROM mantenimiento_correctivo WHERE fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."'");
+            return $preventivos;            
+        }else{
+            App::abort(403);
+        }
+    }
 }

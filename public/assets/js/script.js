@@ -360,7 +360,7 @@ jQuery(document).ready(function($){
 		});	
 		//Script para obtener garantias en un rango de fecha
 		$("#fecha_inicio").change(function(){
-		 	var bodytable = $("#bodytable");
+		 	var bodytable = $("#bodytable_garantias");
 			$.get(""+baseurl+"/obtenergarantias", 
 				{ fecha_inicio: $("#fecha_inicio").val(), fecha_fin: $("#fecha_fin").val()  }, 
 				function(data){
@@ -375,7 +375,7 @@ jQuery(document).ready(function($){
 		});	
 		//Script para obtener garantias en un rango de fecha
 		$("#fecha_fin").change(function(){
-		 	var bodytable = $("#bodytable");
+		 	var bodytable = $("#bodytable_garantias");
 			$.get(""+baseurl+"/obtenergarantias", 
 				{ fecha_inicio: $("#fecha_inicio").val(), fecha_fin: $("#fecha_fin").val()  }, 
 				function(data){
@@ -388,7 +388,118 @@ jQuery(document).ready(function($){
 					
 			});	
 		});	
-
+		//Script para obtener los activos mas costosos comprados dentro de un rango de fecha
+		$("#fecha_inicio_costo_1").change(function(){
+		 	var bodytable = $("#bodytable_costos_activos");
+			$.get(""+baseurl+"/obtenercostosactivos", 
+				{ fecha_inicio: $("#fecha_inicio_costo_1").val(), fecha_fin: $("#fecha_fin_costo_1").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					$.each(data, function(index,element) {
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.marca+'</td><td>'+element.serie+'</td><td>'+element.fecha_compra+'</td><td>'+element.costo+'</td></tr>');
+						x++;
+					});
+			});	
+		});
+		//Script para obtener los activos mas costosos comprados dentro de un rango de fecha	
+		$("#fecha_fin_costo_1").change(function(){
+		 	var bodytable = $("#bodytable_costos_activos");
+			$.get(""+baseurl+"/obtenercostosactivos", 
+				{ fecha_inicio: $("#fecha_inicio_costo_1").val(), fecha_fin: $("#fecha_fin_costo_1").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					$.each(data, function(index,element) {
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.marca+'</td><td>'+element.serie+'</td><td>'+element.fecha_compra+'</td><td>'+element.costo+'</td></tr>');
+						x++;
+					});
+			});	
+		});	
+		//Funcion para obtener los equipos con mas fallas dentro de un rango de fecha de sus mantenimientos
+		$("#fecha_inicio_falla").change(function(){
+		 	var bodytable = $("#bodytable_fallas");
+			$.get(""+baseurl+"/obtenerfallas", 
+				{ fecha_inicio: $("#fecha_inicio_falla").val(), fecha_fin: $("#fecha_fin_falla").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					$.each(data, function(index,element) {
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.marca+'</td><td>'+element.tipo_fuente+'</td><td>'+element.cantidad+'</td></tr>');
+						x++;
+					});
+			});	
+		});
+		//Funcion para obtener los equipos con mas fallas dentro de un rango de fecha de sus mantenimientos
+		$("#fecha_fin_falla").change(function(){
+		 	var bodytable = $("#bodytable_fallas");
+			$.get(""+baseurl+"/obtenerfallas", 
+				{ fecha_inicio: $("#fecha_inicio_falla").val(), fecha_fin: $("#fecha_fin_falla").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					$.each(data, function(index,element) {
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.marca+'</td><td>'+element.tipo_fuente+'</td><td>'+element.cantidad+'</td></tr>');
+						x++;
+					});
+			});	
+		});
+		//Funcion para obtener los mantenimientos preventivos dentro de un rango de fecha
+		$("#fecha_inicio_preventivo").change(function(){
+		 	var bodytable = $("#bodytable_preventivo");
+			$.get(""+baseurl+"/obtenerpreventivos", 
+				{ fecha_inicio: $("#fecha_inicio_preventivo").val(), fecha_fin: $("#fecha_fin_preventivo").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					$.each(data, function(index,element) {
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.fecha_realizacion+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
+						x++;
+					});
+			});	
+		});
+		//Funcion para obtener los mantenimientos preventivos dentro de un rango de fecha
+		$("#fecha_fin_preventivo").change(function(){
+		 	var bodytable = $("#bodytable_preventivo");
+			$.get(""+baseurl+"/obtenerpreventivos", 
+				{ fecha_inicio: $("#fecha_inicio_preventivo").val(), fecha_fin: $("#fecha_fin_preventivo").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					$.each(data, function(index,element) {
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.fecha_realizacion+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
+						x++;
+					});
+			});	
+		});
+		//Funcion para obtener los mantenimientos correctivos dentro de un rango de fecha
+		$("#fecha_inicio_correctivo").change(function(){
+		 	var bodytable = $("#bodytable_correctivo");
+			$.get(""+baseurl+"/obtenercorrectivos", 
+				{ fecha_inicio: $("#fecha_inicio_correctivo").val(), fecha_fin: $("#fecha_fin_correctivo").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					$.each(data, function(index,element) {
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.fecha_realizacion+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
+						x++;
+					});
+			});	
+		});
+		//Funcion para obtener los mantenimientos correctivos dentro de un rango de fecha
+		$("#fecha_fin_correctivo").change(function(){
+		 	var bodytable = $("#bodytable_correctivo");
+			$.get(""+baseurl+"/obtenercorrectivos", 
+				{ fecha_inicio: $("#fecha_inicio_correctivo").val(), fecha_fin: $("#fecha_fin_correctivo").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					$.each(data, function(index,element) {
+						bodytable.append('<tr><td>'+x+'</td><td>'+element.fecha_realizacion+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
+						x++;
+					});
+			});	
+		});
 
 
 });  

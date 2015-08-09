@@ -63,5 +63,9 @@ Route::get('/', function(){
 	Route::get('obtenermediana', 'Datos_MedianaController@getObtenerMediana');
 	Route::get('obtenerfecha', 'DropdownController@getCalculoFecha');
 	Route::get('obtenergarantias', 'DropdownController@getObtenerGarantias');
+	Route::get('obtenercostosactivos', 'DropdownController@getObtenerActivos');
+	Route::get('obtenerfallas', 'DropdownController@getObtenerFallas');
+	Route::get('obtenerpreventivos', 'DropdownController@getObtenerPreventivos');
+	Route::get('obtenercorrectivos', 'DropdownController@getObtenerCorrectivos');
 	Route::post('validarced', 'DropdownController@getValidarCed');
 	Route::post('validarcedm', 'DropdownController@getValidarCedM');

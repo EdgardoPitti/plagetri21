@@ -187,10 +187,6 @@
 				      {{ Form::label('aprobado_por', 'Aprobado por:') }}
 				      {{ Form::text('aprobado_por', null, array('placeholder' => 'Aprobado', 'class' => 'form-control')) }}
 				    </div>
-				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
-				    	{{ Form::label('observacion', 'Observación:') }}
-				    	{{ Form::textarea('observacion', $datos['mantenimiento']->observacion, array('placeholder' => 'Observación', 'class' => 'form-control', 'size' => '1x3')) }}        
-				    </div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 	  					{{ Form::label('proximo', 'Próximo Mantenimiento:') }}
 	  					{{ Form::text('proximo', $datos['mantenimiento']->proximo_mant, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd', 'min' => '2014-01-01', 'max' => '2050-12-31')) }}
@@ -198,6 +194,10 @@
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 				      {{ Form::label('costo_mantenimiento', 'Costo de Mantenimiento:') }}
 				      {{ Form::text('costo_mantenimiento', null, array('placeholder' => 'Costo de Mantenimiento', 'class' => 'form-control')) }}
+				    </div>
+					<div class="form-group col-sm-4 col-md-4 col-lg-4">
+				    	{{ Form::label('observacion', 'Observación:') }}
+				    	{{ Form::textarea('observacion', $datos['mantenimiento']->observacion, array('placeholder' => 'Observación', 'class' => 'form-control', 'size' => '1x3')) }}        
 				    </div>
 				</div>
 				<div class="form-group col-sm-12 col-md-12 col-lg-12">
