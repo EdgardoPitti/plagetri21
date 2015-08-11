@@ -165,7 +165,7 @@
                                     @foreach (DB::select("SELECT * FROM mantenimiento_preventivo") as $preventivo)
                                       <tr>
                                           <td>{{ $x++ }}.</td>
-                                          <td>{{ $preventivo->fecha_realizacion }}</td>
+                                          <td>{{ Carbon::parse($preventivo->fecha_realizacion )->formatLocalized('%d %b %Y') }}</td>
                                           <td>{{ $preventivo->num_activo }}</td>
                                           <td>{{ $preventivo->nombre }}</td>
                                           <td>{{ $preventivo->marca }}</td>
@@ -217,7 +217,7 @@
                                     @foreach (DB::select("SELECT * FROM mantenimiento_correctivo") as $correctivo)
                                       <tr>
                                           <td>{{ $x++ }}.</td>
-                                          <td>{{ $correctivo->fecha_realizacion }}</td>
+                                          <td>{{ Carbon::parse($correctivo->fecha_realizacion)->formatLocalized('%d %b %Y') }}</td>
                                           <td>{{ $correctivo->num_activo }}</td>
                                           <td>{{ $correctivo->nombre }}</td>
                                           <td>{{ $correctivo->marca }}</td>

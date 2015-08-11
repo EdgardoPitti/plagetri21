@@ -86,11 +86,21 @@
 	            </div>
 	          </div>
 	          <div class="panel-body" style="display:none;">
-	          	{{--*/ $fecha_actual = Carbon::now() /*--}}
-             Garantías desde: 
-              {{ Form::text('fecha_inicio', $fecha_actual->format('Y-m-d'), array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio' ,'min' => '1950-01-01', 'max' => '2020-12-31')) }}
-              hasta:
-              {{ Form::text('fecha_fin', date('Y-m-d', strtotime(" +1 month")), array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
+	          	<div class="well well-sm">
+	                <div class="form-horizontal">
+	                  <div class="form-group">
+	                    <label class="control-label col-sm-4">Garantías desde: </label> 
+	                    <div class="col-sm-8">
+	                      <div class="input-daterange input-group">             
+	          				{{--*/ $fecha_actual = Carbon::now() /*--}}
+				            {{ Form::text('fecha_inicio', $fecha_actual->format('Y-m-d'), array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio' ,'min' => '1950-01-01', 'max' => '2020-12-31')) }}
+				            <span class="input-group-addon">hasta</span>
+				            {{ Form::text('fecha_fin', date('Y-m-d', strtotime(" +1 month")), array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
+			         	  </div>
+						</div>
+					  </div>
+					</div>
+			  	</div>
               <div class="overthrow" style="height:200px;">
                 <table class="table table-hover table-bordered" cellpadding="0" cellspacing="0" id="dev-table">
                  <thead>
@@ -102,7 +112,7 @@
                       <th>Costo</th>
                   </tr>
                 </thead>   
-                <tbody id="bodytable">
+                <tbody id="bodytable_garantias">
                   {{--*/ $x = 1; /*--}}
                   @foreach (Activo::all() as $activo)
                     <tr>
@@ -112,8 +122,7 @@
                         @if(empty($activo->fecha_garantia))
                           <td>NO DEFINIDO</td>
                         @else
-                          {{--*/$date = new DateTime($activo->fecha_garantia);/*--}}
-                          <td>{{ $date->format('jS \\of F Y') }}</td>
+                          <td>{{ Carbon::parse($activo->fecha_garantia)->formatLocalized('%d %b %Y') }}</td>
                         @endif
                         <td>{{ $activo->costo }}</td>
                     </tr>
