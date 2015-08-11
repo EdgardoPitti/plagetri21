@@ -359,11 +359,14 @@ jQuery(document).ready(function($){
 				function(data){
 					bodytable.empty();
 					var x = 1;
-					$.each(data, function(index,element) {
-						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.fecha_garantia+'</td><td>'+element.costo+'</td></tr>');
-						x++;
-					});
-					
+					if($.isEmptyObject(data)){
+						bodytable.append('<tr><td colspan="8"><p style="color:red;text-align:center;padding:0;margin:0;">No existen garantias en este rango de fecha</p></td></tr>');
+					}else{
+						$.each(data, function(index,element) {
+							bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+convertirFecha(element.fecha_garantia)+'</td><td>'+element.costo+'</td></tr>');
+							x++;
+						});
+					}
 			});	
 		};	
 
@@ -412,10 +415,14 @@ jQuery(document).ready(function($){
 				function(data){
 					bodytable.empty();
 					var x = 1;
-					$.each(data, function(index,element) {
-						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.marca+'</td><td>'+element.tipo_fuente+'</td><td>'+element.cantidad+'</td></tr>');
-						x++;
-					});
+					if($.isEmptyObject(data)){
+						bodytable.append('<tr><td colspan="8"><p style="color:red;text-align:center;padding:0;margin:0;">No existen mantenimientos correctivos en este rango de fecha</p></td></tr>');
+					}else{
+						$.each(data, function(index,element) {
+							bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.marca+'</td><td>'+element.tipo_fuente+'</td><td>'+element.cantidad+'</td></tr>');
+							x++;
+						});
+					}
 			});	
 		};
 
@@ -435,10 +442,14 @@ jQuery(document).ready(function($){
 				function(data){
 					bodytable.empty();
 					var x = 1;
-					$.each(data, function(index,element) {
-						bodytable.append('<tr><td>'+x+'</td><td>'+element.fecha_realizacion+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
-						x++;
-					});
+					if($.isEmptyObject(data)){
+						bodytable.append('<tr><td colspan="8"><p style="color:red;text-align:center;padding:0;margin:0;">No existen mantenimientos preventivos en este rango de fecha</p></td></tr>');
+					}else{
+						$.each(data, function(index,element) {
+							bodytable.append('<tr><td>'+x+'</td><td>'+convertirFecha(element.fecha_realizacion)+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
+							x++;
+						});
+					}
 			});	
 		};
 
@@ -458,10 +469,14 @@ jQuery(document).ready(function($){
 				function(data){
 					bodytable.empty();
 					var x = 1;
-					$.each(data, function(index,element) {
-						bodytable.append('<tr><td>'+x+'</td><td>'+element.fecha_realizacion+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
-						x++;
-					});
+					if($.isEmptyObject(data)){
+						bodytable.append('<tr><td colspan="8"><p style="color:red;text-align:center;padding:0;margin:0;">No existen mantenimientos correctivos en este rango de fecha</p></td></tr>');
+					}else{
+						$.each(data, function(index,element) {
+							bodytable.append('<tr><td>'+x+'</td><td>'+convertirFecha(element.fecha_realizacion)+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
+							x++;
+						});
+					}
 			});	
 		};
 
