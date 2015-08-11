@@ -332,9 +332,6 @@ input.cmn-toggle-round-flat:checked + label:after {
 /***** Tabs panel ******/
 /* Portlet */
 .portlet {
-  background: #fff;
-  border:2px solid #eee;
-  padding: 10px;
   margin-bottom: 10px;
 }
 /* Tab */

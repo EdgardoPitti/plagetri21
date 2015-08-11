@@ -60,11 +60,17 @@
                     <!--  TAB ACTIVOS MAS COSTOSOS -->
                     <div class="tab-pane fade in active" id="tab4">
                       <div class="well well-sm">
-                        <label>Comprados desde:</label> 
-                        <div class="input-daterange input-group">
-                          {{ Form::text('fecha_inicio_costo_1', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_costo_1' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
-                          <span class="input-group-addon">hasta</span>
-                          {{ Form::text('fecha_fin_costo_1', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_costo_1', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                        <div class="form-horizontal">
+                          <div class="form-group">
+                            <label class="control-label col-sm-4">Comprados desde:</label> 
+                            <div class="col-sm-8">
+                              <div class="input-daterange input-group">
+                                {{ Form::text('fecha_inicio_costo_1', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_costo_1' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                <span class="input-group-addon">hasta</span>
+                                {{ Form::text('fecha_fin_costo_1', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_costo_1', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div class="overthrow table-responsive" style="height:200px;">
@@ -124,11 +130,17 @@
                               <!--  TAB PREVENTIVO -->
                               <div class="tab-pane fade in active" id="tab7">
                                 <div class="well well-sm">
-                                  <label>Mant. Preventivos realizados desde:</label>
-                                  <div class="input-daterange input-group">
-                                    {{ Form::text('fecha_inicio_preventivo', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_preventivo' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
-                                    <span class="input-group-addon">hasta</span>
-                                    {{ Form::text('fecha_fin_preventivo', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_preventivo', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                  <div class="form-horizontal">
+                                    <div class="form-group">
+                                      <label class="control-label col-sm-4">Mant. Preventivos realizados desde:</label>
+                                      <div class="col-sm-8">
+                                        <div class="input-daterange input-group">
+                                          {{ Form::text('fecha_inicio_preventivo', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_preventivo' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                          <span class="input-group-addon">hasta</span>
+                                          {{ Form::text('fecha_fin_preventivo', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_preventivo', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                  </div>
 
@@ -171,11 +183,17 @@
                               <!--  TAB CORRECTIVO -->
                               <div class="tab-pane fade" id="tab8">
                                 <div class="well well-sm">
-                                  <label>Mant. Correctivos realizados desde: </label>
-                                  <div class="input-daterange input-group">
-                                    {{ Form::text('fecha_inicio_correctivo', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_correctivo' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
-                                    <span class="input-group-addon">hasta</span>
-                                    {{ Form::text('fecha_fin_correctivo', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_correctivo', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                  <div class="form-horizontal">
+                                    <div class="form-group">
+                                      <label class="control-label col-sm-4">Mant. Correctivos realizados desde: </label>
+                                      <div class="col-sm-8">
+                                        <div class="input-daterange input-group">
+                                          {{ Form::text('fecha_inicio_correctivo', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_correctivo' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                          <span class="input-group-addon">hasta</span>
+                                          {{ Form::text('fecha_fin_correctivo', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_correctivo', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                                 <div class="overthrow table-responsive" style="height:200px;overflow:auto;">
@@ -233,11 +251,17 @@
           <!--  TAB ACT. CON MAS FALLA -->
   				<div class="tab-pane fade" id="tab2">
             <div class="well well-sm">
-              <label>Mant. Correctivos realizados desde: </label>
-              <div class="input-daterange input-group">
-                {{ Form::text('fecha_inicio_falla', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_falla' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
-                <span class="input-group-addon">hasta</span>
-                {{ Form::text('fecha_fin_falla', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_falla', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-4">Mant. Correctivos realizados desde: </label>
+                  <div class="col-sm-8">
+                    <div class="input-daterange input-group">
+                      {{ Form::text('fecha_inicio_falla', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_falla' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                      <span class="input-group-addon">hasta</span>
+                      {{ Form::text('fecha_fin_falla', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_falla', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
   					<div class="overthrow table-responsive" style="height:200px;">
@@ -276,11 +300,17 @@
           <!--  TAB GARANTIA -->
   				<div class="tab-pane fade" id="tab3">
             <div class="well well-sm">
-              <label>Garantías desde: </label>
-              <div class="input-daterange input-group">
-                {{ Form::text('fecha_inicio', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
-                <span class="input-group-addon">hasta</span>
-                {{ Form::text('fecha_fin', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-4">Garantías desde: </label>
+                  <div class="col-sm-8">
+                    <div class="input-daterange input-group">
+                      {{ Form::text('fecha_inicio', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                      <span class="input-group-addon">hasta</span>
+                      {{ Form::text('fecha_fin', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
               <div class="overthrow table-responsive" style="height:200px;">
