@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es-ES">
   <head>
     <title>@yield('title', 'Datos de Pacientes')</title>
     <meta charset="UTF-8"/>
@@ -78,18 +78,8 @@
     </script>
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
-	 {{ HTML::script('assets/js/locales/bootstrap-datepicker.es.js') }}
-	 <script type="text/javascript">
-		$(document).ready(function () {
-			$('.datepicker').datepicker({
-			    language: "es",
-			    format: 'yyyy-mm-dd',
-			    todayBtn: "linked",	    
-			    todayHighlight: true,
-			    autoclose: false
-			});			
-		});
-	 </script> 
+	  {{ HTML::script('assets/js/locales/bootstrap-datepicker.es.js') }}
+    {{ HTML::script('assets/js/datepicker_js.js') }}
     {{ HTML::script('assets/js/bootstrap-table.js') }}
     {{ HTML::script('assets/js/bootstrap-table-es.js') }}
     {{ HTML::script('assets/js/dataTable.js') }}

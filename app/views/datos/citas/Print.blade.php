@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es-ES">
 <head>
     <title>Citas Médicas</title>
     <meta charset="UTF-8">

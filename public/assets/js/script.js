@@ -388,34 +388,35 @@ jQuery(document).ready(function($){
 					
 			});	
 		});	
-		//Script para obtener los activos mas costosos comprados dentro de un rango de fecha
+
+		//ID de los Inputs de activos mas costosos
 		$("#fecha_inicio_costo_1").change(function(){
-		 	var bodytable = $("#bodytable_costos_activos");
-			$.get(""+baseurl+"/obtenercostosactivos", 
-				{ fecha_inicio: $("#fecha_inicio_costo_1").val(), fecha_fin: $("#fecha_fin_costo_1").val()  }, 
-				function(data){
-					bodytable.empty();
-					var x = 1;
-					$.each(data, function(index,element) {
-						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.marca+'</td><td>'+element.serie+'</td><td>'+element.fecha_compra+'</td><td>'+element.costo+'</td></tr>');
-						x++;
-					});
-			});	
+		 	obtenerCostoActivos();	
 		});
-		//Script para obtener los activos mas costosos comprados dentro de un rango de fecha	
+		
 		$("#fecha_fin_costo_1").change(function(){
-		 	var bodytable = $("#bodytable_costos_activos");
+			obtenerCostoActivos();
+		});
+		
+		//Script para obtener los activos mas costosos comprados dentro de un rango de fecha
+		function obtenerCostoActivos(){
+			var bodytable = $("#bodytable_costos_activos");			
 			$.get(""+baseurl+"/obtenercostosactivos", 
 				{ fecha_inicio: $("#fecha_inicio_costo_1").val(), fecha_fin: $("#fecha_fin_costo_1").val()  }, 
 				function(data){
 					bodytable.empty();
 					var x = 1;
-					$.each(data, function(index,element) {
-						bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.marca+'</td><td>'+element.serie+'</td><td>'+element.fecha_compra+'</td><td>'+element.costo+'</td></tr>');
-						x++;
-					});
-			});	
-		});	
+					if($.isEmptyObject(data)){
+						bodytable.append('<tr><td colspan="8"><p style="color:red;text-align:center;padding:0;margin:0;">No existen activos en este rango de fecha</p></td></tr>');
+					}else{
+						$.each(data, function(index,element) {
+							bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.marca+'</td><td>'+element.serie+'</td><td>'+convertirFecha(element.fecha_compra)+'</td><td>'+element.costo+'</td></tr>');
+							x++;
+						});						
+					}
+			}, 'json');
+		}
+		
 		//Funcion para obtener los equipos con mas fallas dentro de un rango de fecha de sus mantenimientos
 		$("#fecha_inicio_falla").change(function(){
 		 	var bodytable = $("#bodytable_fallas");
@@ -503,6 +504,16 @@ jQuery(document).ready(function($){
 
 
 });  
+
+//Funcion para convertir las fechas obtenidas
+function convertirFecha(fecha){
+	var meses = new Array ("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+	var f = new Date(fecha);
+	var fecha_completa;
+
+	fecha_completa = f.getDate() +' '+meses[f.getMonth()]+' '+f.getFullYear();
+	return fecha_completa;
+}
 
 function validarced(sw){
 		

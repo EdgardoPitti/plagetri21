@@ -143,7 +143,8 @@ class DropdownController extends BaseController
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
             $fecha_fin = Input::get('fecha_fin');
-            $activos = DB::table('activos')->whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->orderBy('costo', 'desc')->get();            
+            //$activos = DB::table('activos')->whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->orderBy('costo', 'desc')->get();            
+            $activos = Activo::whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->select('num_activo','nombre','modelo','marca','serie','fecha_compra','costo')->orderBy('costo', 'desc')->get();           
             return $activos;            
         }else{
             App::abort(403);
