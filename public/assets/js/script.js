@@ -360,7 +360,7 @@ jQuery(document).ready(function($){
 					bodytable.empty();
 					var x = 1;
 					if($.isEmptyObject(data)){
-						bodytable.append('<tr><td colspan="8"><p style="color:red;text-align:center;padding:0;margin:0;">No existen garantias en este rango de fecha</p></td></tr>');
+						bodytable.append('<tr><td colspan="5"><p style="color:red;text-align:center;padding:0;margin:0;">No existen garantias en este rango de fecha</p></td></tr>');
 					}else{
 						$.each(data, function(index,element) {
 							bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+convertirFecha(element.fecha_garantia)+'</td><td>'+element.costo+'</td></tr>');
@@ -443,7 +443,7 @@ jQuery(document).ready(function($){
 					bodytable.empty();
 					var x = 1;
 					if($.isEmptyObject(data)){
-						bodytable.append('<tr><td colspan="8"><p style="color:red;text-align:center;padding:0;margin:0;">No existen mantenimientos preventivos en este rango de fecha</p></td></tr>');
+						bodytable.append('<tr><td colspan="10"><p style="color:red;text-align:center;padding:0;margin:0;">No existen mantenimientos preventivos en este rango de fecha</p></td></tr>');
 					}else{
 						$.each(data, function(index,element) {
 							bodytable.append('<tr><td>'+x+'</td><td>'+convertirFecha(element.fecha_realizacion)+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
@@ -464,13 +464,14 @@ jQuery(document).ready(function($){
 		//Funcion para obtener los mantenimientos correctivos dentro de un rango de fecha
 		function obtenerCorrectivos(){
 		 	var bodytable = $("#bodytable_correctivo");
+		 	var numColumnas = bodytable.find('tr')[0].cells.length;
 			$.get(""+baseurl+"/obtenercorrectivos", 
 				{ fecha_inicio: $("#fecha_inicio_correctivo").val(), fecha_fin: $("#fecha_fin_correctivo").val()  }, 
 				function(data){
 					bodytable.empty();
 					var x = 1;
 					if($.isEmptyObject(data)){
-						bodytable.append('<tr><td colspan="8"><p style="color:red;text-align:center;padding:0;margin:0;">No existen mantenimientos correctivos en este rango de fecha</p></td></tr>');
+						bodytable.append('<tr><td colspan="10"><p style="color:red;text-align:center;padding:0;margin:0;">No existen mantenimientos correctivos en este rango de fecha</p></td></tr>');
 					}else{
 						$.each(data, function(index,element) {
 							bodytable.append('<tr><td>'+x+'</td><td>'+convertirFecha(element.fecha_realizacion)+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.marca+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.realizado_por+'</td><td>'+element.aprobado_por+'</td><td>'+element.costo_mantenimiento+'</td></tr>');
