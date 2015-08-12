@@ -64,7 +64,8 @@ Route::get('/', function(){
 	Route::get('obtenerfecha', 'DropdownController@getCalculoFecha');
 	Route::get('obtenergarantias', 'DropdownController@getObtenerGarantias');
 	Route::get('obtenercostosactivos', 'DropdownController@getObtenerActivos');
-	Route::get('obtenerfallas', 'DropdownController@getObtenerFallas');
+	Route::get('obtenerpreventivoactivo', 'DropdownController@getObtenerPreventivoActivo');
+	Route::get('obtenercorrectivoactivo', 'DropdownController@getObtenerCorrectivoActivo');
 	Route::get('obtenerpreventivos', 'DropdownController@getObtenerPreventivos');
 	Route::get('obtenercorrectivos', 'DropdownController@getObtenerCorrectivos');
 	Route::post('validarced', 'DropdownController@getValidarCed');

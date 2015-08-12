@@ -128,28 +128,35 @@ INSERT INTO `mantenimientos` (`id`,`fecha_realizacion`,`realizado_por`,`aprobado
 
 
 --
--- Table structure for table `plagetri21`.`niveles`
+-- Table structure for table `plagetri21`.`modulos`
 --
 
-DROP TABLE IF EXISTS `niveles`;
-CREATE TABLE `niveles` (
+DROP TABLE IF EXISTS `modulos`;
+CREATE TABLE `modulos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nivel` varchar(45) NOT NULL,
-  `created_at` varchar(45) NOT NULL,
-  `updated_at` varchar(45) NOT NULL,
+  `modulo` varchar(45) NOT NULL,
+  `ruta` varchar(45) NOT NULL,
+  `imagen` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plagetri21`.`niveles`
+-- Dumping data for table `plagetri21`.`modulos`
 --
 
-/*!40000 ALTER TABLE `niveles` DISABLE KEYS */;
-INSERT INTO `niveles` (`id`,`nivel`,`created_at`,`updated_at`) VALUES 
- (1,'NO DEFINIDO','',''),
- (2,'PLANTA BAJA','',''),
- (3,'PRIMER PISO','','');
-/*!40000 ALTER TABLE `niveles` ENABLE KEYS */;
+/*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
+INSERT INTO `modulos` (`id`,`modulo`,`ruta`,`imagen`) VALUES 
+ (1,'Citas de Tamizaje','datos.citas.index','citas.png'),
+ (2,'Pacientes','datos.pacientes.index','woman.png'),
+ (3,'Médicos','datos.medicos.index','medico.png'),
+ (4,'Mediana de Marcadores','datos.mediana.index','marcadores.png'),
+ (5,'Activos','datos.activos.index','activo.png'),
+ (6,'Mantenimiento','datos.mantenimientos.index','mantenimiento.png'),
+ (7,'Agenda Telefónica','datos.agenda.index','agenda.png'),
+ (8,'Localizar','datos.pacientesmapas.index','mapa.png'),
+ (9,'Enfermedades','datos.condiciones.index','enfermedades.png'),
+ (10,'Reportes','reportes.index','reportes.png');
+/*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
 
 
 --
@@ -248,36 +255,19 @@ INSERT INTO `tipos_mantenimientos` (`id`,`tipo_mantenimiento`) VALUES
 
 
 --
--- Table structure for table `plagetri21`.`ubicacion`
+-- View structure for view `plagetri21`.`activos_correctivos`
 --
 
-DROP TABLE IF EXISTS `ubicacion`;
-CREATE TABLE `ubicacion` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `ubicacion` varchar(45) NOT NULL,
-  `created_at` varchar(45) NOT NULL,
-  `updated_at` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `plagetri21`.`ubicacion`
---
-
-/*!40000 ALTER TABLE `ubicacion` DISABLE KEYS */;
-INSERT INTO `ubicacion` (`id`,`ubicacion`,`created_at`,`updated_at`) VALUES 
- (1,'NO DEFINIDO','',''),
- (2,'TORRE A','',''),
- (3,'TORRE B','','');
-/*!40000 ALTER TABLE `ubicacion` ENABLE KEYS */;
+DROP VIEW IF EXISTS `activos_correctivos`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `activos_correctivos` AS select `mantenimientos`.`id` AS `id`,`mantenimientos`.`fecha_realizacion` AS `fecha_realizacion`,`mantenimientos`.`realizado_por` AS `realizado_por`,`mantenimientos`.`aprobado_por` AS `aprobado_por`,`mantenimientos`.`id_activo` AS `id_activo`,`mantenimientos`.`proximo_mant` AS `proximo_mant`,`mantenimientos`.`observacion` AS `observacion`,`mantenimientos`.`created_at` AS `created_at`,`mantenimientos`.`updated_at` AS `updated_at`,`mantenimientos`.`costo_mantenimiento` AS `costo_mantenimiento`,`mantenimientos`.`id_tipo_mantenimiento` AS `id_tipo_mantenimiento`,count(`mantenimientos`.`id`) AS `cantidad` from `mantenimientos` where (`mantenimientos`.`id_tipo_mantenimiento` = 2) group by `mantenimientos`.`id_activo` order by `cantidad` desc;
 
 
 --
--- View structure for view `plagetri21`.`activos_fallas`
+-- View structure for view `plagetri21`.`activos_preventivos`
 --
 
-DROP VIEW IF EXISTS `activos_fallas`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `activos_fallas` AS select `mantenimientos`.`id` AS `id`,`mantenimientos`.`fecha_realizacion` AS `fecha_realizacion`,`mantenimientos`.`realizado_por` AS `realizado_por`,`mantenimientos`.`aprobado_por` AS `aprobado_por`,`mantenimientos`.`id_activo` AS `id_activo`,`mantenimientos`.`proximo_mant` AS `proximo_mant`,`mantenimientos`.`observacion` AS `observacion`,`mantenimientos`.`created_at` AS `created_at`,`mantenimientos`.`updated_at` AS `updated_at`,`mantenimientos`.`costo_mantenimiento` AS `costo_mantenimiento`,`mantenimientos`.`id_tipo_mantenimiento` AS `id_tipo_mantenimiento`,count(`mantenimientos`.`id`) AS `cantidad` from `mantenimientos` where (`mantenimientos`.`id_tipo_mantenimiento` = 2) group by `mantenimientos`.`id_activo` order by `cantidad` desc;
+DROP VIEW IF EXISTS `activos_preventivos`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `activos_preventivos` AS select `mantenimientos`.`id` AS `id`,`mantenimientos`.`fecha_realizacion` AS `fecha_realizacion`,`mantenimientos`.`realizado_por` AS `realizado_por`,`mantenimientos`.`aprobado_por` AS `aprobado_por`,`mantenimientos`.`id_activo` AS `id_activo`,`mantenimientos`.`proximo_mant` AS `proximo_mant`,`mantenimientos`.`observacion` AS `observacion`,`mantenimientos`.`created_at` AS `created_at`,`mantenimientos`.`updated_at` AS `updated_at`,`mantenimientos`.`costo_mantenimiento` AS `costo_mantenimiento`,`mantenimientos`.`id_tipo_mantenimiento` AS `id_tipo_mantenimiento`,count(`mantenimientos`.`id`) AS `cantidad` from `mantenimientos` where (`mantenimientos`.`id_tipo_mantenimiento` = 1) group by `mantenimientos`.`id_activo` order by `cantidad` desc;
 
 
 --

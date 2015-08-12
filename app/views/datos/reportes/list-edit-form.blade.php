@@ -28,7 +28,7 @@
   				</li>
   				<li>
   					<a href="#tab2" data-toggle="tab">
-  					Mantenimientos </a>
+  					Activos </a>
   				</li>
   				<li>
   					<a href="#tab3" data-toggle="tab">
@@ -44,20 +44,15 @@
                   <ul class="nav nav-tabs ">
                     <li class="active">
                       <a href="#tab4" data-toggle="tab">
-                      Activos mas Cost.</a>
+                      Costo de Activos</a>
                     </li>
                     <li>
                       <a href="#tab5" data-toggle="tab">
-                      Mantenimientos mas Cost.</a>
-                    </li>
-                    <li>
-                      <a href="#tab6" data-toggle="tab">
-                      Costo 3
-                      </a>
+                      Costo de Mantenimientos</a>
                     </li>
                   </ul>
                   <div class="tab-content">
-                    <!--  TAB ACTIVOS MAS COSTOSOS -->
+                    <!--  TAB COSTO DE ACTIVOS -->
                     <div class="tab-pane fade in active" id="tab4">
                       <div class="well well-sm">
                         <div class="form-horizontal">
@@ -101,7 +96,6 @@
                                   <td>NO DEFINIDO</td>
                                   @else
                                   <td>{{ Carbon::parse($activo->fecha_compra)->formatLocalized('%d %b %Y') }}</td>
-                                  
                                   @endif
                                   <td>{{ $activo->costo }}</td>
                               </tr>
@@ -111,7 +105,7 @@
                       </div>
                     </div>
 
-                    <!--  TAB MANTENIMIENTO MAS COSTOSO -->
+                    <!--  TAB COSTO DE MANTENIMIENTOES -->
                     <div class="tab-pane fade" id="tab5">
                       <div class="portlet">
                         <div class="tabbable-panel">
@@ -237,64 +231,130 @@
                         </div>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="tab6">
-                      <div class="overthrow table-responsive" style="height:200px;">
-                      Costo 3
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
   				</div>
 
-          <!--  TAB ACT. CON MAS FALLA -->
+          <!--  TAB ACTIVOS-->
   				<div class="tab-pane fade" id="tab2">
-            <div class="well well-sm">
-              <div class="form-horizontal">
-                <div class="form-group">
-                  <label class="control-label col-sm-4">Mant. Correctivos realizados desde: </label>
-                  <div class="col-sm-8">
-                    <div class="input-daterange input-group">
-                      {{ Form::text('fecha_inicio_falla', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_falla' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
-                      <span class="input-group-addon">hasta</span>
-                      {{ Form::text('fecha_fin_falla', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_falla', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+              <!--  TAB COSTO DE MANTENIMIENTOES -->
+              
+                <div class="portlet">
+                  <div class="tabbable-panel">
+                    <div class="tabbable-line">     
+                      <ul class="nav nav-tabs ">
+                        <li class="active">
+                          <a href="#tab9" data-toggle="tab">
+                          Mantenimientos Preventivos</a>
+                        </li>
+                        <li>
+                          <a href="#tab10" data-toggle="tab">
+                          Mantenimientos Correctivos</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <!--  TAB PREVENTIVO -->
+                        <div class="tab-pane fade in active" id="tab9">
+                         <div class="well well-sm">
+                            <div class="form-horizontal">
+                              <div class="form-group">
+                                <label class="control-label col-sm-4">Mant. Preventivos realizados desde: </label>
+                                <div class="col-sm-8">
+                                  <div class="input-daterange input-group">
+                                    {{ Form::text('fecha_inicio_preventivo_activo', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_preventivo_activo' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                    <span class="input-group-addon">hasta</span>
+                                    {{ Form::text('fecha_fin_preventivo_activo', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_preventivo_activo', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="overthrow table-responsive" style="height:200px;">
+                            <table class="table table-hover table-bordered">
+                               <thead>
+                                <tr class="info">
+                                    <th style="padding:8px;">#</th>
+                                    <th style="padding:8px;">Número de Activo</th>
+                                    <th style="padding:8px;">Nombre</th>
+                                    <th style="padding:8px;">Modelo</th>
+                                    <th style="padding:8px;">Serie</th>
+                                    <th style="padding:8px;">Marca</th>
+                                    <th style="padding:8px;">Tipo Fuente</th>
+                                    <th style="padding:8px;">Cantidad de Mantenimientos</th>
+                                </tr>
+                              </thead>   
+                              <tbody id="bodytable_preventivo_activo">
+                                {{--*/ $x = 1; /*--}}
+                                @foreach (DB::select("SELECT * FROM activos_preventivos") as $fallas)
+                                  <tr>
+                                      <td>{{ $x++ }}.</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->num_activo }}</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->nombre }}</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->modelo }}</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->serie }}</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->marca }}</td>
+                                      <td>{{ TipoFuente::where('id', Activo::where('id', $fallas->id_activo)->first()->id_tipo)->first()->tipo_fuente }}</td>
+                                      <td>{{ $fallas->cantidad }}</td>
+                                  </tr>
+                                @endforeach
+                                </tbody> 
+                              </table>
+                            </div>
+                        </div>
+                        <!--  TAB CORRECTIVO -->
+                        <div class="tab-pane fade" id="tab10">
+                         <div class="well well-sm">
+                            <div class="form-horizontal">
+                              <div class="form-group">
+                                <label class="control-label col-sm-4">Mant. Correctivos realizados desde: </label>
+                                <div class="col-sm-8">
+                                  <div class="input-daterange input-group">
+                                    {{ Form::text('fecha_inicio_correctivo_activo', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio_correctivo_activo' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                    <span class="input-group-addon">hasta</span>
+                                    {{ Form::text('fecha_fin_correctivo_activo', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin_correctivo_activo', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="overthrow table-responsive" style="height:200px;">
+                            <table class="table table-hover table-bordered">
+                               <thead>
+                                <tr class="info">
+                                    <th style="padding:8px;">#</th>
+                                    <th style="padding:8px;">Número de Activo</th>
+                                    <th style="padding:8px;">Nombre</th>
+                                    <th style="padding:8px;">Modelo</th>
+                                    <th style="padding:8px;">Serie</th>
+                                    <th style="padding:8px;">Marca</th>
+                                    <th style="padding:8px;">Tipo Fuente</th>
+                                    <th style="padding:8px;">Cantidad de Mantenimientos</th>
+                                </tr>
+                              </thead>   
+                              <tbody id="bodytable_correctivo_activo">
+                                {{--*/ $x = 1; /*--}}
+                                @foreach (DB::select("SELECT * FROM activos_correctivos") as $fallas)
+                                  <tr>
+                                      <td>{{ $x++ }}.</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->num_activo }}</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->nombre }}</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->modelo }}</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->serie }}</td>
+                                      <td>{{ Activo::where('id', $fallas->id_activo)->first()->marca }}</td>
+                                      <td>{{ TipoFuente::where('id', Activo::where('id', $fallas->id_activo)->first()->id_tipo)->first()->tipo_fuente }}</td>
+                                      <td>{{ $fallas->cantidad }}</td>
+                                  </tr>
+                                @endforeach
+                                </tbody> 
+                              </table>
+                            </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-  					<div class="overthrow table-responsive" style="height:200px;">
-              <table class="table table-hover table-bordered">
-                 <thead>
-                  <tr class="info">
-                      <th style="padding:8px;">#</th>
-                      <th style="padding:8px;">Número de Activo</th>
-                      <th style="padding:8px;">Nombre</th>
-                      <th style="padding:8px;">Modelo</th>
-                      <th style="padding:8px;">Serie</th>
-                      <th style="padding:8px;">Marca</th>
-                      <th style="padding:8px;">Tipo Fuente</th>
-                      <th style="padding:8px;">Fallas (Mant. Correctivo)</th>
-                  </tr>
-                </thead>   
-                <tbody id="bodytable_fallas">
-                  {{--*/ $x = 1; /*--}}
-                  @foreach (DB::select("SELECT * FROM activos_fallas") as $fallas)
-                    <tr>
-                        <td>{{ $x++ }}.</td>
-                        <td>{{ Activo::where('id', $fallas->id_activo)->first()->num_activo }}</td>
-                        <td>{{ Activo::where('id', $fallas->id_activo)->first()->nombre }}</td>
-                        <td>{{ Activo::where('id', $fallas->id_activo)->first()->modelo }}</td>
-                        <td>{{ Activo::where('id', $fallas->id_activo)->first()->serie }}</td>
-                        <td>{{ Activo::where('id', $fallas->id_activo)->first()->marca }}</td>
-                        <td>{{ TipoFuente::where('id', Activo::where('id', $fallas->id_activo)->first()->id_tipo)->first()->tipo_fuente }}</td>
-                        <td>{{ $fallas->cantidad }}</td>
-                    </tr>
-                  @endforeach
-                  </tbody> 
-                </table>
-              </div>
   				</div>
 
           <!--  TAB GARANTIA -->
