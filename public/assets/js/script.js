@@ -492,7 +492,6 @@ jQuery(document).ready(function($){
 		//Funcion para obtener los mantenimientos correctivos dentro de un rango de fecha
 		function obtenerCorrectivos(){
 		 	var bodytable = $("#bodytable_correctivo");
-		 	var numColumnas = bodytable.find('tr')[0].cells.length;
 			$.get(""+baseurl+"/obtenercorrectivos", 
 				{ fecha_inicio: $("#fecha_inicio_correctivo").val(), fecha_fin: $("#fecha_fin_correctivo").val()  }, 
 				function(data){
@@ -513,7 +512,7 @@ jQuery(document).ready(function($){
 
 //Funcion para convertir las fechas obtenidas
 function convertirFecha(fecha){
-	var meses = new Array ("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+	var meses = new Array ("ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.");
 	var f = new Date(fecha);
 	var fecha_completa;
 
