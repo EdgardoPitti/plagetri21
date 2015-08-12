@@ -15,7 +15,7 @@
       $fecha_mes = date('Y-m-d', strtotime(" +1 month"));
    
     // Función que permite cambiar el idioma a las fechas
-    setlocale(LC_TIME, 'es_ES.utf8'); 
+    setlocale(LC_TIME, 'Spanish'); 
 /*--}}
 
   <div class="portlet">
@@ -28,7 +28,7 @@
   				</li>
   				<li>
   					<a href="#tab2" data-toggle="tab">
-  					Act. con más fallas </a>
+  					Mantenimientos </a>
   				</li>
   				<li>
   					<a href="#tab3" data-toggle="tab">

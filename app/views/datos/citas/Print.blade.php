@@ -51,7 +51,7 @@
 	</div>
     <br>
     {{-- función que permite cambiar el idioma a las fechas--}}
-    {{--*/ setlocale(LC_TIME, 'es_ES.utf8'); /*--}}
+    {{--*/ setlocale(LC_TIME, 'Spanish'); /*--}}
     <div style="height: 250px;">
     	<div class="texto">
     		<h3>Triple Marcador Maternal</h3>
