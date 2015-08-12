@@ -150,12 +150,22 @@ class DropdownController extends BaseController
             App::abort(403);
         }
     }
-    public function getObtenerFallas(){
+    public function getObtenerPreventivoActivo(){
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
             $fecha_fin = Input::get('fecha_fin');
-            $fallas = DB::select("SELECT a.num_activo, a.nombre, a.modelo, a.serie, a.marca, t.tipo_fuente, count(m.id) AS cantidad FROM mantenimientos m, activos a, tipos_fuentes t WHERE id_tipo_mantenimiento = 2 AND m.id_activo = a.id AND a.id_tipo_fuente = t.id AND fecha_realizacion between '".$fecha_inicio."' AND '".$fecha_fin."' GROUP BY id_activo ORDER BY cantidad desc;");
-            return $fallas;            
+            $preventivo = DB::select("SELECT a.num_activo, a.nombre, a.modelo, a.serie, a.marca, t.tipo_fuente, count(m.id) AS cantidad FROM mantenimientos m, activos a, tipos_fuentes t WHERE id_tipo_mantenimiento = 1 AND m.id_activo = a.id AND a.id_tipo_fuente = t.id AND fecha_realizacion between '".$fecha_inicio."' AND '".$fecha_fin."' GROUP BY id_activo ORDER BY cantidad desc;");
+            return $preventivo;            
+        }else{
+            App::abort(403);
+        }
+    }
+    public function getObtenerCorrectivoActivo(){
+        if(Request::ajax()){
+            $fecha_inicio = Input::get('fecha_inicio');
+            $fecha_fin = Input::get('fecha_fin');
+            $correctivo = DB::select("SELECT a.num_activo, a.nombre, a.modelo, a.serie, a.marca, t.tipo_fuente, count(m.id) AS cantidad FROM mantenimientos m, activos a, tipos_fuentes t WHERE id_tipo_mantenimiento = 2 AND m.id_activo = a.id AND a.id_tipo_fuente = t.id AND fecha_realizacion between '".$fecha_inicio."' AND '".$fecha_fin."' GROUP BY id_activo ORDER BY cantidad desc;");
+            return $correctivo;            
         }else{
             App::abort(403);
         }

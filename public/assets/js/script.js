@@ -399,19 +399,46 @@ jQuery(document).ready(function($){
 			}, 'json');
 		};
 		
-		$("#fecha_inicio_falla").change(function(){
-		 	obtenerFallas();	
+		$("#fecha_inicio_preventivo_activo").change(function(){
+		 	obrenerPreventivoActivo();	
 		});
 		
-		$("#fecha_fin_falla").change(function(){
-			obtenerFallas();
+		$("#fecha_fin_preventivo_activo").change(function(){
+			obrenerPreventivoActivo();
 		});
 
 		//Funcion para obtener los equipos con mas fallas dentro de un rango de fecha de sus mantenimientos
-		function obtenerFallas(){
-		 	var bodytable = $("#bodytable_fallas");
-			$.get(""+baseurl+"/obtenerfallas", 
-				{ fecha_inicio: $("#fecha_inicio_falla").val(), fecha_fin: $("#fecha_fin_falla").val()  }, 
+		function obrenerPreventivoActivo(){
+		 	var bodytable = $("#bodytable_preventivo_activo");
+			$.get(""+baseurl+"/obtenerpreventivoactivo", 
+				{ fecha_inicio: $("#fecha_inicio_preventivo_activo").val(), fecha_fin: $("#fecha_fin_preventivo_activo").val()  }, 
+				function(data){
+					bodytable.empty();
+					var x = 1;
+					if($.isEmptyObject(data)){
+						bodytable.append('<tr><td colspan="8"><p style="color:red;text-align:center;padding:0;margin:0;">No existen mantenimientos preventivos en este rango de fecha</p></td></tr>');
+					}else{
+						$.each(data, function(index,element) {
+							bodytable.append('<tr><td>'+x+'</td><td>'+element.num_activo+'</td><td>'+element.nombre+'</td><td>'+element.modelo+'</td><td>'+element.serie+'</td><td>'+element.marca+'</td><td>'+element.tipo_fuente+'</td><td>'+element.cantidad+'</td></tr>');
+							x++;
+						});
+					}
+			});	
+		};
+
+		$("#fecha_inicio_correctivo_activo").change(function(){
+		 	obrenerCorrectivoActivo();	
+		});
+		
+		$("#fecha_fin_correctivo_activo").change(function(){
+			obrenerCorrectivoActivo();
+		});
+
+		//Funcion para obtener los equipos con mas fallas dentro de un rango de fecha de sus mantenimientos
+		function obrenerCorrectivoActivo(){
+		 	var bodytable = $("#bodytable_correctivo_activo");
+			$.get(""+baseurl+"/obtenercorrectivoactivo", 
+				{ fecha_inicio: $("#fecha_inicio_correctivo_activo").val(), fecha_fin: $("#fecha_fin_correctivo_activo").val()  }, 
 				function(data){
 					bodytable.empty();
 					var x = 1;
@@ -425,6 +452,7 @@ jQuery(document).ready(function($){
 					}
 			});	
 		};
+
 
 		$("#fecha_inicio_preventivo").change(function(){
 		 	obtenerPreventivos();	
