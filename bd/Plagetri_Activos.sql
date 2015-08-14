@@ -59,12 +59,6 @@ CREATE TABLE `activos` (
 -- Dumping data for table `plagetri21`.`activos`
 --
 
-/*!40000 ALTER TABLE `activos` DISABLE KEYS */;
-INSERT INTO `activos` (`id`,`num_activo`,`nombre`,`descripcion`,`id_tipo`,`marca`,`id_nivel`,`id_ubicacion`,`fecha_compra`,`num_factura`,`costo`,`id_proveedor`,`created_at`,`updated_at`,`id_tipo_fuente`,`id_estado`,`modelo`,`serie`,`voltaje`,`consumo`,`alimentacion`,`protocolo`,`id_fecha_mantenimiento`,`fecha_garantia`,`fecha_de_baja`) VALUES 
- (1,'A-001','Cama','Excelente Cama',1,'LG',2,1,'2014-06-13','2231-44',100.05,2,'2014-06-13 22:00:32','2015-07-26 22:09:39',1,3,'','','','','','','2','2015-12-12','2015-07-10'),
- (2,'AAAAA_1','PC','Descripcion',2,'DELL',3,3,'2015-07-20','aa-111',110,1,'2015-07-20 14:57:47','2015-07-30 13:50:55',2,3,'ASPX1','1111','11.4v','1.4a','122a','Protocolo','0','2015-09-03','2015-07-12');
-/*!40000 ALTER TABLE `activos` ENABLE KEYS */;
-
 
 --
 -- Table structure for table `plagetri21`.`fechas_mantenimientos`
@@ -117,15 +111,6 @@ CREATE TABLE `mantenimientos` (
 -- Dumping data for table `plagetri21`.`mantenimientos`
 --
 
-/*!40000 ALTER TABLE `mantenimientos` DISABLE KEYS */;
-INSERT INTO `mantenimientos` (`id`,`fecha_realizacion`,`realizado_por`,`aprobado_por`,`id_activo`,`proximo_mant`,`observacion`,`created_at`,`updated_at`,`costo_mantenimiento`,`id_tipo_mantenimiento`) VALUES 
- (1,'2015-07-09','as','as',1,'2015-07-16','as','2015-07-21 14:04:05','2015-08-06 14:56:48','150',1),
- (2,'2015-07-15','Luis','',1,'2015-07-30','','2015-07-28 14:06:22','2015-07-28 14:06:22','110',2),
- (3,'2015-07-23','Luis','as',2,'2015-07-31','','2015-07-30 13:51:37','2015-07-30 13:51:37','100',1),
- (4,'2015-07-30','Luis','as',2,'2015-08-09','','2015-07-30 14:06:10','2015-07-30 14:06:10','233',2),
- (7,'2015-08-05','Luis','as',2,'2015-08-20','','2015-08-05 13:22:22','2015-08-05 13:22:22','444',2);
-/*!40000 ALTER TABLE `mantenimientos` ENABLE KEYS */;
-
 
 --
 -- Table structure for table `plagetri21`.`modulos`
@@ -177,9 +162,7 @@ CREATE TABLE `tipos_activos` (
 
 /*!40000 ALTER TABLE `tipos_activos` DISABLE KEYS */;
 INSERT INTO `tipos_activos` (`id`,`tipo`,`descripcion`) VALUES 
- (1,'NO DEFINIDO','NO DEFINIDO'),
- (2,'CAMA','CAMA'),
- (3,'MUEBLE','MUEBLE');
+ (1,'NO DEFINIDO','NO DEFINIDO');
 /*!40000 ALTER TABLE `tipos_activos` ENABLE KEYS */;
 
 
