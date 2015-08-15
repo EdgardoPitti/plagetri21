@@ -43,7 +43,7 @@ class getDatosController extends BaseController {
 			$n = 1;
 			//Si recibe la variable "search" vacía, obtiene todos los médicos, sino busca alguno en específico.
 			//variable cantidad: sirve para conocer el total de registros y realizar la paginación de acuerdo al limit y offset.
-			if(trim($search) != ""){
+			if(empty($search)){
 				$datos = $medico->datos_medico(0, 0, $limit, $offset);
 				$cantidad = Medico::all()->count();		
 			}else{
@@ -100,7 +100,7 @@ class getDatosController extends BaseController {
 			$limit = Input::get('limit');
 			$offset = Input::get('offset');
 			
-			if(trim($search) != ""){
+			if(empty($search)){
 				$datos = $paciente->datos_pacientes(0, 0, $limit, $offset);			
 				$cantidad = Paciente::all()->count();				
 			}else {
@@ -162,17 +162,16 @@ class getDatosController extends BaseController {
 			$offset = Input::get('offset');
 			$order = Input::get('order');
 
-			if(trim($search) != ""){
-				$search_act = DB::select("SELECT * FROM buscar_activos WHERE (tipo LIKE '%".$search."%' OR ubicacion LIKE '%".$search."%' OR num_activo LIKE '%".$search."%' OR nombre LIKE '%".$search."%') ORDER BY costo ".$order." LIMIT ".$offset.",".$limit.";");	
+			if(!empty($search)){
+				$search_act = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo FROM activos a, tipos_activos t, ubicacion u, niveles n WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel AND (t.tipo LIKE '%".$search."%' OR u.ubicacion LIKE '%".$search."%' OR a.num_activo LIKE '%".$search."%' OR a.nombre LIKE '%".$search."%') ORDER BY a.costo ".$order." LIMIT ".$offset.",".$limit.";");
 				$cantidad = count($search_act);
 
 			}else{
-				$search_act = DB::select("SELECT * FROM obtener_activos ORDER BY costo ".$order." LIMIT ".$offset.",".$limit.";");
+				$search_act = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo FROM activos a, tipos_activos t, ubicacion u, niveles n WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel AND a.id > 0 ORDER BY a.costo ".$order." LIMIT ".$offset.",".$limit.";");
 				$cantidad = count($search_act);		
 			}
 			
 			$comilla = "'";
-			$apostrofe = '"';
 			$n = 1;
 
 			$data = '{

@@ -8,7 +8,7 @@
 		<h1>
 		 <div style="position:relative;">
 			<div style="position:absolute;left:0px;">
-		    	<a href="/plagetri21/public" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span><span class="return"> Inicio</span></a>
+		    	<a href="{{URL::to('/')}}" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span><span class="return"> Inicio</span></a>
 			</div>
 		 </div>
 		  <center>Activos</center>
@@ -73,67 +73,6 @@
 		  </div>
        	 </form>
 		</div>
-
-		<div class="row">
-	      <div class="col-md-12 col-sm-12 col-lg-12">
-	        <div class="panel panel-primary">
-	          <div class="panel-heading">
-	            <h3 class="panel-title">Reporte de Garantia de Activos</h3>
-	            <div class="pull-right">
-	              <span class="clickable filter" data-toggle="tooltip" title="Buscar Activo" data-container="body">
-	                <i class="glyphicon glyphicon-filter"></i>
-	              </span>
-	            </div>
-	          </div>
-	          <div class="panel-body" style="display:none;">
-	          	<div class="well well-sm">
-	                <div class="form-horizontal">
-	                  <div class="form-group">
-	                    <label class="control-label col-sm-4">Garantías desde: </label> 
-	                    <div class="col-sm-8">
-	                      <div class="input-daterange input-group">             
-	          				{{--*/ $fecha_actual = Carbon::now() /*--}}
-				            {{ Form::text('fecha_inicio', $fecha_actual->format('Y-m-d'), array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio' ,'min' => '1950-01-01', 'max' => '2020-12-31')) }}
-				            <span class="input-group-addon">hasta</span>
-				            {{ Form::text('fecha_fin', date('Y-m-d', strtotime(" +1 month")), array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin', 'min' => '1950-01-01', 'max' => '2020-12-31')) }}
-			         	  </div>
-						</div>
-					  </div>
-					</div>
-			  	</div>
-              <div class="overthrow" style="height:200px;">
-                <table class="table table-hover table-bordered" cellpadding="0" cellspacing="0" id="dev-table">
-                 <thead>
-                  <tr class="info">
-                      <th>#</th>
-                      <th>Número de Activo</th>
-                      <th>Nombre</th>
-                      <th>Fecha de Garantía</th>
-                      <th>Costo</th>
-                  </tr>
-                </thead>   
-                <tbody id="bodytable_garantias">
-                  {{--*/ $x = 1; /*--}}
-                  @foreach (Activo::all() as $activo)
-                    <tr>
-                        <td>{{ $x++ }}.</td>
-                        <td>{{ $activo->num_activo }}</td>
-                        <td>{{ $activo->nombre }}</td>
-                        @if(empty($activo->fecha_garantia))
-                          <td>NO DEFINIDO</td>
-                        @else
-                          <td>{{ Carbon::parse($activo->fecha_garantia)->formatLocalized('%d %b %Y') }}</td>
-                        @endif
-                        <td>{{ $activo->costo }}</td>
-                    </tr>
-                  @endforeach
-                  </tbody> 
-                </table>
-              </div>
-	          </div>
-	        </div>
-	      </div>
-	    </div>	
 
 		{{ Form::model($datos['activo'], $datos['form'] + array('files' => 'true') , array('role' => 'form')) }}
 			<div class="row">

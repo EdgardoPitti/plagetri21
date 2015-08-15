@@ -373,16 +373,16 @@ jQuery(document).ready(function($){
 
 		//ID de los Inputs de activos mas costosos
 		$("#fecha_inicio_costo_1").change(function(){
-		 	obtenerCostoActivos();	
+			obtenerCostoActivos();
 		});
-		
 		$("#fecha_fin_costo_1").change(function(){
 			obtenerCostoActivos();
 		});
 		
 		//Script para obtener los activos mas costosos comprados dentro de un rango de fecha
 		function obtenerCostoActivos(){
-			var bodytable = $("#bodytable_costos_activos");			
+			var bodytable = $("#bodytable_costos_activos");	
+			
 			$.get(""+baseurl+"/obtenercostosactivos", 
 				{ fecha_inicio: $("#fecha_inicio_costo_1").val(), fecha_fin: $("#fecha_fin_costo_1").val()  }, 
 				function(data){
@@ -398,6 +398,47 @@ jQuery(document).ready(function($){
 					}
 			}, 'json');
 		};
+		/*var $bodytable = $("#bodytable_costos_activos");			
+		var fi = $("#fecha_inicio_costo_1").val();//fecha inicial
+		var ff = $("#fecha_fin_costo_1").val();//fecha final
+		$bodytable.bootstrapTable({
+			method: 'get',
+			url: baseurl+'/obtenercostosactivos',
+			height: 200,
+			queryParams: function (p) {
+				return { 
+					//search: $('#searchPatient').val(), //obtiene el valor del input en la vista paciente
+					fecha_inicio: fi,
+					fecha_fin: ff,
+					order: p.order,				
+					limit: p.limit,
+	            	offset: p.offset,	 
+				};
+			},  
+			pagination: true,			
+			sidePagination: "server",
+			pageList: "[5,10,20,100,200]",
+	        cache: false,	
+		});
+		$("#fecha_inicio_costo_1").change(function(){
+		 	fi = $(this).val();		 	
+		 	$bodytable.bootstrapTable('refresh', {
+		 		query: {
+		 			fecha_inicio: fi,
+					fecha_fin: ff,
+		 		}
+		 	});
+		});
+		$("#fecha_fin_costo_1").change(function(){
+			ff = $(this).val();		 	
+		 	$bodytable.bootstrapTable('refresh', {
+		 		query: {
+		 			fecha_inicio: fi,
+					fecha_fin: ff,
+		 		}
+		 	});
+		});*/
+		
 		
 		$("#fecha_inicio_preventivo_activo").change(function(){
 		 	obrenerPreventivoActivo();	
@@ -512,11 +553,11 @@ jQuery(document).ready(function($){
 
 //Funcion para convertir las fechas obtenidas
 function convertirFecha(fecha){
+	var fecha = fecha.split('-');
 	var meses = new Array ("ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.");
-	var f = new Date(fecha);
+	var f = new Date(fecha[0], fecha[1], fecha[2]);
 	var fecha_completa;
-
-	fecha_completa = f.getDate() +' '+meses[f.getMonth()]+' '+f.getFullYear();
+	fecha_completa = f.getDate() +' '+meses[f.getMonth() - 1]+' '+f.getFullYear();
 	return fecha_completa;
 }
 

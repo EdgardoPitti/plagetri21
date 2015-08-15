@@ -129,6 +129,7 @@ class DropdownController extends BaseController
         $proximo = date('Y-m-d', strtotime("".$fecha." ".$tiempo.""));
         return $proximo;
     }
+    
     public function getObtenerGarantias(){
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');

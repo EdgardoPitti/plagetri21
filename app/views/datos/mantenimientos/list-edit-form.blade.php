@@ -26,7 +26,7 @@
 	          </div>
 	          <div class="panel-body">
 	          	<div class="overthrow" style="height:200px;">
-	              <table id="table-activo" data-sort-name="costo">
+	              <table id="table-mantenimiento" data-sort-name="costo">
 		            <thead>
 		                <tr class="info">
 		                    <th data-field="num" data-align="center">#</th>
@@ -149,17 +149,17 @@
 							<td>{{ Ubicacion::where('id', $datos['activo']->id_ubicacion)->first()->ubicacion }}</td>
 						@endif
 						<td>{{ $datos['activo']->costo }}</td>
-						@if($datos['activo']->id_fecha_mantenimiento == 1)
+						@if($datos['activo']->id_fecha_mantenimiento == 2)
 							<td>7 DÍAS</td>
-						@elseif($datos['activo']->id_fecha_mantenimiento == 2)
-							<td>15 DÍAS</td>
 						@elseif($datos['activo']->id_fecha_mantenimiento == 3)
-							<td>MENSUALES</td>
+							<td>15 DÍAS</td>
 						@elseif($datos['activo']->id_fecha_mantenimiento == 4)
-							<td>TRIMESTRALES</td>
+							<td>MENSUALES</td>
 						@elseif($datos['activo']->id_fecha_mantenimiento == 5)
-							<td>SEMESTRALES</td>
+							<td>TRIMESTRALES</td>
 						@elseif($datos['activo']->id_fecha_mantenimiento == 6)
+							<td>SEMESTRALES</td>
+						@elseif($datos['activo']->id_fecha_mantenimiento == 7)
 							<td>Anuales</td>
 						@else
 							<td>NO DEFINIDO</td>
@@ -247,7 +247,7 @@
 									  				<td>{{ $mantenimiento->proximo_mant }}</td>
 									  				<td>{{ $mantenimiento->observacion }}</td>
 									  				<td align="center">
-									  					<a href="{{ route('datos.mantenimientos.edit', $mantenimiento->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a>
+									  					<a href="{{ route('datos.mantenimientos.edit', $mantenimiento->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" title="Editar Mantenimiento"><span class="glyphicon glyphicon-pencil"></span></a>
 									  					
 									  				</td>
 									  			</tr>

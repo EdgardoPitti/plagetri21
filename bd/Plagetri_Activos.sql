@@ -18,7 +18,7 @@
 -- Create schema plagetri21
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ plagetri21;
+CREATE DATABASE IF NOT EXISTS plagetri21;
 USE plagetri21;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `activos` (
   `fecha_garantia` varchar(45) NOT NULL DEFAULT '',
   `fecha_de_baja` varchar(45) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `plagetri21`.`activos`
@@ -75,7 +75,6 @@ CREATE TABLE `fechas_mantenimientos` (
 -- Dumping data for table `plagetri21`.`fechas_mantenimientos`
 --
 
-/*!40000 ALTER TABLE `fechas_mantenimientos` DISABLE KEYS */;
 INSERT INTO `fechas_mantenimientos` (`id`,`fecha_mantenimiento`) VALUES 
  (1,'NO DEFINIDO'),
  (2,'7 DÍAS'),
@@ -84,7 +83,6 @@ INSERT INTO `fechas_mantenimientos` (`id`,`fecha_mantenimiento`) VALUES
  (5,'TRIMESTRALES'),
  (6,'SEMESTRALES'),
  (7,'ANUALES');
-/*!40000 ALTER TABLE `fechas_mantenimientos` ENABLE KEYS */;
 
 
 --
@@ -105,7 +103,7 @@ CREATE TABLE `mantenimientos` (
   `costo_mantenimiento` varchar(45) DEFAULT NULL,
   `id_tipo_mantenimiento` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `plagetri21`.`mantenimientos`
@@ -129,7 +127,6 @@ CREATE TABLE `modulos` (
 -- Dumping data for table `plagetri21`.`modulos`
 --
 
-/*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
 INSERT INTO `modulos` (`id`,`modulo`,`ruta`,`imagen`) VALUES 
  (1,'Citas de Tamizaje','datos.citas.index','citas.png'),
  (2,'Pacientes','datos.pacientes.index','woman.png'),
@@ -141,7 +138,6 @@ INSERT INTO `modulos` (`id`,`modulo`,`ruta`,`imagen`) VALUES
  (8,'Localizar','datos.pacientesmapas.index','mapa.png'),
  (9,'Enfermedades','datos.condiciones.index','enfermedades.png'),
  (10,'Reportes','reportes.index','reportes.png');
-/*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
 
 
 --
@@ -154,16 +150,14 @@ CREATE TABLE `tipos_activos` (
   `tipo` varchar(45) NOT NULL,
   `descripcion` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `plagetri21`.`tipos_activos`
 --
 
-/*!40000 ALTER TABLE `tipos_activos` DISABLE KEYS */;
 INSERT INTO `tipos_activos` (`id`,`tipo`,`descripcion`) VALUES 
  (1,'NO DEFINIDO','NO DEFINIDO');
-/*!40000 ALTER TABLE `tipos_activos` ENABLE KEYS */;
 
 
 --
@@ -181,12 +175,10 @@ CREATE TABLE `tipos_estados` (
 -- Dumping data for table `plagetri21`.`tipos_estados`
 --
 
-/*!40000 ALTER TABLE `tipos_estados` DISABLE KEYS */;
 INSERT INTO `tipos_estados` (`id`,`tipo_estado`) VALUES 
  (1,'NUEVO'),
  (2,'REEMPLAZADO'),
  (3,'DESCARTADO');
-/*!40000 ALTER TABLE `tipos_estados` ENABLE KEYS */;
 
 
 --
@@ -204,7 +196,6 @@ CREATE TABLE `tipos_fuentes` (
 -- Dumping data for table `plagetri21`.`tipos_fuentes`
 --
 
-/*!40000 ALTER TABLE `tipos_fuentes` DISABLE KEYS */;
 INSERT INTO `tipos_fuentes` (`id`,`tipo_fuente`) VALUES 
  (1,'NO DEFINIDO'),
  (2,'HIDRÁULICO'),
@@ -212,8 +203,6 @@ INSERT INTO `tipos_fuentes` (`id`,`tipo_fuente`) VALUES
  (4,'NEUMÁTICO'),
  (5,'ELÉCTRICO'),
  (6,'MECÁNICO');
-/*!40000 ALTER TABLE `tipos_fuentes` ENABLE KEYS */;
-
 
 --
 -- Table structure for table `plagetri21`.`tipos_mantenimientos`
@@ -230,11 +219,9 @@ CREATE TABLE `tipos_mantenimientos` (
 -- Dumping data for table `plagetri21`.`tipos_mantenimientos`
 --
 
-/*!40000 ALTER TABLE `tipos_mantenimientos` DISABLE KEYS */;
 INSERT INTO `tipos_mantenimientos` (`id`,`tipo_mantenimiento`) VALUES 
  (1,'PREVENTIVO'),
  (2,'CORRECTIVO');
-/*!40000 ALTER TABLE `tipos_mantenimientos` ENABLE KEYS */;
 
 
 --

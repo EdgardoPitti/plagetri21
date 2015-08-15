@@ -8,12 +8,19 @@ $(function () {
 			pagination: true
 		});
 		$("#table-paciente").bootstrapTable({
-			height: 380,
-			url: baseurl+'/pacientes/'+url(),
-			search: true,
-			sidePagination: 'server',
-			pagination: true
-		});	
+          height: 380,
+          url: baseurl+'/pacientes/0',
+          search: true,
+          sidePagination: 'server',
+        pagination: true
+      }); 
+    $("#table-cita").bootstrapTable({
+        height: 380,
+        url: baseurl+'/pacientes/1',
+        search: true,
+        sidePagination: 'server',
+        pagination: true
+    });
 	  $('.cita-anterior').bootstrapTable({
 	    height: 150
 	  });
@@ -31,24 +38,22 @@ $(function () {
 	  });
 	  $('#table-activo').bootstrapTable({
 	    height: 300,
-      url: baseurl+'/getactivos/'+url(),
+      url: baseurl+'/getactivos/0',
       search: true,
       sidePagination: 'server',
       pagination: true
 	  });
+    $('#table-mantenimiento').bootstrapTable({
+      height: 300,
+      url: baseurl+'/getactivos/1',
+      search: true,
+      sidePagination: 'server',
+      pagination: true
+    });
 	  $('.list-act').bootstrapTable({
 	    height: 150
 	  });
 	  $('.mantenimientos').bootstrapTable({
 	    height: 180
 	  });
-  
-    //Si detecta en la ruta que contenga la cadena mantenimientos o citas devolvera 1 sino 0    
-    function url(){
-      if(window.location.href.indexOf("mantenimientos") > -1 || window.location.href.indexOf("citas") > -1){
-        return 1;
-      }else{
-       return 0;      
-      }
-    }
 });

@@ -26,7 +26,7 @@
 		      	</div>
 			    	<div class="panel-body" style="display:block">
 					    <div class="overthrow" style="height:250px;">							
-							<table id="table-paciente">
+							<table id="table-cita">
 							    <thead>
 								    <tr class="info">
 								        <th data-field="num" data-align="center">#</th>
