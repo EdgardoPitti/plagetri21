@@ -67,7 +67,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div>                      
                       <div class="overthrow table-responsive" style="height:200px;">
                         <table class="table table-hover table-bordered">
                            <thead>
@@ -81,7 +81,7 @@
                                 <th style="padding:8px;">Fecha de Compra</th>
                                 <th style="padding:8px;">Costo</th>
                             </tr>
-                          </thead>   
+                          </thead>   
                           <tbody id="bodytable_costos_activos">
                             {{--*/ $x = 1; /*--}}                                  
                             @foreach (Activo::where('id', '>', '0')->orderBy('costo', 'desc')->get() as $activo)
@@ -95,12 +95,13 @@
                                   @if(empty($activo->fecha_compra))
                                   <td>NO DEFINIDO</td>
                                   @else
-                                  <td>{{ Carbon::parse($activo->fecha_compra)->formatLocalized('%d %b %Y') }}</td>
+                                  <td>{{ Carbon::parse($activo->fecha_compra)->formatLocalized('%#d %b %Y') }}</td>
                                   @endif
                                   <td>{{ $activo->costo }}</td>
                               </tr>
                             @endforeach
-                          </tbody> 
+                          </tbody>  
+                            
                         </table>
                       </div>
                     </div>
@@ -159,7 +160,7 @@
                                     @foreach (DB::select("SELECT * FROM mantenimiento_preventivo") as $preventivo)
                                       <tr>
                                           <td>{{ $x++ }}.</td>
-                                          <td>{{ Carbon::parse($preventivo->fecha_realizacion )->formatLocalized('%d %b %Y') }}</td>
+                                          <td>{{ Carbon::parse($preventivo->fecha_realizacion )->formatLocalized('%#d %b %Y') }}</td>
                                           <td>{{ $preventivo->num_activo }}</td>
                                           <td>{{ $preventivo->nombre }}</td>
                                           <td>{{ $preventivo->marca }}</td>
@@ -211,7 +212,7 @@
                                     @foreach (DB::select("SELECT * FROM mantenimiento_correctivo") as $correctivo)
                                       <tr>
                                           <td>{{ $x++ }}.</td>
-                                          <td>{{ Carbon::parse($correctivo->fecha_realizacion)->formatLocalized('%d %b %Y') }}</td>
+                                          <td>{{ Carbon::parse($correctivo->fecha_realizacion)->formatLocalized('%#d %b %Y') }}</td>
                                           <td>{{ $correctivo->num_activo }}</td>
                                           <td>{{ $correctivo->nombre }}</td>
                                           <td>{{ $correctivo->marca }}</td>
@@ -394,7 +395,7 @@
                         @if(empty($activo->fecha_garantia))
                           <td>NO DEFINIDO</td>
                         @else
-                          <td>{{ Carbon::parse($activo->fecha_garantia)->formatLocalized('%d %b %Y') }}</td>
+                          <td>{{ Carbon::parse($activo->fecha_garantia)->formatLocalized('%#d %b %Y') }}</td>
                         @endif
                         <td>{{ $activo->costo }}</td>
                     </tr>

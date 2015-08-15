@@ -111,17 +111,17 @@ class DropdownController extends BaseController
         $tipo = Input::get('tipo');
         $fecha = Input::get('fecha');
         $tiempo = 0;
-        if($tipo == 1){
+        if($tipo == 2){
             $tiempo = '+7 days';
-        }elseif($tipo == 2){
-            $tiempo = '+15 days';
         }elseif($tipo == 3){
-            $tiempo = '+1 month';
+            $tiempo = '+15 days';
         }elseif($tipo == 4){
-            $tiempo = '+3 month';
+            $tiempo = '+1 month';
         }elseif($tipo == 5){
-            $tiempo = '+6 month';
+            $tiempo = '+3 month';
         }elseif($tipo == 6){
+            $tiempo = '+6 month';
+        }elseif($tipo == 7){
             $tiempo = '+12 month';
         }else{
             $tiempo = '';
@@ -143,9 +143,43 @@ class DropdownController extends BaseController
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
             $fecha_fin = Input::get('fecha_fin');
+            $limit = Input::get('limit'); 
+            $offset = Input::get('offset');
+            
+            $n = 1;
             //$activos = DB::table('activos')->whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->orderBy('costo', 'desc')->get();            
-            $activos = Activo::whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->select('num_activo','nombre','modelo','marca','serie','fecha_compra','costo')->orderBy('costo', 'desc')->get();           
-            return $activos;            
+            $datosactivos = Activo::whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->select('num_activo','nombre','modelo','marca','serie', 'fecha_compra','costo')->orderBy('costo', 'desc')->get();
+            $cantidad = count($datosactivos);            
+            /*
+            setLocale(LC_TIME, 'Spanish');
+            $data = '{
+                "total": '.$cantidad.',
+                "rows": [';
+
+                foreach($datosactivos as $datos){
+                    $num = $n + $offset;                
+                    if($n > 1){
+                        $data.= ',';
+                    }
+                    
+                    $n++;
+                    $data .= '{
+                        "num": '.$num.',
+                        "num_activo": "'.$datos->num_activo.'",
+                        "nombre": "'.$datos->nombre.'",
+                        "modelo": "'.$datos->modelo.'",
+                        "marca": "'.$datos->marca.'",
+                        "serie": "'.$datos->serie.'",
+                        "fecha_compra": "'.$datos->fecha.'",
+                        "costo": "'.$datos->costo.'"
+                        
+                    }';
+                }
+
+             $data .= ']
+             }';
+                */
+            return $datosactivos;            
         }else{
             App::abort(403);
         }
