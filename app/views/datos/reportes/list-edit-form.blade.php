@@ -156,7 +156,7 @@
                                     </thead>
                                     <tbody id="bodytable_preventivo">
                                     {{--*/ $x = 1; /*--}}
-                                    @foreach (DB::select("SELECT * FROM mantenimiento_preventivo") as $preventivo)
+                                    @foreach (DB::select("SELECT m.*,a.* from mantenimientos m, activos a where m.id_tipo_mantenimiento = 1 and a.id = m.id_activo order by m.costo_mantenimiento desc") as $preventivo)
                                       <tr>
                                           <td>{{ $x++ }}.</td>
                                           <td>{{ Carbon::parse($preventivo->fecha_realizacion )->formatLocalized('%d %b %Y') }}</td>
@@ -208,7 +208,7 @@
                                     </thead>
                                     <tbody id="bodytable_correctivo">
                                     {{--*/ $x = 1; /*--}}
-                                    @foreach (DB::select("SELECT * FROM mantenimiento_correctivo") as $correctivo)
+                                    @foreach (DB::select("SELECT m.*,a.* from mantenimientos m, activos a where m.id_tipo_mantenimiento = 2 and a.id = m.id_activo order by m.costo_mantenimiento desc") as $correctivo)
                                       <tr>
                                           <td>{{ $x++ }}.</td>
                                           <td>{{ Carbon::parse($correctivo->fecha_realizacion)->formatLocalized('%d %b %Y') }}</td>
@@ -287,7 +287,7 @@
                               </thead>   
                               <tbody id="bodytable_preventivo_activo">
                                 {{--*/ $x = 1; /*--}}
-                                @foreach (DB::select("SELECT * FROM activos_preventivos") as $fallas)
+                                @foreach (DB::select("select *,count(id) AS cantidad from mantenimientos where (id_tipo_mantenimiento = 1) group by id_activo order by cantidad desc;") as $fallas)
                                   <tr>
                                       <td>{{ $x++ }}.</td>
                                       <td>{{ Activo::where('id', $fallas->id_activo)->first()->num_activo }}</td>
@@ -335,7 +335,7 @@
                               </thead>   
                               <tbody id="bodytable_correctivo_activo">
                                 {{--*/ $x = 1; /*--}}
-                                @foreach (DB::select("SELECT * FROM activos_correctivos") as $fallas)
+                                @foreach (DB::select("select *,count(id) AS cantidad from mantenimientos where (id_tipo_mantenimiento = 2) group by id_activo order by cantidad desc;") as $fallas)
                                   <tr>
                                       <td>{{ $x++ }}.</td>
                                       <td>{{ Activo::where('id', $fallas->id_activo)->first()->num_activo }}</td>

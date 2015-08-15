@@ -174,7 +174,7 @@ class DropdownController extends BaseController
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
             $fecha_fin = Input::get('fecha_fin');
-            $preventivos = DB::select("SELECT * FROM mantenimiento_preventivo WHERE fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."'");
+            $preventivos = DB::select("SELECT m.*,a.* from mantenimientos m, activos a where m.id_tipo_mantenimiento = 1 and a.id = m.id_activo AND m.fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' order by m.costo_mantenimiento desc");
             return $preventivos;            
         }else{
             App::abort(403);
@@ -184,7 +184,7 @@ class DropdownController extends BaseController
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
             $fecha_fin = Input::get('fecha_fin');
-            $preventivos = DB::select("SELECT * FROM mantenimiento_correctivo WHERE fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."'");
+            $preventivos = DB::select("SELECT m.*,a.* from mantenimientos m, activos a where m.id_tipo_mantenimiento = 2 and a.id = m.id_activo AND m.fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' order by m.costo_mantenimiento desc");
             return $preventivos;            
         }else{
             App::abort(403);
