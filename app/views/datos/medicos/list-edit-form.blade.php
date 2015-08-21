@@ -3,6 +3,11 @@
 @section ('title') {{ $datos['label'] }} M&eacute;dicos @stop
 
 @section ('content')
+	@if(GrupoUsuario::where('id', Auth::user()->id_grupo_usuario)->first()->grupo_usuario == 'ADM. MEDICO')
+		{{--*/$block = 'disabled';/*--}}
+	@else
+		{{--*/$block = '';/*--}}
+	@endif
 	<h1>
 		<div style="position:relative;">
 			<div style="position:absolute;left:0px;">
@@ -94,7 +99,7 @@
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4 @if($errors->has('cedula')) has-error has-feedback @endif" id="errorCedula">
 	      {{ Form::label('cedula', 'N&uacute;mero de C&eacute;dula:', ['class' => 'control-label']) }}
-	      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required', 'aria-describedby' => 'inputError', 'onkeyup' => 'validarced(2)')) }}
+	      {{ Form::text('cedula', null, array('placeholder' => 'N&uacute;mero de C&eacute;dula', 'class' => 'form-control', 'required' => 'required', 'aria-describedby' => 'inputError', 'onkeyup' => 'validarced(2)', ''.$block.'')) }}
 			@if($errors->has('cedula'))		
 		      <span class='glyphicon glyphicon-remove form-control-feedback remove' aria-hidden='true' onclick='clearInput();' data-toggle='tooltip' data-placement='top' title='Cédula duplicada'></span> 
 		      <span id='inputError' class='sr-only remove'>(error)</span>
@@ -102,60 +107,62 @@
 		  </div>	    
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('primer_nombre', 'Primer Nombre:') }}
-	      {{ Form::text('primer_nombre', null, array('placeholder' => 'Primer Nombre', 'class' => 'form-control', 'required' => 'required')) }}        
+	      {{ Form::text('primer_nombre', null, array('placeholder' => 'Primer Nombre', 'class' => 'form-control', 'required' => 'required', ''.$block.'')) }}        
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('segundo_nombre', 'Segundo Nombre:') }}
-	      {{ Form::text('segundo_nombre', null, array('placeholder' => 'Segundo Nombre', 'class' => 'form-control')) }}
+	      {{ Form::text('segundo_nombre', null, array('placeholder' => 'Segundo Nombre', 'class' => 'form-control', ''.$block.'')) }}
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('apellido_paterno', 'Apellido Paterno:') }}
-	      {{ Form::text('apellido_paterno', null, array('placeholder' => 'Apellido Paterno', 'class' => 'form-control', 'required' => 'required')) }}        
+	      {{ Form::text('apellido_paterno', null, array('placeholder' => 'Apellido Paterno', 'class' => 'form-control', 'required' => 'required', ''.$block.'')) }}        
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('apellido_materno', 'Apellido Materno:') }}
-	      {{ Form::text('apellido_materno', null, array('placeholder' => 'Apellido Materno', 'class' => 'form-control')) }}
+	      {{ Form::text('apellido_materno', null, array('placeholder' => 'Apellido Materno', 'class' => 'form-control', ''.$block.'')) }}
 	    </div>	   
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	      {{ Form::label('sexo', 'Sexo:') }}	     
-	      {{ Form::select('sexo', array('0' => 'FEMENINO', '1' => 'MASCULINO'), null, array('class' => 'form-control', 'required' => 'required')); }}
+	      {{ Form::select('sexo', array('0' => 'FEMENINO', '1' => 'MASCULINO'), null, array('class' => 'form-control', 'required' => 'required', ''.$block.'')); }}
 	    </div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('id_especialidades_medicas', 'Especialidad M&eacute;dica:') }}
-			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadMedica::lists('descripcion', 'id_especialidades_medicas'), $datos['medico'][0]->id_especialidad_medica, array('class' => 'form-control', 'required' => 'required')) }}
+			{{ Form::select('id_especialidades_medicas', array('0' => 'SELECCIONE ESPECIALIDAD') + EspecialidadMedica::lists('descripcion', 'id_especialidades_medicas'), $datos['medico'][0]->id_especialidad_medica, array('class' => 'form-control', 'required' => 'required', ''.$block.'')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('extension', 'Extensi&oacute;n:') }}
-			{{ Form::text('extension', null, array('placeholder' => 'Extensi&oacute;n', 'class' => 'form-control')) }}			
+			{{ Form::text('extension', null, array('placeholder' => 'Extensi&oacute;n', 'class' => 'form-control', ''.$block.'')) }}			
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('telefono', 'Tel&eacute;fono:') }}
-			{{ Form::text('telefono', null, array('placeholder' => 'Tel&eacute;fono', 'class' => 'form-control')) }}			
+			{{ Form::text('telefono', null, array('placeholder' => 'Tel&eacute;fono', 'class' => 'form-control', ''.$block.'')) }}			
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('celular', 'Celular:') }}
-			{{ Form::text('celular', null, array('placeholder' => 'Celular', 'class' => 'form-control')) }}
+			{{ Form::text('celular', null, array('placeholder' => 'Celular', 'class' => 'form-control', ''.$block.'')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('email', 'E-mail:') }}
-			{{ Form::text('email', null, array('placeholder' => 'E-mail', 'class' => 'form-control')) }}
+			{{ Form::text('email', null, array('placeholder' => 'E-mail', 'class' => 'form-control', ''.$block.'')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('id_nivel', 'Nivel:') }}
-			{{ Form::select('id_nivel', array('0' => 'SELECCIONE NIVEL') + Nivel::lists('nivel', 'id'), null, array('class' => 'form-control')) }}
+			{{ Form::select('id_nivel', array('0' => 'SELECCIONE NIVEL') + Nivel::lists('nivel', 'id'), null, array('class' => 'form-control', ''.$block.'')) }}
 		</div>
 		<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			{{ Form::label('id_ubicacion', 'Ubicación:') }}
-			{{ Form::select('id_ubicacion', array('0' => 'SELECCIONE UBICACI&Oacute;N') + Ubicacion::lists('ubicacion', 'id'), null, array('class' => 'form-control')) }}
+			{{ Form::select('id_ubicacion', array('0' => 'SELECCIONE UBICACI&Oacute;N') + Ubicacion::lists('ubicacion', 'id'), null, array('class' => 'form-control', ''.$block.'')) }}
 		</div>
 	    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 	    	{{ Form::label('observaciones', 'Observaciones:') }}
-	    	{{ Form::textarea('observaciones', $datos['medico'][0]->observacion, array('placeholder' => 'Observaciones', 'class' => 'form-control', 'size' => '1x1')) }}        
+	    	{{ Form::textarea('observaciones', $datos['medico'][0]->observacion, array('placeholder' => 'Observaciones', 'class' => 'form-control', 'size' => '1x1', ''.$block.'')) }}        
 	    </div>
 	  </div>
 	  <div class="form-group col-sm-12 col-md-12 col-lg-12">
     	<center>
+    	@if(GrupoUsuario::where('id', Auth::user()->id_grupo_usuario)->first()->grupo_usuario != 'ADM. MEDICO')
 		  {{ Form::button($datos['label'].' M&eacute;dico', array('type' => 'submit', 'class' => 'btn btn-'.$datos['button'].'')) }}    
+		@endif
 		  <a href="{{ route('datos.medicos.index') }}" class="btn btn-info">Limpiar Campos</a>
 		</center>
 	  </div>
