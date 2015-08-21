@@ -3,7 +3,7 @@
 @section ('title') {{ $datos['label'] }} M&eacute;dicos @stop
 
 @section ('content')
-	@if(GrupoUsuario::where('id', Auth::user()->id_grupo_usuario)->first()->grupo_usuario == 'ADM. MEDICO')
+	@if(GrupoUsuario::where('id', Auth::user()->id_grupo_usuario)->first()->grupo_usuario == 'RECEPCION')
 		{{--*/$block = 'disabled';/*--}}
 	@else
 		{{--*/$block = '';/*--}}
@@ -160,7 +160,7 @@
 	  </div>
 	  <div class="form-group col-sm-12 col-md-12 col-lg-12">
     	<center>
-    	@if(GrupoUsuario::where('id', Auth::user()->id_grupo_usuario)->first()->grupo_usuario != 'ADM. MEDICO')
+    	@if(GrupoUsuario::where('id', Auth::user()->id_grupo_usuario)->first()->grupo_usuario != 'RECEPCION')
 		  {{ Form::button($datos['label'].' M&eacute;dico', array('type' => 'submit', 'class' => 'btn btn-'.$datos['button'].'')) }}    
 		@endif
 		  <a href="{{ route('datos.medicos.index') }}" class="btn btn-info">Limpiar Campos</a>

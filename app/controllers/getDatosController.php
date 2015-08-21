@@ -77,8 +77,18 @@ class getDatosController extends BaseController {
 						"ext": "'.$datos_medicos[0]->extension.'",
 						"tel": "'.$datos_medicos[0]->telefono.'",
 						"cel": "'.$datos_medicos[0]->celular.'",
-						"esp": "'.$datos_medicos[0]->especialidad.'",
-						"url": "<a href='.$comilla.route('datos.medicos.edit', $datos_medicos[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar M&eacute;dico'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar </a> <a href='.$comilla.'#Show'.$comilla.' id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'show('.$datos_medicos[0]->id.');'.$comilla.'  class='.$comilla.'btn btn-info btn-sm'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.'  title='.$comilla.'Ver Médico'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-eye-open'.$comilla.'></span> Ver </a> <a href='.$comilla.'#'.$comilla.' data-id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'eliminar('.$datos_medicos[0]->id.');'.$comilla.' class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span> Eliminar </a>"
+						"esp": "'.$datos_medicos[0]->especialidad.'",';
+						
+						if(GrupoUsuario::where('id', Auth::user()->id_grupo_usuario)->first()->grupo_usuario != "RECEPCION"){
+							$data.='
+							"url": "<a href='.$comilla.route('datos.medicos.edit', $datos_medicos[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar M&eacute;dico'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar </a> <a href='.$comilla.'#Show'.$comilla.' id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'show('.$datos_medicos[0]->id.');'.$comilla.'  class='.$comilla.'btn btn-info btn-sm'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.'  title='.$comilla.'Ver Médico'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-eye-open'.$comilla.'></span> Ver </a> <a href='.$comilla.'#'.$comilla.' data-id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'eliminar('.$datos_medicos[0]->id.');'.$comilla.' class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span> Eliminar </a>"';
+						}else{
+							$data.='
+							"url": "<a href='.$comilla.route('datos.medicos.edit', $datos_medicos[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Cargar M&eacute;dico'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-search'.$comilla.'></span> Cargar </a> <a href='.$comilla.'#Show'.$comilla.' id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'show('.$datos_medicos[0]->id.');'.$comilla.'  class='.$comilla.'btn btn-info btn-sm'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.'  title='.$comilla.'Ver Médico'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-eye-open'.$comilla.'></span> Ver </a>"
+							';
+						}
+
+						$data.='
 						}';
 				}				
 				
