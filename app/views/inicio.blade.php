@@ -9,7 +9,7 @@
 			<h1><strong>Menú Principal</strong></h1><hr>
 		</center>
 		{{--*/$n=1;/*--}}
-		<div class="row nav-row">
+		<div class="row nav-row panel-margin">
 			@foreach(ModuloUsuario::where('id_grupo_usuario', Auth::user()->id_grupo_usuario)->where('inactivo', '0')->get() as $modulos)
 				<a href="{{ route(''.Modulo::where('id', $modulos->id_modulo)->first()->ruta.'') }}">
 					<div class="col-sm-3 col-md-3 col-lg-3">
@@ -19,10 +19,10 @@
 				</a>
 				@if($n == 4)
 					</div>
-					<div class="row nav-row menu-margen">
+					<div class="row nav-row panel-margin menu-margen">
 				@elseif($n == 8)
 					</div>
-					<div class="row nav-row menu-margen" style="padding-bottom:15px;">
+					<div class="row nav-row panel-margin menu-margen" style="padding-bottom:15px;">
 				@endif
 				{{--*/$n++;/*--}}
 			@endforeach

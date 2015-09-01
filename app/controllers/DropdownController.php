@@ -134,8 +134,16 @@ class DropdownController extends BaseController
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
             $fecha_fin = Input::get('fecha_fin');
-            $activos = DB::table('activos')->whereBetween('fecha_garantia', array($fecha_inicio, $fecha_fin))->get();            
-            return $activos;            
+            /*$activos = DB::table('activos')->whereBetween('fecha_garantia', array($fecha_inicio, $fecha_fin))->select('num_activo','nombre',DB::raw("DATE_FORMAT(fecha_garantia, '%e %b. %Y') AS fecha_garantia"), 'costo')->get();            
+            return $activos;            */
+            setLocale(LC_TIME, 'Spanish');
+            $activos = Activo::whereBetween('fecha_garantia', array($fecha_inicio, $fecha_fin))->select('num_activo','nombre','fecha_garantia','costo')->get()->toArray();
+            $cantidad = count($activos);
+            for($x=0; $x < $cantidad; $x++){
+               array_set($activos[$x], 'fecha_garantia', Carbon::parse($activos[$x]['fecha_garantia'])->formatLocalized('%#d %b %Y')); 
+            }
+
+            return Response::json($activos);
         }else{
             App::abort(403);
         }
@@ -144,13 +152,19 @@ class DropdownController extends BaseController
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
             $fecha_fin = Input::get('fecha_fin');
-            $limit = Input::get('limit'); 
-            $offset = Input::get('offset');
+            //$limit = Input::get('limit'); 
+           // $offset = Input::get('offset');
             
-            $n = 1;
+            //$n = 1;
+            setLocale(LC_TIME, 'Spanish');
             //$activos = DB::table('activos')->whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->orderBy('costo', 'desc')->get();            
-            $datosactivos = Activo::whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->select('num_activo','nombre','modelo','marca','serie', 'fecha_compra','costo')->orderBy('costo', 'desc')->get();
+            $datosactivos = Activo::whereBetween('fecha_compra', array($fecha_inicio, $fecha_fin))->select('num_activo','nombre','modelo','marca','serie', 'fecha_compra','costo')->orderBy('costo', 'desc')->get()->toArray();
             $cantidad = count($datosactivos);            
+            for($x=0; $x < $cantidad; $x++){
+                //cambia el valor de un campo del arreglo
+                array_set($datosactivos[$x], 'fecha_compra', Carbon::parse($datosactivos[$x]['fecha_compra'])->formatLocalized('%#d %b %Y'));
+            }
+
             /*
             setLocale(LC_TIME, 'Spanish');
             $data = '{
@@ -180,17 +194,18 @@ class DropdownController extends BaseController
              $data .= ']
              }';
                 */
-            return $datosactivos;            
-        }else{
-            App::abort(403);
+            //return $datosactivos;
+            return Response::json($datosactivos);            
+        }else{            
+           App::abort(403);
         }
     }
     public function getObtenerPreventivoActivo(){
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
-            $fecha_fin = Input::get('fecha_fin');
+            $fecha_fin = Input::get('fecha_fin');            
             $preventivo = DB::select("SELECT a.num_activo, a.nombre, a.modelo, a.serie, a.marca, t.tipo_fuente, count(m.id) AS cantidad FROM mantenimientos m, activos a, tipos_fuentes t WHERE id_tipo_mantenimiento = 1 AND m.id_activo = a.id AND a.id_tipo_fuente = t.id AND fecha_realizacion between '".$fecha_inicio."' AND '".$fecha_fin."' GROUP BY id_activo ORDER BY cantidad desc;");
-            return $preventivo;            
+            return $preventivo;
         }else{
             App::abort(403);
         }
@@ -209,8 +224,15 @@ class DropdownController extends BaseController
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
             $fecha_fin = Input::get('fecha_fin');
-            $preventivos = DB::select("SELECT m.*,a.* from mantenimientos m, activos a where m.id_tipo_mantenimiento = 1 and a.id = m.id_activo AND m.fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' order by m.costo_mantenimiento desc");
-            return $preventivos;            
+            setLocale(LC_TIME, 'Spanish');
+            $preventivos = DB::select("SELECT m.fecha_realizacion,a.num_activo,a.nombre,a.marca,a.modelo,a.serie,m.realizado_por,m.aprobado_por,a.costo from mantenimientos m, activos a where m.id_tipo_mantenimiento = 1 and a.id = m.id_activo AND m.fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' order by m.costo_mantenimiento desc");
+            
+            $arrPreventivo = json_decode(json_encode($preventivos), true);
+            $cantidad = count($arrPreventivo);
+            for($x=0; $x < $cantidad; $x++){
+                array_set($arrPreventivo[$x], 'fecha_realizacion', Carbon::parse($arrPreventivo[$x]['fecha_realizacion'])->formatLocalized('%#d %b %Y'));
+            }
+            return Response::json($arrPreventivo);
         }else{
             App::abort(403);
         }
@@ -219,8 +241,14 @@ class DropdownController extends BaseController
         if(Request::ajax()){
             $fecha_inicio = Input::get('fecha_inicio');
             $fecha_fin = Input::get('fecha_fin');
-            $preventivos = DB::select("SELECT m.*,a.* from mantenimientos m, activos a where m.id_tipo_mantenimiento = 2 and a.id = m.id_activo AND m.fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' order by m.costo_mantenimiento desc");
-            return $preventivos;            
+            $correctivos = DB::select("SELECT m.fecha_realizacion,a.num_activo,a.nombre,a.marca,a.modelo,a.serie,m.realizado_por,m.aprobado_por,a.costo from mantenimientos m, activos a where m.id_tipo_mantenimiento = 2 and a.id = m.id_activo AND m.fecha_realizacion BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' order by m.costo_mantenimiento desc");
+            
+            $arrCorrectivo = json_decode(json_encode($correctivos), true);
+            $cantidad = count($arrCorrectivo);
+            for($x=0; $x < $cantidad; $x++){
+                array_set($arrCorrectivo[$x], 'fecha_realizacion', Carbon::parse($arrCorrectivo[$x]['fecha_realizacion'])->formatLocalized('%#d %b %Y'));
+            }
+            return Response::json($arrCorrectivo);           
         }else{
             App::abort(403);
         }

@@ -317,7 +317,7 @@
 				</center>
 			{{ Form::close() }}		
 			@if (!empty(Cita::where('id_paciente', $datos[0]->id)->first()->id))
-				<div class="row">
+				<div class="row" style="margin-top:15px;">
 					<div class="col-md-12 col-sm-12 col-lg-12">
 				    	<div class="panel panel-primary">
 				      	<div class="panel-heading">

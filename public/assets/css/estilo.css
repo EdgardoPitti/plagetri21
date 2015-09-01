@@ -9,6 +9,7 @@ body{
    font-family: 'Open Sans';
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  padding-top: 50px;
 }
 /*CSS PARA EL FOOTER*/
 html,body, #wrap{
@@ -57,7 +58,7 @@ html .clearf{height: 1%;}
   }
 }
 /*CSS DE LOS PANELES*/
-.row{
+.panel-margin{
     margin-top:40px;
     padding: 0 10px;
 }
@@ -419,4 +420,9 @@ input.cmn-toggle-round-flat:checked + label:after {
 }
 span.remove:hover{
 	cursor: pointer;
+}
+
+#calendar{
+  margin:10px 0;
+  background: #fff;
 }

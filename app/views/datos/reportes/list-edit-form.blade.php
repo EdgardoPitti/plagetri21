@@ -10,14 +10,14 @@
     </div>
   </div>
   <center>Reportes</center>
-</h1><hr>
+</h1>
 {{--*/ $fecha_actual = Carbon::now()->format('Y-m-d');
       $fecha_mes = date('Y-m-d', strtotime(" +1 month"));
    
     // Función que permite cambiar el idioma a las fechas
     setlocale(LC_TIME, 'Spanish'); 
 /*--}}
-
+<div class="row">
   <div class="portlet">
   	<div class="tabbable-panel">
   		<div class="tabbable-line">			
@@ -68,8 +68,8 @@
                           </div>
                         </div>
                       </div>                      
-                      <div class="overthrow table-responsive" style="height:200px;">
-                        <table class="table table-hover table-bordered">
+                      <div class="overthrow table-responsive" style="height:250px;overflow:auto;">
+                        <table class="table table-hover table-bordered" id="bodytable_costos_activos">
                            <thead>
                             <tr class="info">
                                 <th style="padding:8px;">#</th>
@@ -82,9 +82,9 @@
                                 <th style="padding:8px;">Costo</th>
                             </tr>
                           </thead>   
-                          <tbody id="bodytable_costos_activos">
-                            {{--*/ $x = 1; /*--}}                                  
-                            @foreach (Activo::where('id', '>', '0')->orderBy('costo', 'desc')->get() as $activo)
+                          <tbody id="bodytable _costos_activos">
+                            {{--*/ $x = 1; /*--}}                  
+                            @foreach ( Activo::where('id', '>', '0')->orderBy('costo', 'desc')->get() as $activo)
                               <tr>
                                   <td>{{ $x++ }}.</td>
                                   <td>{{ $activo->num_activo }}</td>
@@ -102,7 +102,7 @@
                             @endforeach
                           </tbody>  
                             
-                        </table>
+                        </table>       
                       </div>
                     </div>
 
@@ -140,7 +140,7 @@
                                  </div>
 
                                 <div class="overthrow table-responsive" style="height:200px;overflow:auto;">
-                                  <table class="table table-hover table-bordered">
+                                  <table class="table table-hover table-bordered"  id="bodytable_preventivo">
                                     <thead>
                                       <tr class="info">
                                         <th style="padding:8px;">#</th>
@@ -155,7 +155,7 @@
                                         <th style="padding:8px;">Costo</th>
                                       </tr>
                                     </thead>
-                                    <tbody id="bodytable_preventivo">
+                                    <tbody id="bo dytable_preventivo">
                                     {{--*/ $x = 1; /*--}}
                                     @foreach (DB::select("SELECT m.*,a.* from mantenimientos m, activos a where m.id_tipo_mantenimiento = 1 and a.id = m.id_activo order by m.costo_mantenimiento desc") as $preventivo)
                                       <tr>
@@ -192,7 +192,7 @@
                                   </div>
                                 </div>
                                 <div class="overthrow table-responsive" style="height:200px;overflow:auto;">
-                                <table class="table table-hover table-bordered">
+                                <table class="table table-hover table-bordered" id="bodytable_correctivo">
                                     <thead>
                                       <tr class="info">
                                         <th style="padding:8px;">#</th>
@@ -207,7 +207,7 @@
                                         <th style="padding:8px;">Costo</th>
                                       </tr>
                                     </thead>
-                                    <tbody id="bodytable_correctivo">
+                                    <tbody>
                                     {{--*/ $x = 1; /*--}}
                                     @foreach (DB::select("SELECT m.*,a.* from mantenimientos m, activos a where m.id_tipo_mantenimiento = 2 and a.id = m.id_activo order by m.costo_mantenimiento desc") as $correctivo)
                                       <tr>
@@ -272,8 +272,8 @@
                               </div>
                             </div>
                           </div>
-                          <div class="overthrow table-responsive" style="height:200px;">
-                            <table class="table table-hover table-bordered">
+                          <div class="overthrow table-responsive" style="height:200px;overflow:auto;">
+                            <table class="table table-hover table-bordered" id="bodytable_preventivo_activo">
                                <thead>
                                 <tr class="info">
                                     <th style="padding:8px;">#</th>
@@ -286,7 +286,7 @@
                                     <th style="padding:8px;">Cantidad de Mantenimientos</th>
                                 </tr>
                               </thead>   
-                              <tbody id="bodytable_preventivo_activo">
+                              <tbody>
                                 {{--*/ $x = 1; /*--}}
                                 @foreach (DB::select("select *,count(id) AS cantidad from mantenimientos where (id_tipo_mantenimiento = 1) group by id_activo order by cantidad desc;") as $fallas)
                                   <tr>
@@ -320,8 +320,8 @@
                               </div>
                             </div>
                           </div>
-                          <div class="overthrow table-responsive" style="height:200px;">
-                            <table class="table table-hover table-bordered">
+                          <div class="overthrow table-responsive" style="height:200px;overflow:auto;">
+                            <table class="table table-hover table-bordered" id="bodytable_correctivo_activo">
                                <thead>
                                 <tr class="info">
                                     <th style="padding:8px;">#</th>
@@ -334,7 +334,7 @@
                                     <th style="padding:8px;">Cantidad de Mantenimientos</th>
                                 </tr>
                               </thead>   
-                              <tbody id="bodytable_correctivo_activo">
+                              <tbody>
                                 {{--*/ $x = 1; /*--}}
                                 @foreach (DB::select("select *,count(id) AS cantidad from mantenimientos where (id_tipo_mantenimiento = 2) group by id_activo order by cantidad desc;") as $fallas)
                                   <tr>
@@ -374,8 +374,8 @@
                 </div>
               </div>
             </div>
-              <div class="overthrow table-responsive" style="height:200px;">
-                <table class="table table-hover table-bordered">
+              <div class="overthrow table-responsive" style="height:250px;overflow:auto;">
+                <table class="table table-hover table-bordered" id="bodytable_garantias">
                  <thead>
                   <tr class="info">
                       <th style="padding:8px;">#</th>
@@ -385,7 +385,7 @@
                       <th style="padding:8px;">Costo</th>
                   </tr>
                 </thead>   
-                <tbody id="bodytable_garantias">
+                <tbody>
                   {{--*/ $x = 1; /*--}}
                   @foreach (Activo::all() as $activo)
                     <tr>
@@ -408,5 +408,6 @@
   		</div>
   	</div>
   </div>
+</div>
 
 @stop

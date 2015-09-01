@@ -4,6 +4,10 @@
 	Mantenimientos
 @stop
 
+@section('calendar_css')
+	{{HTML::style('assets/css/calendar.css')}}	
+@stop
+
 @section('content')
 		<h1>
 		 <div style="position:relative;">
@@ -262,5 +266,127 @@
 			@endif
 
 	    @endif
+
+	    <div class="row">
+	    	<div class="col-xs-12">
+			    <div class="page-header">
+					<h3></h3>
+					<div class="pull-left form-inline">
+						<div class="btn-group">
+							<button class="btn btn-default" data-calendar-nav="prev"><i class="fa fa-chevron-left"></i></button>
+							<button class="btn btn-default" data-calendar-nav="today">Hoy</button>
+							<button class="btn btn-default" data-calendar-nav="next"><i class="fa fa-chevron-right"></i></button>
+						</div>
+						<div class="btn-group">
+							<button class="btn btn-success" data-calendar-view="year">Año</button>
+							<button class="btn btn-success active" data-calendar-view="month">Mes</button>
+							<button class="btn btn-success" data-calendar-view="week">Semana</button>							
+						</div>
+					</div>
+				</div>
+	    	</div>
+	    </div>
+
+		<div class="row">
+			<div class="col-xs-12">
+	    		<div id="calendar"></div>
+			</div>
+		</div>
+
+		<!--ventana modal para el calendario-->
+		<div class="modal fade" id="events-modal">
+		    <div class="modal-dialog">
+			    <div class="modal-content">
+			        <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				        <h4 class="modal-title"></h4>
+			        </div>
+				    <div class="modal-body" style="height: 400px">
+				        <p>One fine body&hellip;</p>
+				    </div>
+			        <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button type="button" class="btn btn-primary">Save changes</button>
+			        </div>
+			    </div><!-- /.modal-content -->
+		    </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 @stop
 
+@section('script_calendar')
+	{{ HTML::script('assets/js/underscore-min.js') }}
+	{{ HTML::script('assets/js/calendar.js') }}
+	{{ HTML::script('assets/js/language/es-CO.js') }}
+
+	<script type="text/javascript">
+		(function($){
+			
+			var options = {
+				events_source: [
+		        {
+		            "id": 293,
+		            "title": "Evento 1",
+		            "url": "http://example.com",
+		            "class": "event-important",
+		            "start": 1439780548000, // Milliseconds
+		            "end": 1439866948000 // Milliseconds
+		        }],
+				view: 'week',
+				language: 'es-CO',
+				tmpl_path: '{{ url() }}/tmpls/',
+				tmpl_cache: false,				
+				width: '100%',
+				modal: '#events-modal',
+				modal_type : "ajax",
+				modal_title: function(event) { 
+					return event.title 
+				},
+				onAfterEventsLoad: function(events) 
+				{
+					if(!events) 
+					{
+						return;
+					}
+					var list = $('#eventlist');
+					list.html('');
+
+					$.each(events, function(key, val) 
+					{
+						$(document.createElement('li'))
+							.html('<a href="' + val.url + '">' + val.title + '</a>')
+							.appendTo(list);
+					});
+				},
+				onAfterViewLoad: function(view) 
+				{
+					$('.page-header h3').text(this.getTitle());
+					$('.btn-group button').removeClass('active');
+					$('button[data-calendar-view="' + view + '"]').addClass('active');
+				},
+				views:{
+					day: {enable: 0}
+				}
+			}
+
+			var calendar = $('#calendar').calendar(options);
+
+			$('.btn-group button[data-calendar-nav]').each(function(){
+				var $this = $(this);
+				$this.click(function() 
+				{
+					calendar.navigate($this.data('calendar-nav'));
+				});
+			});
+
+			$('.btn-group button[data-calendar-view]').each(function() {
+				var $this = $(this);
+				$this.click(function() 
+				{
+					calendar.view($this.data('calendar-view'));
+				});
+			});
+
+			
+		}(jQuery));
+    </script>
+@stop

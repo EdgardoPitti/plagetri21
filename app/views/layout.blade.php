@@ -20,6 +20,7 @@
         {{ HTML::script('assets/js/html5shiv.js') }}
         {{ HTML::script('assets/js/respond.min.js') }}
     <![endif]-->
+    @yield('calendar_css')
     @yield('scripts')   
   </head>
   <body>    
@@ -61,7 +62,9 @@
             </nav>   
           </div>
         @endif
-        @yield('content')  
+        
+        @yield('content')
+          
       </div>
       
     </div>
@@ -89,8 +92,10 @@
     {{ HTML::script('assets/js/perfect-scrollbar.min.js') }} 
     {{ HTML::script('assets/js/filtro.js') }}
     {{ HTML::script('assets/js/script.js') }}
+    {{ HTML::script('assets/js/jquery.datosReportes.js')}}
     {{ HTML::script('assets/js/jquery.fixedheadertable.js') }}
     {{ HTML::script('assets/js/script_foto.js') }}
     {{ HTML::script('assets/js/script_maps.js') }}    
+    @yield('script_calendar')
   </body>
 </html>

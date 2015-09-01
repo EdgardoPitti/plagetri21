@@ -10,34 +10,42 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
 Route::get('/', function(){
 	if(Auth::check()){
-		return View::make('inicio');
+		return View::make('inicio');		
 	}else{
-		return View::make('login');	
+		return View::make('login');			
 	}
 });
 	Route::post('sigin', 'AuthController@postLogin');
 	//Rutas de Logueo y Registro de Usuarios
 	Route::get('logout', 'AuthController@getLogout');
 	
-	//Rutas para controladores
-	Route::resource('usuario', 'UsuarioController');
-	Route::resource('datos/pacientes', 'Datos_PacientesController');
-	Route::resource('datos/medicos', 'Datos_MedicosController');
-	Route::resource('datos/citas', 'Datos_CitasController');
-	Route::resource('datos/mediana', 'Datos_MedianaController');
-	Route::resource('datos/agenda', 'Datos_AgendaController');
-	Route::resource('datos/activos', 'Datos_ActivosController');
-	Route::resource('datos/mantenimientos', 'Datos_MantenimientosController');
-	Route::resource('datos/mediana', 'Datos_MedianaController');
-	Route::resource('datos/condiciones', 'CondicionesController');
-	Route::resource('datos/modulos', 'Datos_ModulosController');
-	Route::resource('datos/empresas', 'EmpresasController');
-	Route::resource('datos/configuracion', 'ConfiguracionController');
-	Route::resource('reportes', 'ReportesController');
+	//Rutas que solo ve el administrador
+	Route::group(array('before' => array('auth','admin')), function(){
+		Route::resource('usuario', 'UsuarioController');
+		Route::resource('datos/modulos', 'Datos_ModulosController');
+		Route::resource('datos/configuracion', 'ConfiguracionController');		
+	});
+	
+	//Rutas para controladores de modulos del sistema
+	Route::group(array('before' => 'acceso'), function(){ 
+		Route::resource('datos/pacientes', 'Datos_PacientesController');
+		Route::resource('datos/medicos', 'Datos_MedicosController');
+		Route::resource('datos/citas', 'Datos_CitasController');
+		Route::resource('datos/mediana', 'Datos_MedianaController');
+		Route::resource('datos/agenda', 'Datos_AgendaController');
+		Route::resource('datos/activos', 'Datos_ActivosController');
+		Route::resource('datos/mantenimientos', 'Datos_MantenimientosController');
+		Route::resource('datos/condiciones', 'CondicionesController');
+		//Ruta para el control del mapa
+		Route::resource('datos/pacientesmapas', 'MapasController');
+		Route::resource('reportes', 'ReportesController');
+	});
+	
+	//Route::resource('datos/empresas', 'EmpresasController');
 	Route::resource('print', 'PrintController');
-
 	
 	Route::post('almacenargrupo', 'Datos_ModulosController@almacenargrupo');
 	Route::post('medicos/getmedicos', 'getDatosController@postData'); //ruta para cargar datos al modal
@@ -46,8 +54,6 @@ Route::get('/', function(){
 	Route::get('getactivos/{mantentenimiento}', 'getDatosController@getActivos'); //ruta para obtener los activos y filtrarlos
 	Route::post('bajaactivo/{id}', 'Datos_ActivosController@bajaActivo'); //ruta para dar de baja a un activo
 	Route::get("grafica/{riesgo}", "GraficarController@pintarGrafica");
-	//Ruta para el control del mapa
-	Route::resource('datos/pacientesmapas', 'MapasController');
 	
 	//Rutas para elementos dinamicos
 	Route::get('datos/marcadores', 'DropdownController@marcadores');
