@@ -53,6 +53,7 @@ Route::get('/', function(){
 	Route::get('pacientes/{cita}', 'getDatosController@postPacientes'); //ruta para obtener todos los pacientes y filtrarlos
 	Route::get('getactivos/{mantentenimiento}', 'getDatosController@getActivos'); //ruta para obtener los activos y filtrarlos
 	Route::post('bajaactivo/{id}', 'Datos_ActivosController@bajaActivo'); //ruta para dar de baja a un activo
+	Route::get('getMantenimientos', 'getDatosController@getMantenimientos');
 	Route::get("grafica/{riesgo}", "GraficarController@pintarGrafica");
 	
 	//Rutas para elementos dinamicos

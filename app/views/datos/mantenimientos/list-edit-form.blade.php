@@ -322,25 +322,13 @@
 		(function($){
 			
 			var options = {
-				events_source: [
-		        {
-		            "id": 293,
-		            "title": "Evento 1",
-		            "url": "http://example.com",
-		            "class": "event-important",
-		            "start": 1439780548000, // Milliseconds
-		            "end": 1439866948000 // Milliseconds
-		        }],
+				events_source: baseurl+'/getMantenimientos',
 				view: 'week',
 				language: 'es-CO',
 				tmpl_path: '{{ url() }}/tmpls/',
 				tmpl_cache: false,				
 				width: '100%',
-				modal: '#events-modal',
-				modal_type : "ajax",
-				modal_title: function(event) { 
-					return event.title 
-				},
+				
 				onAfterEventsLoad: function(events) 
 				{
 					if(!events) 

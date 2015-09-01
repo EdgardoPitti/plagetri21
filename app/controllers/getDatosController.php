@@ -225,4 +225,12 @@ class getDatosController extends BaseController {
 			App::abort(403);
 		}
 	}
+
+	public function getMantenimientos(){
+		$fecha_inicio = date('Y-m-d', Input::get('from')/1000);
+		$fecha_fin = date('Y-m-d', Input::get('to')/1000);
+
+
+		dd($fecha_inicio.', '.$fecha_fin);
+	}
 }
