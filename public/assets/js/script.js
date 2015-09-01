@@ -343,12 +343,32 @@ jQuery(document).ready(function($){
 			});
 		});	
 
-		$("#fecha_inicio").change(function(){
-		 	obtenerGarantias();	
+		$("#fecha_inicio").change(function(event){
+		 	//obtenerGarantias();	
+		 	$(this).reporte({
+				tabla: $('#bodytable_garantias'),
+				ruta: 'obtenergarantias',
+				msg_error: 'No existen garantias en este rango de fecha',
+				datos: { 
+					fecha_inicio: $(this).val(), 
+					fecha_fin: $('#fecha_fin').val()
+				}
+			});
+			event.stopPropagation();
 		});
 		
-		$("#fecha_fin").change(function(){
-			obtenerGarantias();
+		$("#fecha_fin").change(function(event){
+			//obtenerGarantias();
+			$(this).reporte({
+				tabla: $('#bodytable_garantias'),
+				ruta: 'obtenergarantias',
+				msg_error: 'No existen garantias en este rango de fecha',
+				datos: { 
+					fecha_inicio: $('#fecha_inicio').val(), 
+					fecha_fin: $(this).val()
+				}
+			});
+			event.stopPropagation();
 		});
 
 		//Script para obtener garantias en un rango de fecha
@@ -370,14 +390,34 @@ jQuery(document).ready(function($){
 			});	
 		};	
 
-
 		//ID de los Inputs de activos mas costosos
-		$("#fecha_inicio_costo_1").change(function(){
-			obtenerCostoActivos();
+		$("#fecha_inicio_costo_1").change(function(event){			
+			$(this).reporte({
+				tabla: $('#bodytable_costos_activos'),
+				ruta: 'obtenercostosactivos',
+				msg_error: 'No existen activos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $(this).val(), 
+					fecha_fin: $('#fecha_fin_costo_1').val()
+				}
+			});
+			event.stopPropagation();
+			//obtenerCostoActivos();
 		});
-		$("#fecha_fin_costo_1").change(function(){
-			obtenerCostoActivos();
+		$("#fecha_fin_costo_1").change(function(event){
+			//obtenerCostoActivos();
+			$(this).reporte({
+				tabla: $('#bodytable_costos_activos'),
+				ruta: 'obtenercostosactivos',
+				msg_error: 'No existen activos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $('#fecha_inicio_costo_1').val(), 
+					fecha_fin: $(this).val() 
+				}
+			});
+			event.stopPropagation();
 		});
+		
 		
 		//Script para obtener los activos mas costosos comprados dentro de un rango de fecha
 		function obtenerCostoActivos(){
@@ -455,12 +495,31 @@ jQuery(document).ready(function($){
 			}
 		});
 
-		$("#fecha_inicio_preventivo_activo").change(function(){
-		 	obrenerPreventivoActivo();	
+		$("#fecha_inicio_preventivo_activo").change(function(event){
+		 	//obrenerPreventivoActivo();	
+		 	$(this).reporte({
+				tabla: $('#bodytable_preventivo_activo'),
+				ruta: 'obtenerpreventivoactivo',
+				msg_error: 'No existen mantenimientos preventivos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $(this).val(), 
+					fecha_fin: $('#fecha_fin_preventivo_activo').val()
+				}
+			});
+			event.stopPropagation();
 		});
 		
 		$("#fecha_fin_preventivo_activo").change(function(){
-			obrenerPreventivoActivo();
+			//obrenerPreventivoActivo();
+			$(this).reporte({
+				tabla: $('#bodytable_preventivo_activo'),
+				ruta: 'obtenerpreventivoactivo',
+				msg_error: 'No existen mantenimientos preventivos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $('#fecha_inicio_preventivo_activo').val(), 
+					fecha_fin: $(this).val() 
+				}
+			});
 		});
 
 		//Funcion para obtener los equipos con mas fallas dentro de un rango de fecha de sus mantenimientos
@@ -482,12 +541,32 @@ jQuery(document).ready(function($){
 			});	
 		};
 
-		$("#fecha_inicio_correctivo_activo").change(function(){
-		 	obrenerCorrectivoActivo();	
+		$("#fecha_inicio_correctivo_activo").change(function(event){
+		 	//obrenerCorrectivoActivo();
+		 	$(this).reporte({
+				tabla: $('#bodytable_correctivo_activo'),
+				ruta: 'obtenercorrectivoactivo',
+				msg_error: 'No existen mantenimientos correctivos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $(this).val(), 
+					fecha_fin: $('#fecha_fin_correctivo_activo').val()
+				}
+			});	
+		 	event.stopPropagation();
 		});
 		
-		$("#fecha_fin_correctivo_activo").change(function(){
-			obrenerCorrectivoActivo();
+		$("#fecha_fin_correctivo_activo").change(function(event){
+			//obrenerCorrectivoActivo();
+			$(this).reporte({
+				tabla: $('#bodytable_correctivo_activo'),
+				ruta: 'obtenercorrectivoactivo',
+				msg_error: 'No existen mantenimientos correctivos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $('#fecha_inicio_correctivo_activo').val(), 
+					fecha_fin: $(this).val() 
+				}
+			});
+			event.stopPropagation();
 		});
 
 		//Funcion para obtener los equipos con mas fallas dentro de un rango de fecha de sus mantenimientos
@@ -510,12 +589,32 @@ jQuery(document).ready(function($){
 		};
 
 
-		$("#fecha_inicio_preventivo").change(function(){
-		 	obtenerPreventivos();	
+		$("#fecha_inicio_preventivo").change(function(event){
+		 	//obtenerPreventivos();	
+		 	$(this).reporte({
+				tabla: $('#bodytable_preventivo'),
+				ruta: 'obtenerpreventivos',
+				msg_error: 'No existen mantenimientos preventivos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $(this).val(), 
+					fecha_fin: $('#fecha_fin_preventivo').val()
+				}
+			});
+		 	event.stopPropagation();
 		});
 		
-		$("#fecha_fin_preventivo").change(function(){
-			obtenerPreventivos();
+		$("#fecha_fin_preventivo").change(function(event){
+			//obtenerPreventivos();
+			$(this).reporte({
+				tabla: $('#bodytable_preventivo'),
+				ruta: 'obtenerpreventivos',
+				msg_error: 'No existen mantenimientos preventivos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $('#fecha_inicio_preventivo').val(), 
+					fecha_fin: $(this).val() 
+				}
+			});
+			event.stopPropagation();
 		});
 
 		//Funcion para obtener los mantenimientos preventivos dentro de un rango de fecha
@@ -537,12 +636,32 @@ jQuery(document).ready(function($){
 			});	
 		};
 
-		$("#fecha_inicio_correctivo").change(function(){
-		 	obtenerCorrectivos();	
+		$("#fecha_inicio_correctivo").change(function(event){
+		 	//obtenerCorrectivos();	
+		 	$(this).reporte({
+				tabla: $('#bodytable_correctivo'),
+				ruta: 'obtenercorrectivos',
+				msg_error: 'No existen mantenimientos correctivos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $(this).val(), 
+					fecha_fin:  $('#fecha_fin_correctivo').val() 
+				}
+			});
+		 	event.stopPropagation();
 		});
 		
-		$("#fecha_fin_correctivo").change(function(){
-			obtenerCorrectivos();
+		$("#fecha_fin_correctivo").change(function(event){
+			//obtenerCorrectivos();
+			$(this).reporte({
+				tabla: $('#bodytable_correctivo'),
+				ruta: 'obtenercorrectivos',
+				msg_error: 'No existen mantenimientos correctivos en este rango de fecha',
+				datos: { 
+					fecha_inicio: $('#fecha_inicio_correctivo').val(), 
+					fecha_fin: $(this).val() 
+				}
+			});
+			event.stopPropagation();
 		});
 
 		//Funcion para obtener los mantenimientos correctivos dentro de un rango de fecha

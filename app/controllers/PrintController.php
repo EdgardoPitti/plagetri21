@@ -1,6 +1,9 @@
 <?php
 class PrintController extends \BaseController 
 {
+	public function __construct(){
+		$this->beforeFilter('auth');
+	}
     public function edit($id)
     {
 		//Declarar un arreglo para devolver los resultados.
