@@ -18,6 +18,32 @@
 		  <center>Mantenimientos</center>
 		</h1>
 		<div class="row">
+	    	<div class="col-xs-12">
+			    <div class="page-header">
+					<h3></h3>
+					<div class="pull-left form-inline">
+						<div class="btn-group">
+							<button class="btn btn-default" data-calendar-nav="prev"><i class="fa fa-chevron-left"></i></button>
+							<button class="btn btn-default" data-calendar-nav="today">Hoy</button>
+							<button class="btn btn-default" data-calendar-nav="next"><i class="fa fa-chevron-right"></i></button>
+						</div>
+						<div class="btn-group">
+							<button class="btn btn-success" data-calendar-view="year">Año</button>
+							<button class="btn btn-success active" data-calendar-view="month">Mes</button>
+							<button class="btn btn-success" data-calendar-view="week">Semana</button>							
+						</div>
+					</div>
+				</div>
+	    	</div>
+	    </div>
+
+		<div class="row">
+			<div class="col-xs-12">
+	    		<div id="calendar"></div>
+			</div>
+		</div>
+
+		<div class="row">
 	      <div class="col-md-12 col-sm-12 col-lg-12">
 	        <div class="panel panel-primary">
 	          <div class="panel-heading">
@@ -43,76 +69,6 @@
 		                    <th data-field="urls" data-align="center">Opciones</th>
 		                </tr>
 		            </thead>	             
-	              </table>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-
-	      {{--*/
-	      		$hoy = Carbon::now();
-	      		$lunes = new Carbon('last Monday'); 
-	      		$domingo = new Carbon('next Sunday');
-	      /*--}}
-	      @if($hoy->format('l') == 'Monday')
-				{{--*/$lunes = $hoy;/*--}}	      
-	      @elseif($hoy->format('l') == 'Sunday')
-	      		{{--*/$domingo = $hoy;/*--}}
-	      @endif
-	      <div class="col-md-12 col-sm-12 col-lg-12">
-	        <div class="panel panel-primary" s tyle="max-height:300px;">
-	          <div class="panel-heading">
-	            <h3 class="panel-title">Mantenimientos para esta Semana</h3>
-	            <div class="pull-right">
-	              <span class="clickable filter" data-toggle="tooltip" title="Buscar Activo" data-container="body">
-	                <i class="glyphicon glyphicon-filter"></i>
-	              </span>
-	            </div>
-	          </div>
-	          <div class="panel-body">
-	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla_mantenimientos" placeholder="Filtrar Mantenimientos" /><br>
-	            <div class="table-responsive overthrow"  style="height:170px;">
-	              <table class="table table-bordered table-hover mantenimientos" id="tabla_mantenimientos">
-	                <thead>
-	                <tr class="info">
-	                    <th>#</th>
-	                    <th>Número de Activo</th>
-	                    <th>Nombre</th>
-	                    <th>Marca</th>
-	                    <th>Nivel</th>
-	                    <th>Ubicación</th>
-	                    <th>Próximo Mantenimiento</th>
-	                    <th></th>
-	                </tr>
-	              </thead>
-	              <tbody>
-	                {{--*/ $x = 1; /*--}}
-	                @foreach (Mantenimiento::whereBetween('proximo_mant', array($lunes->format('Y-m-d'), $domingo->format('Y-m-d')))->get() as $mantenimiento)
-	                	{{--*/$realizacion = Mantenimiento::where('id_activo', $mantenimiento->id_activo)->orderby('created_at','DESC')->first()->fecha_realizacion;/*--}}
-	                	@if( !($realizacion >= $lunes->format('Y-m-d') AND $realizacion <= $domingo->format('Y-m-d')))
-		                  <tr>
-		                      <td>{{ $x++ }}.</td>
-		                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->num_activo }}</td>
-		                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->nombre }}</td>
-		                      <td>{{ Activo::where('id', $mantenimiento->id_activo)->first()->marca }}</td>
-		                      @if(empty(Nivel::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_nivel)->first()->nivel))
-								<td>NO DEFINIDO</td>
-		                      @else
-								<td>{{ Nivel::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_nivel)->first()->nivel }}</td>
-		                      @endif
-		                      @if(empty(Ubicacion::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_ubicacion)->first()->ubicacion))
-								<td>NO DEFINIDO</td>
-		                      @else
-								<td>{{ Ubicacion::where('id', Activo::where('id', $mantenimiento->id_activo)->first()->id_ubicacion)->first()->ubicacion }}</td>
-		                      @endif
-		                      <td>{{ $mantenimiento->proximo_mant }}</td>
-		                      <td align="center">
-		                      	<a href="{{ route('datos.mantenimientos.show', $mantenimiento->id_activo) }}" class="btn btn-primary btn-sm" data-toggle="tooltip"  title="Crear Mantenimiento"><span class="glyphicon glyphicon-list-alt"></span></a> 
-	                      	  </td>
-		                  </tr>
-		                @endif
-	                @endforeach
-	                </tbody> 
 	              </table>
 	            </div>
 	          </div>
@@ -267,32 +223,7 @@
 
 	    @endif
 
-	    <div class="row">
-	    	<div class="col-xs-12">
-			    <div class="page-header">
-					<h3></h3>
-					<div class="pull-left form-inline">
-						<div class="btn-group">
-							<button class="btn btn-default" data-calendar-nav="prev"><i class="fa fa-chevron-left"></i></button>
-							<button class="btn btn-default" data-calendar-nav="today">Hoy</button>
-							<button class="btn btn-default" data-calendar-nav="next"><i class="fa fa-chevron-right"></i></button>
-						</div>
-						<div class="btn-group">
-							<button class="btn btn-success" data-calendar-view="year">Año</button>
-							<button class="btn btn-success active" data-calendar-view="month">Mes</button>
-							<button class="btn btn-success" data-calendar-view="week">Semana</button>							
-						</div>
-					</div>
-				</div>
-	    	</div>
-	    </div>
-
-		<div class="row">
-			<div class="col-xs-12">
-	    		<div id="calendar"></div>
-			</div>
-		</div>
-
+	    
 		<!--ventana modal para el calendario-->
 		<div class="modal fade" id="events-modal">
 		    <div class="modal-dialog">
@@ -322,33 +253,13 @@
 		(function($){
 			
 			var options = {
-				events_source: [
-		        {
-		            "id": 293,
-		            "title": "Evento 1",
-		            "url": "http://example.com",
-		            "class": "event-important",
-		            "start": 1439780548000, // Milliseconds
-		            "end": 1439780548000 // Milliseconds
-		        },
-		        {
-		            "id": 293,
-		            "title": "Evento 1",
-		            "url": "http://example.com",
-		            "class": "event-success",
-		            "start": 1439780548000, // Milliseconds
-		            "end": 1439780548000 // Milliseconds
-		        }],
+				events_source: baseurl+'/getMantenimientos',
 				view: 'week',
 				language: 'es-CO',
 				tmpl_path: '{{ url() }}/tmpls/',
 				tmpl_cache: false,				
 				width: '100%',
-				modal: '#events-modal',
-				modal_type : "ajax",
-				modal_title: function(event) { 
-					return event.title 
-				},
+				
 				onAfterEventsLoad: function(events) 
 				{
 					if(!events) 

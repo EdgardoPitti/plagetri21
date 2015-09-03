@@ -225,4 +225,36 @@ class getDatosController extends BaseController {
 			App::abort(403);
 		}
 	}
+
+	public function getMantenimientos(){
+		$fecha_inicio = date('Y-m-d', Input::get('from')/1000);
+		$fecha_fin = date('Y-m-d', Input::get('to')/1000);
+		$out = array();
+
+		foreach (Mantenimiento::whereBetween('fecha_realizacion', array($fecha_inicio, $fecha_fin))->get() as $mantenimientos) {
+			$activo = Activo::where('id', $mantenimientos->id_activo)->first();
+			$out[] = array(
+    		    'id' => $mantenimientos->id,
+        		'title' => $activo->num_activo.' - '.$activo->nombre.' (Mantenimiento Realizado)',
+        		'url' => route('datos.mantenimientos.edit', $mantenimientos->id),
+        		'class' => 'event-success',
+        		'start' => strtotime($mantenimientos->fecha_realizacion)*1000+42799000,
+        		'end' => strtotime($mantenimientos->fecha_realizacion)*1000+42799000
+		   	);
+    	}
+    	foreach(Activo::all() as $activos){
+    		$mantenimientos = Mantenimiento::where('id_activo', $activos->id)->orderBy('created_at', 'desc')->first();
+				$out[] = array(
+				    'id' => $mantenimientos->id.'c',
+		    		'title' => $activos->num_activo.' - '.$activos->nombre.' (Prox. Mantenimiento)',
+		    		'url' => route('datos.mantenimientos.show', $activos->id),
+		    		'class' => 'event-important',
+		    		'start' => strtotime($mantenimientos->proximo_mant)*1000+42799000,
+		    		'end' => strtotime($mantenimientos->proximo_mant)*1000+42799000
+			   	);		
+    		
+    	}
+    	//dd(DB::getQueryLog());
+    	return Response::json(array('success' => 1, 'result' => $out));
+	}
 }
