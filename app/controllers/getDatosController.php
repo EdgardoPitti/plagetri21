@@ -231,6 +231,5 @@ class getDatosController extends BaseController {
 		$fecha_fin = date('Y-m-d', Input::get('to')/1000);
 
 
-		dd($fecha_inicio.', '.$fecha_fin);
 	}
 }
