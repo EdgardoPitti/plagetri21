@@ -480,6 +480,21 @@ jQuery(document).ready(function($){
 		});*/
 		
 		
+		$("#tipo_cita").change(function(){
+			$(".title").empty();
+			if($(this).val() == 1){
+				$(".title").append('1° Trimestre');
+			    $("#tab2").css("display", "block");	
+				$("#tab_citas").css("display", "none");
+                $("#tab1").css("display", "none");               
+			}else{
+				$(".title").append('2° Trimestre');
+				$("#tab2").css("display", "none");
+				$("#tab_citas").css("display", "block");
+                $("#tab1").css("display", "block");               
+			}
+		});
+
 		$("#fecha_inicio_preventivo_activo").change(function(event){
 		 	//obrenerPreventivoActivo();	
 		 	$(this).reporte({

@@ -175,21 +175,70 @@
 				<h3>Marcadores</h3>
 				<div class="row">
 					<div class="col-md-12 col-lg-12">
+      					{{ Form::label('tipo_cita', 'Tipo de Cita:') }}
+      					{{ Form::select('tipo_cita', array('1' => 'PRIMER TRIMESTRE', '2' => 'SEGUNDO TRIMESTRE') , $form['citas']->tipo_cita, array('class' => 'form-control', 'id' => 'tipo_cita')) }}
+					</div>
+
+					<div class="col-md-12 col-sm-12 col-lg-12" id="tab_citas" style="display:none;">
+				    	<div class="panel panel-primary">
+				      	<div class="panel-heading">
+			        		<h3 class="panel-title">Citas Anteriores</h3>
+		        			<div class="pull-right">
+			          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Citas" data-container="body">
+				            		<i class="glyphicon glyphicon-filter"></i>
+			          			</span>
+			        		</div>
+				      	</div>
+					    	<div class="panel-body" style="display:block">
+						        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#tabla-citas" placeholder="Filtrar Citas"/><br>
+							    <div class="overthrow" style="height:150px;">
+							        <table class="table table-hover table-bordered cita-anterior" cellpadding="0" cellspacing="0" id="tabla-citas">
+									  	<thead>
+									  		<tr class="info">
+									  			<th></th>
+									  			<th>Fecha de Cita</th>
+									  			<th>Fecha de Flebotomía</th>
+									  			<th>Institucion</th>
+									  			<th>Peso</th>
+									  			@foreach (Marcador::all() as $marcador)
+									  				<th>{{ $marcador->marcador }}</th>
+									  			@endforeach
+									  		</tr>
+									  	</thead>
+									  	<tbody>
+									  		@foreach (Cita::where('id_paciente', $datos[0]->id)->get() as $citas)
+										  		<tr align="center">
+										  			<td><input type="radio" id="id_cita_referencia" name="id_cita_referencia" value="{{$citas->id}}"></td>
+										  			<td>{{ $citas->fecha_cita }}</td>
+										  			<td>{{ $citas->fecha_flebotomia }}</td>
+										  			@if($citas->id_institucion == 0)
+														<td>No Definida</td>
+													@else
+														<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
+													@endif	
+										  			<td>{{ $citas->peso }}</td>
+										  			@foreach (Marcador::all() as $marcador)
+										  				 	<td>{{ $form['marcador_cita']->obtenerMarcador($marcador->id, $citas->id)->valor }}</td> 
+										  			@endforeach
+										  		</tr>
+									  		@endforeach
+									  	</tbody>
+									</table>
+								</div>
+								<div class="clear"></div>
+					        </div>
+				        </div>
+				    </div>
+				
+				
+
+					<div class="col-md-12 col-lg-12">
+						<h3 class="title">1° Trimestre</h3>
 						<div class="portlet">
 							<div class="tabbable-panel">
 								<div class="tabbable-line">
-									<ul class="nav nav-tabs ">
-										<li class="active">
-											<a href="#tab1" data-toggle="tab">
-											2do Trim. </a>
-										</li>
-										<li>
-											<a href="#tab2" data-toggle="tab">
-											1er Trim. </a>
-										</li>
-									</ul>
 									<div class="tab-content">
-										<div class="tab-pane fade in active" id="tab1">
+										<div class="tab-pane fade in active" id="tab1" style="display:none;">
 											<div class="table-responsive overthrow">
 												<table class="table table-striped" style="width:100%">
 													<thead>
@@ -245,7 +294,7 @@
 												</table>
 											</div>
 										</div>
-										<div class="tab-pane fade" id="tab2">
+										<div class="tab-pane" id="tab2" style="display:block;">
 											<div class="table-responsive overthrow">
 												<table class="table table-striped" style="width:100%">
 													<thead>

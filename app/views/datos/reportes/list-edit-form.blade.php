@@ -54,6 +54,13 @@
                   <div class="tab-content">
                     <!--  TAB COSTO DE ACTIVOS -->
                     <div class="tab-pane fade in active" id="tab4">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <div class="pull-right">
+                            <a href="{{ URL::to('imprimir-reportes/costoactivos') }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Imprimir</a>
+                          </div>
+                        </div>
+                      </div>
                       <div class="well well-sm">
                         <div class="form-horizontal">
                           <div class="form-group">

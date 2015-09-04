@@ -485,7 +485,7 @@ span[data-cal-date]:hover {
 #cal-slide-content {
   padding: 20px;
   color: #ffffff;
-  background-image: url("../../imgs/dark_wood.png");
+  background-color: #4A4747;
   -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
 }
@@ -493,7 +493,7 @@ span[data-cal-date]:hover {
   background-image: url("../../imgs/tick.png");
 }
 #cal-slide-content:hover {
-  background-color: transparent;
+  background-color: rgba(0,0,0,0.75);
 }
 #cal-slide-content a.event-item {
   color: #ffffff;

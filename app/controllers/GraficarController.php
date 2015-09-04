@@ -10,7 +10,7 @@ class GraficarController extends \BaseController {
      */
           
      
-    public function pintarGrafica($riesgo) {
+    public function getPintargrafica($riesgo) {
         
       JpGraph::module('bar');        
 		

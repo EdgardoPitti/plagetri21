@@ -103,7 +103,7 @@
 		@else
 			<p style="color:red;">No tiene marcadores registrados</p>
 		@endif
-		<div style="position:absolute; top:0px; right:-20px;"> <img src="{{URL::to('grafica/'.$cita->riesgo)}}" alt=""> </div>
+		<div style="position:absolute; top:0px; right:-20px;"> <img src="{{URL::to('grafica/pintargrafica/'.$cita->riesgo)}}" alt=""> </div>
 	</div>
 	<div style="position:relative;bottom:0px;font-size:12px;">			
       <h4 style="padding:8px 0px 0px 8px;">Evaluación del Riesgo (a término)</h4>

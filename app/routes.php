@@ -54,7 +54,9 @@ Route::get('/', function(){
 	Route::get('getactivos/{mantentenimiento}', 'getDatosController@getActivos'); //ruta para obtener los activos y filtrarlos
 	Route::post('bajaactivo/{id}', 'Datos_ActivosController@bajaActivo'); //ruta para dar de baja a un activo
 	Route::get('getMantenimientos', 'getDatosController@getMantenimientos');
-	Route::get("grafica/{riesgo}", "GraficarController@pintarGrafica");
+
+	Route::controller('imprimir-reportes', 'ImpReportesController'); //enlaces para imprimir PDF de reportes
+	Route::controller('grafica', 'GraficarController'); //ruta para mostrar las graficas de cita y reportes
 	
 	//Rutas para elementos dinamicos
 	Route::get('datos/marcadores', 'DropdownController@marcadores');
