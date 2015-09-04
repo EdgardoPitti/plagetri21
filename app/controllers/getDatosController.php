@@ -244,15 +244,17 @@ class getDatosController extends BaseController {
     	}
     	foreach(Activo::all() as $activos){
     		$mantenimientos = Mantenimiento::where('id_activo', $activos->id)->orderBy('created_at', 'desc')->first();
-				$out[] = array(
-				    'id' => $mantenimientos->id.'c',
-		    		'title' => $activos->num_activo.' - '.$activos->nombre.' (Prox. Mantenimiento)',
-		    		'url' => route('datos.mantenimientos.show', $activos->id),
-		    		'class' => 'event-important',
-		    		'start' => strtotime($mantenimientos->proximo_mant)*1000+42799000,
-		    		'end' => strtotime($mantenimientos->proximo_mant)*1000+42799000
-			   	);		
-    		
+    			if(!empty($mantenimientos)){
+	    			$out[] = array(
+					    'id' => $mantenimientos->id.'c',
+			    		'title' => $activos->num_activo.' - '.$activos->nombre.' (Prox. Mantenimiento)',
+			    		'url' => route('datos.mantenimientos.show', $activos->id),
+			    		'class' => 'event-important',
+			    		'start' => strtotime($mantenimientos->proximo_mant)*1000+42799000,
+			    		'end' => strtotime($mantenimientos->proximo_mant)*1000+42799000
+				   	);			
+    			}
+   		
     	}
     	//dd(DB::getQueryLog());
     	return Response::json(array('success' => 1, 'result' => $out));
