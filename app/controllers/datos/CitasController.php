@@ -54,9 +54,16 @@ class Datos_CitasController extends BaseController {
 		$citas->edad_gestacional_fur = $data['semana'];
 		$citas->riesgo_fap = $data['riesgo_fap'];
 		$citas->id_institucion = $data['id_institucion'];
+		$citas->tipo_cita = $data['tipo_cita'];
+		$citas->id_cita_referencia = $data['id_cita_referencia'];
 		$citas->save();
 		//Se obtiene el ultimo id de las citas que fue la que se almaceno previamente
 		$id_cita = Cita::all()->last()->id;
+		if($data['tipo_cita'] == '2' AND $data['id_cita_referencia'] != '0'){
+			$cita = Cita::find($data['id_cita_referencia']);
+			$cita->id_cita_referencia = $id_cita;
+			$cita->save();
+		}
 		//Decisiones para almacenar las metodologias de cada marcador
 		$met_general = $data['met_general'];
 		//Ciclo que recorre todo los marcadores y busca los valores de cada uno para almacenarlos respectivamente.
@@ -111,7 +118,8 @@ class Datos_CitasController extends BaseController {
 		$form['label'] = 'Crear';
 		$form['citas'] = new Cita;
 		$form['citas']->riesgo = 100;
-		$form['citas']->riesgo_fap = 100;	
+		$form['citas']->riesgo_fap = 100;
+		$form['citas']->tipo_cita = 2;	
 		$form['citas']->id_institucion = 1;
 		$form['institucion'] = Institucion::find(1);	
 		$form['citas']->fecha_cita = date("20y-m-d");
@@ -182,6 +190,10 @@ class Datos_CitasController extends BaseController {
 	{
 		$data = Input::all();
 		$citas = Cita::find($id);
+		$id_anterior = $citas->id_cita_referencia;
+		$cita_anterior = Cita::find($id_anterior);
+		$cita_anterior->id_cita_referencia  = 0;
+		$cita_anterior->save();
 		//sino encuentra una cita crea un nuevo objeto
 		if (is_null ($citas))
 		{
@@ -204,7 +216,15 @@ class Datos_CitasController extends BaseController {
 		$citas->edad_gestacional_fur = $data['semana'];
 		$citas->riesgo = $data['riesgo'];
 		$citas->riesgo_fap = $data['riesgo_fap'];
+		$citas->tipo_cita = $data['tipo_cita'];
+		$citas->id_cita_referencia = $data['id_cita_referencia'];
 		$citas->save();
+		if($data['tipo_cita'] == '2' AND $data['id_cita_referencia'] != '0'){
+			$cita = Cita::find($data['id_cita_referencia']);
+			$cita->id_cita_referencia = $id;
+			$cita->save();
+
+		}
 		//Se almacena en una variable el id de la metodologia que eleigio en general.
 		$met_general = $data['met_general'];
 		//Ciclo para recorrer todos los marcadores
