@@ -16,14 +16,14 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12">
 		    	<div class="panel panel-primary">
-		      	<div class="panel-heading">
-		        		<h3 class="panel-title">Lista de Pacientes</h3>
-	        			<div class="pull-right">
-		          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Paciente" data-container="body">
-			            		<i class="glyphicon glyphicon-filter"></i>
-		          			</span>
-		        		</div>
-		      	</div>
+			      	<div class="panel-heading">
+			        		<h3 class="panel-title">Lista de Pacientes</h3>
+		        			<div class="pull-right">
+			          			<span class="clickable filter" data-toggle="tooltip" title="Buscar Paciente" data-container="body">
+				            		<i class="glyphicon glyphicon-filter"></i>
+			          			</span>
+			        		</div>
+			      	</div>
 			    	<div class="panel-body" style="display:block">
 					    <div class="overthrow" style="height:250px;">							
 							<table id="table-cita">
@@ -174,7 +174,7 @@
 				</div>
 				<h3>Marcadores</h3>
 				<div class="row">
-					<div class="col-md-12 col-lg-12">
+					<div class="col-sm-4">
       					{{ Form::label('tipo_cita', 'Tipo de Cita:') }}
       					{{ Form::select('tipo_cita', array('1' => 'PRIMER TRIMESTRE', '2' => 'SEGUNDO TRIMESTRE') , $form['citas']->tipo_cita, array('class' => 'form-control', 'id' => 'tipo_cita')) }}
 					</div>
@@ -188,45 +188,59 @@
 							{{--*/$title = '1° Trimestre';/*--}}
 					@endif
 					<input type="hidden" name="id_cita_referencia" value="0">
-					 	<div class="overthrow" style="height:150px;{{$display}}}" id="tab_citas">
-					        <table class="table table-hover table-bordered cita-anterior" cellpadding="0" cellspacing="0" id="tabla-citas">
+					<div class="col-sm-12" style="margin-top:15px;{{$display}}" id="tab_citas">						
+						<div class="table-responsive overthrow" style="max-height:150px;">
+					 		<table class="table table-hover table-bordered" cellpadding="0" cellspacing="0">
 							  	<thead>
 							  		<tr class="info">
-							  			<th></th>
-							  			<th>Fecha de Cita</th>
-							  			<th>Fecha de Flebotomía</th>
-							  			<th>Institucion</th>
-							  			<th>Peso</th>
+							  			<th style="padding:10px 0px 10px 5px;"></th>
+							  			<th style="padding:10px 0px 10px 5px;">Fecha de Cita</th>
+							  			<th style="padding:10px 0px 10px 5px;">Fecha de Flebotomía</th>
+							  			<th style="padding:10px 0px 10px 5px;">Institucion</th>
+							  			<th style="padding:10px 0px 10px 5px;">Peso</th>
 							  			@foreach (Marcador::all() as $marcador)
-							  				<th>{{ $marcador->marcador }}</th>
+							  				<th style="padding:10px 0px 10px 5px;">{{ $marcador->marcador }}</th>
 							  			@endforeach
+							  			<th style="padding:10px 0px 10px 5px;"></th>
 							  		</tr>
 							  	</thead>
 							  	<tbody>
-							  		@foreach (Cita::where('id_paciente', $datos[0]->id)->where('tipo_cita', '1')->where('id_cita_referencia', '0')->orwhere('id', $form['citas']->id_cita_referencia)->get() as $citas)
-							  			@if($form['citas']->id_cita_referencia == $citas->id)
-							  				{{--*/$checked = 'checked';/*--}}
-							  			@else
-							  				{{--*/$checked = '';/*--}}
-							  			@endif
-								  		<tr align="center">
-								  			<td><input type="radio" id="id_cita_referencia" name="id_cita_referencia" value="{{$citas->id}}" {{$checked}}></td>
-								  			<td>{{ $citas->fecha_cita }}</td>
-								  			<td>{{ $citas->fecha_flebotomia }}</td>
-								  			@if($citas->id_institucion == 0)
-												<td>No Definida</td>
-											@else
-												<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
-											@endif	
-								  			<td>{{ $citas->peso }}</td>
-								  			@foreach (Marcador::all() as $marcador)
-								  				 	<td>{{ $form['marcador_cita']->obtenerMarcador($marcador->id, $citas->id)->valor }}</td> 
-								  			@endforeach
-								  		</tr>
-							  		@endforeach
+							  		{{--*/ $cita = Cita::where('id_paciente', $datos[0]->id)->where('tipo_cita', '1')->where('id_cita_referencia', '0')->orwhere('id', $form['citas']->id_cita_referencia)->get(); 
+							  		/*--}}
+							  		@if( empty($cita[0]) )
+							  			<tr class="white">
+							  				<td colspan="14" align="center">No existen citas referenciadas para este paciente.</td>
+							  			</tr>
+							  		@else
+								  		@foreach ($cita as $citas)
+								  			@if($form['citas']->id_cita_referencia == $citas->id)
+								  				{{--*/$checked = 'checked';/*--}}
+								  			@else
+								  				{{--*/$checked = '';/*--}}
+								  			@endif
+									  		<tr class="white" align="center">
+									  			<td><input type="radio" id="id_cita_referencia" name="id_cita_referencia" value="{{$citas->id}}" {{$checked}}></td>
+									  			<td>{{ $citas->fecha_cita }}</td>
+									  			<td>{{ $citas->fecha_flebotomia }}</td>
+									  			@if($citas->id_institucion == 0)
+													<td>No Definida</td>
+												@else
+													<td>{{ Institucion::where('id', $citas->id_institucion)->first()->denominacion }}</td>
+												@endif	
+									  			<td>{{ $citas->peso }}</td>
+									  			@foreach (Marcador::all() as $marcador)
+									  				<td>{{ $form['marcador_cita']->obtenerMarcador($marcador->id, $citas->id)->valor }}</td> 
+									  			@endforeach
+									  			<td align="center">
+									  				<a href="{{ route('datos.citas.edit', $citas->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" title="Editar Cita"><span class="glyphicon glyphicon-pencil"></span> Editar </a>
+									  			</td>
+									  		</tr>
+								  		@endforeach
+								  	@endif
 							  	</tbody>
-							</table>
-						</div>
+							</table>							
+						</div>				
+					</div>
 					
 					<div class="col-md-12 col-lg-12">
 						<h3 class="title">{{ $title }}</h3>
