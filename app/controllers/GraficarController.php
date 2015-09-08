@@ -2,14 +2,7 @@
 use JpGraph\JpGraph;
  
 class GraficarController extends \BaseController {
- 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-          
-     
+         
     public function getPintargrafica($riesgo) {
         
       JpGraph::module('bar');        
@@ -40,6 +33,10 @@ class GraficarController extends \BaseController {
 		//Muestra borde de la gráfica
 		$graph->SetBox(true);
 		
+		$graph->title->SetFont(FF_TIMES,FS_BOLD,13);
+		$graph->title->SetColor('black');
+		$graph->title->Set('El Síndrome de Down');
+
 		$labelsX = array("Edad Solamente\n(1:".$riesgo.")", "Suero Tamíz\n(1:".$tamiz.")");
 		$graph->xaxis->SetTickLabels($labelsX);	//muestra los labels de las gráficas de barra
 		$graph->xaxis->SetLabelAlign('center','top','center');	//Centrar los labels	
@@ -48,6 +45,11 @@ class GraficarController extends \BaseController {
 		$graph->yaxis->HideLabels(); //Oculta los valores de la axis Y		
 		$graph->yaxis->HideTicks(false,false); //Oculta las líneas de la axis Y
 		
+		$graph->xaxis->SetFont(FF_TIMES,FS_NORMAL,9);
+		$graph->xaxis->SetColor('black');
+		$graph->yaxis->SetFont(FF_TIMES,FS_NORMAL,9);
+		$graph->yaxis->SetColor('black');
+
 		// Crea la gráfica de barra
 		$suero = new BarPlot($data);
 		
@@ -62,9 +64,53 @@ class GraficarController extends \BaseController {
 		$band = new PlotBand(HORIZONTAL,BAND_SOLID,0.2496,0.25,'black');
 		$band->ShowFrame(false);
 		$graph->Add($band);					
-		$graph->title->Set('El Síndrome de Down');
-		
-		// Display the graph
+				
+		//Muestra la grafica
+		$graph->Stroke();
+    }
+
+    public function getGrafmayorcosto(){
+    	JpGraph::module('bar'); 
+
+    	$graph = new Graph(680,300);
+		$graph->SetScale("textlin");
+		$graph->yscale->SetGrace(5);
+		$graph->SetBox(true);
+
+		$labels = array();
+		$valores = array();
+    	foreach(Activo::where('id', '>', '0')->orderBy('costo', 'desc')->take(10)->get() as $activo){
+    		$labels[] = $activo->num_activo;
+    		$valores[] = $activo->costo;
+    	}
+
+    	//titulo de la grafica
+    	$graph->title->SetFont(FF_TIMES,FS_BOLD,13);
+		$graph->title->Set('Gráfica: Activos con Mayor Costo');		
+		$graph->title->SetColor('black');
+
+		//valores de los labels en ambas axis y como se ubicaran
+    	$graph->xaxis->SetTickLabels($labels);
+		$graph->xaxis->SetLabelAlign('center','top','center');
+		$graph->ygrid->SetFill(false);
+		$graph->yaxis->HideLabels(false);		
+		$graph->yaxis->HideTicks(false,false);
+
+		//Fonts para las axis 
+		$graph->xaxis->SetFont(FF_TIMES,FS_NORMAL,9);
+		$graph->xaxis->SetColor('black');
+		$graph->yaxis->SetFont(FF_TIMES,FS_NORMAL,9);
+		$graph->yaxis->SetColor('black');
+
+		//grafica de activos con mayor costo
+		$mayorCosto = new BarPlot($valores);
+		$mayorCosto->SetColor('white');
+		$mayorCosto->SetWidth(0.6);
+
+		//agrega la grafica generada a la instancia de la grafica
+		$graph->Add($mayorCosto);
+
+		//Despliega la grafica
 		$graph->Stroke();
     }
  }

@@ -1,11 +1,12 @@
 <?php
-class PrintController extends \BaseController 
-{
+
+class ImprimirController extends BaseController {
+
 	public function __construct(){
 		$this->beforeFilter('auth');
 	}
-    public function edit($id)
-    {
+
+	public function getCita($id){
 		//Declarar un arreglo para devolver los resultados.
 		$parameter = array();
 		//Se instancian los objetos necesarios.
@@ -46,5 +47,13 @@ class PrintController extends \BaseController
 		$pdf = PDF::loadView('datos/citas/Print', $parameter);
 		//Creo el archivo pdf y lo almaceno utilizando la cedula como el nombre del archivo.
 		return $pdf->stream(''.$parameter['datos'][0]->cedula.'.pdf', array("Attachment" => false));
-    }
+	}
+
+	public function getCostoactivos(){
+		$pdf = App::make('dompdf');
+		
+		$pdf = PDF::loadView('datos/reportes/imprimir/costo_activos');
+
+		return $pdf->stream();
+	}
 }

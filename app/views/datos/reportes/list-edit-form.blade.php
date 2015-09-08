@@ -57,7 +57,7 @@
                       <div class="row">
                         <div class="col-xs-12">
                           <div class="pull-right">
-                            <a href="{{ URL::to('imprimir-reportes/costoactivos') }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Imprimir</a>
+                            <a href="{{ url('imprimir/costoactivos') }}" class="btn btn-info btn-sm" target="_blank"><i class="fa fa-print"></i> Imprimir</a>
                           </div>
                         </div>
                       </div>

@@ -45,7 +45,6 @@ Route::get('/', function(){
 	});
 	
 	//Route::resource('datos/empresas', 'EmpresasController');
-	Route::resource('print', 'PrintController');
 	
 	Route::post('almacenargrupo', 'Datos_ModulosController@almacenargrupo');
 	Route::post('medicos/getmedicos', 'getDatosController@postData'); //ruta para cargar datos al modal
@@ -55,7 +54,7 @@ Route::get('/', function(){
 	Route::post('bajaactivo/{id}', 'Datos_ActivosController@bajaActivo'); //ruta para dar de baja a un activo
 	Route::get('getMantenimientos', 'getDatosController@getMantenimientos');
 
-	Route::controller('imprimir-reportes', 'ImpReportesController'); //enlaces para imprimir PDF de reportes
+	Route::controller('imprimir', 'ImprimirController'); //enlaces para imprimir PDF de reportes
 	Route::controller('grafica', 'GraficarController'); //ruta para mostrar las graficas de cita y reportes
 	
 	//Rutas para elementos dinamicos
