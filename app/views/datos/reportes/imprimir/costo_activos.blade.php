@@ -74,7 +74,9 @@
 
     <div class="grafica">      
       <center>
-    	 <img src="{{ URL::to('grafica/grafmayorcosto') }}">
+        @if(Activo::all()->count() > 0)
+    	   <img src="{{ URL::to('grafica/grafmayorcosto') }}">
+        @endif
       </center>
     </div>
 @stop

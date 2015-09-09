@@ -32,8 +32,7 @@ class GraficarController extends \BaseController {
 		$graph->SetScale("textlin");
 		//Muestra borde de la gráfica
 		$graph->SetBox(true);
-		
-		$graph->title->SetFont(FF_TIMES,FS_BOLD,13);
+				
 		$graph->title->SetColor('black');
 		$graph->title->Set('El Síndrome de Down');
 
@@ -44,10 +43,8 @@ class GraficarController extends \BaseController {
 		$graph->yaxis->SetTitle('1:385', "middle");	//Titulo de axis Y seteado a la mitad de la gráfica	
 		$graph->yaxis->HideLabels(); //Oculta los valores de la axis Y		
 		$graph->yaxis->HideTicks(false,false); //Oculta las líneas de la axis Y
-		
-		$graph->xaxis->SetFont(FF_TIMES,FS_NORMAL,9);
+				
 		$graph->xaxis->SetColor('black');
-		$graph->yaxis->SetFont(FF_TIMES,FS_NORMAL,9);
 		$graph->yaxis->SetColor('black');
 
 		// Crea la gráfica de barra
@@ -85,9 +82,8 @@ class GraficarController extends \BaseController {
     	}
 
     	//titulo de la grafica
-    	$graph->title->SetFont(FF_TIMES,FS_BOLD,13);
-		$graph->title->Set('Gráfica: Activos con Mayor Costo');		
 		$graph->title->SetColor('black');
+		$graph->title->Set('Gráfica: Activos con Mayor Costo');		
 
 		//valores de los labels en ambas axis y como se ubicaran
     	$graph->xaxis->SetTickLabels($labels);
@@ -97,9 +93,7 @@ class GraficarController extends \BaseController {
 		$graph->yaxis->HideTicks(false,false);
 
 		//Fonts para las axis 
-		$graph->xaxis->SetFont(FF_TIMES,FS_NORMAL,9);
 		$graph->xaxis->SetColor('black');
-		$graph->yaxis->SetFont(FF_TIMES,FS_NORMAL,9);
 		$graph->yaxis->SetColor('black');
 
 		//grafica de activos con mayor costo

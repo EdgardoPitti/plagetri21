@@ -16,6 +16,8 @@
    
     // Función que permite cambiar el idioma a las fechas
     setlocale(LC_TIME, 'Spanish'); 
+
+    $cant_activos = Activo::all()->count();
 /*--}}
 <div class="row">
   <div class="portlet">
@@ -54,13 +56,15 @@
                   <div class="tab-content">
                     <!--  TAB COSTO DE ACTIVOS -->
                     <div class="tab-pane fade in active" id="tab4">
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <div class="pull-right">
-                            <a href="{{ url('imprimir/costoactivos') }}" class="btn btn-info btn-sm" target="_blank"><i class="fa fa-print"></i> Imprimir</a>
+                      @if($cant_activos > 0)
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <div class="pull-right">
+                              <a href="{{ url('imprimir/costoactivos') }}" class="btn btn-info btn-sm" target="_blank"><i class="fa fa-print"></i> Imprimir</a>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      @endif
                       <div class="well well-sm">
                         <div class="form-horizontal">
                           <div class="form-group">
