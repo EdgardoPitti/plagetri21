@@ -138,8 +138,12 @@
 			      {{ Form::select('nivel',  array('0' => 'SELECCIONE EL NIVEL') + Nivel::lists('nivel', 'id'), $datos['activo']->id_nivel, array('class' => 'form-control')); }}    
 			    </div>
 			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
-			      {{ Form::label('ubicacion', 'Ubicación:') }}
-			      {{ Form::select('ubicacion',  array('0' => 'SELECCIONE LA UBICACION') + Ubicacion::lists('ubicacion', 'id'), $datos['activo']->id_ubicacion, array('class' => 'form-control')); }}    
+			      {{ Form::label('ubicacion', 'Departamento:') }}
+			      {{ Form::select('ubicacion',  array('0' => 'SELECCIONE EL DEPARTAMENTO') + Ubicacion::lists('ubicacion', 'id'), $datos['activo']->id_ubicacion, array('class' => 'form-control')); }}    
+			    </div>
+			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+			      {{ Form::label('unidad_administrativa', 'Unidad Administrativa:') }}
+			      {{ Form::select('unidad_administrativa',  array('0' => 'SELECCIONE LA UNIDAD ADMINISTRATIVA') + UnidadAdministrativa::lists('unidad_administrativa', 'id'), $datos['activo']->id_unidad_administrativa, array('class' => 'form-control')); }}    
 			    </div>
 			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 			      {{ Form::label('proveedor', 'Proveedor:') }}
