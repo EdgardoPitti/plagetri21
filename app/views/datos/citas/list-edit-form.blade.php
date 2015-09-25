@@ -209,7 +209,7 @@
 							  		/*--}}
 							  		@if( empty($cita[0]) )
 							  			<tr class="white">
-							  				<td colspan="14" align="center">No existen citas referenciadas para este paciente.</td>
+							  				<td colspan="14" align="center">No existen citas para referenciar.</td>
 							  			</tr>
 							  		@else
 								  		@foreach ($cita as $citas)

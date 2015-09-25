@@ -78,3 +78,5 @@ Route::get('/', function(){
 	Route::get('obtenercorrectivos', 'DropdownController@getObtenerCorrectivos');
 	Route::post('validarced', 'DropdownController@getValidarCed');
 	Route::post('validarcedm', 'DropdownController@getValidarCedM');
+
+	
