@@ -23,6 +23,7 @@ class Datos_ActivosController extends BaseController {
 		$datos['activo']->id_ubicacion = 1;
 		$datos['activo']->id_nivel = 1;
 		$datos['activo']->id_tipo_fuente = 1;
+		$datos['activo']->id_unidad_administrativa = 1;
 		$datos['activo']->id_fecha_mantenimiento = 1;
 		//Se retorna a la vista con los valores correspondientes
 		return View::make('datos/activos/list-edit-form')->with('datos', $datos);
@@ -67,6 +68,7 @@ class Datos_ActivosController extends BaseController {
 		$activo->id_estado = $data['id_estado'];
 		$activo->id_nivel = $data['nivel'];
 		$activo->id_ubicacion = $data['ubicacion'];
+		$activo->id_unidad_administrativa = $data['unidad_administrativa'];
 		$activo->id_proveedor = $data['proveedor'];
 		$activo->descripcion = $data['descripcion'];
 		$activo->fecha_garantia = $data['fecha_garantia'];
@@ -140,6 +142,7 @@ class Datos_ActivosController extends BaseController {
 		$activo->id_estado = $data['id_estado'];
 		$activo->id_nivel = $data['nivel'];
 		$activo->id_ubicacion = $data['ubicacion'];
+		$activo->id_unidad_administrativa = $data['unidad_administrativa'];
 		$activo->id_proveedor = $data['proveedor'];
 		$activo->descripcion = $data['descripcion'];
 		$activo->fecha_garantia = $data['fecha_garantia'];
