@@ -40,7 +40,6 @@ class getDatosController extends BaseController {
 			$limit = Input::get('limit'); 
 			$offset = Input::get('offset');
 			
-			$n = 1;
 			//Si recibe la variable "search" vacía, obtiene todos los médicos, sino busca alguno en específico.
 			//variable cantidad: sirve para conocer el total de registros y realizar la paginación de acuerdo al limit y offset.
 			if(empty($search)){
@@ -53,48 +52,34 @@ class getDatosController extends BaseController {
 				$c = DB::select("SELECT count(id) as cantidad FROM medicos WHERE concat(`cedula`,' ',`primer_nombre`,' ',`apellido_paterno`) LIKE '%".$search."%'");
 				$cantidad = $c[0]->cantidad;			
 			}
-			$comilla = "'";
 			
-			//variable que retorna en formato json	
-			$data = '{
-							"total": '.$cantidad.',
-							"rows": [						
-							';
-				//ciclo para obtener todos los datos del médico y guardarlos en la variable "data"
-				foreach($datos as $datos_medicos[0]){
-					$num = $n + $offset;				
-					if($n > 1){
-						$data.= ',';
-					}
-					
-					$n++;
-					$data.='{
-					
-						"num": '.$num.',
-						"foto": "<img src='.$comilla.URL::to('imgs/'.$datos_medicos[0]->foto).$comilla.' style='.$comilla.'width:50px;height:50px;'.$comilla.'>",
-						"cedula": "'.$datos_medicos[0]->cedula.'",						
-						"name": "'.$datos_medicos[0]->primer_nombre.' '.$datos_medicos[0]->segundo_nombre.' '.$datos_medicos[0]->apellido_paterno.' '.$datos_medicos[0]->apellido_materno.'",
-						"ext": "'.$datos_medicos[0]->extension.'",
-						"tel": "'.$datos_medicos[0]->telefono.'",
-						"cel": "'.$datos_medicos[0]->celular.'",
-						"esp": "'.$datos_medicos[0]->especialidad.'",';
-						
-						if(GrupoUsuario::where('id', Auth::user()->id_grupo_usuario)->first()->grupo_usuario != "RECEPCION"){
-							$data.='
-							"url": "<a href='.$comilla.route('datos.medicos.edit', $datos_medicos[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar M&eacute;dico'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar </a> <a href='.$comilla.'#Show'.$comilla.' id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'show('.$datos_medicos[0]->id.');'.$comilla.'  class='.$comilla.'btn btn-info btn-sm'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.'  title='.$comilla.'Ver Médico'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-eye-open'.$comilla.'></span> Ver </a> <a href='.$comilla.'#'.$comilla.' data-id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'eliminar('.$datos_medicos[0]->id.');'.$comilla.' class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span> Eliminar </a>"';
-						}else{
-							$data.='
-							"url": "<a href='.$comilla.route('datos.medicos.edit', $datos_medicos[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Cargar M&eacute;dico'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-search'.$comilla.'></span> Cargar </a> <a href='.$comilla.'#Show'.$comilla.' id='.$comilla.''.$datos_medicos[0]->id.''.$comilla.' onclick='.$comilla.'show('.$datos_medicos[0]->id.');'.$comilla.'  class='.$comilla.'btn btn-info btn-sm'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.'  title='.$comilla.'Ver Médico'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-eye-open'.$comilla.'></span> Ver </a>"
-							';
-						}
+			$n = 1;
+			$comilla = "'";
+			$data = array();
+			//ciclo para obtener todos los datos del médico y guardarlos en la variable "data"
+			foreach($datos as $medicos){
+				$img = '<img src='.$comilla.URL::to('imgs/'.$medicos->foto).$comilla.' style='.$comilla.'width:50px;height:50px;'.$comilla.'>';
+				if (GrupoUsuario::where('id', Auth::user()->id_grupo_usuario)->first()->grupo_usuario != "RECEPCION") {
+					$url = '<a href='.$comilla.route('datos.medicos.edit', $medicos->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar M&eacute;dico'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar </a> <a href='.$comilla.'#Show'.$comilla.' id='.$comilla.''.$medicos->id.''.$comilla.' onclick='.$comilla.'show('.$medicos->id.');'.$comilla.'  class='.$comilla.'btn btn-info btn-sm'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.'  title='.$comilla.'Ver Médico'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-eye-open'.$comilla.'></span> Ver </a> <a href='.$comilla.'#'.$comilla.' data-id='.$comilla.''.$medicos->id.''.$comilla.' onclick='.$comilla.'eliminar('.$medicos->id.');'.$comilla.' class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span> Eliminar </a>';
+				}else{
+					$url = '<a href='.$comilla.route('datos.medicos.edit', $medicos->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Cargar M&eacute;dico'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-search'.$comilla.'></span> Cargar </a> <a href='.$comilla.'#Show'.$comilla.' id='.$comilla.''.$medicos->id.''.$comilla.' onclick='.$comilla.'show('.$medicos->id.');'.$comilla.'  class='.$comilla.'btn btn-info btn-sm'.$comilla.' data-toggle='.$comilla.'modal'.$comilla.'  title='.$comilla.'Ver Médico'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-eye-open'.$comilla.'></span> Ver </a>';
+				}
 
-						$data.='
-						}';
-				}				
+				$data[] = array(
+					'num' => $n,
+					'foto' => $img,
+					'cedula' => $medicos->cedula,
+					'name' => $medicos->primer_nombre.' '.$medicos->segundo_nombre.' '.$medicos->apellido_paterno.' '.$medicos->apellido_materno,
+					'ext' => $medicos->extension,
+					'tel' => $medicos->telefono,
+					'cel' => $medicos->celular,
+					'esp' => $medicos->especialidad,
+					'url' => $url
+				);
 				
-			$data .= ']
-				}';
-			return $data;		
+				$n++;
+			}
+			return Response::json(array('total' => $cantidad, 'rows' => $data));		
 		}else {
 			App::abort(403);
 		}		
@@ -121,41 +106,33 @@ class getDatosController extends BaseController {
 			
 			$comilla = "'";
 			$n = 1;
-			
-			$data = '{
-							"total": '.$cantidad.',
-							"rows": [						
-							';
-							
-				foreach($datos as $datos_pacientes[0]){
-					$num = $n + $offset;
-					if($n > 1){
-						$data.= ',';
-					}
-					$n++;
-					$cant_citas = Cita::where('id_paciente', $datos_pacientes[0]->id)->count();
-					$data.='{
-					
-						"num": '.$num.',
-						"name": "'.$datos_pacientes[0]->primer_nombre.' '.$datos_pacientes[0]->segundo_nombre.' '.$datos_pacientes[0]->apellido_paterno.' '.$datos_pacientes[0]->apellido_materno.'",
-						"cedula": "'.$datos_pacientes[0]->cedula.'",
-						"date": "'.$datos_pacientes[0]->fecha_nacimiento.'",
-						"cel": "'.$datos_pacientes[0]->celular.'",
-						"tel": "'.$datos_pacientes[0]->telefono.'",
-						"email": "'.$datos_pacientes[0]->email.'",
-						"cita": "'.$cant_citas.'",';
-						if($cita == 0) {
-							$data .=	'"url": "<a href='.$comilla.URL::to('datos/citas/'.$datos_pacientes[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Cita'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span> Crear Cita </a>  <a href='.$comilla.route('datos.pacientes.edit', $datos_pacientes[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar Paciente'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar </a> <a href='.$comilla.'#'.$comilla.' data-id='.$comilla.''.$datos_pacientes[0]->id.''.$comilla.' onclick='.$comilla.'eliminar('.$datos_pacientes[0]->id.');'.$comilla.' class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span> Eliminar </a>"';
-						}else{
-							$data .= '"url": "<a href='.$comilla.URL::to('datos/citas/'.$datos_pacientes[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Cita'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span> Crear Cita </a>  <a href='.$comilla.route('datos.pacientes.edit', $datos_pacientes[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar Paciente'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar Paciente </a>"';											
-						}
-					$data .='
-						}';
-				}				
+
+			$data = array();
+			foreach ($datos as $pacientes) {
+
+				$cant_citas = Cita::where('id_paciente', $pacientes->id)->count();
+				if($cita == 0){
+					$url = '<a href='.$comilla.URL::to('datos/citas/'.$pacientes->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Cita'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span> Crear Cita </a>  <a href='.$comilla.route('datos.pacientes.edit', $pacientes->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar Paciente'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar </a> <a href='.$comilla.'#'.$comilla.' data-id='.$comilla.''.$pacientes->id.''.$comilla.' onclick='.$comilla.'eliminar('.$pacientes->id.');'.$comilla.' class='.$comilla.'btn btn-danger btn-delete btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Eliminar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-remove'.$comilla.'></span> Eliminar </a>';
+				}else{
+					$url = '<a href='.$comilla.URL::to('datos/citas/'.$pacientes->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Cita'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span> Crear Cita </a>  <a href='.$comilla.route('datos.pacientes.edit', $pacientes->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Editar Paciente'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span> Editar Paciente </a>';
+				}	
 				
-			$data .= ']
-				}';
-			return $data;
+				$data[] = array(
+					'num' => $n,
+					'name' => $pacientes->primer_nombre.' '.$pacientes->segundo_nombre.' '.$pacientes->apellido_paterno.' '.$pacientes->apellido_materno,
+					'cedula' => $pacientes->cedula,
+					'date' => $pacientes->fecha_nacimiento,
+					'cel' => $pacientes->celular,
+					'tel' => $pacientes->telefono,
+					'email' => $pacientes->email,
+					'cita' => $cant_citas,
+					'url' => $url
+				);
+
+				$n++;
+			}	
+
+			return Response::json(array('total' => $cantidad, 'rows' => $data));
 		}else {
 			App::abort(403);		
 		}
@@ -165,8 +142,6 @@ class getDatosController extends BaseController {
 	public function getActivos($mantenimiento){
 		if(Request::ajax()){
 			
-			$activos =  new Activo;
-			
 			$search = Input::get('search');
 			$limit = Input::get('limit');
 			$offset = Input::get('offset');
@@ -174,52 +149,42 @@ class getDatosController extends BaseController {
 
 			if(!empty($search)){
 				$search_act = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo FROM activos a, tipos_activos t, ubicacion u, niveles n WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel AND (t.tipo LIKE '%".$search."%' OR u.ubicacion LIKE '%".$search."%' OR a.num_activo LIKE '%".$search."%' OR a.nombre LIKE '%".$search."%') ORDER BY a.costo ".$order." LIMIT ".$offset.",".$limit.";");
-				$cantidad = count($search_act);
+				$count = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo FROM activos a, tipos_activos t, ubicacion u, niveles n WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel AND (t.tipo LIKE '%".$search."%' OR u.ubicacion LIKE '%".$search."%' OR a.num_activo LIKE '%".$search."%' OR a.nombre LIKE '%".$search."%') ORDER BY a.costo ".$order.";");
+				$cantidad = count($count);
 
 			}else{
 				$search_act = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo FROM activos a, tipos_activos t, ubicacion u, niveles n WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel AND a.id > 0 ORDER BY a.costo ".$order." LIMIT ".$offset.",".$limit.";");
-				$cantidad = count($search_act);		
+				$count = DB::select("SELECT a.id, a.num_activo, a.nombre, t.tipo, n.nivel, u.ubicacion, a.costo FROM activos a, tipos_activos t, ubicacion u, niveles n WHERE t.id = a.id_tipo AND u.id = a.id_ubicacion AND n.id = a.id_nivel AND a.id > 0 ORDER BY a.costo ".$order.";");
+				$cantidad = count($count);		
 			}
-			
+
 			$comilla = "'";
 			$n = 1;
 
-			$data = '{
-				"total": '.$cantidad.',
-				"rows": [
-				';
+			$data = array();
+			foreach ($search_act as $activo) {
 
-					foreach($search_act as $activo[0]){
+				if ($mantenimiento == 0) {
+					$url = '<a href='.$comilla.route("datos.mantenimientos.show", $activo->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> <button class='.$comilla.'btn btn-warning btn-sm'.$comilla.' onclick='.$comilla.'baja(this)'.$comilla.' value='.$comilla.$activo->id.$comilla.' data-toggle='.$comilla.'modal'.$comilla.' data-target='.$comilla.'modalBaja'.$comilla.' title='.$comilla.'Dar de baja a '.utf8_encode($activo->nombre).$comilla.'><span class='.$comilla.'glyphicon glyphicon-trash'.$comilla.'></span></button>';
+				}else{
+					$url = '<a href='.$comilla.route("datos.mantenimientos.show", $activo->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a>';
+				}
 
-						$num = $n + $offset;
-						if($n > 1){
-							$data.= ',';
-						}
-						$n++;
-						$data .= '{
-							"num": '.$num.',
-							"num_activo": "'.$activo[0]->num_activo.'",
-							"nombre": "'.$activo[0]->nombre.'",
-							"tipo": "'.$activo[0]->tipo.'",
-							"nivel": "'.$activo[0]->nivel.'",
-							"ubicacion": "'.$activo[0]->ubicacion.'",
-							"costo": "'.$activo[0]->costo.'",';
-							//si $mantenimiento es 0, mostrara la ruta para dar de baja a los activos, si es 1 
-							//no procedera a mostrar dicho enlace.
-							if($mantenimiento == 0){
-								$data.='"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> <button class='.$comilla.'btn btn-warning btn-sm'.$comilla.' onclick='.$comilla.'baja(this)'.$comilla.' value='.$comilla.$activo[0]->id.$comilla.' data-toggle='.$comilla.'modal'.$comilla.' data-target='.$comilla.'modalBaja'.$comilla.' title='.$comilla.'Dar de baja a '.$activo[0]->nombre.$comilla.'><span class='.$comilla.'glyphicon glyphicon-trash'.$comilla.'></span></button>"';
-							}else{
-								$data.='"urls": "<a href='.$comilla.route("datos.mantenimientos.show", $activo[0]->id).$comilla.' class='.$comilla.'btn btn-primary btn-sm'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.'  title='.$comilla.'Crear Mantenimiento'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-list-alt'.$comilla.'></span></a> <a href='.$comilla.route('datos.activos.edit', $activo[0]->id).$comilla.' class='.$comilla.'btn btn-success btn-sm'.$comilla.' style='.$comilla.'margin:3px 0px;'.$comilla.' data-toggle='.$comilla.'tooltip'.$comilla.' title='.$comilla.'Editar'.$comilla.'><span class='.$comilla.'glyphicon glyphicon-pencil'.$comilla.'></span></a> "';
-							}
-						$data.='	
-						}';
-					}
-					
-				$data .= '
-				]
-			}';
+				$data[] = array(
+					'num' => $n,
+					'num_activo' => $activo->num_activo,
+					'nombre' => utf8_encode($activo->nombre),
+					'tipo' => $activo->tipo,
+					'nivel' => $activo->nivel,
+					'ubicacion' => $activo->ubicacion,
+					'costo' => $activo->costo,
+					'urls' => $url
+				);
 
-			return $data;
+				$n++;
+			}
+
+			return Response::json(array('total' => $cantidad, 'rows' => $data));
 
 		}else{
 			App::abort(403);
@@ -238,7 +203,7 @@ class getDatosController extends BaseController {
 				$activo = Activo::where('id', $mantenimientos->id_activo)->first();
 				$out[] = array(
 	    		    'id' => $mantenimientos->id,
-	        		'title' => $activo->num_activo.' - '.$activo->nombre.' (Mantenimiento Realizado)',
+	        		'title' => $activo->num_activo.' - '.utf8_encode($activo->nombre).' (Mantenimiento Realizado)',
 	        		'url' => route('datos.mantenimientos.edit', $mantenimientos->id),
 	        		'class' => 'event-success',
 	        		'start' => strtotime($mantenimientos->fecha_realizacion)*1000+42799000,
@@ -250,7 +215,7 @@ class getDatosController extends BaseController {
 	    			if(!empty($mantenimientos)){
 		    			$out[] = array(
 						    'id' => $mantenimientos->id.'c',
-				    		'title' => $activos->num_activo.' - '.$activos->nombre.' (Prox. Mantenimiento)',
+				    		'title' => $activos->num_activo.' - '.utf8_encode($activos->nombre).' (Prox. Mantenimiento)',
 				    		'url' => route('datos.mantenimientos.show', $activos->id),
 				    		'class' => 'event-important',
 				    		'start' => strtotime($mantenimientos->proximo_mant)*1000+42799000,

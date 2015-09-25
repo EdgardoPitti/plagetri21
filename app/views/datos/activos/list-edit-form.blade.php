@@ -39,7 +39,7 @@
 		                    <th data-field="nombre" data-align="center" class="nombre">Nombre</th>
 		                    <th data-field="tipo" data-align="center">Tipo</th>
 		                    <th data-field="nivel" data-align="center">Nivel</th>
-		                    <th data-field="ubicacion" data-align="center">Ubicación</th>
+		                    <th data-field="ubicacion" data-align="center">Departamento</th>
 		                    <th data-field="costo" data-align="center" data-sortable="true">Costo</th>
 		                    <th data-field="urls" data-align="center">Opciones</th>
 		                </tr>
