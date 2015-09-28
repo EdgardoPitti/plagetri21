@@ -173,7 +173,7 @@ class getDatosController extends BaseController {
 				$data[] = array(
 					'num' => $n,
 					'num_activo' => $activo->num_activo,
-					'nombre' => utf8_encode($activo->nombre),
+					'nombre' => $activo->nombre,
 					'tipo' => $activo->tipo,
 					'nivel' => $activo->nivel,
 					'ubicacion' => $activo->ubicacion,
