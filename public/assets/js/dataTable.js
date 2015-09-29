@@ -21,6 +21,13 @@ $(function () {
         sidePagination: 'server',
         pagination: true
     });
+    $("#table_activo_departamento").bootstrapTable({
+        height: 380,
+        url: baseurl+'/departamento',
+        search: true,
+        sidePagination: 'server',
+        pagination: true
+    });
 	$('.cita-anterior').bootstrapTable({
 		height: 150
 	});

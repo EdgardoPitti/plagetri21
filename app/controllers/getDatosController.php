@@ -231,4 +231,29 @@ class getDatosController extends BaseController {
 	    }
 		
 	}
+
+	public function getDepartamento(){
+		
+		if(Request::ajax()){
+			$out = array();
+			$n = 1;
+			foreach (Activo::where('id_ubicacion', '>', Input::get('from'))->get() as $activo) {
+				$out[] = array(
+					'num' => $n, 
+	    		    'num_activo' => $activo->num_activo,
+	        		'nombre' => $activo->num_activo.' - '.utf8_encode($activo->nombre).' (Mantenimiento Realizado)',
+	        		'marca' => $activo->marca,
+	        		'serie' => $activo->serie,
+	        		'unidad_administrativa' => UnidadAdministrativa::where('id', $activo->id_unidad_administrativa)->first()->unidad_administrativa,
+	        		'departamento' => Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion
+			   	);
+	    	}
+    		return Response::json(array('success' => 1, 'result' => $out));    		
+
+	    }else{
+	    	App::abort(403);
+	    }
+		
+	}
+
 }

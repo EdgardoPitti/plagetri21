@@ -24,22 +24,22 @@
   	<div class="tabbable-panel">
   		<div class="tabbable-line">			
   			<ul class="nav nav-tabs ">
-  				<li class="active">
+         <li class="active">
+            <a href="#tab3" data-toggle="tab">
+            Activos </a>
+          </li>
+         <li>
+            <a href="#tab2" data-toggle="tab">
+           Mantenimientos </a>
+          </li>
+  				<li>
   					<a href="#tab1" data-toggle="tab">
   					Costos</a>
-  				</li>
-  				<li>
-  					<a href="#tab2" data-toggle="tab">
-  					Activos </a>
-  				</li>
-  				<li>
-  					<a href="#tab3" data-toggle="tab">
-  					Garantías </a>
   				</li>
   			</ul>
   			<div class="tab-content">
           <!--  TAB COSTO -->
-  				<div class="tab-pane fade in active" id="tab1">
+  				<div class="tab-pane fade in" id="tab1">
             <div class="portlet">
               <div class="tabbable-panel">
                 <div class="tabbable-line">     
@@ -369,52 +369,102 @@
                 </div>
   				</div>
 
-          <!--  TAB GARANTIA -->
-  				<div class="tab-pane fade" id="tab3">
-            <div class="well well-sm">
-              <div class="form-horizontal">
-                <div class="form-group">
-                  <label class="control-label col-sm-4">Garantías desde: </label>
-                  <div class="col-sm-8">
-                    <div class="input-daterange input-group">
-                      {{ Form::text('fecha_inicio', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
-                      <span class="input-group-addon">hasta</span>
-                      {{ Form::text('fecha_fin', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+  <!--  TAB ACTIVOS -->
+                <div class="tab-pane fade in active" id="tab3">
+                  <div class="portlet">
+                    <div class="tabbable-panel">
+                      <div class="tabbable-line">     
+                        <ul class="nav nav-tabs ">
+                          <li class="active">
+                            <a href="#tab12" data-toggle="tab">
+                            Departamentos</a>
+                          </li>
+                          <li>
+                            <a href="#tab13" data-toggle="tab">
+                            Garantías</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content">
+                          <!--  TAB DEPARTAMENTO -->
+                          <div class="tab-pane fade in active" id="tab12">
+                            <div class="well well-sm">
+                              <div class="form-horizontal">
+                                <div class="form-group">
+                                  <label class="control-label col-sm-4">Seleccione el Departamento:</label>
+                                  <div class="col-sm-8">
+                                     {{ Form::select('search',  array('0' => 'SELECCIONE EL DEPARTAMENTO') + Ubicacion::lists('ubicacion', 'id'), null, array('class' => 'form-control', 'id' => 'search')); }}    
+                                  </div>
+                                </div>
+                              </div>
+                             </div>
+
+                            <div class="overthrow table-responsive" style="height:200px;overflow:auto;">
+                              <table class="table table-hover table-bordered" id="table_activo_departamento">
+                                <thead>
+                                  <tr class="info">
+                                      <th data-field="num" data-align="center">#</th>
+                                      <th data-field="num_activo" data-align="center">Número de Activo</th>
+                                      <th data-field="nombre" data-align="center">Nombre</th>
+                                      <th data-field="marca" data-align="center">Marca</th>
+                                      <th data-field="serie" data-align="center">Serie</th>
+                                      <th data-field="unidad_administrativa" data-align="center">Unidad Administrativa</th>
+                                      <th data-field="departamento" data-align="center">Departamento</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
+                          </div>
+                          <!--  TAB GARANTIAS -->
+                          <div class="tab-pane fade" id="tab13">
+                             <div class="well well-sm">
+                              <div class="form-horizontal">
+                                <div class="form-group">
+                                  <label class="control-label col-sm-4">Garantías desde: </label>
+                                  <div class="col-sm-8">
+                                    <div class="input-daterange input-group">
+                                      {{ Form::text('fecha_inicio', $fecha_actual, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_inicio' ,'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                      <span class="input-group-addon">hasta</span>
+                                      {{ Form::text('fecha_fin', $fecha_mes, array('class' => 'form-control datepicker', 'placeholder' => 'aaaa-mm-dd','id' => 'fecha_fin', 'min' => '1950-01-01', 'max' => '2040-12-31')) }}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                              <div class="overthrow table-responsive" style="height:250px;overflow:auto;">
+                                <table class="table table-hover table-bordered" id="bodytable_garantias">
+                                 <thead>
+                                  <tr class="info">
+                                      <th style="padding:8px;">#</th>
+                                      <th style="padding:8px;">Número de Activo</th>
+                                      <th style="padding:8px;">Nombre</th>
+                                      <th style="padding:8px;">Fecha de Garantía</th>
+                                      <th style="padding:8px;">Costo</th>
+                                  </tr>
+                                </thead>   
+                                <tbody>
+                                  {{--*/ $x = 1; /*--}}
+                                  @foreach (Activo::all() as $activo)
+                                    <tr>
+                                        <td>{{ $x++ }}.</td>
+                                        <td>{{ $activo->num_activo }}</td>
+                                        <td>{{ $activo->nombre }}</td>
+                                        @if(empty($activo->fecha_garantia))
+                                          <td>NO DEFINIDO</td>
+                                        @else
+                                          <td>{{ Carbon::parse($activo->fecha_garantia)->formatLocalized('%#d %b %Y') }}</td>
+                                        @endif
+                                        <td>{{ $activo->costo }}</td>
+                                    </tr>
+                                  @endforeach
+                                  </tbody> 
+                                </table>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-              <div class="overthrow table-responsive" style="height:250px;overflow:auto;">
-                <table class="table table-hover table-bordered" id="bodytable_garantias">
-                 <thead>
-                  <tr class="info">
-                      <th style="padding:8px;">#</th>
-                      <th style="padding:8px;">Número de Activo</th>
-                      <th style="padding:8px;">Nombre</th>
-                      <th style="padding:8px;">Fecha de Garantía</th>
-                      <th style="padding:8px;">Costo</th>
-                  </tr>
-                </thead>   
-                <tbody>
-                  {{--*/ $x = 1; /*--}}
-                  @foreach (Activo::all() as $activo)
-                    <tr>
-                        <td>{{ $x++ }}.</td>
-                        <td>{{ $activo->num_activo }}</td>
-                        <td>{{ $activo->nombre }}</td>
-                        @if(empty($activo->fecha_garantia))
-                          <td>NO DEFINIDO</td>
-                        @else
-                          <td>{{ Carbon::parse($activo->fecha_garantia)->formatLocalized('%#d %b %Y') }}</td>
-                        @endif
-                        <td>{{ $activo->costo }}</td>
-                    </tr>
-                  @endforeach
-                  </tbody> 
-                </table>
-              </div>
-  				</div>
   			</div>
   		</div>
   	</div>
