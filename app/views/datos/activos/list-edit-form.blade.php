@@ -121,6 +121,10 @@
 			      {{ Form::label('id_tipo_fuente', 'Tipo de Fuente:') }}
 			      {{ Form::select('id_tipo_fuente',  array('0' => 'SELECCIONE EL TIPO DE FUENTE') + TipoFuente::lists('tipo_fuente', 'id'), null, array('class' => 'form-control')); }}    
 			    </div>
+			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+			      {{ Form::label('id_tiempo_depreciacion', 'Tiempo de Depreciación:') }}
+			      {{ Form::select('id_tiempo_depreciacion', TiempoDepreciacion::lists('tiempo', 'id'), null, array('class' => 'form-control')); }}    
+			    </div>
  				<div class="form-group col-sm-4 col-md-4 col-lg-4">
 			      {{ Form::label('id_fecha_mantenimiento', 'Fecha de Mantenimiento:') }}
 			      {{ Form::select('id_fecha_mantenimiento',  array('0' => 'SELECCIONE LA FECHA DE MANTENIMIENTO') + FechaMantenimiento::lists('fecha_mantenimiento', 'id'), null, array('class' => 'form-control')); }}    
