@@ -426,3 +426,8 @@ span.remove:hover{
   margin:10px 0;
   background: #fff;
 }
+
+.select-dropdown{
+  height: 215px;
+  overflow-y: scroll;
+}

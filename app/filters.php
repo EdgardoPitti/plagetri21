@@ -77,27 +77,33 @@ Route::filter('acceso', function()
 	if(Auth::check()){
 		//Obtiene el id_grupo_usuario del usuario logueado
 		$groupId = Auth::user()->id_grupo_usuario;
-		//obtiene la ruta que accede el usuario, Ej. datos.citas.index
-		$ruta = Route::currentRouteName();
+		//obtiene la ruta que accede el usuario, Ej. datos/citas/{citas}/edit
+		$ruta = Route::getCurrentRoute()->uri();
+		
 		// convierte en arreglo la ruta
-		$ruta_array = explode('.', $ruta);
-		//obtener el indice del arreglo 
-		$indice = count($ruta_array) - 1;
-		//Reemplaza el último elemento ya sea index, edit, etc., por un espacio vacio, en la ruta completa
-		$ruta_final = preg_replace('/'.$ruta_array[$indice].'/', '', $ruta);
-
+		$ruta_array = explode('/', $ruta);
+		
+		//Si la ruta corresponde "datos/citas", y no se encuentra vacio el indice 1, concatenara dicha ruta
+		// de lo contrario se selecciono reportes.
+		if(!empty($ruta_array[1])){
+			//ej. datos.citas
+			$ruta_final = $ruta_array[0].'.'.$ruta_array[1];			
+		}else{
+			//ej. reportes
+			$ruta_final = $ruta_array[0];
+		}
+		
 		//Selecciona el ID del Modulo que contenga la ruta que trata de visitar el usuario autenticado
-		$modulo = Modulo::where('ruta', 'like' , '%'.$ruta_final.'%')->select('id')->get()->toArray();
-
+		$modulo = Modulo::where('ruta', 'like' , '%'.$ruta_final.'%')->select('id')->first()->toArray();
+		
 		//Busca si el usuario tiene acceso al modulo que desea entrar
-		$moduloUser = ModuloUsuario::where('id_grupo_usuario', $groupId)->where('id_modulo', $modulo[0]['id'])->where('inactivo', 0)->select('id')->get()->toArray();
+		$moduloUser = ModuloUsuario::where('id_grupo_usuario', $groupId)->where('id_modulo', $modulo['id'])->where('inactivo', 0)->select('id')->get()->toArray();
 		
 		//Si está vacío no tiene acceso al modulo		
 		if(empty($moduloUser)){
 			App::abort(403);
 		}
 		
-		//dd(DB::getQueryLog());
 	}
 	
 });

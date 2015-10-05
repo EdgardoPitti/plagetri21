@@ -56,4 +56,27 @@ class ImprimirController extends BaseController {
 
 		return $pdf->stream();
 	}
+
+	public function getDepartamento($id){
+		$parameter = array();
+
+		$tipo = '>';
+
+		if($id != 0){
+			$tipo = '=';
+		}
+		
+		$parameter['departamento'] = DB::table('activos AS a')
+            ->join('ubicacion AS ub', 'a.id_ubicacion', '=', 'ub.id')
+            ->join('unidades_administrativas AS ua', 'a.id_unidad_administrativa', '=', 'ua.id')
+            ->select('a.num_activo','a.nombre','a.marca','a.serie','ub.ubicacion','ua.unidad_administrativa')
+            ->where('a.id_ubicacion', $tipo, $id)
+            ->get();
+       
+		$pdf = App::make('dompdf');
+
+		$pdf = PDF::loadView('datos/reportes/imprimir/reporte-departamento', $parameter);
+
+		return $pdf->stream();
+	}
 }
