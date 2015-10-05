@@ -65,6 +65,7 @@ class Datos_ActivosController extends BaseController {
 		$activo->id_tipo_fuente = $data['id_tipo_fuente'];
 		$activo->id_fecha_mantenimiento = $data['id_fecha_mantenimiento'];
 		$activo->protocolo = $data['protocolo'];
+		$activo->id_tiempo_depreciacion = $data['id_tiempo_depreciacion'];
 		$activo->id_estado = $data['id_estado'];
 		$activo->id_nivel = $data['nivel'];
 		$activo->id_ubicacion = $data['ubicacion'];
@@ -138,6 +139,7 @@ class Datos_ActivosController extends BaseController {
 		$activo->alimentacion = $data['alimentacion'];
 		$activo->id_tipo_fuente = $data['id_tipo_fuente'];
 		$activo->id_fecha_mantenimiento = $data['id_fecha_mantenimiento'];
+		$activo->id_tiempo_depreciacion = $data['id_tiempo_depreciacion'];
 		$activo->protocolo = $data['protocolo'];
 		$activo->id_estado = $data['id_estado'];
 		$activo->id_nivel = $data['nivel'];
