@@ -249,15 +249,13 @@ class getDatosController extends BaseController {
 			$out = array();
 			$n = 1;
 
-			/*$activos = DB::table('activos AS a')
+			$activos = DB::table('activos AS a')
 			->join('ubicacion AS ub', 'a.id_ubicacion', '=', 'ub.id')
 			->join('unidades_administrativas AS ua', 'a.id_unidad_administrativa', '=', 'ua.id')
 			->select('a.num_activo','a.nombre','a.marca','a.serie','ub.ubicacion','ua.unidad_administrativa')
 			->where('a.id_ubicacion', $tipo, $id)
-			->get();*/
+			->get();
 		    
-			$activos = DB::select('CALL departamentos(?)',array($id));
-
 			foreach ($activos as $activo) {
 				$out[] = array(
 					'num' => $n, 
