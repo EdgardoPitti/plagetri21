@@ -49,14 +49,14 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-weight:bold;"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->user }} <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         @if(Auth::user()->id_grupo_usuario == 1)
-                          <li><a href="{{ URL::to('usuario') }}"><i class="fa fa-user fa-lg"></i>&nbsp; Registrar Usuario</a></li>
-                          <li><a href="{{ URL::to('datos/modulos') }}"><i class="fa fa-users fa-lg"></i> Grupos - Módulos</a></li>
-                          <li><a href="{{ URL::to('configuracion') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Configuración</a></li>
-                          <li><a href="{{ URL::to('unidad') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Unidad Administrativa</li>
-                          <li><a href="{{ URL::to('tipoactivo') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Tipos Activos</li>
-                          <li><a href="{{ URL::to('proveedor') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Proveedores</li>
+                          <li><a href="{{ URL::to('usuario') }}"><i class="fa fa-user"></i>&nbsp; Registrar Usuario</a></li>
+                          <li><a href="{{ URL::to('datos/modulos') }}"><i class="fa fa-users"></i> Grupos - Módulos</a></li>
+                          <li><a href="{{ URL::to('configuracion') }}"><i class="fa fa-cog"></i>&nbsp; Configuración</a></li>
+                          <li><a href="{{ URL::to('unidad') }}"><i class="fa fa-cubes"></i> Unidad Administrativa</li>
+                          <li><a href="{{ URL::to('tipoactivo') }}"><i class="fa fa-puzzle-piece"></i>&nbsp; Tipos Activos</li>
+                          <li><a href="{{ URL::to('proveedor') }}"><i class="fa fa-building"></i>&nbsp; Proveedores</li>
                         @endif
-                        <li><a href="{{URL::to('logout')}}"><i class="fa fa-sign-out fa-lg"></i> Cerrar Sesión</a></li>      
+                        <li><a href="{{URL::to('logout')}}"><i class="fa fa-sign-out"></i> Cerrar Sesión</a></li>      
                       </ul>
                     </li>
                   </ul>

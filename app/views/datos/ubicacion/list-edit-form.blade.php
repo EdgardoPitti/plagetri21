@@ -19,7 +19,7 @@
 	          <div class="panel-heading">
 	            <h3 class="panel-title">Lista de Unidades Administrativas</h3>
 	            <div class="pull-right">
-	              <span class="clickable filter" data-toggle="tooltip" title="Buscar Tipo" data-container="body">
+	              <span class="clickable filter" data-toggle="tooltip" title="Buscar Unidad" data-container="body">
 	                <i class="glyphicon glyphicon-filter"></i>
 	              </span>
 	            </div>
