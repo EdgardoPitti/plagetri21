@@ -25,7 +25,7 @@
 	            </div>
 	          </div>
 	          <div class="panel-body">
-	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#list-act" placeholder="Filtrar Activo" />
+	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#list-act" placeholder="Filtrar Proveedores" />
 	          </div>
 	          <div class="table-responsive overthrow" style="padding:10px 10px;height:170px;">
 	              <table class="table table-bordered table-hover list-act" id="list-act">
