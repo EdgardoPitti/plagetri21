@@ -1,21 +1,21 @@
 @extends('datos.reportes.imprimir_layout')
 
 @section('title')
-	Reporte Costo de Activos
+	Reporte Activos por departamento
 @stop
 
 @section('css')
 	<style type="text/css">
-      .title{
-        text-align: center;
-        font-weight: bold;
-      }
+        .title{
+            text-align: center;
+            font-weight: bold;
+        }
 		 .title-cost{
     		margin: 10px 0;    		
     	}
-      .title-graph{
-        margin: 15px 0px;
-      }
+       .title-graph{
+            margin: 15px 0px;
+        }
     	.table{
     		width: 100%;    		
     		border-top: 1px solid #333;
@@ -35,7 +35,11 @@
 
 @section('contenido')
     <div class="title title-cost">
-        <h3>Departamento: {{ $departamento[0]->ubicacion }}</h3>
+        @if($id != 0)            
+            <h3>Departamento: {{ $departamento[0]->ubicacion }}</h3>
+        @else
+            <h3>Todos los Departamentos</h3>
+        @endif
     </div>
     <table class="table">
        <thead>

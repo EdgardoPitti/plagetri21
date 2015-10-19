@@ -252,10 +252,15 @@ class getDatosController extends BaseController {
 			$activos = DB::table('activos AS a')
 			->join('ubicacion AS ub', 'a.id_ubicacion', '=', 'ub.id')
 			->join('unidades_administrativas AS ua', 'a.id_unidad_administrativa', '=', 'ua.id')
-			->select('a.num_activo','a.nombre','a.marca','a.serie','ub.ubicacion','ua.unidad_administrativa')
-			->where('a.id_ubicacion', $tipo, $id)
+			->select(DB::raw('SQL_CALC_FOUND_ROWS *'),'a.num_activo','a.nombre','a.marca','a.serie','ub.ubicacion','ua.unidad_administrativa')
+			->where('a.id_ubicacion', $tipo, $id)			
+			->take($limit)->skip($offset)			
 			->get();
-		    
+			
+			//Obtiene la cantidad de registros de activos segun su ubicacion
+			$cantidad = DB::select(DB::raw("SELECT FOUND_ROWS() AS totalActivos;"));
+			$cantidad = $cantidad[0]->totalActivos;
+
 			foreach ($activos as $activo) {
 				$out[] = array(
 					'num' => $n, 
@@ -269,7 +274,7 @@ class getDatosController extends BaseController {
 			   	$n++;
 	    	}
 
-    		return Response::json(array('total' => $n-1, 'rows' => $out));    		
+    		return Response::json(array('total' => $cantidad, 'rows' => $out));    		
 
 	    }else{
 	    	App::abort(403);
