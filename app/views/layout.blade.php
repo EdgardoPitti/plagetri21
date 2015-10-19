@@ -54,6 +54,7 @@
                           <li><a href="{{ URL::to('configuracion') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Configuración</a></li>
                           <li><a href="{{ URL::to('unidad') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Unidad Administrativa</li>
                           <li><a href="{{ URL::to('tipoactivo') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Tipos Activos</li>
+                          <li><a href="{{ URL::to('proveedor') }}"><i class="fa fa-cog fa-lg"></i>&nbsp; Proveedores</li>
                         @endif
                         <li><a href="{{URL::to('logout')}}"><i class="fa fa-sign-out fa-lg"></i> Cerrar Sesión</a></li>      
                       </ul>

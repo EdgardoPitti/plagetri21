@@ -29,6 +29,7 @@ Route::get('/', function(){
 		Route::resource('datos/configuracion', 'ConfiguracionController');
 		Route::resource('tipoactivo', 'TiposActivosController');
 		Route::resource('unidad', 'UnidadAdministrativaController');		
+		Route::resource('proveedor', 'ProveedoresController');
 	});
 	
 	//Rutas para controladores de modulos del sistema
