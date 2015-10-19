@@ -26,7 +26,9 @@ Route::get('/', function(){
 	Route::group(array('before' => array('auth','admin')), function(){
 		Route::resource('usuario', 'UsuarioController');
 		Route::resource('datos/modulos', 'Datos_ModulosController');
-		Route::resource('datos/configuracion', 'ConfiguracionController');		
+		Route::resource('datos/configuracion', 'ConfiguracionController');
+		Route::resource('tipoactivo', 'TiposActivosController');
+		Route::resource('unidad', 'UnidadAdministrativaController');		
 	});
 	
 	//Rutas para controladores de modulos del sistema
