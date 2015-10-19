@@ -98,7 +98,7 @@
     {{ HTML::script('assets/js/jquery.datosReportes.js')}}
     {{ HTML::script('assets/js/jquery.fixedheadertable.js') }}
     {{ HTML::script('assets/js/script_foto.js') }}
-    {{ HTML::script('assets/js/script_maps.js') }}    
+    {{ HTML::script('assets/js/script_maps.js') }}       
     @yield('script_calendar')
   </body>
 </html>

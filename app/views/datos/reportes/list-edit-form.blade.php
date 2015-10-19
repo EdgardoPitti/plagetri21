@@ -11,6 +11,12 @@
   </div>
   <center>Reportes</center>
 </h1>
+
+  <div class="alert alert-danger alert-dismissible hide" id="alert" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+    <strong><i class="fa fa-warning"></i> Error</strong> No existen activos en este departamento.
+  </div>
+
 {{--*/ $fecha_actual = Carbon::now()->format('Y-m-d');
       $fecha_mes = date('Y-m-d', strtotime(" +1 month"));
    
@@ -117,7 +123,7 @@
                       </div>
                     </div>
 
-                    <!--  TAB COSTO DE MANTENIMIENTOES -->
+                    <!--  TAB COSTO DE MANTENIMIENTES -->
                     <div class="tab-pane fade" id="tab5">
                       <div class="portlet">
                         <div class="tabbable-panel">
@@ -385,20 +391,28 @@
                           </li>
                         </ul>
                         <div class="tab-content">
-                          <!--  TAB DEPARTAMENTO -->
+                          <!--  TAB DEPARTAMENTO -->                          
                           <div class="tab-pane fade in active" id="tab12">
+                            <div class="row">
+                              <div class="col-xs-12">
+                                <div class="pull-right">
+                                  <a href="{{ url('imprimir/departamento/0') }}" class="btn btn-info btn-sm print-depto" id="print-depto" target="_blank"><i class="fa fa-print"></i> Imprimir - <span class="title">Todos</span></a>
+                                </div>
+                              </div>
+                            </div>
                             <div class="well well-sm">
                               <div class="form-horizontal">
                                 <div class="form-group">
-                                  <label class="control-label col-sm-4">Seleccione el Departamento:</label>
-                                  <div class="col-sm-8">
-                                     {{ Form::select('search',  array('0' => 'SELECCIONE EL DEPARTAMENTO') + Ubicacion::lists('ubicacion', 'id'), null, array('class' => 'form-control', 'id' => 'search')); }}    
+                                  <label class="control-label col-sm-5">Seleccione el Departamento:</label>
+                                  <div class="col-sm-4">
+                                     {{ Form::select('search',  array('0' => 'SELECCIONE EL DEPARTAMENTO') + Ubicacion::lists('ubicacion', 'id'), null, array('class' => 'form-control', 'id' => 'search')) }}    
                                   </div>
                                 </div>
+                                
                               </div>
                              </div>
 
-                            <div class="overthrow table-responsive" style="height:200px;overflow:auto;">
+                            <div class="overthrow table-responsive">
                               <table class="table table-hover table-bordered" id="table_activo_departamento">
                                 <thead>
                                   <tr class="info">
@@ -470,5 +484,4 @@
   	</div>
   </div>
 </div>
-
 @stop

@@ -53,7 +53,7 @@ Route::get('/', function(){
 	Route::post('medicos/getmedicos', 'getDatosController@postData'); //ruta para cargar datos al modal
 	Route::get('medicos', 'getDatosController@postMedicos'); //ruta para obtener todos los médicos y filtrar
 	Route::get('pacientes/{cita}', 'getDatosController@postPacientes'); //ruta para obtener todos los pacientes y filtrarlos
-	Route::get('departamento', 'getDatosController@postDepartamento');
+	Route::get('departamento', 'getDatosController@getDepartamento');
 	Route::get('getactivos/{mantentenimiento}', 'getDatosController@getActivos'); //ruta para obtener los activos y filtrarlos
 	Route::post('bajaactivo/{id}', 'Datos_ActivosController@bajaActivo'); //ruta para dar de baja a un activo
 	Route::get('getMantenimientos', 'getDatosController@getMantenimientos');

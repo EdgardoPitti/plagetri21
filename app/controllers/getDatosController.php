@@ -235,20 +235,46 @@ class getDatosController extends BaseController {
 	public function getDepartamento(){
 		
 		if(Request::ajax()){
+			
+			$id = Input::get('search'); 
+			$limit = Input::get('limit');
+			$offset = Input::get('offset');
+
+			$tipo = '>';
+
+			if($id != 0){
+				$tipo = '=';
+			}
+			
 			$out = array();
 			$n = 1;
-			foreach (Activo::where('id_ubicacion', '>', Input::get('from'))->get() as $activo) {
+
+			$activos = DB::table('activos AS a')
+			->join('ubicacion AS ub', 'a.id_ubicacion', '=', 'ub.id')
+			->join('unidades_administrativas AS ua', 'a.id_unidad_administrativa', '=', 'ua.id')
+			->select(DB::raw('SQL_CALC_FOUND_ROWS *'),'a.num_activo','a.nombre','a.marca','a.serie','ub.ubicacion','ua.unidad_administrativa')
+			->where('a.id_ubicacion', $tipo, $id)			
+			->take($limit)->skip($offset)			
+			->get();
+			
+			//Obtiene la cantidad de registros de activos segun su ubicacion
+			$cantidad = DB::select(DB::raw("SELECT FOUND_ROWS() AS totalActivos;"));
+			$cantidad = $cantidad[0]->totalActivos;
+
+			foreach ($activos as $activo) {
 				$out[] = array(
 					'num' => $n, 
 	    		    'num_activo' => $activo->num_activo,
 	        		'nombre' => $activo->num_activo.' - '.utf8_encode($activo->nombre).' (Mantenimiento Realizado)',
 	        		'marca' => $activo->marca,
 	        		'serie' => $activo->serie,
-	        		'unidad_administrativa' => UnidadAdministrativa::where('id', $activo->id_unidad_administrativa)->first()->unidad_administrativa,
-	        		'departamento' => Ubicacion::where('id', $activo->id_ubicacion)->first()->ubicacion
+	        		'unidad_administrativa' => $activo->unidad_administrativa,
+	        		'departamento' => $activo->ubicacion
 			   	);
+			   	$n++;
 	    	}
-    		return Response::json(array('success' => 1, 'result' => $out));    		
+
+    		return Response::json(array('total' => $cantidad, 'rows' => $out));    		
 
 	    }else{
 	    	App::abort(403);
