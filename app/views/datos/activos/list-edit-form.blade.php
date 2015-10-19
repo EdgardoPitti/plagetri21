@@ -151,7 +151,7 @@
 			    </div>
 			    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 			      {{ Form::label('proveedor', 'Proveedor:') }}
-			      {{ Form::select('proveedor',  array('0' => 'SELECCIONE EL PROVEEDOR') + Agenda::lists('nombre_completo', 'id'), $datos['activo']->id_proveedor, array('class' => 'form-control')); }}    
+			      {{ Form::select('proveedor',  array('0' => 'SELECCIONE EL PROVEEDOR') + Proveedor::lists('nombre', 'id'), $datos['activo']->id_proveedor, array('class' => 'form-control')); }}    
 			    </div>
 			     <div class="form-group col-sm-4 col-md-4 col-lg-4">
  				    {{ Form::label('fecha_garantia', 'Fecha de Garantía:') }}
