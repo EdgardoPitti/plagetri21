@@ -19,13 +19,13 @@
 	          <div class="panel-heading">
 	            <h3 class="panel-title">Lista de Proveedores</h3>
 	            <div class="pull-right">
-	              <span class="clickable filter" data-toggle="tooltip" title="Buscar Tipo" data-container="body">
+	              <span class="clickable filter" data-toggle="tooltip" title="Buscar Proveedor" data-container="body">
 	                <i class="glyphicon glyphicon-filter"></i>
 	              </span>
 	            </div>
 	          </div>
 	          <div class="panel-body">
-	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#list-act" placeholder="Filtrar Activo" />
+	            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#list-act" placeholder="Filtrar Proveedores" />
 	          </div>
 	          <div class="table-responsive overthrow" style="padding:10px 10px;height:170px;">
 	              <table class="table table-bordered table-hover list-act" id="list-act">
