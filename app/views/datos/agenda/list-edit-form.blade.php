@@ -134,6 +134,11 @@
 		    	{{ Form::label('detalle', 'Detalle:') }}
 	    		{{ Form::textarea('detalle', null, array('placeholder' => 'Detalle', 'class' => 'form-control', 'size' => '1x1')) }}        
 			</div>
+		    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+		    	{{ Form::label('proveedor', 'Es Proveedor?:') }}
+		    	{{ Form::checkbox('proveedor', 1, null,  array('class' => 'form-control cmn-toggle cmn-toggle-round-flat', 'id' => 'cmn-toggle')) }}
+		    	<label for="cmn-toggle"></label>
+		    </div>
 		</div>
 		<center style="padding-bottom:15px;">
 			{{ Form::button($datos['label'].' Agenda', array('type' => 'submit', 'class' => 'btn btn-primary')) }}

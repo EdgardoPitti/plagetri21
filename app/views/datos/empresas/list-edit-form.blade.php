@@ -75,7 +75,7 @@
 				    </div>
 				    <div class="form-group col-sm-4 col-md-4 col-lg-4">
 				    	{{ Form::label('descripcion', 'Descripción:') }}
-				    	{{ Form::textarea('descripcion', null, array('placeholder' => 'Observación', 'class' => 'form-control', 'size' => '3x1')) }}        
+				    	{{ Form::textarea('descripcion', null, array('placeholder' => 'Observación', 'class' => 'form-control', 'size' => '3x1')) }}
 				    </div>
 				</div>
 				<div class="form-group col-sm-12 col-md-12 col-lg-12">

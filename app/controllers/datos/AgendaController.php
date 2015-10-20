@@ -37,6 +37,7 @@ class Datos_AgendaController extends BaseController {
 	public function store()
 	{
 		$data = Input::all();
+		$proveedor = 1;
 		$agenda = new Agenda;
 		$agenda->nombre_completo = $data['nombre_completo'];
 		$agenda->profesion = $data['profesion'];
@@ -46,6 +47,10 @@ class Datos_AgendaController extends BaseController {
 		$agenda->correo = $data['correo'];
 		$agenda->ruc = $data['ruc'];
 		$agenda->detalle = $data['detalle'];
+		if(empty($data['proveedor'])){
+			$proveedor = 0;
+		}
+		$agenda->proveedor = $proveedor;
 		$agenda->save();
 
 		return Redirect::route('datos.agenda.index');
@@ -90,6 +95,7 @@ class Datos_AgendaController extends BaseController {
 	 */
 	public function update($id)
 	{
+		$proveedor = 1;
 		$data = Input::all();
 		$agenda = Agenda::find($id);
 		$agenda->nombre_completo = $data['nombre_completo'];
@@ -100,6 +106,10 @@ class Datos_AgendaController extends BaseController {
 		$agenda->correo = $data['correo'];
 		$agenda->ruc = $data['ruc'];
 		$agenda->detalle = $data['detalle'];
+		if(empty($data['proveedor'])){
+			$proveedor = 0;
+		}
+		$agenda->proveedor = $proveedor;
 		$agenda->save();
 
 		return Redirect::route('datos.agenda.index');
