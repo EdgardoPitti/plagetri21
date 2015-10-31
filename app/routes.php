@@ -27,9 +27,6 @@ Route::get('/', function(){
 		Route::resource('usuario', 'UsuarioController');
 		Route::resource('datos/modulos', 'Datos_ModulosController');
 		Route::resource('datos/configuracion', 'ConfiguracionController');
-		Route::resource('tipoactivo', 'TiposActivosController');
-		Route::resource('unidad', 'UnidadAdministrativaController');		
-		Route::resource('proveedor', 'ProveedoresController');
 	});
 	
 	//Rutas para controladores de modulos del sistema
@@ -42,6 +39,8 @@ Route::get('/', function(){
 		Route::resource('datos/activos', 'Datos_ActivosController');
 		Route::resource('datos/mantenimientos', 'Datos_MantenimientosController');
 		Route::resource('datos/condiciones', 'CondicionesController');
+		Route::resource('tipoactivo', 'TiposActivosController');
+		Route::resource('unidad', 'UnidadAdministrativaController');	
 		//Ruta para el control del mapa
 		Route::resource('datos/pacientesmapas', 'MapasController');
 		Route::resource('reportes', 'ReportesController');
