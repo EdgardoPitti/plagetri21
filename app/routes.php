@@ -29,6 +29,7 @@ Route::get('/', function(){
 		Route::resource('datos/configuracion', 'ConfiguracionController');
 	});
 	
+	Route::resource('datos/marcadores', 'MarcadoresController');
 	//Rutas para controladores de modulos del sistema
 	Route::group(array('before' => 'acceso'), function(){ 
 		Route::resource('datos/pacientes', 'Datos_PacientesController');
@@ -41,9 +42,11 @@ Route::get('/', function(){
 		Route::resource('datos/condiciones', 'CondicionesController');
 		Route::resource('tipoactivo', 'TiposActivosController');
 		Route::resource('unidad', 'UnidadAdministrativaController');	
+		
 		//Ruta para el control del mapa
 		Route::resource('datos/pacientesmapas', 'MapasController');
 		Route::resource('reportes', 'ReportesController');
+
 	});
 	
 	//Route::resource('datos/empresas', 'EmpresasController');
@@ -61,7 +64,7 @@ Route::get('/', function(){
 	Route::controller('grafica', 'GraficarController'); //ruta para mostrar las graficas de cita y reportes
 	
 	//Rutas para elementos dinamicos
-	Route::get('datos/marcadores', 'DropdownController@marcadores');
+	//Route::get('datos/marcadores', 'DropdownController@marcadores');
 	Route::get('distrito','DropdownController@getDistrito');
 	Route::get('corregimiento','DropdownController@getCorregimiento');
 	Route::get('institucion', 'DropdownController@getInstitucion');

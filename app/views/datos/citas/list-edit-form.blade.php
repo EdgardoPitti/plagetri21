@@ -265,8 +265,7 @@
 												    	</tr>
 													</thead>
 													<tbody>
-												    @foreach (Marcador::all() as $marcadores)
-												    	@if(!($marcadores->id > 3 && $marcadores->id < 7))
+												    @foreach (Marcador::where('trimestre_marcador', '2')->OrWhere('trimestre_marcador', '3')->get() as $marcadores)
 														<tr>
 															<td>
 																	{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->etiqueta }}</div>
@@ -298,7 +297,6 @@
 												    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
 															</td>
 														</tr>
-														@endif
 												    @endforeach
 													</tbody>
 												</table>
@@ -321,8 +319,7 @@
 												    	</tr>
 													</thead>
 													<tbody>
-												    @foreach (Marcador::all() as $marcadores)
-												    	@if($marcadores->id > 3 && $marcadores->id < 7)
+												     @foreach (Marcador::where('trimestre_marcador', '1')->OrWhere('trimestre_marcador', '3')->get() as $marcadores)
 														<tr>
 															<td>
 																	{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->etiqueta }}</div>
@@ -354,7 +351,6 @@
 												    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
 															</td>
 														</tr>
-														@endif
 												    @endforeach
 													</tbody>
 												</table>

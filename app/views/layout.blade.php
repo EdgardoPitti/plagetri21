@@ -51,7 +51,7 @@
                         @if(Auth::user()->id_grupo_usuario == 1)
                           <li><a href="{{ URL::to('usuario') }}"><i class="fa fa-user"></i>&nbsp; Registrar Usuario</a></li>
                           <li><a href="{{ URL::to('datos/modulos') }}"><i class="fa fa-users"></i> Grupos - Módulos</a></li>
-                          <li><a href="{{ URL::to('configuracion') }}"><i class="fa fa-cog"></i>&nbsp; Configuración</a></li>
+                          <li><a href="{{ URL::to('datos/configuracion') }}"><i class="fa fa-cog"></i>&nbsp; Configuración</a></li>
                         @endif
                         <li><a href="{{URL::to('logout')}}"><i class="fa fa-sign-out"></i> Cerrar Sesión</a></li>      
                       </ul>

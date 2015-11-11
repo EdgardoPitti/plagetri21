@@ -42,8 +42,13 @@
 			  	<thead>
 			  		<tr class="info">
 			  			<th>Semana</th>
-			  			@foreach (Marcador::all() as $marcadores)
-			  				<th>{{ $marcadores->marcador}} ({{Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }})</th>
+			  			@foreach(Marcador::all() as $marcadores)
+			  				<th>{{ $marcadores->marcador}} (
+								@if(!empty(UnidadMarcador::where('id_marcador', $marcadores->id)->first()->id_unidad))
+			  					{{ 
+	  								Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }} 
+	  						@endif)
+			  				</th>
 			  			@endforeach
 			  		</tr>
 			  	</thead>

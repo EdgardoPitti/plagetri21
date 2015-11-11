@@ -53,19 +53,40 @@ class CondicionesController extends BaseController {
 		$enfermedad->status = $data['status'];
 		$enfermedad->save();
 		
-		//Se obtiene el id de la ultima enfermedad almacenada
-		$id = Enfermedad::all()->last()->id;
-		
 		//Ciclo que recorre todo los marcadores		
-		for($x=1;$x<Marcador::where('id','>', '0')->count()+1;$x++){
+		foreach(Marcador::all() as $marcador){
+			//Si el trimestre del marcador es 3 quiere decir que el marcador esta en ambos trimestes
+			if($marcador->trimestre_marcador == 3){
+				if($data['marcador_'.$marcador->id.'_1'] <> ''){
+					//Se crea el objeto para almacenar los datos
+					$condiciones = new CondicionEnfermedad;
+					//Se coloca los valores respectivos en cada campos
+					$condiciones->id_enfermedad = $enfermedad->id;
+					$condiciones->id_marcador = $marcador->id;
+					$condiciones->valor_condicion = $data['marcador_'.$marcador->id.'_1'];
+					$condiciones->limite_inferior = $data['limite_inferior_'.$marcador->id.'_1'];
+					$condiciones->limite_superior = $data['limite_superior_'.$marcador->id.'_1'];
+					$condiciones->trimestre_marcador = 1;
+					$condiciones->id_user_created = Auth::user()->id;
+					$condiciones->save();
+				}
+			}
 			//Se pregunta si el marcador que viene del formulario no esta en blanco para poder almacenarlo
-			if($data['marcador_'.$x.''] <> ''){
+			if($data['marcador_'.$marcador->id.''] <> ''){
 				//Se crea el objeto para almacenar los datos
 				$condiciones = new CondicionEnfermedad;
 				//Se coloca los valores respectivos en cada campos
-				$condiciones->id_enfermedad = $id;
-				$condiciones->id_marcador = $x;
-				$condiciones->valor_condicion = $data['marcador_'.$x.''];
+				$condiciones->id_enfermedad = $enfermedad->id;
+				$condiciones->id_marcador = $marcador->id;
+				$condiciones->valor_condicion = $data['marcador_'.$marcador->id.''];
+				$condiciones->limite_inferior = $data['limite_inferior_'.$marcador->id.''];
+				$condiciones->limite_superior = $data['limite_superior_'.$marcador->id.''];
+				if($marcador->trimestre_marcador == 3){
+					$condiciones->trimestre_marcador = 2;
+				}else{
+					$condiciones->trimestre_marcador = $marcador->trimestre_marcador;
+				}
+				$condiciones->id_user_created = Auth::user()->id;
 				$condiciones->save();
 			}
 		}
@@ -100,14 +121,27 @@ class CondicionesController extends BaseController {
 		//Se almacena los valores necesarios del formulario para poder editar las enfermedades
 		$datos['form'] = array('route' => array('datos.condiciones.update', $id), 'method' => 'PATCH');
 		//Ciclo que recorre todos los marcadores para buscar la condicion de ese marcador para esa enfermedad
-		for($x=1;$x<Marcador::where('id','>', '0')->count()+1;$x++){
+		foreach(Marcador::all() as $marcador){
+				if($marcador->trimestre_marcador == '3'){
+					$condicion = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->where('trimestre_marcador', '1')->first();	
+					if(empty($condicion)){
+						$datos['enfermedad']->marcador_'.$marcador->id.'_1'' = '';
+					}else{
+						$datos['enfermedad']->marcador_'.$marcador->id.'_1'' = $condicion->valor_condicion;
+						$datos['limite_superior_'.$marcador->id.'_1'] = $condicion->limite_superior;
+						$datos['limite_inferior_'.$marcador->id.'_1'] = $condicion->limite_inferior;
+					}
+					$marcador->trimestre_marcador = '2';
+				}
 				//Se busca la condicion perteneciente a esa enfermedad y ese marcador
-				$condicion = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first();
+				$condicion = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $marcador->id)->where('trimestre_marcador', $marcador->trimestre_marcador)->first();
 				//En caso de que no tenga se devuelve el valor nulo y si tiene se devuelve el valor correspondiente
 				if(empty($condicion)){
-					$datos['marcador_'.$x.''] = '';
+					$datos['marcador_'.$marcador->id.''] = '';
 				}else{
-					$datos['marcador_'.$x.''] = CondicionEnfermedad::where('id_enfermedad', $id)->where('id_marcador', $x)->first()->valor_condicion;		
+					$datos['marcador_'.$marcador->id.''] = $condicion->valor_condicion;		
+					$datos['limite_superior_'.$marcador->id.''] = $condicion->limite_superior;
+					$datos['limite_inferior_'.$marcador->id.''] = $condicion->limite_inferior;
 				}
 		}
 		//Retorno a la vista con los datos correspondientes
