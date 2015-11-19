@@ -82,16 +82,16 @@
 					@if($marcador->trimestre_marcador == 3)
 						<div class="form-group col-sm-4 col-md-4 col-lg-4">
 							{{ Form::label('marcador_'.$marcador->id.'_1', $marcador->marcador.':') }}
-							{{ Form::select('marcador_'.$marcador->id.'_1',array('' => 'SELECCIONE EL VALOR', '-1' => 'Bajo', '0' => 'Normal', '1' => 'Alto') ,$datos['marcador_'.$marcador->id.''], array('class' => 'form-control')) }}
+							{{ Form::select('marcador_'.$marcador->id.'_1',array('' => 'SELECCIONE EL VALOR', '-1' => 'Bajo', '0' => 'Normal', '1' => 'Alto') ,$datos['marcador_'.$marcador->id.'_1'], array('class' => 'form-control')) }}
 						</div>
 						<div class="form-group col-sm-4 col-md-4 col-lg-4">
 							{{ Form::label('trimestre_'.$marcador->id.'', 'Trimestre de '.$marcador->marcador.':') }}        
 							{{ Form::select('trimestre_'.$marcador->id.'',array('' => 'SELECCIONE EL TRIMESTRE', '1' => 'I TRIMESTRE', '2' => 'II TRIMESTRE') ,1, array('class' => 'form-control', 'disabled' => 'disabled')) }}
 						</div>
 						<div class="form-group col-sm-4 col-md-4 col-lg-4">
-							{{ Form::label('valor_'.$marcador->id.'_1', 'Valores de '.$marcador->marcador.':') }}        
-							{{ Form::text('limite_inferior_'.$marcador->id.'_1', null, array('placeholder' => 'Min', 'class' => 'form-control')) }}
-							{{ Form::text('limite_superior_'.$marcador->id.'_1', null, array('placeholder' => 'Max', 'class' => 'form-control')) }}
+							{{ Form::label('limites_'.$marcador->id.'_1', 'Limites de '.$marcador->marcador.':') }}        
+							{{ Form::text('limite_inferior_'.$marcador->id.'_1', $datos['limite_inferior_'.$marcador->id.'_1'], array('placeholder' => 'Min', 'class' => 'form-control')) }}
+							{{ Form::text('limite_superior_'.$marcador->id.'_1', $datos['limite_superior_'.$marcador->id.'_1'], array('placeholder' => 'Max', 'class' => 'form-control')) }}
 						</div>
 						{{--*/$marcador->trimestre_marcador = 2;/*--}}
 					@endif
@@ -105,8 +105,8 @@
 					</div>
 					<div class="form-group col-sm-4 col-md-4 col-lg-4">
 						{{ Form::label('limites_'.$marcador->id.'', 'Limites de '.$marcador->marcador.':') }}        
-						{{ Form::text('limite_inferior_'.$marcador->id.'', null, array('placeholder' => 'Min', 'class' => 'form-control')) }}
-						{{ Form::text('limite_superior_'.$marcador->id.'', null, array('placeholder' => 'Max', 'class' => 'form-control')) }}
+						{{ Form::text('limite_inferior_'.$marcador->id.'', $datos['limite_inferior_'.$marcador->id.''], array('placeholder' => 'Min', 'class' => 'form-control')) }}
+						{{ Form::text('limite_superior_'.$marcador->id.'', $datos['limite_superior_'.$marcador->id.''], array('placeholder' => 'Max', 'class' => 'form-control')) }}
 					</div>
 				@endforeach
 			</div>

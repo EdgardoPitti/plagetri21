@@ -254,10 +254,10 @@
 													<thead>
 														<tr class="info">
 															<th style="text-align:center;padding:6px;">			
-												    				{{ Form::label('met_general', 'Métodología en General:') }}
+												    				{{ Form::label('2_met_general', 'Métodología en General:') }}
 												    		</th>
 												    		<th style="text-align:center;padding:6px;">
-												    				{{ Form::select('met_general', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), null, array('class' => 'form-control')) }}
+												    				{{ Form::select('2_met_general', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), null, array('class' => 'form-control')) }}
 												    		</th>
 												    		<th style="text-align:center;padding:6px 6px 10px 6px;">MOM del Marcador</th>
 												    		<th style="text-align:center;padding:6px 6px 10px 6px;">Correccion por Peso</th>
@@ -267,34 +267,33 @@
 													<tbody>
 												    @foreach (Marcador::where('trimestre_marcador', '2')->OrWhere('trimestre_marcador', '3')->get() as $marcadores)
 														<tr>
-															<td>
-																	{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->etiqueta }}</div>
-												    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')')) }}
-												    				@if($form['marcador_'.$marcadores->id.'']->id_unidad != 0)
-																		{{ Unidad::where('id', $form['marcador_'.$marcadores->id.'']->id_unidad)->first()->unidad }}
-												    				@else
-																		{{ Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }}
-												    				@endif
+															<td style="padding-top:28px;">
+																{{ Form::label('2_valor_'.$marcadores->id, $marcadores->marcador.': ') }}
+												    			{{ Form::text('2_valor_'.$marcadores->id, $form['2_marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.', 2)')) }}
+												    			@if($form['2_marcador_'.$marcadores->id.'']->id_unidad != 0)
+																	{{ Unidad::where('id', $form['2_marcador_'.$marcadores->id.'']->id_unidad)->first()->unidad }}
+												    			@else
+																	{{ Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }}
+												    			@endif
 															</td>
 															<td style="padding-top:28px;">
-								      							{{ Form::label('metodo_'.$marcadores->id, 'Métodología para '.$marcadores->marcador.':') }}
-								      							{{ Form::select('metodo_'.$marcadores->id, array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['marcador_'.$marcadores->id.'']->id_metodologia, array('class' => 'form-control')) }}															
+								      							{{ Form::label('2_metodo_'.$marcadores->id, 'Métodología para '.$marcadores->marcador.':') }}
+								      							{{ Form::select('2_metodo_'.$marcadores->id, array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['2_marcador_'.$marcadores->id.'']->id_metodologia, array('class' => 'form-control')) }}															
 															</td>
 															<td style="padding-top:28px;">
-								      							{{ Form::label('mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
-								      								<div id="pantalla_mom_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->mom }}</div>
-												    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}	
-												    				{{ Form::text('positivo_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->positivo, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
+								      							{{ Form::label('2_mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
+								      								<div id="2_pantalla_mom_{{$marcadores->id}}">{{ $form['2_marcador_'.$marcadores->id.'']->mom }}</div>
+												    			{{ Form::text('2_mom_'.$marcadores->id, $form['2_marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}	
 															</td>
 															<td style="padding-top:28px;">
-								      							{{ Form::label('corr_lineal_'.$marcadores->id, 'Lineal:') }}
-								      								<div id="pantalla_lineal_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_lineal }}</div>
-												    				{{ Form::text('corr_lineal_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
+								      							{{ Form::label('2_corr_lineal_'.$marcadores->id, 'Lineal:') }}
+								      								<div id="2_pantalla_lineal_{{$marcadores->id}}">{{ $form['2_marcador_'.$marcadores->id.'']->corr_peso_lineal }}</div>
+												    			{{ Form::text('2_corr_lineal_'.$marcadores->id, $form['2_marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
 															</td>
 															<td style="padding-top:28px;">
-								      							{{ Form::label('corr_exp_'.$marcadores->id, 'Exponencial:') }}
-								      								<div id="pantalla_exponencial_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial }}</div>
-												    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
+								      							{{ Form::label('2_corr_exp_'.$marcadores->id, 'Exponencial:') }}
+								      								<div id="2_pantalla_exponencial_{{$marcadores->id}}">{{ $form['2_marcador_'.$marcadores->id.'']->corr_peso_exponencial }}</div>
+												    			{{ Form::text('2_corr_exp_'.$marcadores->id, $form['2_marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
 															</td>
 														</tr>
 												    @endforeach
@@ -308,10 +307,10 @@
 													<thead>
 														<tr class="info">
 															<th style="text-align:center;padding:6px;">			
-												    				{{ Form::label('met_general', 'Métodología en General:') }}
+												    				{{ Form::label('1_met_general', 'Métodología en General:') }}
 												    		</th>
 												    		<th style="text-align:center;padding:6px;">
-												    				{{ Form::select('met_general', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), null, array('class' => 'form-control')) }}
+												    				{{ Form::select('1_met_general', array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), null, array('class' => 'form-control')) }}
 												    		</th>
 												    		<th style="text-align:center;padding:6px 6px 10px 6px;">MOM del Marcador</th>
 												    		<th style="text-align:center;padding:6px 6px 10px 6px;">Correccion por Peso</th>
@@ -321,34 +320,33 @@
 													<tbody>
 												     @foreach (Marcador::where('trimestre_marcador', '1')->OrWhere('trimestre_marcador', '3')->get() as $marcadores)
 														<tr>
-															<td>
-																	{{ Form::label('valor_'.$marcadores->id, $marcadores->marcador.': ') }}<div id="alerta_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->etiqueta }}</div>
-												    				{{ Form::text('valor_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.')')) }}
-												    				@if($form['marcador_'.$marcadores->id.'']->id_unidad != 0)
-																		{{ Unidad::where('id', $form['marcador_'.$marcadores->id.'']->id_unidad)->first()->unidad }}
-												    				@else
-																		{{ Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }}
-												    				@endif
+															<td style="padding-top:28px;">
+																{{ Form::label('1_valor_'.$marcadores->id, $marcadores->marcador.': ') }}
+												    			{{ Form::text('1_valor_'.$marcadores->id, $form['1_marcador_'.$marcadores->id.'']->valor, array('placeholder' => $marcadores->marcador, 'class' => 'form-control', 'onKeyUp' => 'Division('.$marcadores->id.','.$datos[0]->id_raza.', 1)')) }}
+												    			@if($form['1_marcador_'.$marcadores->id.'']->id_unidad != 0)
+																	{{ Unidad::where('id', $form['1_marcador_'.$marcadores->id.'']->id_unidad)->first()->unidad }}
+												    			@else
+																	{{ Unidad::where('id', UnidadMarcador::where('id_marcador', $marcadores->id)->get()->last()->id_unidad)->first()->unidad }}
+												    			@endif
 															</td>
 															<td style="padding-top:28px;">
-								      							{{ Form::label('metodo_'.$marcadores->id, 'Métodología para '.$marcadores->marcador.':') }}
-								      							{{ Form::select('metodo_'.$marcadores->id, array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['marcador_'.$marcadores->id.'']->id_metodologia, array('class' => 'form-control')) }}															
+								      							{{ Form::label('1_metodo_'.$marcadores->id, 'Métodología para '.$marcadores->marcador.':') }}
+								      							{{ Form::select('1_metodo_'.$marcadores->id, array('0' => 'SELECCION EL  MÉTODO') + Metodologia::lists('metodologia','id'), $form['1_marcador_'.$marcadores->id.'']->id_metodologia, array('class' => 'form-control')) }}															
 															</td>
 															<td style="padding-top:28px;">
 								      							{{ Form::label('mom_'.$marcadores->id, 'MOM '.$marcadores->marcador.':') }}
-								      								<div id="pantalla_mom_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->mom }}</div>
-												    				{{ Form::text('mom_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}	
-												    				{{ Form::text('positivo_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->positivo, array('id' => 'positivo_'.$marcadores->id.'', 'style' => 'display:none')) }}	
+								      								<div id="1_pantalla_mom_{{$marcadores->id}}">{{ $form['1_marcador_'.$marcadores->id.'']->mom }}</div>
+												    			{{ Form::text('1_mom_'.$marcadores->id, $form['1_marcador_'.$marcadores->id.'']->mom, array('style' => 'display:none')) }}		
 															</td>
 															<td style="padding-top:28px;">
-								      							{{ Form::label('corr_lineal_'.$marcadores->id, 'Lineal:') }}
-								      								<div id="pantalla_lineal_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_lineal }}</div>
-												    				{{ Form::text('corr_lineal_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
+								      							{{ Form::label('1_corr_lineal_'.$marcadores->id, 'Lineal:') }}
+								      								<div id="1_pantalla_lineal_{{$marcadores->id}}">{{ $form['1_marcador_'.$marcadores->id.'']->corr_peso_lineal }}</div>
+												    			{{ Form::text('1_corr_lineal_'.$marcadores->id, $form['1_marcador_'.$marcadores->id.'']->corr_peso_lineal, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
 															</td>
 															<td style="padding-top:28px;">
-								      							{{ Form::label('corr_exp_'.$marcadores->id, 'Exponencial:') }}
-								      								<div id="pantalla_exponencial_{{$marcadores->id}}">{{ $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial }}</div>
-												    				{{ Form::text('corr_exp_'.$marcadores->id, $form['marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
+								      							{{ Form::label('1_corr_exp_'.$marcadores->id, 'Exponencial:') }}
+								      								<div id="1_pantalla_exponencial_{{$marcadores->id}}">{{ $form['1_marcador_'.$marcadores->id.'']->corr_peso_exponencial }}</div>
+												    			{{ Form::text('1_corr_exp_'.$marcadores->id, $form['1_marcador_'.$marcadores->id.'']->corr_peso_exponencial, array('placeholder' => 'MOM CORREGIDO', 'class' => 'form-control', 'style' => 'display:none')) }}
 															</td>
 														</tr>
 												    @endforeach
@@ -402,7 +400,7 @@
 									  	</thead>
 									  	<tbody>
 									  		{{--*/ $n=1; /*--}}
-									  		@foreach (Cita::where('id_paciente', $datos[0]->id)->get() as $citas)
+									  		@foreach (Cita::where('id_paciente', $datos[0]->id)->orderBy('fecha_cita', 'desc')->get() as $citas)
 										  		<tr align="center">
 										  			<td>{{ $n++ }}.</td>
 										  			<td>{{ $citas->fecha_cita }}</td>

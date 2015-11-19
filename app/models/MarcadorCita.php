@@ -10,7 +10,6 @@
  * 7- mom
  * 8- corr_peso_exponencial
  * 9- corr_peso_lineal
- * 10- positivo
  */
 class MarcadorCita extends Eloquent {
 
@@ -25,6 +24,10 @@ class MarcadorCita extends Eloquent {
 		$marcadorcita = MarcadorCita::where('id_marcador', $id)->where('id_cita', $id_cita)->first();
 		if(empty($marcadorcita)){
 			$marcadorcita = new MarcadorCita;
+			$marcadorcita->mom = '0';
+			$marcadorcita->corr_peso_lineal = '0';
+			$marcadorcita->corr_peso_exponencial = '0';
+			$marcadorcita->valor = '0';
 		}
 		return $marcadorcita;
 	}

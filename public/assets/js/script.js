@@ -1,6 +1,5 @@
 jQuery(document).ready(function($){	
-		
-		
+	
         //Funcion que carga al cambiar el id_provincia
         $("#id_provincia").change(function(){
             //Funcion GET como primer parametro recibe el url que queremos ejecutar.
@@ -732,8 +731,7 @@ function clearInput() {
 	divParent.find('.tooltip').remove();
 						
 }
-function Comparar(id, resultado){
-	
+function Comparar(id, resultado, tipo){
 	var mom = resultado;
 	var campo = $('#alerta_'+id+'');
 	campo.empty();
@@ -800,41 +798,39 @@ function Disable(){
 		}
 }
 //Funcion que recibe el id del marcador y busca en la base de datos para conocer la mediana de ese marcador y poder realizar el calculo de la mom
-function Division(id, idraza){
-	
+function Division(id, idraza, tipo){
     $.get(""+baseurl+"/calculo", 
         { idmarcador: id , semana: $("#semana").val() }, 
         function(data){
-            var campo = $('#mom_'+id+'');
-            var pantalla = $('#pantalla_mom_'+id+'');
+            var campo = $('#'+tipo+'_mom_'+id+'');
+            var pantalla = $('#'+tipo+'_pantalla_mom_'+id+'');
 			var resultado = 0;
+			var mediana = 0;
 			pantalla.empty();
             $.each(data, function(index,element) {
-                var valor = $('#valor_'+id+'').val();
-                var mediana = element.mediana_marcador;
+                var valor = $('#'+tipo+'_valor_'+id+'').val();
+                mediana = element.mediana_marcador;
                 resultado = (valor/mediana);
             }); 
             campo.val(resultado.toFixed(5));
 			pantalla.append(resultado.toFixed(5));
-			Comparar(id, resultado);
+			//Comparar(id, resultado, tipo);
 			//Llamado de la Funcion Correccion1 que calcula la correccion de las mom en base al peso
-			Correccion_lineal(id, resultado);
-			Correccion_exponencial(id, idraza, resultado);
-			
+			Correccion_lineal(id, resultado, tipo);
+			Correccion_exponencial(id, idraza, resultado, tipo);		
     });
 }
 //Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Lineal
-function Correccion_lineal(id, mom){
-	
+function Correccion_lineal(id, mom, tipo){
     $.get(""+baseurl+"/correccion_lineal", 
         { idmarcador: id }, 
         function(data){
-            var campo = $('#corr_lineal_'+id+'');
-            var pantalla = $('#pantalla_lineal_'+id+'');
+            var campo = $('#'+tipo+'_corr_lineal_'+id+'');
+            var pantalla = $('#'+tipo+'_pantalla_lineal_'+id+'');
             var lineal = 0.0000;
             pantalla.empty();
             $.each(data, function(index,element) {
-                var valor = $('#valor_'+id+'').val();
+                var valor = $('#'+tipo+'_valor_'+id+'').val();
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();
@@ -846,17 +842,17 @@ function Correccion_lineal(id, mom){
     });
 }
 //Funcion que recibe el id que es el id del marcador y la mom para realizar los calculos de la correccion por peso Exponencial
-function Correccion_exponencial(id, idraza, mom){
+function Correccion_exponencial(id, idraza, mom, tipo){
 	
     $.get(""+baseurl+"/correccion_exponencial", 
         { idmarcador: id , idraza: idraza}, 
         function(data){
-            var campo = $('#corr_exp_'+id+'');
-            var pantalla = $('#pantalla_exponencial_'+id+'');
+            var campo = $('#'+tipo+'_corr_exp_'+id+'');
+            var pantalla = $('#'+tipo+'_pantalla_exponencial_'+id+'');
             var exponencial = 0.0000;
             pantalla.empty();
             $.each(data, function(index,element) {
-                var valor = $('#valor_'+id+'').val();
+                var valor = $('#'+tipo+'_valor_'+id+'').val();
                 var a = element.a;
                 var b = element.b;
                 var peso = $('#peso').val();

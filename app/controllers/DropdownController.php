@@ -60,7 +60,7 @@ class DropdownController extends BaseController
     public function getLimites()
     {
         $id = Input::get('idmarcador');
-        $semana = Input::get('semana');
+        $trimestre = Input::get('trimestre');
         $limites = ValorNormal::where('id_marcador', $id)->where('semana', $semana)->where('id_unidad', UnidadMarcador::where('id_marcador', $id)->get()->last()->id_unidad);
         return ($limites->get(['lim_inferior', 'lim_superior']));
     }
